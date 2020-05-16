@@ -390,7 +390,7 @@
             <tr @if ($asset->selected)
                 class="selected"
             @endif>
-              <td style="width: 80%"><h4 class="mb-0">&#160&#160&#160&#160 {{ $asset->id}} - {{$asset->name }}</h4></td> 
+              <td style="width: 80%"><h4 class="mb-0"><s>&#160&#160&#160&#160 {{ $asset->id}} - {{$asset->name }}</s></h4></td> 
             <td>
                 <input type="checkbox" name="selects[]" 
                 @if($asset->selected)

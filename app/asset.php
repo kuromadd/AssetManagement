@@ -8,7 +8,7 @@ class asset extends Model
 {
    public function bureau()
    {
-       return $this->belongsTo('\App\bureau');
+       return $this->hasOne('\App\bureau');
    }
    
 }
