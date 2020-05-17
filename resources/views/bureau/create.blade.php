@@ -131,7 +131,9 @@ crossorigin="anonymous"></script>
                       <label for="block_id">Assets</label><br>
                           
                               @foreach(\App\asset::all() as $asset)
-                                <label >&#160<input type="checkbox" name="assets[]" id="assets[]" value="{{ $asset->id }}"> {{$asset->name}} </label>
+                              @if ($asset->occupied == 0)
+                                <label >&#160<input type="checkbox" name="assets[]" id="assets[]" value="{{ $asset }}"> {{$asset->name}} </label>
+                              @endif
                               @endforeach
                           
                       </div>
