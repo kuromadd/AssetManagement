@@ -22,7 +22,7 @@
                             <tr>
                                 <th scope="col">Name</th>
                                 <th scope="col">Adress</th>
-                                <th scope="col">select</th>
+                                
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -31,7 +31,7 @@
                         <tr>
                             <td>{{$block->name}}</td>
                             <td>{{$block->adress}}</td>
-                            <td>selected</td>
+                            
                             <td class="text-right">
                                 <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only text" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,7 +39,7 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="#">Edit</a>
+                                    <a class="dropdown-item" href="{{route('editBlock',$block->id)}}">Edit</a>
                                     <a class="dropdown-item" href="{{ route('deleteBlock',$block->id) }}">delete</a>
 
                                     </div>

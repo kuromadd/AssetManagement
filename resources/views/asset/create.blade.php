@@ -94,16 +94,22 @@ crossorigin="anonymous"></script>
     width: 70%;
   }
 }
+
 </style>
 
 
-<div id="popupac" class="overlay">
+<div id="popupac" class="overlay"style="overflow: scroll">
     <div class="popup" style="width: 60%">
-<div class="card card-default">
-  <div class="card-header">  
-   create a new asset
-   <a class="close" href="#">&times;</a>
-</div>
+      <div class="card card-default">
+        <div class="card-header border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0">create a new asset</h3>
+                </div>
+                <a class="close" href="#">&times;</a>
+              </div>
+        </div>
+      </div>
 <div class="card-body">
     <form action="{{ route('storeAsset') }}" method="post" enctype="multipart/form-data">
 
@@ -117,13 +123,11 @@ crossorigin="anonymous"></script>
           <label for="description" class="form-control-label"> &#160&#160Description </label>
           <textarea class="form-control" name="description" id="description" cols="4" rows="4"></textarea>
       </div>
-      <table style="width: 100%">
-      <tr><td style="width: 40%">
+  
       <div class="form-group">
           <label class="form-control-label" for="prix">&#160&#160price</label>
           <input type="text" name="prix" class="form-control form-control-alternative">
       </div>
-    </td><td style="width: 40%;margin: 10%">
       <div class="form-group">
         <label for="category" class="form-control-label">&#160&#160category</label>
         <select name="category" id="category" class="form-control form-control-alternative">
@@ -132,21 +136,24 @@ crossorigin="anonymous"></script>
           <option value="op3">op3</option>
         </select>
       </div>
-    </td></tr>
-    <tr><td style="width: 40%">
+    
       <div class="form-group">
         <label for="date" class="form-control-label">&#160&#160mis en service a :</label>
-        <input type="date" name="dateservice" id="dateservice" class="form-control form-control-alternative">
+        <input type="date" name="dateservice" id="dateservice" class="form-control datetimepicker">
       </div>
-    </td><td style="width: 40%">
+      
+      <div class="form-group">
+        <label class="label-control">Datetime Picker</label>
+        <input type="text" class="form-control datetimepicker" value="21/06/2018"/>
+    </div>
+
       <div class="form-group">
         <label for="duree" class="form-control-label">&#160&#160duree de vie</label>
         <input  type="text" name="duree" id="duree" class="form-control form-control-alternative">
       </div>
-    </td></tr>
-    </table>
+      
       <div class="text-center">
-      <button class="btn btn-info" type="submit">store</button>    
+      <button class="btn btn-success" type="submit">store</button>    
       </div> 
     </form>    
   </div>
@@ -154,3 +161,19 @@ crossorigin="anonymous"></script>
             
 </div>
 </div>
+
+<script>
+  $('.datetimepicker').datetimepicker({
+    icons: {
+        time: "fa fa-clock-o",
+        date: "fa fa-calendar",
+        up: "fa fa-chevron-up",
+        down: "fa fa-chevron-down",
+        previous: 'fa fa-chevron-left',
+        next: 'fa fa-chevron-right',
+        today: 'fa fa-screenshot',
+        clear: 'fa fa-trash',
+        close: 'fa fa-remove'
+    }
+});
+</script>

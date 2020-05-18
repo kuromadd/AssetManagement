@@ -18,7 +18,8 @@ class AssetTableSeeder extends Seeder
             'category' => 'op2',
             'dateService' => null,
             'duree_vie' => '5ans',
-            'selected' => 1,
+            'repair' => 0,
+            'lost' => 0,
             'occupied' => 0,
         
         ]);
@@ -29,7 +30,8 @@ class AssetTableSeeder extends Seeder
             'category' => 'op2',
             'dateService' => null,
             'duree_vie' => '5ans',
-            'selected' => 1,
+            'repair' => 0,
+            'lost' => 0,
             'occupied' => 0,
         
         ]);
@@ -40,7 +42,8 @@ class AssetTableSeeder extends Seeder
             'category' => 'op2',
             'dateService' => null,
             'duree_vie' => '5ans',
-            'selected' => 1,
+            'repair' => 0,
+            'lost' => 0,
             'occupied' => 0,
         
         ]);
@@ -51,7 +54,8 @@ class AssetTableSeeder extends Seeder
             'category' => 'op2',
             'dateService' => null,
             'duree_vie' => '5ans',
-            'selected' => 1,
+            'repair' => 0,
+            'lost' => 0,
             'occupied' => 0,
         
         ]);
@@ -62,7 +66,8 @@ class AssetTableSeeder extends Seeder
             'category' => 'op2',
             'dateService' => null,
             'duree_vie' => '5ans',
-            'selected' => 1,
+            'repair' => 0,
+            'lost' => 0,
             'occupied' => 0,
         
         ]);
@@ -73,7 +78,8 @@ class AssetTableSeeder extends Seeder
             'category' => 'op2',
             'dateService' => null,
             'duree_vie' => '5ans',
-            'selected' => 1,
+            'repair' => 0,
+            'lost' => 0,
             'occupied' => 0,
         
         ]);
@@ -84,7 +90,8 @@ class AssetTableSeeder extends Seeder
             'category' => 'op2',
             'dateService' => null,
             'duree_vie' => '5ans',
-            'selected' => 1,
+            'repair' => 0,
+            'lost' => 0,
             'occupied' => 0,
         
         ]);
@@ -95,7 +102,8 @@ class AssetTableSeeder extends Seeder
             'category' => 'op2',
             'dateService' => null,
             'duree_vie' => '5ans',
-            'selected' => 1,
+            'repair' => 0,
+            'lost' => 0,
             'occupied' => 0,
         
         ]);
@@ -106,7 +114,8 @@ class AssetTableSeeder extends Seeder
             'category' => 'op2',
             'dateService' => null,
             'duree_vie' => '5ans',
-            'selected' => 1,
+            'repair' => 0,
+            'lost' => 0,
             'occupied' => 0,
         
         ]);        \App\asset::create([
@@ -116,7 +125,8 @@ class AssetTableSeeder extends Seeder
             'category' => 'op2',
             'dateService' => null,
             'duree_vie' => '5ans',
-            'selected' => 1,
+            'repair' => 0,
+            'lost' => 0,
             'occupied' => 0,
         
         ]);
@@ -128,7 +138,8 @@ class AssetTableSeeder extends Seeder
             'category' => 'op2',
             'dateService' => null,
             'duree_vie' => '5ans',
-            'selected' => 1,
+            'repair' => 0,
+            'lost' => 0,
             'occupied' => 0,
         
         ]);
@@ -139,7 +150,8 @@ class AssetTableSeeder extends Seeder
             'category' => 'op2',
             'dateService' => null,
             'duree_vie' => '5ans',
-            'selected' => 1,
+            'repair' => 0,
+            'lost' => 0,
             'occupied' => 0,
         
         ]);
@@ -150,7 +162,8 @@ class AssetTableSeeder extends Seeder
             'category' => 'op2',
             'dateService' => null,
             'duree_vie' => '5ans',
-            'selected' => 1,
+            'repair' => 0,
+            'lost' => 0,
             'occupied' => 0,
         
         ]);
@@ -161,7 +174,8 @@ class AssetTableSeeder extends Seeder
             'category' => 'op2',
             'dateService' => null,
             'duree_vie' => '5ans',
-            'selected' => 1,
+            'repair' => 0,
+            'lost' => 0,
             'occupied' => 0,
         
         ]);
@@ -172,7 +186,8 @@ class AssetTableSeeder extends Seeder
             'category' => 'op2',
             'dateService' => null,
             'duree_vie' => '5ans',
-            'selected' => 1,
+            'repair' => 0,
+            'lost' => 0,
             'occupied' => 0,
         
         ]);

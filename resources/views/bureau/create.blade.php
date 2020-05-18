@@ -56,7 +56,7 @@ crossorigin="anonymous"></script>
 }
 
 .popup {
-  margin: 70px auto;
+  margin: 30px auto;
   padding: 20px;
   background: #fff;
   border-radius: 5px;
@@ -102,11 +102,15 @@ crossorigin="anonymous"></script>
 <div id="popupbrc" class="overlay">
     <div class="popup" style="width: 60%">
             <div class="card card-default">
-                  <div class="card-header">  
-                   create a new Bureau
-                   <a class="close" href="#">&times;</a>
-                </div>
-            
+              <div class="card-header border-0">
+                  <div class="row align-items-center">
+                      <div class="col-8">
+                          <h3 class="mb-0">create a new bureau</h3>
+                      </div>
+                      <a class="close" href="#">&times;</a>
+                    </div>
+              </div>
+            </div>
                 <div class="card-body">
                     <form action="{{ route('storeBureau') }}" method="post" enctype="multipart/form-data">
         
@@ -132,7 +136,7 @@ crossorigin="anonymous"></script>
                           
                               @foreach(\App\asset::all() as $asset)
                               @if ($asset->occupied == 0)
-                                <label >&#160<input type="checkbox" name="assets[]" id="assets[]" value="{{ $asset }}"> {{$asset->name}} </label>
+                                <label >&#160<input type="checkbox" name="assets[]" value="{{ $asset->id }}"> {{$asset->name}} </label>
                               @endif
                               @endforeach
                           

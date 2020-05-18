@@ -99,11 +99,17 @@ crossorigin="anonymous"></script>
 
 <div id="popupuc" class="overlay">
     <div class="popup" style="width: 60%"> 
-            <div class="card card-default">
-                  <div class="card-header bg-blue">  
-                   <label style="color: white">create a new user</label>
-                   <a class="close" href="#">&times;</a>
+           
+              <div class="card card-default">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">create a new asset</h3>
+                        </div>
+                        <a class="close" href="#">&times;</a>
+                      </div>
                 </div>
+              </div>
             
                 <div class="card-body align-items-center">
                     <form action="{{ route('storeUser') }}" method="post" enctype="multipart/form-data">
@@ -155,9 +161,9 @@ crossorigin="anonymous"></script>
             
                 </div>
             
-            </div>
-            </div> 
-    </div>
+         </div>
+    </div> 
+
 
     @yield('scripts')
     <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ea4cc65ead60000"></script>

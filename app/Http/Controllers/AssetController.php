@@ -140,25 +140,27 @@ class AssetController extends Controller
         return redirect()->back()->with('success','you deleted asset');
     }
 
-    public function selected($id){
-        $asset = \App\asset::find($id);
-        $asset->selected = 1;
-        $asset->save();
-        return redirect()->back();
-    }
-    public function notselected($id){
-        $asset = \App\asset::find($id);
-        $asset->selected = 0;
-        $asset->save();
-        return redirect()->back();
-    }
+   
 
-    public function selectall(){
+    public function reset(){
         foreach(\App\asset::all() as $asset)
         {
-        $asset->selected = 1;
+        $asset->repair = 0;
+        $asset->lost = 0;
         $asset->save();
     }
     return redirect()->route('assetList');
+    }
+
+    public function saveall(Request $request){
+        foreach(\App\asset::all() as $asset){
+            $asset->repair = 0;
+            $asset->lost = 0;
+            $asset->save();
+        }
+        \App\asset::whereIn('id',$request->repair)->update(["repair" => 1]);
+        \App\asset::whereIn('id',$request->lost)->update(["lost" => 1]);
+
+        return redirect()->route('assetList');
     }
 }

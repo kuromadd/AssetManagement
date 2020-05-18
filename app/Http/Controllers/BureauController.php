@@ -50,11 +50,9 @@ class BureauController extends Controller
         $bureau->name = $request->name;
         $bureau->block_id = $request->block_id;
         $bureau->etage =$request->etage;
-       
-        foreach($request->assets as $asset){
-            $asset->occupied = 1;
-            $asset->selected = 0;
-        }
+        
+        \App\asset::whereIn('id',$request->assets)->update(["occupied" => 1]);
+        
         $bureau->save();
         $bureau->assets()->attach($request->assets);
         return redirect()->back()->with('success','you stored a new bureau');
@@ -106,12 +104,8 @@ class BureauController extends Controller
         $bureau->block_id =$request->block_id;
         dd($request->assets);
         $bureau->save();
-        foreach($bureau->assets as $asset){
-            $asset->occupied = 0;
-        }
-        foreach(dd($request->assets) as $id){
-            \App\asset::find($id)->occupied = 1;
-        }
+        \App\asset::whereIn('id',$bureau->assets)->update(["occupied" => 0]);
+        \App\asset::whereIn('id',$request->assets)->update(["occupied" => 1]);
         $bureau->assets()->sync($request->assets);
         return redirect()->back()->with('success','you updated a bureau');
     }
