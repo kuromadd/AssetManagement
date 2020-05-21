@@ -19,14 +19,14 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Role</th>
-                                <th scope="col">Creation Date</th>
-                                <th scope="col">permission</th>
+                                @foreach ($role as $item)
+                                <th scope="col">{{$role->name}}</th>
+                                @endforeach
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($roles as $role)
+                        @foreach(Spatie\Permission\Models\Permission::all() as $pemission)
                         <tr>
                             <td>{{$role->name}}</td>
                             <td>{{$role->created_at}}</td>

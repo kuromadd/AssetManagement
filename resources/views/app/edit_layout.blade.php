@@ -197,8 +197,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="ni ni-key-25 text-info"></i> Login
+                <a class="nav-link" href="{{route('indexReparation')}}">
+                    <i class="ni ni-key-25 text-info"></i> reparation
                 </a>
             </li>
             <li class="nav-item">

@@ -9,9 +9,7 @@
                           <div class="col-8">
                               <h3 class="mb-0">Corrupt Assets</h3>
                           </div>
-                          <div class="col-4 text-right">
-                          <a href="#" class="btn btn-sm btn-primary">repairAll</a>
-                          </div>
+                         
                       </div>
                   </div>
 
@@ -34,7 +32,7 @@
               <td style="width: 16%"><h4 class="mb-0"> E1</h4></td>
               <td style="width: 16%"><h4 class="mb-0">BR1</h4></td>
               <td style="width: 16%"><h4 class="mb-0">{{$asset->name }}</h4></td> 
-            <td ><a href="#" class="btn btn-sm btn-info">repair</a></td>
+            <td ><a href="{{route('createReparation',['id'=>$asset->id])}}" class="btn btn-sm btn-info">repair</a></td>
             </tr>
             @endif
             @endforeach    

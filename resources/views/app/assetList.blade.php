@@ -2,16 +2,16 @@
 @section('content')
 
     <style>
+      /*
         @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-        
-    
+          
         .boxes {
           margin: auto;
           padding: 50px;
           background: #484848;
         }
         
-        /*Checkboxes styles*/
+        /*Checkboxes styles
         input[type="checkbox"] { display: none; }
         
         input[type="checkbox"] + label {
@@ -54,7 +54,7 @@
           -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
         }
-        
+        */
         table tr {
           padding: 5px;
           background:none;
@@ -117,18 +117,18 @@
               <td style="width: 16%"><h4 class="mb-0">BR1</h4></td>
               <td style="width: 16%"><h4 class="mb-0">{{$asset->name }}</h4></td> 
             <td style="margin: 15%">
-                <input type="checkbox" name="repair[]" value="{{$asset->id}}"
+                <input type="checkbox" name="select.{{$asset->id}}[]" value="{{$asset->id}}"
                 @if($asset->repair)
                 checked 
-                @endif id="box-1{{$asset->id}}" class="repair">
-            <label class="form-control-label" for="box-1{{$asset->id}}"></label>   
+                @endif id="box-1{{$asset->id}}" class="option-input checkbox">
+            <label class="form-control-label"></label>   
                 </td>
                 <td >
-                    <input type="checkbox" name="lost[]" value="{{$asset->id}}"
+                <input type="checkbox" name="select.{{$asset->id}}[]" value="{{$asset->id}}"
                     @if($asset->lost)
                     checked 
-                    @endif id="box-2{{$asset->id}}" class="lost">
-                <label class="form-control-label" for="box-2{{$asset->id}}"></label>   
+                    @endif id="box-2{{$asset->id}}" class="">
+                <label class="form-control-label"></label>   
                 </td>
             </tr>
             @endif

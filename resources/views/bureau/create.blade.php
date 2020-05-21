@@ -123,6 +123,7 @@ crossorigin="anonymous"></script>
                             <option value="restroom">restroom</option>
                             </select>
                         </div>
+                        <form action="" method="post">
                     <div class="form-group">
                     <label for="block_id">block</label>
                         <select class="form-control" name="block_id" id="block_id">
@@ -131,6 +132,16 @@ crossorigin="anonymous"></script>
                             @endforeach
                         </select>
                     </div>
+                    
+                    <div class="form-group">
+                     <label for="nbreEt">numero d'etage <? echo $_POST["block_id"]; ?></label>
+                        <select class="form-control" name="etage" id="etage">
+                            @for($i = -2; $i <4; $i++)
+                               <option value="{{$i}}">{{$i}}</option>                             
+                            @endfor
+                        </select>
+                    </div>
+                  </form>
                     <div class="form-group">
                       <label for="block_id">Assets</label><br>
                           
@@ -141,14 +152,6 @@ crossorigin="anonymous"></script>
                               @endforeach
                           
                       </div>
-                    <div class="form-group">
-                     <label for="nbreEt">numero d'etage</label>
-                        <select class="form-control" name="etage" id="etage">
-                            @for($i = -2; $i < 6; $i++)
-                               <option value="{{$i}}">{{$i}}</option>                             
-                            @endfor
-                        </select>
-                    </div>
                     <div class="text-center">
                     <button class="btn btn-info" type="submit">store</button>    
                     </div> 

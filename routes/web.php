@@ -46,6 +46,12 @@ Route::get('/asset/edit/{id}','AssetController@edit')->name('editAsset');
 Route::post('/asset/update/{id}','AssetController@update')->name('updateAsset');
 Route::get('/asset/delete/{id}','AssetController@destroy')->name('deleteAsset');
 
+Route::get('/reparation/index','ReparationController@index')->name('indexReparation');
+Route::get('/reparation/create','ReparationController@create')->name('createReparation');
+Route::post('/reparation/store','ReparationController@store')->name('storeReparation');
+Route::get('/reparation/delete/{id}','ReparationController@destroy')->name('deleteReparation');
+Route::get('/reparation/repairAll','ReparationController@repairAll')->name('repairAll');
+
 Route::get('/block/index','blocksController@index')->name('indexBlock');
 Route::get('/block/create','blocksController@create')->name('createBlock');
 Route::post('/block/store','blocksController@store')->name('storeBlock');
