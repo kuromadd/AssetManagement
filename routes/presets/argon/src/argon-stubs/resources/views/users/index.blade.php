@@ -376,7 +376,7 @@
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                                                                        <a class="dropdown-item" href="">Edit</a>
+                                                                                                        <a class="dropdown-item" href=""><i class="fa fa-edit fa-fw"></i></i> edit</a>
                                                                                                 </div>
                                         </div>
                                     </td>

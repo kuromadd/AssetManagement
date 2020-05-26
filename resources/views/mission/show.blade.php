@@ -2,21 +2,26 @@
 @section('content')
             <div class="card card-default">
                   <div class="card-header" >  
-                   add a new Reparation
+                    Mission 
                 </div>
             
                 <div class="card-body">
-                    <form action="{{ route('storeReparation') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('missions.update',$mission->id) }}" method="post" enctype="multipart/form-data">
         
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="prix">prix</label>
-                        <input type="text" name="prix" class="form-control">
+                        <label for="but_mission">But de la mission</label>
+                        <input type="text" name="but_mission" value="{{$mission->but_mission}}" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <label for="repaired_at">date de la reparation</label>
-                        <input type="date" name="repaired_at" class="form-control" id="repaired_at">
+                        <label for="destination">Destination</label>
+                        <input type="text" name="destination" value="{{$mission->destination}}" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mission_at">date de la Mission</label>
+                    <input type="date" name="mission_at" class="form-control" value="{{ $mission->mission_at }}" id="mission_at">
                     </div>
 
                     <div class="form-group">
@@ -24,17 +29,13 @@
                         <select class="form-control" name="asset_id" id="asset_id">
                             @foreach(\App\Asset::all() as $asset)
                         <option value="{{ $asset->id }}"
-                           @if( $_GET["id"] && $asset->id == $_GET["id"])
+                           @if($asset->id == $mission->asset_id)
                             selected
                         @endif>{{$asset->name}}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="text-center">
-                    <button class="btn btn-info" type="submit">store</button>    
-                    </div> 
-                </form>
-            
+                   
                 
             </div>
         </div>

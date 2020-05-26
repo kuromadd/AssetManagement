@@ -21,8 +21,7 @@ class CreateAssetsTable extends Migration
             $table->string('category');
             $table->date('dateService')->nullable();
             $table->string('duree_vie');
-            $table->boolean('repair')->default(0);
-            $table->boolean('lost')->default(0);
+            $table->integer('status');
             $table->boolean('occupied')->default(0);            
             $table->timestamps();
         });

@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="card card-default">
-        <div class="card-header">  
+        <div class="card-header" style="background-color: #007bff">  
               <div class="col-8">
                   <h3 class="mb-0">edit asset</h3>
               </div>

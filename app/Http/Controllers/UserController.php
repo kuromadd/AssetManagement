@@ -19,6 +19,14 @@ class UserController extends Controller
      * @return \Illuminate\View\View
      */
 
+    function __construct()
+    {
+         $this->middleware('permission:User-list|User-create|User-edit|User-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:User-create', ['only' => ['create','store']]);
+         $this->middleware('permission:User-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:User-delete', ['only' => ['destroy']]);
+    }
+
     public function test(){
 
         return view('test')->with('user',Auth()->user());
@@ -29,14 +37,14 @@ class UserController extends Controller
         return view('app.assetList')->with('assets',$assets);
     }
 
-    public function repairList(){
-        $assets = \App\asset::all();
-        return view('app.corruptAsset')->with('assets',$assets);
-    }
-
     public function replaceList(){
         $assets = \App\asset::all();
         return view('app.lostAsset')->with('assets',$assets);
+    }
+
+    public function repairList(){
+        $assets = \App\asset::all();
+        return view('app.damagedAsset')->with('assets', $assets);
     }
 
     public function index(Request $request)

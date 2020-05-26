@@ -142,24 +142,26 @@ class AssetController extends Controller
 
    
 
-    public function reset(){
-        foreach(\App\asset::all() as $asset)
+    public function reset($id){
+        foreach(\App\asset::whereIn('status',['0','1','2'])->get() as $asset)
         {
-        $asset->repair = 0;
-        $asset->lost = 0;
+        $asset->status = 0;
         $asset->save();
     }
+    if($id != 0){
+    DB::table('asset_inventaire')->where('inventaire_id',$id)->update(["status" => 0]);}
     return redirect()->route('assetList');
     }
 
     public function saveall(Request $request){
         foreach(\App\asset::all() as $asset){
-            $asset->repair = 0;
-            $asset->lost = 0;
+            $asset->status = 0;
             $asset->save();
         }
-        \App\asset::whereIn('id',$request->repair)->update(["repair" => 1]);
-        \App\asset::whereIn('id',$request->lost)->update(["lost" => 1]);
+        \App\asset::whereIn('id',$request->fine)->update(["status" => 1]);
+        \App\asset::whereIn('id',$request->repair)->update(["status" => 2]);
+        \App\asset::whereIn('id',$request->lost)->update(["status" => 3]);
+        
 
         return redirect()->route('assetList');
     }

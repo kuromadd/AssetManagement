@@ -13,6 +13,15 @@ class blocksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    function __construct()
+    {
+         $this->middleware('permission:block-list|block-create|block-edit|block-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:block-create', ['only' => ['create','store']]);
+         $this->middleware('permission:block-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:block-delete', ['only' => ['destroy']]);
+    }
+
     public function index(Request $request)
     {
         $user=Auth()->user();

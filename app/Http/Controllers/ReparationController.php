@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Reparation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 class ReparationController extends Controller
 {
@@ -14,10 +15,10 @@ class ReparationController extends Controller
      */
     function __construct()
     {
-        /*  $this->middleware('permission:reparation-list|reparation-create|reparation-edit|reparation-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:reparation-list|reparation-create|reparation-edit|reparation-delete', ['only' => ['index','show']]);
          $this->middleware('permission:reparation-create', ['only' => ['create','store']]);
          $this->middleware('permission:reparation-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:reparation-delete', ['only' => ['destroy']]); */
+         $this->middleware('permission:reparation-delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -55,13 +56,19 @@ class ReparationController extends Controller
             'repaired_at' => 'required',
         ]);
         $reparation = Reparation::create([
+            'asset_id' => $request->asset_id,
             'prix' => $request->prix,
             'repaired_at' => $request->repaired_at,
         ]);
-        
-
-        return redirect()->route('reparation.index')
-                        ->with('success','Reparation created successfully.');
+        \App\asset::where('id',$request->asset_id)->update(["status" => 1]);
+        if(app('router')->getRoutes()->match(app('request')->create(URL::previous()))->getName() == 'indexReparation'){
+            return redirect()->route('indexReparation')
+                        ->with('success', 'Reparation created successfully.');
+        }else{
+            return redirect()->route('repairList')
+            ->with('success', 'Reparation created successfully.');
+        }
+         
     }
 
     /**

@@ -55,32 +55,10 @@
           transform: rotate(45deg);
         }
         */
-        table tr {
-          padding: 5px;
-          background:none;
-        }
-        
-        tr.fine {
-          background: rgb(7, 230, 118);
-          font-family: cursive;
-          color: #ddd
-        }
-
-        tr.repair {
-          background: rgb(176, 180, 184);
-          font-family: cursive;
-          color: #ddd
-        }
-
-        tr.lost {
-          background: rgb(243,164,91);
-          font-family: cursive;
-          color: #ddd
-        }
 
         </style>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-        <form action="{{ route('save') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('storeInventaire') }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
         <div  style="margin-left: 10%;margin-right: 10%" class="row">
           <div class="col">
@@ -88,20 +66,21 @@
                   <div class="card-header border-0">
                       <div class="row align-items-center">
                           <div class="col-8">
-                              <h3 class="mb-0">Assets</h3>
+                              <h3 class="mb-0">Inventaire</h3>
                           </div>
                           <div class="col-4 text-right">
-                          <a href="{{route('reset')}}" class="btn btn-sm btn-primary">reset</a>
-                          <button type="submit" class="btn btn-sm btn-primary">save</button>
+                          <a href="{{route('reset',['id',0])}}" class="btn btn-sm btn-primary">reset</a>
+                          <button type="submit" class="btn btn-sm btn-primary">store</button>
                           </div>
                       </div>
                   </div>
 
       <div class="table-responsive">
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <table class="table align-items-center table-flush minha-table">
             <thead>
             <tr>
-                <th  scope="col">Block</th>
+                <th scope="col">Block</th>
                 <th scope="col">Etage</th>
                 <th scope="col">Bureau</th>
                 <th scope="col">Asset</th>
@@ -111,70 +90,44 @@
             </tr>    
             </thead>    
             <tbody>
+              <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js">//for selecting one checkAT TIME</script>
             @foreach($assets as $asset)
-            <tr
-            @if ($asset->status == 1)
-                class="fine" 
-            @elseif ($asset->status == 2)
-                class="repair"
-            @elseif ($asset->status == 3)
-                class="lost"
-            @endif>
+            <tr>
               <td style="margin: "><h4 class="mb-0"> B1</h4></td>
               <td style="width: "><h4 class="mb-0"> E1</h4></td>
               <td style="width: "><h4 class="mb-0">BR1</h4></td>
               <td style="width: "><h4 class="mb-0">{{$asset->name }}</h4></td> 
               
-              <td style="margin:">
-                <input type="checkbox" name="fine[]" value="{{ $asset->id }}"
-                @if($asset->status == 1)
-                checked 
-                @endif id="box-1{{$asset->id}}" >
-            <label class="form-control-label"></label>   
+              <td >
+                <input type="checkbox" name="fine[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}">
+             
                 </td>
-              <td style="margin: ">
-                <input type="checkbox" name="repair[]" value="{{ $asset->id }}"
-                @if($asset->status == 2)
-                checked 
-                @endif id="box-1{{$asset->id}}" >
-            <label class="form-control-label"></label>   
+              <td >
+                <input type="checkbox" name="repair[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}">
+               
                 </td>
                 <td >
-                <input type="checkbox" name="lost[]" value="{{ $asset->id }}"
-                    @if($asset->status == 3)
-                    checked 
-                    @endif id="box-2{{$asset->id}}" class="">
-                <label class="form-control-label"></label>   
+                <input type="checkbox" name="lost[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}">
+                  
                 </td>
             </tr>
-            
+            <script type="text/javascript">
+      
+              $('.subject-list'.concat(<?php echo json_encode($asset->id); ?>)).on('change', function() {
+                $('.subject-list'.concat(<?php echo json_encode($asset->id); ?>)).not(this).prop('checked', false);  
+            });
+          
+            </script>
             @endforeach    
             </tbody>
         </table>
-       
+         
     </div>
 
   </div>
  </div>  
 </div>
 </form>
-  <script>
-      
-    var $table = document.querySelector('.minha-table');
- $table.addEventListener("click", function(ev1){
-  if (ev1.target.tagName == "INPUT") {
-    if (!ev1.target.checked) {
-    ev1.target.parentNode.parentNode.classList.remove("repair");
-    } 
-    if(ev1.target.tagName == "INPUT"){ 
-    ev1.target.parentNode.parentNode.classList.remove("lost");
-    }
-    if(ev1.target.tagName == "INPUT"){ 
-    ev1.target.parentNode.parentNode.classList.remove("fine");
-    }
-  }
-});
 
-  </script>    
-
+        
 @endsection

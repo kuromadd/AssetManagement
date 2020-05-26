@@ -85,7 +85,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
-                        <i class="fab fa-laravel" style="color: #f4645f;"></i>
+                        <i class="fa fa-users"></i>
                         <span class="nav-link-text" style="color: #f4645f;">Users</span>
                     </a>
     
@@ -93,7 +93,7 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('profile.edit') }}">
-                                    My profile
+                                    <i class="ni ni-single-02"></i>  My profile
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -123,10 +123,7 @@
                                     Bureaus
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('indexAsset') }}">
-                                    Assets
-                                </a>
+            
                             </li>
                         </ul>
                     </div>
@@ -135,13 +132,13 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
                         <i class="fab fa-laravel" style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">inventaire</span>
+                        <span class="nav-link-text" style="color: #f4645f;">Asset Management </span>
                     </a>
       
                     <div class="collapse show" id="navbar-examples3">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('assetList') }}">
+                                <a class="nav-link" href="{{ route('indexAsset') }}">
                                     Assets list
                                 </a>
                             </li>
@@ -152,11 +149,17 @@
                             </li>
                             <li class="nav-item">
                             <a class="nav-link" href="{{route('repairList')}}">
-                                    corrupt Assets
+                                    damaged Assets
                                 </a>
                             </li>
                         </ul>
                     </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('indexInventaire') }}">
+                        <i class="ni ni-planet text-blue"></i> Inventaire
+                    </a>
                 </li>
 
                 <li class="nav-item">
@@ -168,12 +171,27 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <i class="ni ni-pin-3 text-orange"></i> permissions
+                        <i class="ni ni-pin-3 text-orange"></i> Permissions
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('indexReparation')}}">
-                        <i class="ni ni-key-25 text-info"></i> reparation
+                        <i class="ni ni-key-25 text-info"></i> Reparation
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('missions.index')}}">
+                        <i class="ni ni- text-info"></i> Missions
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('fournisseurs.index')}}">
+                        <i class="ni ni- text-info"></i> Fournisseurs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="ni ni- text-info"></i> Asset trace
                     </a>
                 </li>
                 <li class="nav-item">

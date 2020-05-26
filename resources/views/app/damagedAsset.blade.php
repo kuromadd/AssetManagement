@@ -7,7 +7,7 @@
                   <div class="card-header border-0">
                       <div class="row align-items-center">
                           <div class="col-8">
-                              <h3 class="mb-0">Corrupt Assets</h3>
+                              <h3 class="mb-0">damaged Assets</h3>
                           </div>
                          
                       </div>
@@ -26,7 +26,7 @@
             </thead>    
             <tbody>
             @foreach($assets as $asset)
-            @if ($asset->repair==0)
+            @if ($asset->status==2)
             <tr> 
               <td style="margin: 5px"><h4 class="mb-0"> B1</h4></td>
               <td style="width: 16%"><h4 class="mb-0"> E1</h4></td>

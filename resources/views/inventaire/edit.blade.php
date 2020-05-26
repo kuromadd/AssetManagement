@@ -80,7 +80,7 @@
 
         </style>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-        <form action="{{ route('save') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('updateInventaire',$inventaire->id) }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
         <div  style="margin-left: 10%;margin-right: 10%" class="row">
           <div class="col">
@@ -91,8 +91,8 @@
                               <h3 class="mb-0">Assets</h3>
                           </div>
                           <div class="col-4 text-right">
-                          <a href="{{route('reset')}}" class="btn btn-sm btn-primary">reset</a>
-                          <button type="submit" class="btn btn-sm btn-primary">save</button>
+                          <a href="{{route('reset',$inventaire->id)}}" class="btn btn-sm btn-primary">reset</a>
+                          <button type="submit" class="btn btn-sm btn-primary">update</button>
                           </div>
                       </div>
                   </div>
@@ -111,44 +111,48 @@
             </tr>    
             </thead>    
             <tbody>
-            @foreach($assets as $asset)
-            <tr
-            @if ($asset->status == 1)
+                
+
+        @foreach(DB::table("asset_inventaire")->get() as $value)
+    
+            @if ($value->inventaire_id == $inventaire->id)
+            
+            <tr @if(\App\asset::find($value->asset_id)->status == 1)    
                 class="fine" 
-            @elseif ($asset->status == 2)
+            @elseif (\App\asset::find($value->asset_id)->status == 2)
                 class="repair"
-            @elseif ($asset->status == 3)
+            @elseif (\App\asset::find($value->asset_id)->status == 3)
                 class="lost"
             @endif>
               <td style="margin: "><h4 class="mb-0"> B1</h4></td>
               <td style="width: "><h4 class="mb-0"> E1</h4></td>
               <td style="width: "><h4 class="mb-0">BR1</h4></td>
-              <td style="width: "><h4 class="mb-0">{{$asset->name }}</h4></td> 
+              <td style="width: "><h4 class="mb-0">{{\App\asset::find($value->asset_id)->name }}</h4></td> 
               
               <td style="margin:">
-                <input type="checkbox" name="fine[]" value="{{ $asset->id }}"
-                @if($asset->status == 1)
+                <input type="checkbox" name="fine[]" value="{{ \App\asset::find($value->asset_id)->id }}"
+                @if(\App\asset::find($value->asset_id)->status == 1)
                 checked 
-                @endif id="box-1{{$asset->id}}" >
+                @endif id="box-1{{\App\asset::find($value->asset_id)->id}}" >
             <label class="form-control-label"></label>   
                 </td>
               <td style="margin: ">
-                <input type="checkbox" name="repair[]" value="{{ $asset->id }}"
-                @if($asset->status == 2)
+                <input type="checkbox" name="repair[]" value="{{ \App\asset::find($value->asset_id)->id }}"
+                @if(\App\asset::find($value->asset_id)->status == 2)
                 checked 
-                @endif id="box-1{{$asset->id}}" >
+                @endif id="" >
             <label class="form-control-label"></label>   
                 </td>
                 <td >
-                <input type="checkbox" name="lost[]" value="{{ $asset->id }}"
-                    @if($asset->status == 3)
+                <input type="checkbox" name="lost[]" value="{{ \App\asset::find($value->asset_id)->id }}"
+                    @if(\App\asset::find($value->asset_id)->status == 3)
                     checked 
-                    @endif id="box-2{{$asset->id}}" class="">
+                    @endif id="" class="">
                 <label class="form-control-label"></label>   
                 </td>
             </tr>
-            
-            @endforeach    
+            @endif
+            @endforeach       
             </tbody>
         </table>
        

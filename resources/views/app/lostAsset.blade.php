@@ -28,7 +28,7 @@
             </thead>    
             <tbody>
             @foreach($assets as $asset)
-            @if ($asset->lost==0)
+            @if ($asset->status==3)
             <tr> 
               <td style="margin: 5px"><h4 class="mb-0"> B1</h4></td>
               <td style="width: 16%"><h4 class="mb-0"> E1</h4></td>

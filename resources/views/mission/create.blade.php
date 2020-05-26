@@ -2,21 +2,26 @@
 @section('content')
             <div class="card card-default">
                   <div class="card-header" >  
-                   add a new Reparation
+                   add a new Mission
                 </div>
             
                 <div class="card-body">
-                    <form action="{{ route('storeReparation') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('missions.store') }}" method="post" enctype="multipart/form-data">
         
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="prix">prix</label>
-                        <input type="text" name="prix" class="form-control">
+                        <label for="but_mission">But de la mission</label>
+                        <input type="text" name="but_mission" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <label for="repaired_at">date de la reparation</label>
-                        <input type="date" name="repaired_at" class="form-control" id="repaired_at">
+                        <label for="destination">Destination</label>
+                        <input type="text" name="destination" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mission_at">date de la Mission</label>
+                        <input type="date" name="mission_at" class="form-control" id="mission_at">
                     </div>
 
                     <div class="form-group">

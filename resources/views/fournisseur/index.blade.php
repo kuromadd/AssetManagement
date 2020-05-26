@@ -1,4 +1,5 @@
 @extends('app.layout')
+
 @section('content')
     <div class="row">
         <div class="col">
@@ -6,10 +7,10 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Bureaus</h3>
+                            <h3 class="mb-0">Fournisseurs</h3>
                         </div>
                         <div class="col-4 text-right">
-                        <a href="#popupbrc" class="btn btn-sm btn-primary">Add Bureau</a>
+                        <a href="#popupfc" class="btn btn-sm btn-primary">Add Fournisseur</a>
                         </div>
                     </div>
                 </div>
@@ -19,19 +20,23 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Etage</th>
-                                <th scope="col">block</th>
+                                <th scope="col">Libel</th>
+                                <th scope="col">Adress</th>
+                                <th scope="col">Tel</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Website</th>
                                 
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($bureaus as $bureau)
+                        @foreach($fournisseurs as $fournisseur)
                         <tr>
-                            <td>{{$bureau->name}}</td>
-                            <td>{{$bureau->etage}}</td>
-                            <td>{{\App\block::find($bureau->block_id)->name}}</td>
+                            <td>{{$fournisseur->libel}}</td>
+                            <td>{{$fournisseur->address}}</td>
+                            <td>{{$fournisseur->tel}}</td>
+                            <td>{{$fournisseur->email}}</td>
+                            <td>{{$fournisseur->website}}</td>
                             
                             <td class="text-right">
                                 <div class="dropdown">
@@ -40,8 +45,8 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="{{ route('editBureau',$bureau->id) }}"><i class="fa fa-edit fa-fw"></i></i> edit</a>
-                                    <a class="dropdown-item" href="{{ route('deleteBureau',$bureau->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>
+                                    <a class="dropdown-item" href="{{route('fournisseurs.edit',$fournisseur->id)}}"><i class="fa fa-edit fa-fw"></i></i> edit</a>
+                                    <a class="dropdown-item" href="{{ route('fournisseurs.destroy',$fournisseur->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>
 
                                     </div>
                                     
@@ -49,19 +54,17 @@
                                 </div>
                             </td>
                         </tr>
-                        
                         @endforeach    
                         </tbody>
                     </table>
                 </div>
                 <div class="card-footer py-4">
                     <nav class="d-flex justify-content-end" aria-label="...">
-                        {!! $bureaus->render() !!}
+                       {!! $fournisseurs->render() !!}
                     </nav>
                 </div>
             </div>
         </div>
     </div>
-
-@include('bureau.create')
-@endsection    
+    @include('fournisseur.create')   
+@endsection

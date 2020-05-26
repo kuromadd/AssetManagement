@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('/test','UserController@test');
 Route::get('/list','UserController@list')->name('assetList');
-Route::get('/deselect','AssetController@reset')->name('reset');
+Route::get('/deselect/{id}','AssetController@reset')->name('reset');
 Route::post('/save','AssetController@saveall')->name('save');
 
 Route::get('/repairList','UserController@repairlist')->name('repairList');
@@ -46,11 +46,19 @@ Route::get('/asset/edit/{id}','AssetController@edit')->name('editAsset');
 Route::post('/asset/update/{id}','AssetController@update')->name('updateAsset');
 Route::get('/asset/delete/{id}','AssetController@destroy')->name('deleteAsset');
 
+Route::get('/Inventaire/index','InventaireController@index')->name('indexInventaire');
+Route::get('/Inventaire/create','InventaireController@create')->name('createInventaire');
+Route::post('/Inventaire/store','InventaireController@store')->name('storeInventaire');
+Route::get('/Inventaire/edit/{id}','InventaireController@edit')->name('editInventaire');
+Route::post('/Inventaire/update/{id}','InventaireController@update')->name('updateInventaire');
+Route::get('/Inventaire/delete/{id}','InventaireController@destroy')->name('deleteInventaire');
+
 Route::get('/reparation/index','ReparationController@index')->name('indexReparation');
 Route::get('/reparation/create','ReparationController@create')->name('createReparation');
 Route::post('/reparation/store','ReparationController@store')->name('storeReparation');
+Route::get('/reparation/edit/{id}','ReparationController@edit')->name('editReparation');
+Route::post('/reparation/update/{id}','ReparationController@update')->name('updateReparation');
 Route::get('/reparation/delete/{id}','ReparationController@destroy')->name('deleteReparation');
-Route::get('/reparation/repairAll','ReparationController@repairAll')->name('repairAll');
 
 Route::get('/block/index','blocksController@index')->name('indexBlock');
 Route::get('/block/create','blocksController@create')->name('createBlock');
@@ -81,9 +89,13 @@ Route::group(['middleware' => 'auth'], function () {
 
    
 Route::group(['middleware' => ['auth']], function() {
+	
     Route::resource('roles','rolesController');
 	Route::resource('users','UserController');
 	Route::resource('assets', 'AssetController');
+	Route::resource('inventaires', 'InventaireController');
+	Route::resource('fournisseurs', 'FournisseurController');
+	Route::resource('missions', 'MissionController');
 });
 });
 

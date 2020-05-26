@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
             'user_id' => $user->id,
             'image' => '/uploads/profile.png',
             'back_image'=> '/uploads/back.jpeg',
-            'about' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus et tempore, porro iste saepe aperiam hic facilis quos unde sapiente at nihil laborum cumque obcaecati eius id nesciunt maiores corrupti.',
+            'about' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus et tempore, porro iste saepe aperiam hic facilis quos unde sapiente at nihil laborum cumque obcaecati eius id nesciunt maiores damagedi.',
             'facebook' =>'facebook.com',
             'youtube' => 'youtube.com'
             ]);

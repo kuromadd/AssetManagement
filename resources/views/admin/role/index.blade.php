@@ -19,59 +19,28 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                @foreach ($role as $item)
-                                <th scope="col">{{$role->name}}</th>
-                                @endforeach
                                 <th scope="col"></th>
+                                @foreach ($roles as $item)
+                                <th scope="col">{{$item->name}}</th>
+                                @endforeach
+                                
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach(Spatie\Permission\Models\Permission::all() as $pemission)
+                        @foreach(Spatie\Permission\Models\Permission::all() as $permission)
                         <tr>
-                            <td>{{$role->name}}</td>
-                            <td>{{$role->created_at}}</td>
-                            <td>
-                                <select class="ui dropdown">
-                                <option value="">role</option>
-                                @foreach ($role->permissions as $item)
-                                @if(substr( $item->name, 0, 4 ) === "role")
-                                <option value="{{$item->id}}" disabled>{{ $item->name }}</option>
-                                @endif    
-                                @endforeach
-                                </select>
-                                <select class="ui dropdown">
-                                <option value="">asset</option>
-                                @foreach ($role->permissions as $item)
-                                @if(substr( $item->name, 0, 5 ) === "asset")
-                                <option value="{{$item->id}}" disabled>{{ $item->name }}</option>
-                                @endif    
-                                @endforeach
-                                </select> 
-                                <select class="ui dropdown">
-                                <option value="">block</option>
-                                @foreach ($role->permissions as $item)
-                                @if(substr( $item->name, 0, 5 ) === "block")
-                                <option value="{{$item->id}}" disabled>{{ $item->name }}</option>
-                                @endif    
-                                @endforeach
-                                </select>    
+                            <td >{{$permission->name}}</td>
+                            
+                            <td >
+                            @foreach ($roles as $role)
+                                @if($role->hasPermissionTo($permission->name))
+                            
+                               <input type="checkbox" name="" value="{{$permission->id}}" id="">
+                                
+                                @endif  
+                            @endforeach     
                             </td>
                             
-                            <td class="text-right">
-                                <div class="dropdown">
-                                    <a class="btn btn-sm btn-icon-only text" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </a>
-                                   
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" href="{{route('editRole',$role->id)}}">Edit</a>
-                                        <a class="dropdown-item" href="{{ route('deleteRole',$role->id) }}">delete</a>
-
-                                    </div>
-                                    
-                                  
-                                </div>
-                            </td>
                         </tr>
                     
                         @endforeach    

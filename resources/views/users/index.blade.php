@@ -404,8 +404,8 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                                                                 
-                                        <a class="dropdown-item" href="{{ route('editUser',$user->id) }}">Edit</a>
-                                        <a class="dropdown-item" href="{{ route('deleteUser',$user->id) }}">Delete</a>
+                                        <a class="dropdown-item" href="{{ route('editUser',$user->id) }}"><i class="fa fa-edit fa-fw"></i></i> edit</a>
+                                        <a class="dropdown-item" href="{{ route('deleteUser',$user->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>
                                     </div>
                                                                                                 
                                     

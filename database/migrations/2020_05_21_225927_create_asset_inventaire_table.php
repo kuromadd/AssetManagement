@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReparationsTable extends Migration
+class CreateAssetInventaireTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateReparationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reparations', function (Blueprint $table) {
+        Schema::create('asset_inventaire', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('asset_id');
-            $table->string('prix');
-            $table->date('repaired_at');
+            $table->integer('inventaire_id');
+            $table->string('status')->default(0);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateReparationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reparations');
+        Schema::dropIfExists('asset_inventaire');
     }
 }

@@ -41,8 +41,8 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="{{ route('editReparation',$reparation->id) }}">Edit</a>
-                                    <a class="dropdown-item" href="{{ route('deleteReparation',$reparation->id) }}">delete</a>
+                                    <a class="dropdown-item" href="{{ route('editReparation',$reparation->id) }}"><i class="fa fa-edit fa-fw"></i></i> edit</a>
+                                    <a class="dropdown-item" href="{{ route('deleteReparation',$reparation->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>
 
                                     </div>
                                     

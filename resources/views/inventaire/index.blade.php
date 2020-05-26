@@ -1,47 +1,37 @@
 @extends('app.layout')
 @section('content')
-
     <div class="row">
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Assets</h3>
+                            <h3 class="mb-0">Inventaires</h3>
                         </div>
                         <div class="col-4 text-right">
-                        <a href="#popupac" class="btn btn-sm btn-primary">Add asset</a>
+                        <a href="{{route('createInventaire')}}" class="btn btn-sm btn-primary">Add inventaire</a>
                         </div>
                     </div>
                 </div>
                 
-
+                
                 <div class="table-responsive">
-                    <table class="table align-items-center table-flush minha-table">
+                    <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Name</th>
-                                <th scope="col">Mise en service a</th>
-                                <th scope="col">Category</th>
+                                <th scope="col">etat</th>
+                                <th scope="col">created_at</th>
+            
                                 <th scope="col"></th>
-                                <th scope="col"></th>
-                                
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($assets as $asset)
+                        @foreach($inventaires as $inv)
                         <tr>
-                            <td>{{$asset->name}}</td>
-                            <td>{{$asset->dateservice}}</td>
-                            <td>{{$asset->category}}</td>
-                            <td>
-                                    <input type="checkbox" name="selects[]" 
-                                    @if($asset->selected)
-                                    checked 
-                                    @endif id="box-{{$asset->id}}">
-                                    <label class="" for="box-{{$asset->id}}"></label>
-                                    
-                            </td>
+                            <td>{{$inv->name}}</td>
+                            <td>{{$inv->etat}}</td>
+                            <td>{{$inv->created_at}}</td>
                             
                             <td class="text-right">
                                 <div class="dropdown">
@@ -50,8 +40,8 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="{{route('editAsset',$asset->id)}}"><i class="fa fa-edit fa-fw"></i></i> edit</a>
-                                        <a class="dropdown-item" href="{{ route('deleteAsset',$asset->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>
+                                    <a class="dropdown-item" href="{{ route('editInventaire',$inv->id) }}"><i class="fa fa-edit fa-fw"></i></i> edit</a>
+                                    <a class="dropdown-item" href="{{ route('deleteInventaire',$inv->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>
 
                                     </div>
                                     
@@ -59,31 +49,19 @@
                                 </div>
                             </td>
                         </tr>
-                    
+                        
                         @endforeach    
                         </tbody>
                     </table>
                 </div>
                 <div class="card-footer py-4">
                     <nav class="d-flex justify-content-end" aria-label="...">
-                       {!! $assets->render() !!} 
+                       
                     </nav>
                 </div>
             </div>
         </div>
     </div>
-   @include('asset.create')  
-   <script>
-        var $table = document.querySelector('.minha-table');
+    
 
-        $table.addEventListener("click", function(ev){
-        if (ev.target.tagName == "INPUT") {
-            if (ev.target.checked) {
-            ev.target.parentNode.parentNode.classList.add("selected");
-            }else {
-            ev.target.parentNode.parentNode.classList.remove("selected");
-            }
-        }
-        });
-</script>     
-@endsection
+@endsection    
