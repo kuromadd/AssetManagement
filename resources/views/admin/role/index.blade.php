@@ -18,26 +18,20 @@
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
-                            <tr>
-                                <th scope="col"></th>
+                            <tr style="width: ">
+                                <th scope="col">permissions</th>
                                 @foreach ($roles as $item)
-                                <th scope="col">{{$item->name}}</th>
+                                <th  scope="col">{{$item->name}}</th>
                                 @endforeach
                                 
                             </tr>
                         </thead>
                         <tbody>
                         @foreach(Spatie\Permission\Models\Permission::all() as $permission)
-                        <tr>
-                            <td >{{$permission->name}}</td>
-                            
-                            <td >
-                            @foreach ($roles as $role)
-                                @if($role->hasPermissionTo($permission->name))
-                            
-                               <input type="checkbox" name="" value="{{$permission->id}}" id="">
-                                
-                                @endif  
+                        <tr style="width: 100%">
+                            <td style="margin: 10% ; width: 15%;">{{$permission->name}}</td>
+                            @foreach ($roles as $role)   
+                                <td style="margin: 10% ; width: 15%;" class=""><input type="checkbox" name="" @if($role->hasPermissionTo($permission->name)) checked disabled @endif value="{{$permission->id}}" id=""></td>
                             @endforeach     
                             </td>
                             

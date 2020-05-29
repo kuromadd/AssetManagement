@@ -76,7 +76,7 @@
                   </div>
 
       <div class="table-responsive">
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        
         <table class="table align-items-center table-flush minha-table">
             <thead>
             <tr>

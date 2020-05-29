@@ -54,7 +54,7 @@ crossorigin="anonymous"></script>
 }
 
 .popup {
-  margin: 70px auto;
+  margin: 40px auto;
   padding: 20px;
   background: #fff;
   border-radius: 5px;
@@ -95,7 +95,11 @@ crossorigin="anonymous"></script>
   }
 }
 </style>
-
+<style type="text/css">
+.bgimg {
+    background-image: url('');
+}
+</style>
 
 <div id="popupuc" class="overlay">
     <div class="popup" style="width: 60%"> 
@@ -104,7 +108,7 @@ crossorigin="anonymous"></script>
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">create a new asset</h3>
+                            <h3 class="mb-0">create a new user</h3>
                         </div>
                         <a class="close" href="#">&times;</a>
                       </div>

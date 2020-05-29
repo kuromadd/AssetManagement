@@ -112,115 +112,123 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
-                    <i class="fa fa-users"></i>
-                    <span class="nav-link-text" style="color: #4464ce;">Users</span>
+                    <i class="fa fa-user-edit text-blue"></i>
+                    <span class="nav-link-text text-red">Users</span>
                 </a>
-
+  
                 <div class="collapse show" id="navbar-examples">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('profile.edit') }}">
-                                <i class="ni ni-single-02"></i>My profile
+                                <i class="fa fa-user text-blue"></i>
+                                <span class="text text-red"> My profile </span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('user.index') }}">
-                                Users Management
+                                <i class="fa fa-users text-blue"></i> 
+                                <span class="text text-red"> Users Management </span>
                             </a>
                         </li>
                     </ul>
                 </div>
             </li>
-
+  
             <li class="nav-item">
                 <a class="nav-link active" href="#navbar-examples2" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
-                    <i class="fab fa-laravel" style="color: #f4645f;"></i>
-                    <span class="nav-link-text" style="color: #f4645f;">blocks</span>
+                    <i class="fab fa-linode text-blue"></i>
+                    <span class="nav-link-text text-red">blocks</span>
                 </a>
-
+  
                 <div class="collapse show" id="navbar-examples2">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('indexBlock') }}">
-                                Blocks
+                                <i class="fa fa-building text-blue"></i> 
+                                <span class="text text-red"> Blocks </span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('indexBureau') }}">
-                                Bureaus
+                               <i class="fa fa-object-group text-blue"></i>
+                               <span class="text text-red"> Bureaus </span>
                             </a>
                         </li>
-                    
+                        
                     </ul>
                 </div>
             </li>
-
+  
             <li class="nav-item">
                 <a class="nav-link active" href="#navbar-examples3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
-                    <i class="fab fa-laravel" style="color: #f4645f;"></i>
-                    <span class="nav-link-text" style="color: #f4645f;">Asset Management</span>
+                    <i class="fab fa-gg-circle text-blue"></i>
+                    <span class="nav-link-text text-red">Asset Management</span>
                 </a>
   
                 <div class="collapse show" id="navbar-examples3">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('indexAsset') }}">
-                                Assets list
+                                <i class="fa fa-list-alt text-blue"></i> 
+                                <span class="text text-red"> Assets list </span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('replaceList') }}">
-                                Lost Assets
+                                <i class="fab fa-lastfm text-blue"></i> 
+                                <span class="text text-red"> Lost Assets </span>
                             </a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('repairList') }}">
-                                Damaged Assets
+                            <i class="fa fa-unlink text-blue"></i>   
+                            <span class="text text-red"> Damaged Assets </span>
                             </a>
                         </li>
                     </ul>
                 </div>
-            </li>
-
+            </li>            
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('indexInventaire') }}">
-                    <i class="ni ni-planet text-blue"></i> Inventaire
+                    <i class="fa fa-filter text-blue"></i> 
+                    <span class="text text-red"> Inventaire </span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('indexRole') }}">
-                    <i class="ni ni-planet text-blue"></i> Roles
+                    <i class="ni ni-planet text-blue"></i> 
+                    <span class="text text-red"> Roles </span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="ni ni-pin-3 text-orange"></i> Permissions
+                    <i class="ni ni-pin-3 text-blue"></i> 
+                    <span class="text text-red"> Permissions </span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{route('indexReparation')}}">
-                    <i class="ni ni-key-25 text-info"></i> Reparation
+                    <i class="ni ni-settings-gear-65 text-blue"></i> 
+                    <span class="text text-red"> Reparation </span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{route('missions.index')}}">
-                    <i class="ni ni- text-info"></i> Missions
+                    <i class="fa fa-tasks text-blue"></i>
+                    <span class="text text-red"> Missions </span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{route('fournisseurs.index')}}">
-                    <i class="ni ni- text-info"></i> Fournisseurs
+                    <i class="fab fa-ravelry text-blue"></i> 
+                    <span class="text text-red"> Fournisseurs </span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="ni ni- text-info"></i> Asset trace
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="ni ni-circle-08 text-pink"></i> Register
+                    <i class="fa fa-search-minus text-blue"></i>
+                    <span class="text text-red"> Asset trace </span>
                 </a>
             </li>
         </ul>

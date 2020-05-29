@@ -1,4 +1,4 @@
-<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="background-image: url({{$user->profile->back_image}}); background-size: cover; background-position: center top;">
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center bgimg">
     <!-- Mask -->
     <span class="mask bg-gradient-default opacity-8"></span>
     <!-- Header container -->
@@ -9,7 +9,6 @@
                 @if (isset($description) && $description)
                     <p class="text-white mt-0 mb-5">{{ $description }}</p>
                 @endif
-                <input type="file" name="back_image" id="imgload" >
             </div>
         </div>
     </div>

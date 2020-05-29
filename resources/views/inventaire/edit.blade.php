@@ -98,6 +98,7 @@
                   </div>
 
       <div class="table-responsive">
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <table class="table align-items-center table-flush minha-table">
             <thead>
             <tr>
@@ -130,21 +131,21 @@
               <td style="width: "><h4 class="mb-0">{{\App\asset::find($value->asset_id)->name }}</h4></td> 
               
               <td style="margin:">
-                <input type="checkbox" name="fine[]" value="{{ \App\asset::find($value->asset_id)->id }}"
+              <input type="checkbox" name="fine[]" class="subject-list{{$value->id}}" value="{{ \App\asset::find($value->asset_id)->id }}"
                 @if(\App\asset::find($value->asset_id)->status == 1)
                 checked 
                 @endif id="box-1{{\App\asset::find($value->asset_id)->id}}" >
             <label class="form-control-label"></label>   
                 </td>
               <td style="margin: ">
-                <input type="checkbox" name="repair[]" value="{{ \App\asset::find($value->asset_id)->id }}"
+                <input type="checkbox" name="repair[]" class="subject-list{{$value->id}}" value="{{ \App\asset::find($value->asset_id)->id }}"
                 @if(\App\asset::find($value->asset_id)->status == 2)
                 checked 
                 @endif id="" >
             <label class="form-control-label"></label>   
                 </td>
                 <td >
-                <input type="checkbox" name="lost[]" value="{{ \App\asset::find($value->asset_id)->id }}"
+                <input type="checkbox" name="lost[]" class="subject-list{{$value->id}}" value="{{ \App\asset::find($value->asset_id)->id }}"
                     @if(\App\asset::find($value->asset_id)->status == 3)
                     checked 
                     @endif id="" class="">
@@ -152,6 +153,13 @@
                 </td>
             </tr>
             @endif
+            <script type="text/javascript">
+      
+              $('.subject-list'.concat(<?php echo json_encode($value->id); ?>)).on('change', function() {
+                $('.subject-list'.concat(<?php echo json_encode($value->id); ?>)).not(this).prop('checked', false);  
+            });
+          
+            </script>
             @endforeach       
             </tbody>
         </table>

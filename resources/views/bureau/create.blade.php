@@ -123,25 +123,56 @@ crossorigin="anonymous"></script>
                             <option value="restroom">restroom</option>
                             </select>
                         </div>
-                        <form action="" method="post">
+                    
                     <div class="form-group">
                     <label for="block_id">block</label>
-                        <select class="form-control" name="block_id" id="block_id">
+                        <select class="form-control blockID" name="block_id" id="block_id">
+                          <option value=0 disabled selected>chose block</option>
                             @foreach(\App\block::all() as $block)
                         <option value="{{ $block->id }}">{{$block->name}}</option>
                             @endforeach
-                        </select>
+                        </select>               
+                        
                     </div>
-                    
+                  
                     <div class="form-group">
-                     <label for="nbreEt">numero d'etage <? echo $_POST["block_id"]; ?></label>
-                        <select class="form-control" name="etage" id="etage">
-                            @for($i = -2; $i <4; $i++)
-                               <option value="{{$i}}">{{$i}}</option>                             
-                            @endfor
+                     <label for="nbreEt" >numero d'etage</label>
+                        <select class="form-control" class="nbEtage" name="etage" id="etage">                           
+                            
                         </select>
                     </div>
-                  </form>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+                    <script type="text/javascript"> 
+                      $(document).ready(function(){
+                      $(document).on('change','.blockID',function(){
+                        
+                        var block_id=$(this).val();
+                        var div=$(this).parent();
+                        var op="";
+                        $.ajax({
+                          type:'get',
+                          url:'{!!URL::to('findEtage')!!}',
+                          data:{'id':block_id},
+                          dataType:'json',
+                          success:function(data){
+                            if(data)
+                              {
+                                  $("#etage").empty();
+                                  $("#etage").append('<option selected disabled >Select etage</option>');
+                                  $.each(data,function(data,data){
+                                      for(var i=-2 ; i<=data ; i++){$("#etage").append('<option value="'+i+'">'+i+'</option>');}
+                                  });
+                              }
+                            
+
+                          },
+                          error:function(){ 
+  
+                          }
+                        })
+                      });
+                      });
+                    </script>
                     <div class="form-group">
                       <label for="block_id">Assets</label><br>
                           

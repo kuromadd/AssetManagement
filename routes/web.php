@@ -74,6 +74,9 @@ Route::get('/bureau/edit/{id}','bureauController@edit')->name('editBureau');
 Route::get('/bureau/update/{id}','bureauController@update')->name('updateBureau');
 Route::get('/bureau/delete/{id}','bureauController@destroy')->name('deleteBureau');
 
+Route::get('/findEtage','bureauController@findEtage');
+
+
 Route::get('/admin/user/create','UserController@create')->name('createUser');
 Route::post('/admin/user/store','UserController@store')->name('storeUser');
 Route::get('/admin/user/edit/{id}','UserController@edit')->name('editUser');

@@ -32,6 +32,11 @@ class BureauController extends Controller
         return view('bureau.create');
     }
 
+    public function findEtage(Request $request){
+        
+        $data=\App\block::select('nbre_Etage')->where('id',$request->id)->first();
+        return response()->json($data);
+    }
     /**
      * Store a newly created resource in storage.
      *

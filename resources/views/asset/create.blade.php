@@ -103,7 +103,7 @@ crossorigin="anonymous"></script>
       <div class="card card-default">
         <div class="card-header border-0">
             <div class="row align-items-center">
-                <div class="col-8">
+                <div class="col-8" >
                     <h3 class="mb-0">create a new asset</h3>
                 </div>
                 <a class="close" href="#">&times;</a>

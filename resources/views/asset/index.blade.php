@@ -4,8 +4,8 @@
     <div class="row">
         <div class="col">
             <div class="card shadow">
-                <div class="card-header border-0">
-                    <div class="row align-items-center">
+                <div class="card-header border-0" style="background-image:{{ asset('argon') }}/img/brand/vector.png">
+                    <div class="row align-items-center" >
                         <div class="col-8">
                             <h3 class="mb-0">Assets</h3>
                         </div>
@@ -35,14 +35,16 @@
                             <td>{{$asset->dateservice}}</td>
                             <td>{{$asset->category}}</td>
                             <td>
-                                    <input type="checkbox" name="selects[]" 
-                                    @if($asset->selected)
-                                    checked 
-                                    @endif id="box-{{$asset->id}}">
-                                    <label class="" for="box-{{$asset->id}}"></label>
-                                    
+                                @if($asset->status == 0)
+                                <label class="badge badge-info">unoccupied</label>
+                                @elseif($asset->status == 1)
+                                <label class="badge badge-success">fine</label>
+                                @elseif($asset->status == 2)
+                                <label class="badge badge-secondary">damaged</label>
+                                @elseif($asset->status == 3)
+                                <label class="badge badge-danger">lost</label>
+                                @endif
                             </td>
-                            
                             <td class="text-right">
                                 <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only text" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

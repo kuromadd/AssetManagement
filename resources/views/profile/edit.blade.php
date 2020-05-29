@@ -18,6 +18,11 @@ a + input {
   left: 0;
   opacity: 0;
 }
+.bgimg{
+    background-image: url('/uploads/back.png');
+    background-size: cover;
+    background-position: center top;
+}
 </style>
 <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data" autocomplete="off">
     @csrf
@@ -41,13 +46,7 @@ a + input {
                             </div>
                         </div>
                     </div>
-                    <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                        <div class="d-flex justify-content-between">
-                            <!--<span><a href="#" class="btn btn-sm btn-info mr-4">{{ __('Change') }}</a><input type='file' /></span>
-                            <span><a href='#'>Link!</a><input type='file' /></span>
-                            <a href="#" class="btn btn-sm btn-default float-right">{{ __('Message') }}</a>-->
-                        </div>
-                    </div>
+                   
                     <div class="card-body pt-0 pt-md-4">
                         <div class="row">
                             <div class="col">
