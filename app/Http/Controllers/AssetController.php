@@ -50,12 +50,7 @@ class AssetController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name' => 'required',
-            'description' => 'required',
-            'prix' => 'required',
-            'category' => 'required',
-            'dateService' => 'required',
-            'duree_vie' => 'required',
+            
         ]);
 
         $asset = new \App\asset;
@@ -76,11 +71,13 @@ class AssetController extends Controller
      * @param  \App\asset  $asset
      * @return \Illuminate\Http\Response
      */ 
-    public function show(asset $asset)
+    public function show($id)
     {
-        //
+        $user=Auth()->user();
+        $asset = \App\asset::find($id);
+        return view('asset.show')->with('asset',$asset)->with('user',$user);
     }
-
+ 
     /**
      * Show the form for editing the specified resource.
      *

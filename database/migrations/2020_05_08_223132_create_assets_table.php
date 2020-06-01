@@ -19,9 +19,10 @@ class CreateAssetsTable extends Migration
             $table->text('description');
             $table->string('prix');
             $table->string('category');
+            $table->integer('bureau_id')->nullable();
             $table->date('dateService')->nullable();
             $table->string('duree_vie');
-            $table->integer('status');
+            $table->integer('status')->default(0);
             $table->boolean('occupied')->default(0);            
             $table->timestamps();
         });

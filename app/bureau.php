@@ -17,6 +17,6 @@ class bureau extends Model
 
     public function assets()
     {
-        return $this->belongsToMany('\App\asset');
+        return $this->hasMany('\App\asset');
     }
 }

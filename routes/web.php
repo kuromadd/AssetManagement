@@ -39,9 +39,12 @@ Route::get('/admin/role/edit/{id}','rolesController@edit')->name('editRole');
 Route::post('/admin/role/update/{id}','rolesController@update')->name('updateRole');
 Route::get('/admin/role/delete/{id}','rolesController@destroy')->name('deleteRole');
 
+Route::post('/admin/role/updateAll','rolesController@updateAll')->name('updateAll');
+
 Route::get('/asset/index','AssetController@index')->name('indexAsset');
 Route::get('/asset/create','AssetController@create')->name('createAsset');
 Route::post('/asset/store','AssetController@store')->name('storeAsset');
+Route::get('/asset/show/{id}','AssetController@show')->name('showAsset');
 Route::get('/asset/edit/{id}','AssetController@edit')->name('editAsset');
 Route::post('/asset/update/{id}','AssetController@update')->name('updateAsset');
 Route::get('/asset/delete/{id}','AssetController@destroy')->name('deleteAsset');
@@ -75,6 +78,7 @@ Route::get('/bureau/update/{id}','bureauController@update')->name('updateBureau'
 Route::get('/bureau/delete/{id}','bureauController@destroy')->name('deleteBureau');
 
 Route::get('/findEtage','bureauController@findEtage');
+Route::get('/getAsset','transfertController@getAsset');
 
 
 Route::get('/admin/user/create','UserController@create')->name('createUser');
@@ -99,6 +103,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::resource('inventaires', 'InventaireController');
 	Route::resource('fournisseurs', 'FournisseurController');
 	Route::resource('missions', 'MissionController');
+	Route::resource('transfert', 'TransfertController');
 });
 });
 

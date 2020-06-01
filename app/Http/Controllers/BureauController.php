@@ -55,13 +55,13 @@ class BureauController extends Controller
         $bureau->name = $request->name;
         $bureau->block_id = $request->block_id;
         $bureau->etage =$request->etage;
-        
+        $bureau->save();
+
+        \App\asset::whereIn('id',$request->assets)->update(["bureau_id" => $bureau->id]);
         \App\asset::whereIn('id',$request->assets)->update(["occupied" => 1]);
         
-        $bureau->save();
-        $bureau->assets()->attach($request->assets);
         return redirect()->back()->with('success','you stored a new bureau');
-    }
+    } 
 
     /**
      * Display the specified resource.
@@ -111,7 +111,12 @@ class BureauController extends Controller
         $bureau->save();
         \App\asset::whereIn('id',$bureau->assets)->update(["occupied" => 0]);
         \App\asset::whereIn('id',$request->assets)->update(["occupied" => 1]);
-        $bureau->assets()->sync($request->assets);
+        foreach($bureau->assets() as $asset){
+            $asset->bureau_id = null;
+        }
+        foreach($request->assets as $asset){
+            $asset->bureau_id = $bureau->id;
+        }
         return redirect()->back()->with('success','you updated a bureau');
     }
 
@@ -127,7 +132,9 @@ class BureauController extends Controller
         foreach($bureau->assets as $asset){
             $asset->occupied = 0;
         }
-        DB::table("asset_bureau")->where('bureau_id',$id)->delete();
+        foreach($bureau->assets() as $asset){
+            $asset->bureau_id = null;
+        }
         $bureau->delete();
         return redirect()->back()->with('success','you deleted a bureau');
     }

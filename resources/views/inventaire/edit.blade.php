@@ -91,7 +91,6 @@
                               <h3 class="mb-0">Assets</h3>
                           </div>
                           <div class="col-4 text-right">
-                          <a href="{{route('reset',$inventaire->id)}}" class="btn btn-sm btn-primary">reset</a>
                           <button type="submit" class="btn btn-sm btn-primary">update</button>
                           </div>
                       </div>
@@ -125,9 +124,9 @@
             @elseif (\App\asset::find($value->asset_id)->status == 3)
                 class="lost"
             @endif>
-              <td style="margin: "><h4 class="mb-0"> B1</h4></td>
-              <td style="width: "><h4 class="mb-0"> E1</h4></td>
-              <td style="width: "><h4 class="mb-0">BR1</h4></td>
+              <td style="margin: "><h4 class="mb-0">{{ \App\asset::find($value->asset_id)->bureau->block->name }}</h4></td>
+              <td style="width: "><h4 class="mb-0"> {{\App\asset::find($value->asset_id)->bureau->etage}} </h4></td>
+              <td style="width: "><h4 class="mb-0">{{\App\asset::find($value->asset_id)->bureau->name}}</h4></td>
               <td style="width: "><h4 class="mb-0">{{\App\asset::find($value->asset_id)->name }}</h4></td> 
               
               <td style="margin:">

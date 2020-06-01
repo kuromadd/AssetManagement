@@ -134,12 +134,7 @@ crossorigin="anonymous"></script>
         <label for="name">role</label>
         <input type="text" name="name" class="form-control">
     </div>
-    <div class="form-group">
-        <label >select permissions</label><br>
-        @foreach (Spatie\Permission\Models\Permission::all() as $item)      
-        <label for="permission[]" class="checkbox-inline"><input type="checkbox" name="permission[]" value="{{$item->id}}">{{ $item->name }}&#160&#160&#160</label>
-        @endforeach
-    </div>
+    
 
     <div class="text-center">
     <button class="btn btn-success" type="submit">store</button>    

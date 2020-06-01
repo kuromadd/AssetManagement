@@ -92,10 +92,12 @@
             <tbody>
               <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js">//for selecting one checkAT TIME</script>
             @foreach($assets as $asset)
+            @if ($asset->occupied == 1)
+            
             <tr>
-              <td style="margin: "><h4 class="mb-0"> B1</h4></td>
-              <td style="width: "><h4 class="mb-0"> E1</h4></td>
-              <td style="width: "><h4 class="mb-0">BR1</h4></td>
+            <td style="margin: "><h4 class="mb-0">{{ $asset->bureau->block->name }}</h4></td>
+              <td style="width: "><h4 class="mb-0"> {{$asset->bureau->etage}} </h4></td>
+            <td style="width: "><h4 class="mb-0">{{$asset->bureau->name}}</h4></td>
               <td style="width: "><h4 class="mb-0">{{$asset->name }}</h4></td> 
               
               <td >
@@ -111,6 +113,8 @@
                   
                 </td>
             </tr>
+                
+            @endif
             <script type="text/javascript">
       
               $('.subject-list'.concat(<?php echo json_encode($asset->id); ?>)).on('change', function() {

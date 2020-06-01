@@ -28,7 +28,7 @@ class rolesController extends Controller
     public function index()
     {
         $user = Auth()->user();
-        $roles = Role::all();
+        $roles = Role::orderBy('id','asc')->get();
         
         return view('admin.role.index')->with('roles',$roles)->with('user',$user);
     }
@@ -107,8 +107,20 @@ class rolesController extends Controller
         $role->role = $request->role;
         
         $role->save();
-        $role->permissions->sync($request->permissions);
+        $role->permissions->syncPermissions($request->permissions);
         return redirect()->back()->with('success','you are successfuly edited a role');
+    }
+
+    public function updateAll(Request $request){
+        foreach (Role::all() as $role) {
+            $r=$role->name;
+            if (($request->has($r))) {
+                $role->syncPermissions($request->input($r));
+            }
+        }
+
+
+        return redirect()->route('indexRole')->with('success','you update roles successfully ');
     }
 
     /**

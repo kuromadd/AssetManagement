@@ -141,7 +141,7 @@
                 <i class="fab fa-gg-circle text-blue"></i>
                 <span class="nav-link-text text-red">Asset Management</span>
             </a>
-
+ 
             <div class="collapse show" id="navbar-examples3">
                 <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
@@ -177,13 +177,7 @@
                 <i class="ni ni-planet text-blue"></i> 
                 <span class="text text-red"> Roles </span>
             </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="ni ni-pin-3 text-blue"></i> 
-                <span class="text text-red"> Permissions </span>
-            </a>
-        </li>
+       
         <li class="nav-item">
             <a class="nav-link" href="{{route('indexReparation')}}">
                 <i class="ni ni-settings-gear-65 text-blue"></i> 
@@ -203,7 +197,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('transfert.index')}}">
                 <i class="fa fa-search-minus text-blue"></i>
                 <span class="text text-red"> Asset trace </span>
             </a>
