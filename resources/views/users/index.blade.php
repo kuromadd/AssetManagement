@@ -193,10 +193,28 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('indexRole') }}">
-                    <i class="ni ni-planet text-blue"></i> 
-                    <span class="text text-red"> Roles </span>
+                <a class="nav-link active" href="#navbar-examples2" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                    <i class="fab fa-linode text-blue"></i>
+                    <span class="nav-link-text text-red">Permissions</span>
                 </a>
+    
+                <div class="collapse show" id="navbar-examples2">
+                    <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('indexPM') }}">
+                                <i class="ni ni-planet text-blue"></i> 
+                                <span class="text text-red"> User permissions </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('indexRole') }}">
+                                <i class="ni ni-planet text-blue"></i> 
+                                <span class="text text-red"> Role permissions </span>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
             </li>
             
             <li class="nav-item">
@@ -206,8 +224,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('missions.index')}}">
-                    <i class="fa fa-tasks text-blue"></i>
+                <a class="nav-link" href="{{route('indexMission')}}">
+                   <i class="fa fa-tasks text-blue"></i>
                     <span class="text text-red"> Missions </span>
                 </a>
             </li>
@@ -399,7 +417,7 @@
                             <h3 class="mb-0">Users</h3>
                         </div>
                         <div class="col-4 text-right">
-                        <a href="#popupuc" class="btn btn-sm btn-primary">Add user</a>
+                            @can('User-create')<a href="#popupuc" class="btn btn-sm btn-primary">Add user</a>@endcan
                         </div>
                     </div>
                 </div>
@@ -440,8 +458,8 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                                                                 
-                                        <a class="dropdown-item" href="{{ route('editUser',$user->id) }}"><i class="fa fa-edit fa-fw"></i></i> edit</a>
-                                        <a class="dropdown-item" href="{{ route('deleteUser',$user->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>
+                                        @can('User-edit')<a class="dropdown-item" href="{{ route('editUser',$user->id) }}"><i class="fa fa-edit fa-fw"></i></i> edit</a>@endcan
+                                        @can('User-delete')<a class="dropdown-item" href="{{ route('deleteUser',$user->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>@endcan
                                     </div>
                                                                                                 
                                     

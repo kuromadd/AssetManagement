@@ -196,20 +196,38 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('indexRole') }}">
-                    <i class="ni ni-planet text-blue"></i> 
-                    <span class="text text-red"> Roles </span>
+                <a class="nav-link active" href="#navbar-examples2" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                    <i class="fab fa-linode text-blue"></i>
+                    <span class="nav-link-text text-red">Permissions</span>
                 </a>
+    
+                <div class="collapse show" id="navbar-examples2">
+                    <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('indexPM') }}">
+                                <i class="ni ni-planet text-blue"></i> 
+                                <span class="text text-red"> User permissions </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('indexRole') }}">
+                                <i class="ni ni-planet text-blue"></i> 
+                                <span class="text text-red"> Role permissions </span>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
             </li>
         
             <li class="nav-item">
                 <a class="nav-link" href="{{route('indexReparation')}}">
                     <i class="ni ni-settings-gear-65 text-blue"></i> 
                     <span class="text text-red"> Reparation </span>
-                </a>
+                </a> 
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('missions.index')}}">
+                <a class="nav-link" href="{{route('indexMission')}}">
                     <i class="fa fa-tasks text-blue"></i>
                     <span class="text text-red"> Missions </span>
                 </a>

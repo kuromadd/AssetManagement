@@ -141,11 +141,6 @@ crossorigin="anonymous"></script>
         <label for="date" class="form-control-label">&#160&#160mis en service a :</label>
         <input type="date" name="dateservice" id="dateservice" class="form-control datetimepicker">
       </div>
-      
-      <div class="form-group">
-        <label class="label-control">Datetime Picker</label>
-        <input type="text" class="form-control datetimepicker" value="21/06/2018"/>
-    </div>
 
       <div class="form-group">
         <label for="duree" class="form-control-label">&#160&#160duree de vie</label>
@@ -161,19 +156,3 @@ crossorigin="anonymous"></script>
             
 </div>
 </div>
-
-<script>
-  $('.datetimepicker').datetimepicker({
-    icons: {
-        time: "fa fa-clock-o",
-        date: "fa fa-calendar",
-        up: "fa fa-chevron-up",
-        down: "fa fa-chevron-down",
-        previous: 'fa fa-chevron-left',
-        next: 'fa fa-chevron-right',
-        today: 'fa fa-screenshot',
-        clear: 'fa fa-trash',
-        close: 'fa fa-remove'
-    }
-});
-</script>

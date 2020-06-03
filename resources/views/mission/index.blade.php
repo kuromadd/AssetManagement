@@ -10,7 +10,7 @@
                             <h3 class="mb-0">Missions</h3>
                         </div>
                         <div class="col-4 text-right">
-                        <a href="{{route('missions.create',['id'=>0])}}" class="btn btn-sm btn-primary">Add Mission</a>
+                            @can('mission-create')<a href="{{route('createMission',['id'=>0])}}" class="btn btn-sm btn-primary">Add Mission</a>@endcan
                         </div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                                 <th scope="col">Destination</th>
                                 <th scope="col">Date de la mission</th>
                                 <th scope="col">Asset</th>
-                                
+                                <th scope="col"></th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -35,6 +35,11 @@
                             <td>{{$mission->destination}}</td>
                             <td>{{$mission->mission_at}}</td>
                             <td>{{\App\Asset::find($mission->asset_id)->name}}</td>
+                            @if ($mission->etat)
+                        <td><a href="{{route('completeMission',$mission->id)}}" class="text-info">incomplite</a></td>
+                            @else
+                            <td><label class="text-success">complited</label></td>    
+                            @endif
                             
                             <td class="text-right">
                                 <div class="dropdown">
@@ -43,9 +48,9 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" style="width: 50px" href="{{ route('missions.show',$mission->id) }}"><i class="fa fa-info fa-fw"></i> show</a>
-                                    <a class="dropdown-item" href="{{ route('missions.edit',$mission->id) }}"><i class="fa fa-edit fa-fw"></i> edit</a>
-                                    <a class="dropdown-item" href="{{ route('missions.destroy',$mission->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>
+                                            <a class="dropdown-item" href="{{ route('showMission',$mission->id) }}"><i class="fa fa-info fa-fw"></i> show</a>
+                                            @can('mission-edit')<a class="dropdown-item" href="{{ route('editMission',$mission->id) }}"><i class="fa fa-edit fa-fw"></i> edit</a>@endcan
+                                            @can('mission-delete')<a class="dropdown-item" href="{{ route('deleteMission',$mission->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>@endcan
 
                                     </div>
                                     

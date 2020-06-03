@@ -47,6 +47,23 @@ class UserController extends Controller
         return view('app.damagedAsset')->with('assets', $assets);
     }
 
+    public function modelsPer(){
+        $user = Auth()->user();
+        $users = User::orderBy('id','asc')->get();
+        
+        return view('admin.user.indexPM')->with('users',$users)->with('user',$user);
+    }
+
+    public function updateAll(Request $request){
+        foreach (User::all() as $user) {
+            $r=$user->name;
+            if (($request->has($r))) {
+                $user->syncPermissions($request->input($r));
+            }
+        }
+        return redirect()->route('indexPM')->with('success','you update user permissions successfully ');
+    }    
+
     public function index(Request $request)
     {
         $user = Auth::user();

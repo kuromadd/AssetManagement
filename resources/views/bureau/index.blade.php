@@ -8,9 +8,11 @@
                         <div class="col-8">
                             <h3 class="mb-0">Bureaus</h3>
                         </div>
+                        @can('bureau-create')
                         <div class="col-4 text-right">
                         <a href="#popupbrc" class="btn btn-sm btn-primary">Add Bureau</a>
                         </div>
+                        @endcan
                     </div>
                 </div>
                 
@@ -40,8 +42,8 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="{{ route('editBureau',$bureau->id) }}"><i class="fa fa-edit fa-fw"></i></i> edit</a>
-                                    <a class="dropdown-item" href="{{ route('deleteBureau',$bureau->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>
+                                    @can('bureau-edit')<a class="dropdown-item" href="{{ route('editBureau',$bureau->id) }}"><i class="fa fa-edit fa-fw"></i></i> edit</a>@endcan
+                                    @can('bureau-delete')<a class="dropdown-item" href="{{ route('deleteBureau',$bureau->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>@endcan
 
                                     </div>
                                     

@@ -27,8 +27,9 @@ class ReparationController extends Controller
      */
     public function index()
     {
+        $user=Auth()->user();
         $reparations = Reparation::latest()->paginate(5);
-        return view('reparation.index',compact('reparations'))->with('user',Auth()->user())
+        return view('reparation.index',compact('reparations'))->with('user',$user)
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 

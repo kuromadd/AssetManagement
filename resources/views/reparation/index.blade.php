@@ -10,7 +10,7 @@
                             <h3 class="mb-0">Reparations</h3>
                         </div>
                         <div class="col-4 text-right">
-                        <a href="{{route('createReparation',['id'=>0])}}" class="btn btn-sm btn-primary">Add reparation</a>
+                            @can('reparation-create')<a href="{{route('createReparation',['id'=>0])}}" class="btn btn-sm btn-primary">Add reparation</a>@endcan
                         </div>
                     </div>
                 </div>
@@ -41,8 +41,8 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="{{ route('editReparation',$reparation->id) }}"><i class="fa fa-edit fa-fw"></i></i> edit</a>
-                                    <a class="dropdown-item" href="{{ route('deleteReparation',$reparation->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>
+                                        @can('reparation-edit')<a class="dropdown-item" href="{{ route('editReparation',$reparation->id) }}"><i class="fa fa-edit fa-fw"></i></i> edit</a>@endcan
+                                        @can('reparation-delete')<a class="dropdown-item" href="{{ route('deleteReparation',$reparation->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>@endcan
 
                                     </div>
                                     

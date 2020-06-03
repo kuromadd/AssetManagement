@@ -9,7 +9,7 @@
                             <h3 class="mb-0">Inventaires</h3>
                         </div>
                         <div class="col-4 text-right">
-                        <a href="{{route('createInventaire')}}" class="btn btn-sm btn-primary">Add inventaire</a>
+                            @can('inventaire-create')<a href="{{route('createInventaire')}}" class="btn btn-sm btn-primary">Add inventaire</a>@endcan
                         </div>
                     </div>
                 </div>
@@ -40,8 +40,8 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="{{ route('editInventaire',$inv->id) }}"><i class="fa fa-edit fa-fw"></i></i> edit</a>
-                                    <a class="dropdown-item" href="{{ route('deleteInventaire',$inv->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>
+                                        @can('inventaire-edit')<a class="dropdown-item" href="{{ route('editInventaire',$inv->id) }}"><i class="fa fa-edit fa-fw"></i></i> edit</a>@endcan
+                                        @can('inventaire-delete')<a class="dropdown-item" href="{{ route('deleteInventaire',$inv->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>@endcan
 
                                     </div>
                                     

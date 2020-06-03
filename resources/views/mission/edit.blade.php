@@ -6,7 +6,7 @@
                 </div>
             
                 <div class="card-body">
-                    <form action="{{ route('missions.update',$mission->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('updateMission',$mission->id) }}" method="post" enctype="multipart/form-data">
         
                     {{ csrf_field() }}
                     <div class="form-group">
@@ -26,7 +26,7 @@
 
                     <div class="form-group">
                     <label for="Asset_id">Asset</label>
-                        <select class="form-control" name="asset_id" id="asset_id">
+                        <select class="form-control" name="asset_id" disabled id="asset_id">
                             @foreach(\App\Asset::all() as $asset)
                         <option value="{{ $asset->id }}"
                            @if($asset->id == $mission->asset_id)

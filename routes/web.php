@@ -28,6 +28,8 @@ Route::get('/repairList','UserController@repairlist')->name('repairList');
 
 Route::get('/replaceList','UserController@replacelist')->name('replaceList');
 
+Route::get('/permissionM','UserController@modelsPer')->name('indexPM');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -40,6 +42,7 @@ Route::post('/admin/role/update/{id}','rolesController@update')->name('updateRol
 Route::get('/admin/role/delete/{id}','rolesController@destroy')->name('deleteRole');
 
 Route::post('/admin/role/updateAll','rolesController@updateAll')->name('updateAll');
+Route::post('/admin/role/updateAllper','UserController@updateAll')->name('updateAllper');
 
 Route::get('/asset/index','AssetController@index')->name('indexAsset');
 Route::get('/asset/create','AssetController@create')->name('createAsset');
@@ -74,10 +77,23 @@ Route::get('/bureau/index','bureauController@index')->name('indexBureau');
 Route::get('/bureau/create','bureauController@create')->name('createBureau');
 Route::post('/bureau/store','bureauController@store')->name('storeBureau');
 Route::get('/bureau/edit/{id}','bureauController@edit')->name('editBureau');
-Route::get('/bureau/update/{id}','bureauController@update')->name('updateBureau');
+Route::post('/bureau/update/{id}','bureauController@update')->name('updateBureau');
+Route::post('/bureau/save/{id}','bureauController@save')->name('saveAssets');
+
 Route::get('/bureau/delete/{id}','bureauController@destroy')->name('deleteBureau');
 
+Route::get('/mission/index','missionController@index')->name('indexMission');
+Route::get('/mission/create','missionController@create')->name('createMission');
+Route::post('/mission/store','missionController@store')->name('storeMission');
+Route::get('/mission/show/{id}','missionController@show')->name('showMission');
+Route::get('/mission/edit/{id}','missionController@edit')->name('editMission');
+Route::post('/mission/update/{id}','missionController@update')->name('updateMission');
+Route::get('/mission/delete/{id}','missionController@destroy')->name('deleteMission');
+Route::post('/mission/complete/{id}','missionController@complete')->name('completeMission');
+
 Route::get('/findEtage','bureauController@findEtage');
+Route::get('/Etage','TransfertController@Etage');
+Route::get('/Bureau','TransfertController@Bureau');
 Route::get('/getAsset','transfertController@getAsset');
 
 
@@ -102,7 +118,6 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::resource('assets', 'AssetController');
 	Route::resource('inventaires', 'InventaireController');
 	Route::resource('fournisseurs', 'FournisseurController');
-	Route::resource('missions', 'MissionController');
 	Route::resource('transfert', 'TransfertController');
 });
 });

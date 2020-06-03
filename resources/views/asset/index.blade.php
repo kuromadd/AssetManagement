@@ -10,7 +10,9 @@
                             <h3 class="mb-0">Assets</h3>
                         </div>
                         <div class="col-4 text-right">
-                        <a href="#popupac" class="btn btn-sm btn-primary">Add asset</a>
+                            @can('asset-create')
+                            <a href="#popupac" class="btn btn-sm btn-primary">Add asset</a>
+                            @endcan
                         </div>
                     </div>
                 </div>
@@ -53,8 +55,8 @@
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                         <a class="dropdown-item" href="{{route('showAsset',$asset->id)}}"><i class="fa fa-info fa-fw"></i></i> show</a>
-                                        <a class="dropdown-item" href="{{route('editAsset',$asset->id)}}"><i class="fa fa-edit fa-fw"></i></i> edit</a>
-                                        <a class="dropdown-item" href="{{ route('deleteAsset',$asset->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>
+                                        @can('asset-edit')<a class="dropdown-item" href="{{route('editAsset',$asset->id)}}"><i class="fa fa-edit fa-fw"></i></i> edit</a>@endcan
+                                        @can('asset-delete')<a class="dropdown-item" href="{{ route('deleteAsset',$asset->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>@endcan
 
                                     </div>
                                     

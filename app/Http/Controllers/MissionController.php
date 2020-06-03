@@ -62,9 +62,10 @@ class MissionController extends Controller
         'but_mission'=> $request->but_mission,
         'destination'=> $request->destination,
         'mission_at'=> $request->mission_at,
+        'etat' => 1,
     ]);
        
-            return redirect()->route('missions.index')
+            return redirect()->route('indexMission')
             ->with('success', 'mission created successfully.');
         
          
@@ -100,7 +101,7 @@ class MissionController extends Controller
      * @param  \App\Mission  $mission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mission $mission)
+    public function update(Request $request,$id)
     {
          request()->validate([
             'but_mission'=>'required',
@@ -108,9 +109,13 @@ class MissionController extends Controller
             'mission_at'=>'required',
         ]);
 
-        $mission->update($request->all());
+        $mission = Mission::find($id);
+        $mission->asset_id = $request->asset_id ;
+        $mission->but_mission= $request->but_mission;
+        $mission->destination= $request->destination;
+        $mission->mission_at = $request->mission_at;
 
-        return redirect()->route('missions.index')
+        return redirect()->route('indexMission')
                         ->with('success','mission updated successfully');
     }
 
@@ -124,9 +129,15 @@ class MissionController extends Controller
     {
         $mission->delete();
 
-        return redirect()->route('missions.index')
+        return redirect()->route('indexMission')
                         ->with('success','mission deleted successfully');
     }
 
+    public function complete($id){
+        $mission = \App\mission::find($id);
+        $mission->etat = 0;
+        $mission->save();
+        return redirect()->route('indexMission')->with('success','L\'asset '.\App\asset::find($mission->asset_id)->name.' just returned');
+    }
     
 }

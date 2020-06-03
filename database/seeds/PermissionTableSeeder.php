@@ -20,6 +20,7 @@ class PermissionTableSeeder extends Seeder
            'role-create',
            'role-edit',
            'role-delete',
+           'user-permission-edit',
            'User-list',
            'User-create',
            'User-edit',
@@ -48,10 +49,10 @@ class PermissionTableSeeder extends Seeder
            'mission-create',
            'mission-edit',
            'mission-delete',
-           'repararion-list',
-           'repararion-create',
-           'repararion-edit',
-           'repararion-delete',
+           'reparation-list',
+           'reparation-create',
+           'reparation-edit',
+           'reparation-delete',
         ];
    
         foreach ($permissions as $permission) {

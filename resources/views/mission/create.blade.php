@@ -6,7 +6,7 @@
                 </div>
             
                 <div class="card-body">
-                    <form action="{{ route('missions.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('storeMission') }}" method="post" enctype="multipart/form-data">
         
                     {{ csrf_field() }}
                     <div class="form-group">
@@ -27,11 +27,14 @@
                     <div class="form-group">
                     <label for="Asset_id">Asset</label>
                         <select class="form-control" name="asset_id" id="asset_id">
+                            <option value="0" disabled @if( $_GET["id"] == 0)selected @endif>select asset</option>
                             @foreach(\App\Asset::all() as $asset)
-                        <option value="{{ $asset->id }}"
-                           @if( $_GET["id"] && $asset->id == $_GET["id"])
-                            selected
-                        @endif>{{$asset->name}}</option>
+                                  @if($asset->etat) 
+                                    <option value="{{ $asset->id }}"
+                                    @if( $_GET["id"] && $asset->id == $_GET["id"])
+                                    selected
+                                    @endif>{{$asset->name}}</option>
+                                  @endif
                             @endforeach
                         </select>
                     </div>

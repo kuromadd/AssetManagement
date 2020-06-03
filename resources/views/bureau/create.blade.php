@@ -157,6 +157,7 @@ crossorigin="anonymous"></script>
                           success:function(data){
                             if(data)
                               {
+                                console.log(data);
                                   $("#etage").empty();
                                   $("#etage").append('<option selected disabled >Select etage</option>');
                                   $.each(data,function(data,data){

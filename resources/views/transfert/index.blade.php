@@ -10,7 +10,7 @@
                             <h3 class="mb-0">Transfert</h3>
                         </div>
                         <div class="col-4 text-right">
-                        <a href="{{route('transfert.create',['id'=>0])}}" class="btn btn-sm btn-primary">Add Transfert</a>
+                            @can('transfert-create')<a href="{{route('transfert.create',['id'=>0])}}" class="btn btn-sm btn-primary">Add Transfert</a>@endcan
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                         <tbody>
                         @foreach($transferts as $transfert)
                         <tr>
-                            <td>{{\App\Asset::find($Transfert->asset_id)->name}}</td>
+                            <td>{{\App\Asset::find($transfert->asset_id)->name}}</td>
                             <td>{{$transfert->block_c}}</td>
                             <td>{{$transfert->etage_c}}</td>
                             <td>{{$transfert->bureau_c}}</td>
@@ -53,9 +53,8 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="{{ route('transfert.edit',$transfert->id) }}">Edit</a>
-                                    <a class="dropdown-item" href="{{ route('transfert.delete',$transfert->id) }}">delete</a>
-
+                                        @can('transfert-edit')<a class="dropdown-item" href="{{ route('transfert.edit',$transfert->id) }}">Edit</a>@endcan
+                                        @can('transfert-delete')<a class="dropdown-item" href="{{ route('transfert.destroy',$transfert->id) }}">delete</a>@endcan
                                     </div>
                                     
                                   

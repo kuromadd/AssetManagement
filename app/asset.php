@@ -10,7 +10,7 @@ class asset extends Model
 
    public function bureau()
    {
-       return $this->belongsTo('\App\bureau');
+       return $this->belongsto('\App\bureau');
    }
 
    public function inventaires(){

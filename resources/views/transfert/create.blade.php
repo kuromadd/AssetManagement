@@ -86,7 +86,7 @@
                                   $("#current_et").empty();
                                   $("#current_et").append('<div class="form-group"><label for="etage_c">current etage</label><input type="text" name="etage_c" id="current_et" value="'+data[2]+'" class="form-control"></div> ');
                                   $("#current_br").empty();
-                                  $("#current_br").append('<div class="form-group"><label for="bureau_c">current bureau</label><input type="text" name="block_c" id="current_br" value="'+data[3]+'" class="form-control"></div> ');
+                                  $("#current_br").append('<div class="form-group"><label for="bureau_c">current bureau</label><input type="text" name="bureau_c" id="current_br" value="'+data[3]+'" class="form-control"></div> ');
                               }
                         },
                           error:function(){ 
@@ -110,20 +110,97 @@
 
                             <div class="form-group">
                                 <label for="block_d">next block</label>
-                                <input type="text" name="block_d" class="form-control">
+                                <select class="form-control blockID" name="block_d">
+                                    <option value="0" disabled selected>--Select--</option>
+                                    @foreach(\App\block::all() as $block)
+                                <option value="{{$block->id}}">{{ $block->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
         
                             <div class="form-group">
-                                <label for="etage_d">next etage</label>
-                                <input type="text" name="etage_d" class="form-control">
-                            </div>
-        
+                                <label for="etage_d" >next etage</label>
+                                   <select class="form-control NbEtage" name="etage_d" id="etage_d">                           
+                                    
+                                   </select>
+                               </div>
                             <div class="form-group">
                                 <label for="bureau_d">next bureau</label>
-                                <input type="text" name="bureau_d" class="form-control">
+                                <select class="form-control " name="bureau_d" id="bureau_d">                           
+                                    
+                                </select>
                             </div>
         
-        
+                            
+                               <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+                               <script type="text/javascript"> 
+                                 $(document).ready(function(){
+                                 $(document).on('change','.blockID',function(){
+                                   
+                                   var block_id=$(this).val();
+                                   var div=$(this).parent();
+                                   var op="";
+                                   $.ajax({
+                                     type:'get',
+                                     url:'{!!URL::to('Etage')!!}',
+                                     data:{'id':block_id},
+                                     dataType:'json',
+                                     success:function(data){
+                                       if(data)
+                                         {
+                                            console.log(data);
+                                             $("#etage_d").empty();
+                                             $("#etage_d").append('<option selected disabled >Select etage</option>');
+                                             $.each(data,function(t,data){
+                                                 for(var i=-2 ; i<=data ; i++){
+                                                     $("#etage_d").append('<option value="'+i+'">'+i+'</option>')
+                                                    }
+                                             });       
+                                
+                                         }
+                                       
+           
+                                     },
+                                     error:function(){ 
+                                     }
+                                   })
+                                 });
+                                 });
+                                 $(document).ready(function(){
+                                 $(document).on('change','.NbEtage',function(){
+                                   
+                                   var etage=$(this).val();
+                                   var div=$(this).parent();
+                                   var op="";
+                                   $.ajax({
+                                     type:'get',
+                                     url:'{!!URL::to('Bureau')!!}',
+                                     data:{'id':etage},
+                                     dataType:'json',
+                                     success:function(data){
+                                       if(data)
+                                         {
+                                            console.log(data);
+                                               
+                                             $("#bureau_d").empty();
+                                             $("#bureau_d").append('<option selected disabled >choose bureau</option>');
+                                             
+                                            
+                                             data.forEach(mFunction);
+                                             function mFunction(item) {
+                                                $("#bureau_d").append('<option value="'+item.id+'">'+item.name+'</option>')
+                                            }
+                                
+                                         }
+           
+                                     },
+                                     error:function(){ 
+                                     }
+                                   })
+                                 });
+                                 });
+                                  
+                            </script>
                             
                             <div class="text-center">
                             <button class="btn btn-info" type="submit">store</button>    

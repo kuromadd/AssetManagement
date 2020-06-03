@@ -5,6 +5,7 @@ use App\Transfert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
+use PHPUnit\Framework\Constraint\Count;
 
 class TransfertController extends Controller
 {
@@ -15,16 +16,33 @@ class TransfertController extends Controller
      */
     function __construct()
     {
-        /*  $this->middleware('permission:transfert-list|transfert-create|transfert-edit|transfert-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:transfert-list|transfert-create|transfert-edit|transfert-delete', ['only' => ['index','show']]);
          $this->middleware('permission:transfert-create', ['only' => ['create','store']]);
          $this->middleware('permission:transfert-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:transfert-delete', ['only' => ['destroy']]); */
+         $this->middleware('permission:transfert-delete', ['only' => ['destroy']]); 
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function Etage(Request $request){
+        $data=\App\block::select('nbre_Etage')->where('id',$request->id)->first();
+        $request->session()->put('blockID', $request->id);
+        return response()->json($data);
+    }
+    public function Bureau(Request $request){
+        $data=[];
+        $id=$request->session()->get('blockID');
+        $bureaus=\App\block::find($id)->bureaus;
+        foreach ($bureaus as $bureau) {
+            if ($bureau->etage==$request->id) {
+                $data[]=$bureau;
+            }
+        }
+            return response()->json($data);
+    }
 
     public function getAsset(Request $request){
        
@@ -41,6 +59,7 @@ class TransfertController extends Controller
     public function index()
     {
         $transferts = Transfert::latest()->paginate(5);
+        
         return view('transfert.index',compact('transferts'))->with('user',Auth()->user())
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -66,15 +85,24 @@ class TransfertController extends Controller
         request()->validate([
 
             'asset_id'=>'required',
-            'bloc_d'=>'required',
+            'block_d'=>'required',
             'etage_d'=>'required',
-            'bureau_d'=>'required',
+            
             'transfered_at'=>'required',
             
         ]);
-        $transfert = Transfert::create($request->all());
-       
-            return redirect()->route('transfert.index')
+        $transfert = new \App\Transfert;
+        $transfert->asset_id=$request->asset_id;
+        $transfert->block_d=$request->block_d;
+        $transfert->bureau_d='$request->bureau_d';
+        $transfert->etage_d=$request->etage_d;
+        $transfert->block_c=$request->block_c;
+        $transfert->bureau_c=$request->bureau_c;
+        $transfert->etage_c=$request->etage_c;
+        $transfert->transfered_at=$request->transfered_at;
+
+        $transfert->save();
+        return redirect()->route('transfert.index')
             ->with('success', 'transfert created successfully.');
         
          

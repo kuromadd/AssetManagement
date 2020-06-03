@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\DB;
 
 class BureauController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:bureau-list|bureau-create|bureau-edit|bureau-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:bureau-create', ['only' => ['create','store']]);
+         $this->middleware('permission:bureau-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:bureau-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -100,24 +107,27 @@ class BureauController extends Controller
             'name' =>'required',
             'block_id' =>'required',
             'etage' => 'required',
-            'assets' => 'required',
         ]);
 
         $bureau = \App\bureau::find($id) ; 
         $bureau->name = $request->name;
         $bureau->etage = $request->etage;
         $bureau->block_id =$request->block_id;
-        dd($request->assets);
+        
         $bureau->save();
+       
+        return redirect()->back()->with('success','you updated a bureau');
+    }
+    public function save(Request $request,$id){
+        $bureau = \App\bureau::find($id) ; 
         \App\asset::whereIn('id',$bureau->assets)->update(["occupied" => 0]);
         \App\asset::whereIn('id',$request->assets)->update(["occupied" => 1]);
-        foreach($bureau->assets() as $asset){
+        foreach($bureau->assets as $asset){
             $asset->bureau_id = null;
         }
         foreach($request->assets as $asset){
             $asset->bureau_id = $bureau->id;
         }
-        return redirect()->back()->with('success','you updated a bureau');
     }
 
     /**

@@ -1,6 +1,6 @@
 @extends('app.layout')
 @section('content')
-<form action="{{ route('updateAll') }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('updateAllper') }}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="row">
         <div class="col">
@@ -8,10 +8,10 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Roles</h3>
+                            <h3 class="mb-0">User permissions</h3>
                         </div>
                         <div class="col-4 text-right">
-                        @can('role-edit')       
+                        @can('user-permission-edit')       
                         <button type="submit" class="btn btn-sm btn-primary">save</button>
                         @endcan
                         </div>
@@ -24,18 +24,17 @@
                         <thead class="thead-light">
                             <tr style="width: ">
                                 <th scope="col">permissions</th>
-                                @foreach ($roles as $item)
-                                <th  scope="col">{{$item->name}}&#160 @can('role-delete')<a href="{{ route('deleteRole',$item->id) }}"><i class="fa fa-trash fa-fw"></i></a>@endcan</th>
+                                @foreach ($users as $item)
+                                <th  scope="col">{{$item->name}}</th>
                                 @endforeach
-                                <th>@can('role-create')<a href="#popuprc" class="fa fa-plus fa-lg"></a>@endcan</th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach(Spatie\Permission\Models\Permission::all() as $permission)
                         <tr style="width: 100%">
                             <td style="margin: 10% ; width: 15%;">{{$permission->name}}</td>
-                            @foreach ($roles as $role)   
-                        <td style=" width: 15%;" class="">&#160&#160<input type="checkbox" name="{{$role->name}}[]" @if($role->hasPermissionTo($permission->name)) checked @endif value="{{$permission->id}}" id=""></td>
+                            @foreach ($users as $user)   
+                        <td style=" width: 15%;" class="">&#160&#160<input type="checkbox" name="{{$user->name}}[]" @if($user->hasPermissionTo($permission->name)) checked @endif value="{{$permission->id}}" id=""></td>
                             @endforeach     
                             </td>
                             
@@ -54,5 +53,5 @@
         </div>
     </div>
 </form>    
-    @include('admin.role.create')
+
  @endsection

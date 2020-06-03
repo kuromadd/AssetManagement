@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\asset;
+use App\inventaire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,9 +26,9 @@ class AssetController extends Controller
     public function index(Request $request)
     {
         $user = Auth()->user();
-        $assets = \App\asset::orderBy('id','DESC')->paginate(5);
+        $assets = \App\asset::orderBy('id','DESC')->paginate(10);
         return view('asset.index',compact('assets'))
-            ->with('i', ($request->input('page', 1) - 1) * 5)
+            ->with('i', ($request->input('page', 1) - 1) * 10)
             ->with('user',$user);
     }
 
@@ -100,15 +101,14 @@ class AssetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
+        request()->validate([
             'name' => 'required',
             'description' => 'required',
             'prix' => 'required',
             'category' => 'required',
-            'dateService' => 'required',
-            'duree_vie' => 'required',
+            'dateservice' => 'required',
+            'duree' => 'required',
         ]);
-
         $asset = \App\asset::find($id);
         $asset->name = $request->name;
         $asset->description=$request->description;
@@ -116,10 +116,9 @@ class AssetController extends Controller
         $asset->category = $request->category;
         $asset->dateService = $request->dateservice;
         $asset->duree_vie = $request->duree;
-        $asset->selected = 1;
 
         $asset->save();
-        return redirect()->back()->with('success','you edited asset successfuly');
+        return redirect()->route('indexAsset')->with('success','you edited asset successfuly');
     }
 
     /**
@@ -131,8 +130,8 @@ class AssetController extends Controller
     public function destroy($id)
     {
         $asset = \App\asset::find($id);
-
-        DB::table("asset_bureau")->where('asset_id',$id)->delete();
+        DB::table("asset_inventaire")->where('asset_id',$id)->delete();
+       
         $asset->delete();
         return redirect()->back()->with('success','you deleted asset');
     }

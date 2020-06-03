@@ -19,6 +19,7 @@ class CreateMissionsTable extends Migration
             $table->string('destination');
             $table->date('mission_at');
             $table->integer('asset_id');
+            $table->boolean('etat')->nullable();
             $table->timestamps();
         });
     }
