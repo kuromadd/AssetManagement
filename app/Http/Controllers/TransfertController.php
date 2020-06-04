@@ -94,7 +94,7 @@ class TransfertController extends Controller
         $transfert = new \App\Transfert;
         $transfert->asset_id=$request->asset_id;
         $transfert->block_d=$request->block_d;
-        $transfert->bureau_d='$request->bureau_d';
+        $transfert->bureau_d=$request->bureau_d;
         $transfert->etage_d=$request->etage_d;
         $transfert->block_c=$request->block_c;
         $transfert->bureau_c=$request->bureau_c;
@@ -102,7 +102,7 @@ class TransfertController extends Controller
         $transfert->transfered_at=$request->transfered_at;
 
         $transfert->save();
-        return redirect()->route('transfert.index')
+        return redirect()->route('indexTransfert')
             ->with('success', 'transfert created successfully.');
         
          
@@ -117,7 +117,7 @@ class TransfertController extends Controller
 
     public function show(Transfert $transfert)
     {
-        return view('transfert.show',compact('transfert'));
+        //return view('showTransfert',compact('transfert'));
     }
 
     /**
@@ -128,7 +128,7 @@ class TransfertController extends Controller
      */
     public function edit(Transfert $transfert)
     {
-        return view('transfert.edit',compact('transfert'));
+       // return view('editTransfert',compact('transfert'));
     }
     
     /**
@@ -149,7 +149,7 @@ class TransfertController extends Controller
 
         $transfert->update($request->all());
 
-        return redirect()->route('transfert.index')
+        return redirect()->route('indexTransfert')
                         ->with('success','transfert updated successfully');
     }
 
@@ -159,11 +159,12 @@ class TransfertController extends Controller
      * @param  \App\Transfert  $transfert
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transfert $transfert)
+    public function destroy($id)
     {
+        $transfert = \App\Transfert::find($id);
         $transfert->delete();
 
-        return redirect()->route('transfert.index')
+        return redirect()->route('indexTransfert')
                         ->with('success','transfert deleted successfully');
     }
 

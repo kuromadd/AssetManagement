@@ -41,6 +41,13 @@ Route::get('/admin/role/edit/{id}','rolesController@edit')->name('editRole');
 Route::post('/admin/role/update/{id}','rolesController@update')->name('updateRole');
 Route::get('/admin/role/delete/{id}','rolesController@destroy')->name('deleteRole');
 
+Route::get('/admin/User/index','UserController@index')->name('indexUser');
+Route::get('/admin/User/create','UserController@create')->name('createUser');
+Route::post('/admin/User/store','UserController@store')->name('storeUser');
+Route::get('/admin/User/edit/{id}','UserController@edit')->name('editUser');
+Route::post('/admin/User/update/{id}','UserController@update')->name('updateUser');
+Route::get('/admin/User/delete/{id}','UserController@destroy')->name('deleteUser');
+
 Route::post('/admin/role/updateAll','rolesController@updateAll')->name('updateAll');
 Route::post('/admin/role/updateAllper','UserController@updateAll')->name('updateAllper');
 
@@ -70,7 +77,7 @@ Route::get('/block/index','blocksController@index')->name('indexBlock');
 Route::get('/block/create','blocksController@create')->name('createBlock');
 Route::post('/block/store','blocksController@store')->name('storeBlock');
 Route::get('/block/edit/{id}','blocksController@edit')->name('editBlock');
-Route::get('/block/update/{id}','blocksController@update')->name('updateBlock');
+Route::post('/block/update/{id}','blocksController@update')->name('updateBlock');
 Route::get('/block/delete/{id}','blocksController@destroy')->name('deleteBlock');
 
 Route::get('/bureau/index','bureauController@index')->name('indexBureau');
@@ -89,7 +96,21 @@ Route::get('/mission/show/{id}','missionController@show')->name('showMission');
 Route::get('/mission/edit/{id}','missionController@edit')->name('editMission');
 Route::post('/mission/update/{id}','missionController@update')->name('updateMission');
 Route::get('/mission/delete/{id}','missionController@destroy')->name('deleteMission');
-Route::post('/mission/complete/{id}','missionController@complete')->name('completeMission');
+Route::get('/mission/complete/{id}','missionController@complete')->name('completeMission');
+
+Route::get('/Fournisseur/index','FournisseurController@index')->name('indexFournisseur');
+Route::get('/Fournisseur/create','FournisseurController@create')->name('createFournisseur');
+Route::post('/Fournisseur/store','FournisseurController@store')->name('storeFournisseur');
+Route::get('/Fournisseur/show/{id}','FournisseurController@show')->name('showFournisseur');
+Route::get('/Fournisseur/edit/{id}','FournisseurController@edit')->name('editFournisseur');
+Route::post('/Fournisseur/update/{id}','FournisseurController@update')->name('updateFournisseur');
+Route::get('/Fournisseur/delete/{id}','FournisseurController@destroy')->name('deleteFournisseur');
+
+Route::get('/Transfert/index','TransfertController@index')->name('indexTransfert');
+Route::get('/Transfert/create','TransfertController@create')->name('createTransfert');
+Route::post('/Transfert/store','TransfertController@store')->name('storeTransfert');
+Route::get('/Transfert/show/{id}','TransfertController@show')->name('showTransfert');
+Route::get('/Transfert/delete/{id}','TransfertController@destroy')->name('deleteTransfert');
 
 Route::get('/findEtage','bureauController@findEtage');
 Route::get('/Etage','TransfertController@Etage');
@@ -97,15 +118,11 @@ Route::get('/Bureau','TransfertController@Bureau');
 Route::get('/getAsset','transfertController@getAsset');
 
 
-Route::get('/admin/user/create','UserController@create')->name('createUser');
-Route::post('/admin/user/store','UserController@store')->name('storeUser');
-Route::get('/admin/user/edit/{id}','UserController@edit')->name('editUser');
+
 Route::post('/admin/user/update/{id}','UserController@update')->name('updateUser');
-Route::get('/admin/user/delete/{id}','UserController@delete')->name('deleteUser');
 
 Route::group(['middleware' => 'auth'], function () {
 
-	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
@@ -114,11 +131,9 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => ['auth']], function() {
 	
     Route::resource('roles','rolesController');
-	Route::resource('users','UserController');
 	Route::resource('assets', 'AssetController');
 	Route::resource('inventaires', 'InventaireController');
-	Route::resource('fournisseurs', 'FournisseurController');
-	Route::resource('transfert', 'TransfertController');
+
 });
 });
 

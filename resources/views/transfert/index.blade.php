@@ -10,7 +10,7 @@
                             <h3 class="mb-0">Transfert</h3>
                         </div>
                         <div class="col-4 text-right">
-                            @can('transfert-create')<a href="{{route('transfert.create',['id'=>0])}}" class="btn btn-sm btn-primary">Add Transfert</a>@endcan
+                            @can('transfert-create')<a href="{{route('createTransfert',['id'=>0])}}" class="btn btn-sm btn-primary">Add Transfert</a>@endcan
                         </div>
                     </div>
                 </div>
@@ -53,8 +53,8 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                        @can('transfert-edit')<a class="dropdown-item" href="{{ route('transfert.edit',$transfert->id) }}">Edit</a>@endcan
-                                        @can('transfert-delete')<a class="dropdown-item" href="{{ route('transfert.destroy',$transfert->id) }}">delete</a>@endcan
+                                        @can('transfert-edit')<a class="dropdown-item" href="{{ route('editTransfert',$transfert->id) }}">Edit</a>@endcan
+                                        @can('transfert-delete')<a class="dropdown-item" href="{{ route('deleteTransfert',$transfert->id) }}">delete</a>@endcan
                                     </div>
                                     
                                   

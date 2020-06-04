@@ -111,7 +111,7 @@ class ReparationController extends Controller
 
         $reparation->update($request->all());
 
-        return redirect()->route('reparation.index')
+        return redirect()->route('indexReparation')
                         ->with('success','Reparation updated successfully');
     }
 
@@ -121,11 +121,13 @@ class ReparationController extends Controller
      * @param  \App\Reparation  $reparation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reparation $reparation)
+    public function destroy($id)
     {
+        
+        $reparation = \App\Reparation::find($id);
         $reparation->delete();
 
-        return redirect()->route('reparation.index')
+        return redirect()->route('indexReparation')
                         ->with('success','Reparation deleted successfully');
     }
 

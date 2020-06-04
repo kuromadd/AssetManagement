@@ -13,12 +13,12 @@ class MissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    function __construct()
+    public function __construct()
     {
-         $this->middleware('permission:mission-list|mission-create|mission-edit|mission-delete', ['only' => ['index','show']]);
-         $this->middleware('permission:mission-create', ['only' => ['create','store']]);
-         $this->middleware('permission:mission-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:mission-delete', ['only' => ['destroy']]); 
+        $this->middleware('permission:mission-list|mission-create|mission-edit|mission-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:mission-create', ['only' => ['create','store']]);
+        $this->middleware('permission:mission-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:mission-delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -28,7 +28,7 @@ class MissionController extends Controller
     public function index()
     {
         $missions = Mission::latest()->paginate(5);
-        return view('mission.index',compact('missions'))->with('user',Auth()->user())
+        return view('mission.index', compact('missions'))->with('user', Auth()->user())
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -62,13 +62,12 @@ class MissionController extends Controller
         'but_mission'=> $request->but_mission,
         'destination'=> $request->destination,
         'mission_at'=> $request->mission_at,
-        'etat' => 1,
     ]);
-       
-            return redirect()->route('indexMission')
+    $asset=\App\asset::find($mission->asset_id);
+    $asset->etat =1;
+    $asset->save();
+        return redirect()->route('indexMission')
             ->with('success', 'mission created successfully.');
-        
-         
     }
 
     /**
@@ -80,7 +79,7 @@ class MissionController extends Controller
 
     public function show(Mission $mission)
     {
-        return view('mission.show',compact('mission'));
+        return view('mission.show', compact('mission'));
     }
 
     /**
@@ -91,7 +90,7 @@ class MissionController extends Controller
      */
     public function edit(Mission $mission)
     {
-        return view('mission.edit',compact('mission'));
+        return view('mission.edit', compact('mission'));
     }
     
     /**
@@ -101,9 +100,9 @@ class MissionController extends Controller
      * @param  \App\Mission  $mission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-         request()->validate([
+        request()->validate([
             'but_mission'=>'required',
             'destination'=>'required',
             'mission_at'=>'required',
@@ -116,7 +115,7 @@ class MissionController extends Controller
         $mission->mission_at = $request->mission_at;
 
         return redirect()->route('indexMission')
-                        ->with('success','mission updated successfully');
+                        ->with('success', 'mission updated successfully');
     }
 
     /**
@@ -125,18 +124,24 @@ class MissionController extends Controller
      * @param  \App\Mission  $mission
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mission $mission)
+    public function destroy($id)
     {
+        $mission = \App\mission::find($id);
+        if (\App\asset::find($mission->asset_id)->etat) {
+            return redirect()->route('indexMission')
+            ->with('success', 'you can\'t delete this mission ');
+        }else{
         $mission->delete();
-
         return redirect()->route('indexMission')
-                        ->with('success','mission deleted successfully');
+                        ->with('success', 'mission deleted successfully');
+    }
     }
 
     public function complete($id){
         $mission = \App\mission::find($id);
-        $mission->etat = 0;
-        $mission->save();
+        $asset= \App\asset::find($mission->asset_id);
+        $asset->etat = 0;
+        $asset->save();
         return redirect()->route('indexMission')->with('success','L\'asset '.\App\asset::find($mission->asset_id)->name.' just returned');
     }
     

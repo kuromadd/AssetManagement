@@ -125,7 +125,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.index') }}">
+                            <a class="nav-link" href="{{ route('indexUser') }}">
                                 <i class="fa fa-users text-blue"></i> 
                                 <span class="text text-red"> Users Management </span>
                             </a>
@@ -233,13 +233,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('fournisseurs.index')}}">
+                <a class="nav-link" href="{{route('indexFournisseur')}}">
                     <i class="fab fa-ravelry text-blue"></i> 
                     <span class="text text-red"> Fournisseurs </span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('transfert.index')}}">
+                <a class="nav-link" href="{{route('indexTransfert')}}">
                     <i class="fa fa-search-minus text-blue"></i>
                     <span class="text text-red"> Asset trace </span>
                 </a>

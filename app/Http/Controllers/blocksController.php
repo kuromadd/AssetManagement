@@ -96,14 +96,21 @@ class blocksController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'name' => 'required',
+            'adress' => 'required',
+            'nbreEt' => 'required',
+        ]);
+
         $block = \App\block::find($id) ; 
+  
         $block->name = $request->name;
         $block->adress = $request->adress;
         $block->nbre_etage =$request->nbreEt;
         
         $block->save();
         
-        return redirect()->back()->with('success','you updated a block');
+        return redirect()->route('indexBlock')->with('success','you updated a block');
     }
 
     /**
@@ -116,7 +123,7 @@ class blocksController extends Controller
     {
         $block = \App\block::find($id);
 
-        DB::table("bureau")->where('block_id',$id)->delete();
+        DB::table("bureaus")->where('block_id',$id)->delete();
         $block->delete();
         return redirect()->back()->with('success','you deleted a block');
     }

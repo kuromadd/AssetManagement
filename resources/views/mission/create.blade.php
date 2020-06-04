@@ -29,7 +29,7 @@
                         <select class="form-control" name="asset_id" id="asset_id">
                             <option value="0" disabled @if( $_GET["id"] == 0)selected @endif>select asset</option>
                             @foreach(\App\Asset::all() as $asset)
-                                  @if($asset->etat) 
+                                  @if($asset->etat==0 && $asset->status = [0,1]) 
                                     <option value="{{ $asset->id }}"
                                     @if( $_GET["id"] && $asset->id == $_GET["id"])
                                     selected

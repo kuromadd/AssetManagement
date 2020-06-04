@@ -7,7 +7,7 @@
                 </div>
             
                 <div class="card-body">
-                    <form action="{{ route('fournisseurs.update',['id',$fournisseur->id]) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('updateFournisseur',$fournisseur->id) }}" method="post" enctype="multipart/form-data">
         
                     {{ csrf_field() }}
                     <div class="form-group">

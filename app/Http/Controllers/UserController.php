@@ -155,11 +155,10 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
-
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
-    
-        $user->assignRole($request->input('roles'));
-        return redirect()->back()->with('success','you are successfuly updated user account');
+        $user->save();
+        DB::table('model_has_roles')->where('Model_id',$id)->delete();
+        $user->assignRole($request->input('role'));
+        return redirect()->route('indexUser')->with('success','you are successfuly updated user account');
 
     }
 
@@ -172,7 +171,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = \App\User::find($id);
-        DB::table("profile")->where('user_id',$id)->delete();
+        DB::table("profiles")->where('user_id',$id)->delete();
         $user->delete();
         return redirect()->back()->with('success','you deleted a user account');
     }

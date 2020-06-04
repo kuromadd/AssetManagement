@@ -35,7 +35,7 @@
                             <td>{{$mission->destination}}</td>
                             <td>{{$mission->mission_at}}</td>
                             <td>{{\App\Asset::find($mission->asset_id)->name}}</td>
-                            @if ($mission->etat)
+                            @if (\App\asset::find($mission->asset_id)->etat)
                         <td><a href="{{route('completeMission',$mission->id)}}" class="text-info">incomplite</a></td>
                             @else
                             <td><label class="text-success">complited</label></td>    

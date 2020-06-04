@@ -23,7 +23,8 @@ class CreateAssetsTable extends Migration
             $table->date('dateService')->nullable();
             $table->string('duree_vie');
             $table->integer('status')->default(0);
-            $table->boolean('occupied')->default(0);            
+            $table->boolean('occupied')->default(0); 
+            $table->boolean('etat')->default(0);            
             $table->timestamps();
         });
     }

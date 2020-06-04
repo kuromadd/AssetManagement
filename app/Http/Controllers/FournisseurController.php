@@ -65,7 +65,7 @@ class FournisseurController extends Controller
         'website' => $request->website,
         ]));
 
-        return redirect()->route('fournisseurs.index')->with('success', 'fournisseur created successfully.');
+        return redirect()->route('indexFournisseur')->with('success', 'fournisseur created successfully.');
         
          
     }
@@ -88,8 +88,9 @@ class FournisseurController extends Controller
      * @param  \App\Fournisseur  $fournisseur
      * @return \Illuminate\Http\Response
      */
-    public function edit(Fournisseur $fournisseur)
+    public function edit($id)
     {
+        $fournisseur = \App\Fournisseur::find($id);
         return view('fournisseur.edit',compact('fournisseur'));
     }
     
@@ -100,7 +101,7 @@ class FournisseurController extends Controller
      * @param  \App\Fournisseur  $fournisseur
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fournisseur $fournisseur)
+    public function update(Request $request,$id)
     {
         request()->validate([
             'libel' => 'required',
@@ -108,10 +109,10 @@ class FournisseurController extends Controller
             'email' => 'required',
             'address' => 'required'
         ]);
-
+        $fournisseur = \App\Fournisseur::find($id);
         $fournisseur->update($request->all());
 
-        return redirect()->route('fournisseurs.index')
+        return redirect()->route('indexFournisseur')
                         ->with('success','fournisseur updated successfully');
     }
 
@@ -121,11 +122,12 @@ class FournisseurController extends Controller
      * @param  \App\Fournisseur  $fournisseur
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Fournisseur $fournisseur)
+    public function destroy($id)
     {
+        $fournisseur = \App\Fournisseur::find($id);
         $fournisseur->delete();
 
-        return redirect()->route('fournisseurs.index')
+        return redirect()->route('indexFournisseur')
                         ->with('success','fournisseur deleted successfully');
     }
 

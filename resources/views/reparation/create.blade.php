@@ -23,11 +23,14 @@
                     <label for="Asset_id">Asset</label>
                         <select class="form-control" name="asset_id" id="asset_id">
                             @foreach(\App\Asset::all() as $asset)
+                            @if($asset->status == 2)
+                            
                         <option value="{{ $asset->id }}"
                            @if( $_GET["id"] && $asset->id == $_GET["id"])
                             selected
                         @endif>{{$asset->name}}</option>
-                            @endforeach
+                        @endif    
+                        @endforeach
                         </select>
                     </div>
                     <div class="text-center">

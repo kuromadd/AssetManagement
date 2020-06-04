@@ -22,7 +22,7 @@
                   <div class="card-header" >  
                    add a new Transfert
                 </div>
-                <form action="{{ route('transfert.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('storeTransfert') }}" method="post" enctype="multipart/form-data">
                 
                     {{ csrf_field() }}
                 <div class="row" style="float: left;width: 100%;">

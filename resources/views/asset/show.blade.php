@@ -43,7 +43,7 @@
       <input  type="text" name="duree" disabled value="{{ $asset->duree_vie }}" class="form-control form-control">
       </div>
       <div class="text-center">
-        <a href="{{route('transfert.create',$asset->id)}}"><i class="fa fa-paper-plane fa-fw text-blue"></i></i> transfer &#160&#160&#160</a><a href="{{route('createMission',$asset->id)}}"><i class="fa fa-play fa-fw text-blue"></i></i> &#160&start mission</a>                                                                 
+        <a href="{{route('createTransfert',$asset->id)}}"><i class="fa fa-paper-plane fa-fw text-blue"></i></i> transfer &#160&#160&#160</a><a href="{{route('createMission',$asset->id)}}"><i class="fa fa-play fa-fw text-blue"></i></i> &#160&start mission</a>                                                                 
       </div>
 </div>
 </div>

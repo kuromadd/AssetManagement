@@ -116,7 +116,7 @@ class BureauController extends Controller
         
         $bureau->save();
        
-        return redirect()->back()->with('success','you updated a bureau');
+        return redirect()->route('indexBureau')->with('success','you updated a bureau');
     }
     public function save(Request $request,$id){
         $bureau = \App\bureau::find($id) ; 
@@ -138,6 +138,8 @@ class BureauController extends Controller
      */
     public function destroy($id)
     {
+        DB::table('assets')->where('bureau_id',$id)->update(['occupied'=>0,'bureau_id'=>0]);
+
         $bureau = \App\bureau::find($id);
         foreach($bureau->assets as $asset){
             $asset->occupied = 0;

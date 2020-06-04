@@ -108,7 +108,7 @@ crossorigin="anonymous"></script>
                 </div>
             
                 <div class="card-body">
-                    <form action="{{ route('fournisseurs.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('storeFournisseur') }}" method="post" enctype="multipart/form-data">
         
                     {{ csrf_field() }}
                     <div class="form-group">
