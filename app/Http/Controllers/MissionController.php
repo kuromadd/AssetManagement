@@ -79,7 +79,7 @@ class MissionController extends Controller
 
     public function show($id)
     {
-        $mission = new Mission::find($id);
+        $mission =Mission::find($id);
         return view('mission.show', compact('mission'));
     }
 
@@ -89,8 +89,9 @@ class MissionController extends Controller
      * @param  \App\Mission  $mission
      * @return \Illuminate\Http\Response
      */
-    public function edit(Mission $mission)
+    public function edit($id)
     {
+        $mission =Mission::find($id);
         return view('mission.edit', compact('mission'));
     }
     
