@@ -77,8 +77,9 @@ class MissionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show(Mission $mission)
+    public function show($id)
     {
+        $mission = new Mission::find($id);
         return view('mission.show', compact('mission'));
     }
 

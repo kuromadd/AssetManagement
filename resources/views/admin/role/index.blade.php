@@ -22,7 +22,7 @@
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
-                            <tr style="width: ">
+                            <tr>
                                 <th scope="col">permissions</th>
                                 @foreach ($roles as $item)
                                 <th  scope="col">{{$item->name}}&#160 @can('role-delete')<a href="{{ route('deleteRole',$item->id) }}"><i class="fa fa-trash fa-fw"></i></a>@endcan</th>

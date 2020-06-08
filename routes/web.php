@@ -85,7 +85,7 @@ Route::get('/bureau/create','bureauController@create')->name('createBureau');
 Route::post('/bureau/store','bureauController@store')->name('storeBureau');
 Route::get('/bureau/edit/{id}','bureauController@edit')->name('editBureau');
 Route::post('/bureau/update/{id}','bureauController@update')->name('updateBureau');
-Route::post('/bureau/save/{id}','bureauController@save')->name('saveAssets');
+Route::post('/bureau/save/{id}','bureauController@saveAsset')->name('saveAssets');
 
 Route::get('/bureau/delete/{id}','bureauController@destroy')->name('deleteBureau');
 

@@ -22,7 +22,7 @@
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
-                            <tr style="width: ">
+                            <tr>
                                 <th scope="col">permissions</th>
                                 @foreach ($users as $item)
                                 <th  scope="col">{{$item->name}}</th>
@@ -32,9 +32,9 @@
                         <tbody>
                         @foreach(Spatie\Permission\Models\Permission::all() as $permission)
                         <tr style="width: 100%">
-                            <td style="margin: 10% ; width: 15%;">{{$permission->name}}</td>
+                            <td style=" width: 15%;">{{$permission->name}}</td>
                             @foreach ($users as $user)   
-                        <td style=" width: 15%;" class="">&#160&#160<input type="checkbox" name="{{$user->name}}[]" @if($user->hasPermissionTo($permission->name)) checked @endif value="{{$permission->id}}" id=""></td>
+                        <td style=" width: 15%" class="">&#160&#160<input type="checkbox" name="{{$user->name}}[]" @if($user->hasPermissionTo($permission->name)) checked @endif value="{{$permission->id}}" id=""></td>
                             @endforeach     
                             </td>
                             

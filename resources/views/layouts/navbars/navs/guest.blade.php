@@ -24,8 +24,7 @@
                 </div>
             </div>
             <!-- Navbar items -->
-            <ul class="navbar-nav ml-auto">
-       
+            <ul class="navbar-nav align-items-center mr-3 d-none d-md-flex ml-lg-auto">
                 <li class="nav-item">
                     <a class="nav-link nav-link-icon" href="{{ route('login') }}">
                         <i class="ni ni-key-25"></i>

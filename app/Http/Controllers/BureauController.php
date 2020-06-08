@@ -116,18 +116,17 @@ class BureauController extends Controller
         
         $bureau->save();
        
+        \App\asset::whereIn('id',$bureau->assets)->update(["occupied" => 0,"bureau_id" => 0]);
+        \App\asset::whereIn('id',$request->assets)->update(["occupied" => 1,"bureau_id" => $id]);
         return redirect()->route('indexBureau')->with('success','you updated a bureau');
     }
-    public function save(Request $request,$id){
+    public function saveAsset(Request $request,$id){
         $bureau = \App\bureau::find($id) ; 
-        \App\asset::whereIn('id',$bureau->assets)->update(["occupied" => 0]);
-        \App\asset::whereIn('id',$request->assets)->update(["occupied" => 1]);
-        foreach($bureau->assets as $asset){
-            $asset->bureau_id = null;
-        }
-        foreach($request->assets as $asset){
-            $asset->bureau_id = $bureau->id;
-        }
+
+        \App\asset::whereIn('id',$bureau->assets)->update(["occupied" => 0,"bureau_id" => 0]);
+        \App\asset::whereIn('id',$request->assets)->update(["occupied" => 1,"bureau_id" => $id]);
+
+        return redirect()->back();
     }
 
     /**

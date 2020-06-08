@@ -55,7 +55,7 @@
                     <label for="block_id">Assets</label><br>
                         
                             @foreach($bureau->assets as $asset)
-                              <label >&#160<input type="checkbox" disabled name="assets[]" value="{{ $asset->id }}" checked> {{$asset->name}} </label>
+                              <label >&#160<input type="checkbox" name="assets[]" value="{{ $asset->id }}" checked> {{$asset->name}} </label>
                             @endforeach
                         
                     </div>

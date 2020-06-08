@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col">
-            <div class="card shadow">
+            <div class="card shadow" style="margin-left: 16% ;width: 60%" >
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
@@ -19,11 +19,11 @@
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Adress</th>
+                            <tr style="width: 100%">
+                                <th scope="col" style="width: 40%">Name</th>
+                                <th scope="col" style="width: 40%">Adress</th>
                                 
-                                <th scope="col"></th>
+                                <th scope="col" style="width: 20%"></th>
                             </tr>
                         </thead>
                         <tbody>

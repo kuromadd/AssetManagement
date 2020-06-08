@@ -3,7 +3,7 @@
 
     <div class="row">
         <div class="col">
-            <div class="card shadow">
+            <div class="card shadow" style="width: 80%;margin-left: 9%">
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
@@ -20,11 +20,11 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Prix</th>
-                                <th scope="col">date de la reparation</th>
-                                <th scope="col">Asset</th>
+                                <th scope="col"style="width: 28%">&#160Prix</th>
+                                <th scope="col"style="width: 33%">date de la reparation</th>
+                                <th scope="col"style="width: 25%">Asset</th>
                                 
-                                <th scope="col"></th>
+                                <th scope="col"style="width: 14%"></th>
                             </tr>
                         </thead>
                         <tbody>

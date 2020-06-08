@@ -98,7 +98,7 @@ crossorigin="anonymous"></script>
 </style>
 
 
-<div id="popupac" class="overlay"style="overflow: scroll">
+<div id="popupac" class="overlay"style="overflow-x:hidden;">
     <div class="popup" style="width: 60%">
       <div class="card card-default">
         <div class="card-header border-0">

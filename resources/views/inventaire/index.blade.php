@@ -2,7 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col">
-            <div class="card shadow">
+            <div class="card shadow" style="width: 80%;margin-left: 9%">
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
@@ -19,18 +19,18 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">etat</th>
-                                <th scope="col">created_at</th>
+                                <th scope="col" style="width: 25%">&#160Name</th>
+                                <th scope="col" style="width: 25%">etat</th>
+                                <th scope="col" style="width: 35%">created_at</th>
             
-                                <th scope="col"></th>
+                                <th scope="col" style="width: 15%"></th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach($inventaires as $inv)
                         <tr>
-                            <td>{{$inv->name}}</td>
-                            <td>{{$inv->etat}}</td>
+                            <td>{{$inv->name}}name</td>
+                            <td>{{$inv->etat}}etat</td>
                             <td>{{$inv->created_at}}</td>
                             
                             <td class="text-right">

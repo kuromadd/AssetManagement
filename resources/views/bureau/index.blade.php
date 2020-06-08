@@ -2,7 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col">
-            <div class="card shadow">
+            <div class="card shadow" style="width: 70%;margin-left:14% ">
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
@@ -21,11 +21,11 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Etage</th>
-                                <th scope="col">block</th>
+                                <th scope="col" style="width: 30%">Name</th>
+                                <th scope="col" style="width: 30%">Etage</th>
+                                <th scope="col" style="width: 30%">block</th>
                                 
-                                <th scope="col"></th>
+                                <th scope="col" style="width: 10%"></th>
                             </tr>
                         </thead>
                         <tbody>

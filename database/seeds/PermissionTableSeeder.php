@@ -65,7 +65,7 @@ class PermissionTableSeeder extends Seeder
 
            'transfert-list',
            'transfert-create',
-           'tranfert-edit',
+           'transfert-edit',
            'transfert-delete',
         ];
    

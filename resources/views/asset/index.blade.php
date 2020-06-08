@@ -22,11 +22,11 @@
                     <table class="table align-items-center table-flush minha-table">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Mise en service a</th>
-                                <th scope="col">Category</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
+                                <th scope="col" style="width: 22%">Name</th>
+                                <th scope="col" style="width: 22%">Mise en service a</th>
+                                <th scope="col" style="width: 22%">Category</th>
+                                <th scope="col" style="width: 22%"></th>
+                                <th scope="col" style="width: 12%"></th>
                                 
                             </tr>
                         </thead>

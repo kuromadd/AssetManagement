@@ -113,16 +113,18 @@ crossorigin="anonymous"></script>
                     </tr>
                 </thead>
                 <tbody>
+                  
                 @foreach(\App\asset::all() as $item)
+                @if($item->bureau_id == 0)
                 <tr style="width: 100%">
-                    <td style="margin: 10% ; width: 15%;">{{$item->name}}</td>   
-                <td style=" width: 15%;" class="">&#160&#160<input type="checkbox" name="assets[]" 
-                    @foreach($bureau->assets as $value)
-                    @if($item->name == $value->name) checked @endif 
-                    @endforeach value="{{$item->id}}">   
-                    </td>
-                    
-                </tr>
+                  <td style="margin: 10% ; width: 15%;">{{$item->name}}</td>   
+              <td style=" width: 15%;" class="">&#160&#160<input type="checkbox" name="assets[]" 
+                  @foreach($bureau->assets as $value)
+                  @if($item->name == $value->name) checked @endif 
+                  @endforeach value="{{$item->id}}">   
+                  </td>
+              </tr>
+                @endif
                 @endforeach    
                 </tbody>
             </table>
