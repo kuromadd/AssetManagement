@@ -77,8 +77,9 @@ class FournisseurController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show(Fournisseur $fournisseur)
+    public function show($id)
     {
+        $fournisseur = \App\Fournisseur::find($id);
         return view('fournisseur.show',compact('fournisseur'));
     }
 

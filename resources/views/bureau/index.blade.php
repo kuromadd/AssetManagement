@@ -22,6 +22,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col" style="width: 30%">Name</th>
+                                <th scope="col" style="width: 30%">type</th>
                                 <th scope="col" style="width: 30%">Etage</th>
                                 <th scope="col" style="width: 30%">block</th>
                                 
@@ -32,6 +33,7 @@
                         @foreach($bureaus as $bureau)
                         <tr>
                             <td>{{$bureau->name}}</td>
+                            <td>{{$bureau->type}}</td>
                             <td>{{$bureau->etage}}</td>
                             <td>{{\App\block::find($bureau->block_id)->name}}</td>
                             

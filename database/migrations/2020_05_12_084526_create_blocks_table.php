@@ -17,6 +17,7 @@ class CreateBlocksTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('adress');
+            $table->integer('sous');
             $table->integer('nbre_etage');
             $table->timestamps();
         });

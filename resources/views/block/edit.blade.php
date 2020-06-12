@@ -19,6 +19,10 @@
                         <input type="text" name="adress" value="{{$block->adress}}" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label for="sous">sous</label>
+                        <input type="number" name="sous" value="{{$block->sous}}" class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label for="nbreEt">nombre d'etage</label>
                         <input type="number" name="nbreEt" value="{{$block->nbre_etage}}" class="form-control">
                     </div>

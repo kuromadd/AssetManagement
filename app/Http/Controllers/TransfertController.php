@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 use PHPUnit\Framework\Constraint\Count;
+use Illuminate\Support\Facades\DB;
 
 class TransfertController extends Controller
 {
@@ -69,9 +70,9 @@ class TransfertController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('transfert.create');
+        return view('transfert.create')->with('id',$id);
     }
 
     /**
@@ -102,9 +103,15 @@ class TransfertController extends Controller
         $transfert->transfered_at=$request->transfered_at;
 
         $transfert->save();
-        return redirect()->route('indexTransfert')
+        DB::table('assets')->where('id',$request->asset_id)->update(['bureau_id' => $request->bureau_d]);
+        if ('s' == 's') {
+            return redirect()->route('indexTransfert')
             ->with('success', 'transfert created successfully.');
-        
+        } else{
+            return redirect()->route('showAsset')
+            ->with('success', 'transfert created successfully.');
+        }
+       
          
     } 
 
@@ -115,9 +122,10 @@ class TransfertController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show(Transfert $transfert)
+    public function show($id)
     {
-        //return view('showTransfert',compact('transfert'));
+        $transfert =Transfert::find($id);
+        return view('showTransfert',compact('transfert'));
     }
 
     /**
@@ -126,8 +134,9 @@ class TransfertController extends Controller
      * @param  \App\Transfert  $transfert
      * @return \Illuminate\Http\Response
      */
-    public function edit(Transfert $transfert)
+    public function edit($id)
     {
+        $transfert =Transfert::find($id);
        // return view('editTransfert',compact('transfert'));
     }
     
@@ -138,15 +147,16 @@ class TransfertController extends Controller
      * @param  \App\Transfert  $transfert
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transfert $transfert)
+    public function update(Request $request, $id)
     {
+
          request()->validate([
             'bloc_d'=>'required',
             'etage_d'=>'required',
             'bureau_d'=>'required',
             'transfered_at'=>'required',
         ]);
-
+        $transfert =Transfert::find($id);    
         $transfert->update($request->all());
 
         return redirect()->route('indexTransfert')

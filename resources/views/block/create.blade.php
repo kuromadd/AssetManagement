@@ -120,6 +120,10 @@ crossorigin="anonymous"></script>
                         <input type="text" name="adress" class="form-control">
                     </div>
                     <div class="form-group">
+                      <label for="sous">sous</label>
+                      <input type="number" name="sous" class="form-control">
+                  </div>
+                    <div class="form-group">
                         <label for="nbreEt">nombre d'etage</label>
                         <input type="number" name="nbreEt" class="form-control">
                     </div>

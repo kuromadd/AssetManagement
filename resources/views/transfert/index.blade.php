@@ -22,14 +22,13 @@
                             <tr>
                                 
                                 <th scope="col">Asset</th>
-                                <th scope="col">previous block</th>
-                                <th scope="col">previous etage</th>
-                                <th scope="col">previous bureau</th>
+                                <th scope="col">P-block</th>
+                                <th scope="col">P-etage</th>
+                                <th scope="col">P-bureau</th>
                                 <th scope="col">transfered at</th>
                                 <th scope="col">next block</th>
                                 <th scope="col">next etage</th>
                                 <th scope="col">next bureau</th>
-
 
                                 <th scope="col"></th>
                             </tr>
@@ -44,7 +43,7 @@
                             <td>{{$transfert->transfered_at}}</td>
                             <td>{{$transfert->block_d}}</td>
                             <td>{{$transfert->etage_d}}</td>
-                            <td>{{$transfert->bureau_d}}</td>
+                            <td>{{\App\bureau::find($transfert->bureau_d)->name}}</td>
                             
                             <td class="text-right">
                                 <div class="dropdown">
@@ -53,7 +52,7 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                        @can('transfert-edit')<a class="dropdown-item" href="{{ route('editTransfert',$transfert->id) }}">Edit</a>@endcan
+                                        <a class="dropdown-item" href="{{ route('createTransfert',$transfert->asset_id) }}">transfer</a>
                                         @can('transfert-delete')<a class="dropdown-item" href="{{ route('deleteTransfert',$transfert->id) }}">delete</a>@endcan
                                     </div>
                                     

@@ -49,7 +49,7 @@ class ReparationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
         request()->validate([
             'asset_id' => 'required',
@@ -79,8 +79,9 @@ class ReparationController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show(Reparation $reparation)
+    public function show($id)
     {
+        $reparation =Reparation::find($id);
         return view('reparation.show',compact('reparation'));
     }
 
@@ -90,8 +91,9 @@ class ReparationController extends Controller
      * @param  \App\Reparation  $reparation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reparation $reparation)
+    public function edit($id)
     {
+        $reparation =Reparation::find($id);
         return view('reparation.edit',compact('reparation'));
     }
     
@@ -102,13 +104,13 @@ class ReparationController extends Controller
      * @param  \App\Reparation  $reparation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reparation $reparation)
+    public function update(Request $request, $id)
     {
          request()->validate([
             'prix' => 'required',
             'repaired_at' => 'required',
         ]);
-
+        $reparation =Reparation::find($id);
         $reparation->update($request->all());
 
         return redirect()->route('indexReparation')

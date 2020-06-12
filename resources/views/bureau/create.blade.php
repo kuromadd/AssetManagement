@@ -116,8 +116,12 @@ crossorigin="anonymous"></script>
         
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="name">Name</label>
-                            <select class="form-control" name="name" id="name">
+                      <div class="form-group">
+                        <label for="name">name</label>
+                    <input type="text" class="form-control" name="name">
+                    </div>
+                        <label for="type">type</label>
+                            <select class="form-control" name="type" id="type">
                             <option value="bureau">bureau</option>
                             <option value="stock">stock</option>
                             <option value="restroom">restroom</option>
@@ -174,16 +178,7 @@ crossorigin="anonymous"></script>
                       });
                       });
                     </script>
-                    <div class="form-group">
-                      <label for="block_id">Assets</label><br>
-                          
-                              @foreach(\App\asset::all() as $asset)
-                              @if ($asset->occupied == 0)
-                                <label >&#160<input type="checkbox" name="assets[]" value="{{ $asset->id }}"> {{$asset->name}} </label>
-                              @endif
-                              @endforeach
-                          
-                      </div>
+                   
                     <div class="text-center">
                     <button class="btn btn-info" type="submit">store</button>    
                     </div> 

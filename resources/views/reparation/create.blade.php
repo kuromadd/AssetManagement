@@ -16,7 +16,7 @@
 
                     <div class="form-group">
                         <label for="repaired_at">date de la reparation</label>
-                        <input type="date" name="repaired_at" class="form-control" id="repaired_at">
+                    <input type="date" name="repaired_at" value="{{date('Y-m-d')}}" class="form-control" id="repaired_at">
                     </div>
 
                     <div class="form-group">

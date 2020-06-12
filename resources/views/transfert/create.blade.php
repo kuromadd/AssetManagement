@@ -38,7 +38,7 @@
                                     @if ($asset->bureau_id)
                                     
                                 <option value="{{ $asset->id }}"
-                                   @if( $_GET["id"] && $asset->id == $_GET["id"])
+                                   @if( $id && $asset->id == $id)
                                     selected
                                 @endif>{{$asset->name}}</option>
                     
@@ -47,20 +47,37 @@
                                 </select>
                             </div>
                             
+                            @if($id)
                             <div class="form-group" id="current_b">
-                                <label for="block_c">current block</label>
-                                <input type="text" name="block_c" class="form-control">
-                            </div>
-        
-                            <div class="form-group" id="current_et">
-                                <label for="etage_c">current etage</label>
-                                <input type="text" name="etage_c" class="form-control">
-                           </div>
-        
-                            <div class="form-group" id="current_br">
-                                <label for="bureau_c">current bureau</label>
-                                <input type="text" name="bureau_c"  class="form-control">
-                            </div>
+                              <label for="block_c">current block</label>
+                          <input type="text" name="block_c" value="{{\App\asset::find($id)->bureau->block->name }}" class="form-control">
+                          </div>
+      
+                          <div class="form-group" id="current_et">
+                              <label for="etage_c">current etage</label>
+                              <input type="text" name="etage_c" value="{{\App\asset::find($id)->bureau->etage }}" class="form-control">
+                         </div>
+      
+                          <div class="form-group" id="current_br">
+                              <label for="bureau_c">current bureau</label>
+                              <input type="text" name="bureau_c" value="{{\App\asset::find($id)->bureau->name}}" class="form-control">
+                          </div>
+                            @else
+                            <div class="form-group" id="current_b">
+                              <label for="block_c">current block</label>
+                          <input type="text" name="block_c" class="form-control">
+                          </div>
+      
+                          <div class="form-group" id="current_et">
+                              <label for="etage_c">current etage</label>
+                              <input type="text" name="etage_c" class="form-control">
+                         </div>
+      
+                          <div class="form-group" id="current_br">
+                              <label for="bureau_c">current bureau</label>
+                              <input type="text" name="bureau_c" class="form-control">
+                          </div>
+                            @endif
     
                     </div>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 

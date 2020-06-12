@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "bootstrap": "^4.4.1",
+        "instascan": "^1.0.0",
         "toastr": "^2.1.4"
     }
 }

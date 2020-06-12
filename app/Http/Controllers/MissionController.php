@@ -37,9 +37,9 @@ class MissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('mission.create');
+        return view('mission.create',compact('id'));
     }
 
     /**

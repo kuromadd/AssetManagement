@@ -20,11 +20,15 @@
     
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="name">Name</label>
-                        <select class="form-control" name="name" id="name">
-                        <option value="bureau" @if ($bureau->block->name == 'bureau') selected @endif>bureau</option>
-                        <option value="stock" @if ($bureau->block->name == 'stock') selected @endif>stock</option>
-                        <option value="restroom" @if ($bureau->block->name == 'restroom') selected @endif>restroom</option>
+                    <div class="form-group">
+                        <label for="name">name</label>
+                    <input type="text" class="form-control" name="type" disabled value="{{$bureau->name}}">
+                    </div>
+                    <label for="type">type</label>
+                        <select class="form-control" name="type" id="type">
+                        <option value="bureau" @if ($bureau->block->type == 'bureau') selected @endif>bureau</option>
+                        <option value="stock" @if ($bureau->block->type == 'stock') selected @endif>stock</option>
+                        <option value="restroom" @if ($bureau->block->type == 'restroom') selected @endif>restroom</option>
                         </select>
                     </div>
                 <div class="form-group">

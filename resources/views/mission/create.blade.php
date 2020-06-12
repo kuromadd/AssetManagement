@@ -21,17 +21,17 @@
 
                     <div class="form-group">
                         <label for="mission_at">date de la Mission</label>
-                        <input type="date" name="mission_at" class="form-control" id="mission_at">
+                    <input type="date" name="mission_at" class="form-control" value="{{date('Y-m-d')}}" id="mission_at">
                     </div>
 
                     <div class="form-group">
                     <label for="Asset_id">Asset</label>
                         <select class="form-control" name="asset_id" id="asset_id">
-                            <option value="0" disabled @if( $_GET["id"] == 0)selected @endif>select asset</option>
+                            <option value="0" disabled @if( $id == 0)selected @endif>select asset</option>
                             @foreach(\App\Asset::all() as $asset)
                                   @if($asset->etat==0 && $asset->status = [0,1]) 
                                     <option value="{{ $asset->id }}"
-                                    @if( $_GET["id"] && $asset->id == $_GET["id"])
+                                    @if( $id && $asset->id == $id)
                                     selected
                                     @endif>{{$asset->name}}</option>
                                   @endif

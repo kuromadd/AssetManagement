@@ -90,7 +90,7 @@ Route::post('/bureau/save/{id}','bureauController@saveAsset')->name('saveAssets'
 Route::get('/bureau/delete/{id}','bureauController@destroy')->name('deleteBureau');
 
 Route::get('/mission/index','missionController@index')->name('indexMission');
-Route::get('/mission/create','missionController@create')->name('createMission');
+Route::get('/mission/create/{id}','missionController@create')->name('createMission');
 Route::post('/mission/store','missionController@store')->name('storeMission');
 Route::get('/mission/show/{id}','missionController@show')->name('showMission');
 Route::get('/mission/edit/{id}','missionController@edit')->name('editMission');
@@ -107,7 +107,7 @@ Route::post('/Fournisseur/update/{id}','FournisseurController@update')->name('up
 Route::get('/Fournisseur/delete/{id}','FournisseurController@destroy')->name('deleteFournisseur');
 
 Route::get('/Transfert/index','TransfertController@index')->name('indexTransfert');
-Route::get('/Transfert/create','TransfertController@create')->name('createTransfert');
+Route::get('/Transfert/create/{id}','TransfertController@create')->name('createTransfert');
 Route::post('/Transfert/store','TransfertController@store')->name('storeTransfert');
 Route::get('/Transfert/show/{id}','TransfertController@show')->name('showTransfert');
 Route::get('/Transfert/delete/{id}','TransfertController@destroy')->name('deleteTransfert');
@@ -115,7 +115,7 @@ Route::get('/Transfert/delete/{id}','TransfertController@destroy')->name('delete
 Route::get('/findEtage','bureauController@findEtage');
 Route::get('/Etage','TransfertController@Etage');
 Route::get('/Bureau','TransfertController@Bureau');
-Route::get('/getAsset','transfertController@getAsset');
+Route::get('/getAsset','TransfertController@getAsset');
 
 
 
@@ -137,3 +137,6 @@ Route::group(['middleware' => ['auth']], function() {
 });
 });
 
+Route::get('/qr', function () {
+    return view('test.index');
+});

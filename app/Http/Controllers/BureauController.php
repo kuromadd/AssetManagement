@@ -23,9 +23,9 @@ class BureauController extends Controller
     public function index(Request $request)
     {
         $user=Auth()->user();
-        $bureaus = \App\bureau::orderBy('id','DESC')->paginate(5);
+        $bureaus = \App\bureau::orderBy('id','DESC')->paginate(10);
         return view('bureau.index',compact('bureaus'))
-            ->with('i', ($request->input('page', 1) - 1) * 5)
+            ->with('i', ($request->input('page', 1) - 1) * 10)
             ->with('user',$user);
     }
 
@@ -54,18 +54,19 @@ class BureauController extends Controller
     {
         $this->validate($request,[
             'name' =>'required',
+            'type' =>'required',
             'block_id' =>'required',
             'etage' => 'required',
-            'assets' => 'required',
         ]);
         $bureau = new \App\bureau ; 
         $bureau->name = $request->name;
+        $bureau->type = $request->type;
         $bureau->block_id = $request->block_id;
         $bureau->etage =$request->etage;
         $bureau->save();
 
-        \App\asset::whereIn('id',$request->assets)->update(["bureau_id" => $bureau->id]);
-        \App\asset::whereIn('id',$request->assets)->update(["occupied" => 1]);
+      //  \App\asset::whereIn('id',$request->assets)->update(["bureau_id" => $bureau->id]);
+      //  \App\asset::whereIn('id',$request->assets)->update(["occupied" => 1]);
         
         return redirect()->back()->with('success','you stored a new bureau');
     } 
@@ -105,19 +106,22 @@ class BureauController extends Controller
     {
         $this->validate($request,[
             'name' =>'required',
+            'type' =>'required',
             'block_id' =>'required',
             'etage' => 'required',
         ]);
 
         $bureau = \App\bureau::find($id) ; 
         $bureau->name = $request->name;
+        $bureau->type = $request->type;
         $bureau->etage = $request->etage;
         $bureau->block_id =$request->block_id;
         
         $bureau->save();
-       
-        \App\asset::whereIn('id',$bureau->assets)->update(["occupied" => 0,"bureau_id" => 0]);
-        \App\asset::whereIn('id',$request->assets)->update(["occupied" => 1,"bureau_id" => $id]);
+        if ($request->has('assets')) {
+            \App\asset::whereIn('id', $bureau->assets)->update(["occupied" => 0,"bureau_id" => 0]);
+            \App\asset::whereIn('id', $request->assets)->update(["occupied" => 1,"bureau_id" => $id]);
+        }
         return redirect()->route('indexBureau')->with('success','you updated a bureau');
     }
     public function saveAsset(Request $request,$id){

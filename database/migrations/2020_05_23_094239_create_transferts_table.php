@@ -20,7 +20,7 @@ class CreateTransfertsTable extends Migration
             $table->string('bureau_c');
             $table->string('block_d');
             $table->string('etage_d');
-            $table->string('bureau_d');
+            $table->integer('bureau_d');
             $table->date('transfered_at');
             $table->integer('asset_id');
             $table->timestamps();

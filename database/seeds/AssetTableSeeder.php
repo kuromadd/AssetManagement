@@ -11,6 +11,27 @@ class AssetTableSeeder extends Seeder
      */
     public function run()
     {
+        $block = \App\block::create([
+            'name'=>'block1',
+            'adress' => 'oulhaca',
+            'sous' => -2,
+            'nbre_etage' => 5,
+        ]);
+
+        $bureau1 = \App\bureau::create([
+            'name' => 'bureau1',
+            'type' => 'stock',
+            'etage' => -2,
+            'block_id' => $block->id,
+        ]);    
+
+        $bureau2 = \App\bureau::create([
+            'name' => 'bureau1',
+            'type' => 'stock',
+            'etage' => -1,
+            'block_id' => $block->id,
+        ]);
+
         \App\asset::create([
             'name' =>'asset1',
             'description' => 'it\'s new asset',
@@ -20,6 +41,7 @@ class AssetTableSeeder extends Seeder
             'duree_vie' => '5ans',
             'status' => 0,
             'occupied' => 0,
+            'bureau_id' => $bureau1->id,
         
         ]);
         \App\asset::create([
@@ -31,7 +53,7 @@ class AssetTableSeeder extends Seeder
             'duree_vie' => '5ans',
             'status' => 0,
             'occupied' => 0,
-        
+            'bureau_id' => $bureau1->id,
         ]);
         \App\asset::create([
             'name' =>'asset3',
@@ -42,7 +64,7 @@ class AssetTableSeeder extends Seeder
             'duree_vie' => '5ans',
             'status' => 0,
             'occupied' => 0,
-        
+            'bureau_id' => $bureau1->id,
         ]);
         \App\asset::create([
             'name' =>'asset4',
@@ -53,7 +75,7 @@ class AssetTableSeeder extends Seeder
             'duree_vie' => '5ans',
             'status' => 0,
             'occupied' => 0,
-        
+            'bureau_id' => $bureau1->id,
         ]);
         \App\asset::create([
             'name' =>'asset5',
@@ -64,7 +86,7 @@ class AssetTableSeeder extends Seeder
             'duree_vie' => '5ans',
             'status' => 0,
             'occupied' => 0,
-        
+            'bureau_id' => $bureau1->id,
         ]);
         \App\asset::create([
             'name' =>'asset6',
@@ -75,7 +97,7 @@ class AssetTableSeeder extends Seeder
             'duree_vie' => '5ans',
             'status' => 0,
             'occupied' => 0,
-        
+            'bureau_id' => $bureau1->id,
         ]);
         \App\asset::create([
             'name' =>'asset7',
@@ -86,7 +108,7 @@ class AssetTableSeeder extends Seeder
             'duree_vie' => '5ans',
             'status' => 0,
             'occupied' => 0,
-        
+            'bureau_id' => $bureau1->id,
         ]);
         \App\asset::create([
             'name' =>'asset8',
@@ -97,7 +119,7 @@ class AssetTableSeeder extends Seeder
             'duree_vie' => '5ans',
             'status' => 0,
             'occupied' => 0,
-        
+            'bureau_id' => $bureau1->id,
         ]);
         \App\asset::create([
             'name' =>'asset9',
@@ -109,7 +131,8 @@ class AssetTableSeeder extends Seeder
             'status' => 0,
             'occupied' => 0,
         
-        ]);        \App\asset::create([
+        ]);
+            \App\asset::create([
             'name' =>'asset10',
             'description' => 'it\'s new asset',
             'prix' => '3434000000',
@@ -118,7 +141,7 @@ class AssetTableSeeder extends Seeder
             'duree_vie' => '5ans',
             'status' => 0,
             'occupied' => 0,
-        
+            'bureau_id' => $bureau2->id,
         ]);
 
         \App\asset::create([
@@ -130,9 +153,9 @@ class AssetTableSeeder extends Seeder
             'duree_vie' => '5ans',
             'status' => 0,
             'occupied' => 0,
-        
+            'bureau_id' => $bureau2->id,
         ]);
-                \App\asset::create([
+            \App\asset::create([
             'name' =>'asset12',
             'description' => 'it\'s new asset',
             'prix' => '3434000000',
@@ -141,7 +164,7 @@ class AssetTableSeeder extends Seeder
             'duree_vie' => '5ans',
             'status' => 0,
             'occupied' => 0,
-        
+            'bureau_id' => $bureau2->id,
         ]);
         \App\asset::create([
             'name' =>'asset13',
@@ -152,7 +175,7 @@ class AssetTableSeeder extends Seeder
             'duree_vie' => '5ans',
             'status' => 0,
             'occupied' => 0,
-        
+            'bureau_id' => $bureau2->id,
         ]);
                 \App\asset::create([
             'name' =>'asset14',
@@ -163,7 +186,7 @@ class AssetTableSeeder extends Seeder
             'duree_vie' => '5ans',
             'status' => 0,
             'occupied' => 0,
-        
+            'bureau_id' => $bureau2->id,
         ]);
                 \App\asset::create([
             'name' =>'asset15',
@@ -174,7 +197,7 @@ class AssetTableSeeder extends Seeder
             'duree_vie' => '5ans',
             'status' => 0,
             'occupied' => 0,
-        
+            'bureau_id' => $bureau2->id,
         ]);
     }
 }
