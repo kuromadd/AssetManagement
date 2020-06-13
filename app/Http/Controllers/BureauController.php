@@ -80,6 +80,9 @@ class BureauController extends Controller
     public function show($id)
     {
         //
+        $user=Auth()->user();
+        $bureau = \App\bureau::find($id);
+        return view('bureau.show')->with('bureau',$bureau)->with('user',$user);
     }
 
     /**

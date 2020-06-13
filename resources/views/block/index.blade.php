@@ -39,8 +39,9 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="{{route('editBlock',$block->id)}}"><i class="fa fa-edit fa-fw"></i></i> edit</a>
-                                    <a class="dropdown-item" href="{{ route('deleteBlock',$block->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>
+                                    <a class="dropdown-item" href="{{route('showBlock',$block->id)}}"><i class="fa fa-info fa-fw"></i></i> Show</a>
+                                    <a class="dropdown-item" href="{{route('editBlock',$block->id)}}"><i class="fa fa-edit fa-fw"></i></i> Edit</a>
+                                    <a class="dropdown-item" href="{{ route('deleteBlock',$block->id) }}"><i class="fa fa-trash fa-fw"></i> Delete</a>
 
                                     </div>
                                     

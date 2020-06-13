@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class asset extends Model
 {
-    protected $filliable =['bureau_id','name','description','category','prix','dateService','duree_vie'];
+    protected $filliable =['bureau_id','name','description','category','prix','dateService','duree_vie','fournisseur_id'];
 
    public function bureau()
    {
@@ -30,6 +30,6 @@ class asset extends Model
     }
 
     public function fournisseur(){
-        return $this->hasMany('\App\Fournisseur');
+        return $this->belongsTo('\App\Fournisseur');
     }
 }

@@ -45,8 +45,9 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                        @can('fournisseur-edit')<a class="dropdown-item" href="{{route('editFournisseur',$fournisseur->id)}}"><i class="fa fa-edit fa-fw"></i></i> edit</a>@endcan
-                                        @can('fournisseur-delete')<a class="dropdown-item" href="{{ route('deleteFournisseur',$fournisseur->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>@endcan
+                                        <a class="dropdown-item" href="{{route('showFournisseur',$fournisseur->id)}}"><i class="fa fa-info fa-fw"></i></i> Show</a>
+                                        @can('fournisseur-edit')<a class="dropdown-item" href="{{route('editFournisseur',$fournisseur->id)}}"><i class="fa fa-edit fa-fw"></i></i> Edit</a>@endcan
+                                        @can('fournisseur-delete')<a class="dropdown-item" href="{{ route('deleteFournisseur',$fournisseur->id) }}"><i class="fa fa-trash fa-fw"></i> Delete</a>@endcan
 
                                     </div>
                                     

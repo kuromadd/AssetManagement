@@ -2,7 +2,7 @@
 @section('content')
             <div class="card card-default">
                   <div class="card-header">  
-                    Fournisseur {{$fournisseur->libel}}
+                    {{$fournisseur->libel}}
                    <a class="close" href="#">&times;</a>
                 </div>
             

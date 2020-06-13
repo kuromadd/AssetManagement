@@ -44,8 +44,9 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    @can('bureau-edit')<a class="dropdown-item" href="{{ route('editBureau',$bureau->id) }}"><i class="fa fa-edit fa-fw"></i></i> edit</a>@endcan
-                                    @can('bureau-delete')<a class="dropdown-item" href="{{ route('deleteBureau',$bureau->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>@endcan
+                                    <a class="dropdown-item" href="{{ route('showBureau',$bureau->id) }}"><i class="fa fa-info fa-fw"></i></i> Show</a>
+                                    @can('bureau-edit')<a class="dropdown-item" href="{{ route('editBureau',$bureau->id) }}"><i class="fa fa-edit fa-fw"></i></i> Edit</a>@endcan
+                                    @can('bureau-delete')<a class="dropdown-item" href="{{ route('deleteBureau',$bureau->id) }}"><i class="fa fa-trash fa-fw"></i> Delete</a>@endcan
 
                                     </div>
                                     

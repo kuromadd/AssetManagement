@@ -1,10 +1,12 @@
 @extends('app.edit_layout')
+
 @section('content')
+  
             <div class="card card-default">
                   <div class="card-header">  
-                   Block {{$block->name}}
-                   <a class="close" href="#">&times;</a>
+                   {{$block->name}}
                 </div>
+                
             
                 <div class="card-body">
 

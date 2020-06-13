@@ -76,6 +76,7 @@ Route::get('/reparation/delete/{id}','ReparationController@destroy')->name('dele
 Route::get('/block/index','blocksController@index')->name('indexBlock');
 Route::get('/block/create','blocksController@create')->name('createBlock');
 Route::post('/block/store','blocksController@store')->name('storeBlock');
+Route::get('/block/show/{id}','BlocksController@show')->name('showBlock');
 Route::get('/block/edit/{id}','blocksController@edit')->name('editBlock');
 Route::post('/block/update/{id}','blocksController@update')->name('updateBlock');
 Route::get('/block/delete/{id}','blocksController@destroy')->name('deleteBlock');
@@ -83,6 +84,7 @@ Route::get('/block/delete/{id}','blocksController@destroy')->name('deleteBlock')
 Route::get('/bureau/index','bureauController@index')->name('indexBureau');
 Route::get('/bureau/create','bureauController@create')->name('createBureau');
 Route::post('/bureau/store','bureauController@store')->name('storeBureau');
+Route::get('/bureau/show/{id}','bureauController@show')->name('showBureau');
 Route::get('/bureau/edit/{id}','bureauController@edit')->name('editBureau');
 Route::post('/bureau/update/{id}','bureauController@update')->name('updateBureau');
 Route::post('/bureau/save/{id}','bureauController@saveAsset')->name('saveAssets');

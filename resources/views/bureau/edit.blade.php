@@ -8,9 +8,6 @@
                         <h3 class="mb-0">edit {{$bureau->name}}</h3>
                         </div>
                         
-                        <div class="col-4 text-right">
-                        <a href="#popupAsset" class="btn btn-sm btn-primary">Assets</a>
-                        </div>
                         
                     </div>
                 </div>
@@ -22,7 +19,7 @@
                 <div class="form-group">
                     <div class="form-group">
                         <label for="name">name</label>
-                    <input type="text" class="form-control" name="type" disabled value="{{$bureau->name}}">
+                    <input type="text" class="form-control" name="type" value="{{$bureau->name}}">
                     </div>
                     <label for="type">type</label>
                         <select class="form-control" name="type" id="type">
@@ -55,20 +52,11 @@
                         @endfor
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="block_id">Assets</label><br>
-                        
-                            @foreach($bureau->assets as $asset)
-                              <label >&#160<input type="checkbox" name="assets[]" value="{{ $asset->id }}" checked> {{$asset->name}} </label>
-                            @endforeach
-                        
-                    </div>
                 <div class="text-center">
                 <button class="btn btn-info" type="submit">update</button>    
                 </div> 
             </form>
-        
-            @include('bureau.Assets')
+
         </div>
     </div>
 

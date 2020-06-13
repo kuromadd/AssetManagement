@@ -24,7 +24,8 @@ class CreateAssetsTable extends Migration
             $table->string('duree_vie');
             $table->integer('status')->default(0);
             $table->boolean('occupied')->default(0); 
-            $table->boolean('etat')->default(0);            
+            $table->boolean('etat')->default(0); 
+            $table->integer('fournisseur_id')->nullable();           
             $table->timestamps();
         });
     }

@@ -131,9 +131,13 @@ crossorigin="anonymous"></script>
       <div class="form-group">
         <label for="category" class="form-control-label">&#160&#160category</label>
         <select name="category" id="category" class="form-control form-control-alternative">
-          <option value="op1">op1</option>
-          <option value="op2">op2</option>
-          <option value="op3">op3</option>
+          <option value=""></option>
+          <option value="furniture">Furniture and fixtures</option>
+          <option value="intangible">Intangible assets</option> {{-- trademarks, customer lists, literary works, broadcast rights, and patented technology. --}}
+          <option value="office">office equipement</option>
+          <option value="vehicle">vehicle</option>
+          <option value="software">Software</option>
+          <option value="building">building</option>
         </select>
       </div>
     
@@ -146,6 +150,17 @@ crossorigin="anonymous"></script>
         <label for="duree" class="form-control-label">&#160&#160duree de vie</label>
         <input  type="text" name="duree" id="duree" class="form-control form-control-alternative">
       </div>
+
+      <div class="form-group">
+        <label for="fournisseur_id">Fournisseur</label>
+            <select class="form-control fournisseurID" name="fournisseur_id" id="fournisseur_id">
+              <option value=0 disabled selected>chose fournisseur</option>
+                @foreach(\App\fournisseur::all() as $fournisseur)
+            <option value="{{ $fournisseur->id }}">{{$fournisseur->libel}}</option>
+                @endforeach
+            </select>               
+            
+        </div>
       
       <div class="text-center">
       <button class="btn btn-success" type="submit">store</button>    

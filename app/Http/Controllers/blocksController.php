@@ -73,6 +73,9 @@ class blocksController extends Controller
     public function show($id)
     {
         //
+        $user=Auth()->user();
+        $block = \App\block::find($id);
+        return view('block.show')->with('block',$block)->with('user',$user);
     }
 
     /**

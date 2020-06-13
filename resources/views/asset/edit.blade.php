@@ -29,9 +29,12 @@
       <div class="form-group">
         <label for="category" class="form-control-label">&#160&#160category</label>
         <select name="category" id="category" class="form-control form-control">
-          <option value="op1" @if ($asset->category == 'op1') selected @endif >op1</option>
-          <option value="op2" @if($asset->category == 'op2') selected @endif>op2</option>
-          <option value="op3" @if($asset->category == 'op3') selected @endif>op3</option>
+          <option value="furniture" @if ($asset->category == 'furniture') selected @endif >furniture and fixtures</option>
+          <option value="intangible" @if($asset->category == 'intangible') selected @endif>intangible assets</option>
+          <option value="office" @if($asset->category == 'office') selected @endif>office equipement</option>
+          <option value="vehicle" @if($asset->category == 'vehicle') selected @endif>vehicle</option>
+          <option value="software" @if($asset->category == 'software') selected @endif>software</option>
+          <option value="building" @if($asset->category == 'building') selected @endif>building</option>
         </select>
       </div>
      
@@ -44,6 +47,17 @@
         <label for="duree" class="form-control-label">&#160&#160duree de vie</label>
       <input  type="text" name="duree" value="{{ $asset->duree_vie }}" class="form-control form-control">
       </div>
+
+      <div class="form-group">
+        <label for="fournisseur_id">Fournisseur</label>
+            <select class="form-control fournisseurID" name="fournisseur_id" id="fournisseur_id">
+              <option value=0 disabled selected>chose fournisseur</option>
+                @foreach(\App\Fournisseur::all() as $fournisseur)
+            <option value="{{ $fournisseur->id }}">{{$fournisseur->libel}}</option>
+                @endforeach
+            </select>               
+            
+        </div>
       
       <div class="text-center">
       <button class="btn btn-info" type="submit">update</button>    
