@@ -92,7 +92,7 @@
             <tbody>
               <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js">//for selecting one checkAT TIME</script>
             @foreach($assets as $asset)
-            @if ($asset->occupied == 1)
+            @if ($asset->bureau_id && $asset->status = [0,1,2])
             
             <tr>
             <td style="margin: "><h4 class="mb-0">{{ $asset->bureau->block->name }}</h4></td>
@@ -101,15 +101,15 @@
               <td style="width: "><h4 class="mb-0">{{$asset->name }}</h4></td> 
               
               <td >
-                <input type="checkbox" name="fine[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}">
+                <input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}">
              
                 </td>
               <td >
-                <input type="checkbox" name="repair[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}">
+                <input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}">
                
                 </td>
                 <td >
-                <input type="checkbox" name="lost[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}">
+                <input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}">
                   
                 </td>
             </tr>

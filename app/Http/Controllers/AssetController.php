@@ -6,6 +6,7 @@ use App\asset;
 use App\inventaire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class AssetController extends Controller
 {
@@ -37,9 +38,9 @@ class AssetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($qr)
     {
-        return view('asset.create');
+        return view('asset.create')->with('qr',$qr);
     }
 
     /**
@@ -50,8 +51,14 @@ class AssetController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            
+        request()->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'prix' => 'required',
+            'category' => 'required',
+            'dateservice' => 'required',
+            'duree' => 'required',
+            'qr' => 'required'
         ]);
 
         $asset = new \App\asset;
@@ -61,9 +68,10 @@ class AssetController extends Controller
         $asset->category = $request->category;
         $asset->dateService = $request->dateservice;
         $asset->duree_vie = $request->duree;
+        $asset->qrcode = $request->qr;
 
         $asset->save();
-        return redirect()->back()->with('success','you added asset successfuly');
+        return redirect()->route('indexAsset')->with('success','you added asset successfuly');
     }
 
     /**
@@ -136,7 +144,16 @@ class AssetController extends Controller
         return redirect()->back()->with('success','you deleted asset');
     }
 
-   
+   public function replace($id){
+    $asset = \App\asset::find($id);
+    foreach (\App\asset::all() as $item) {
+        if ($item->occupied && $item->category === $asset->category) {
+            $assets[] =$item;
+        }
+    }
+    dd($assets);
+        return ;
+   }
 
     public function reset($id){
         foreach(\App\asset::whereIn('status',['0','1','2'])->get() as $asset)
@@ -160,5 +177,21 @@ class AssetController extends Controller
         
 
         return redirect()->route('assetList');
+    }
+
+    function scan() {
+        return view('qr.qrh');
+    }
+
+    public function exist($qrcode){
+        if (\App\asset::where('qrcode',$qrcode)->first()) {
+            
+            $asset = \App\asset::where('qrcode',$qrcode)->first();
+       
+            return view('qr.exist')->with('asset',$asset);
+        }else {
+         
+            return view('asset.create')->with('qr',$qrcode);
+        }
     }
 }

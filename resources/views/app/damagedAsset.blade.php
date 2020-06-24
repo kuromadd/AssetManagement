@@ -17,10 +17,10 @@
         <table class="table align-items-center table-flush">
             <thead>
             <tr>
-                <th  scope="col">Block</th>
-                <th scope="col">Etage</th>
-                <th scope="col">Bureau</th>
-                <th scope="col">Asset</th>
+                <th  scope="col">{{ $asset->bureau->block->name }}</th>
+                <th scope="col">{{$asset->bureau->etage}}</th>
+                <th scope="col">{{$asset->bureau->name}}</th>
+                <th scope="col">{{$asset->name}}</th>
                 <th scope="col"></th>
             </tr>    
             </thead>    

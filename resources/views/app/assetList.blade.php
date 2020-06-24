@@ -2,7 +2,7 @@
 @section('content')
 
     <style>
-      /*
+      
         @import url(https://fonts.googleapis.com/css?family=Open+Sans);
           
         .boxes {
@@ -11,7 +11,7 @@
           background: #484848;
         }
         
-        /*Checkboxes styles
+
         input[type="checkbox"] { display: none; }
         
         input[type="checkbox"] + label {
@@ -54,7 +54,7 @@
           -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
         }
-        */
+        
         table tr {
           padding: 5px;
           background:none;

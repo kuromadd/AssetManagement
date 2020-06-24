@@ -4,7 +4,7 @@
     <div class="card card-default">
         <div class="card-header">  
               <div class="col-8">
-              <h3 class="mb-0">Asset {{$asset->name}}</h3>
+              <h3 class="mb-0">Asset : <b class="text-blue"> {{$asset->name}} </b></h3>
               </div>
           </div>
       
@@ -61,6 +61,27 @@
                     </select>
             
         </div>
+<script type="text/javascript" src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.js"></script>
+
+
+<div style="margin: 2%;margin-left:33%" id="qrcode"></div>
+
+<script>
+
+    var userInput = <?php echo json_encode($asset->qrcode); ?>
+
+    var qrcode = new QRCode("qrcode", {
+        text: userInput,
+        width: 200,
+        height: 200,
+        colorDark: "black",//#5e72e4
+        colorLight: "white",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+    
+   
+</script>
+
         <label >Transfert history </label><br>
             
         @if (\App\Transfert::all()->where('asset_id', $asset->id)->isEmpty())
@@ -81,6 +102,7 @@
                   </tr>
               </thead>
               <tbody>
+              
               @foreach(\App\Transfert::all()->where('asset_id', $asset->id) as $transfert)
               <tr>
                   <td>{{$transfert->block_c}}</td>
@@ -111,4 +133,5 @@
       </div>
 </div>
 </div>
+
 @endsection

@@ -1,7 +1,7 @@
 @extends('app.edit_layout')
 @section('content')
   
-            <div class="card card-default">
+        <div class="card card-default">
               <div class="card-header">  
                 <div class="col-8">
                 <h3 class="mb-0">{{$bureau->name}}</h3>
@@ -46,20 +46,16 @@
                         @endfor
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="asset_id">Assets</label><br>
-                    @foreach($bureau->assets as $asset)
-                              <label >&#160<input type="checkbox" name="assets[]" value="{{ $asset->id }}" checked disabled> {{$asset->name}} </label>
-                            @endforeach
-                </div>
+            
                 <div class="text-center">
-                    <a href="#popupAsset" class="btn btn-sm btn-primary"><i class="fa fa-paper-plane fa-fw text-blue"></i></i> Assets &#160&#160&#160</a>
+                    <a href="#popupAsset" class="btn btn-sm btn-primary"><i class="fa fa-boxes fa-fw text-w"></i></i> Assets &#160&#160&#160</a>
                     </div>
 
 
-                @include('bureau.Assets')
+                    @include('bureau.Assets')                
 
 
         </div>
     </div>
+    
 @endsection

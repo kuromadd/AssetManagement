@@ -11,7 +11,7 @@
                         </div>
                         <div class="col-4 text-right">
                             @can('asset-create')
-                            <a href="#popupac" class="btn btn-sm btn-primary">Add asset</a>
+                            <a href="{{route('createAsset',Str::random(15))}}" class="btn btn-sm btn-primary">Add asset</a>
                             @endcan
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                             <td>{{$asset->dateservice}}</td>
                             <td>{{$asset->category}}</td>
                             <td>
-                                @if($asset->status == 0)
+                                @if($asset->status == 0 && $asset->bureau_id == 0)
                                 <label class="badge badge-info">unoccupied</label>
                                 @elseif($asset->status == 1)
                                 <label class="badge badge-success">fine</label>
@@ -77,7 +77,7 @@
             </div>
         </div>
     </div>
-   @include('asset.create')  
+    
    <script>
         var $table = document.querySelector('.minha-table');
 

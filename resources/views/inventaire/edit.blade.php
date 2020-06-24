@@ -130,21 +130,21 @@
               <td style="width: "><h4 class="mb-0">{{\App\asset::find($value->asset_id)->name }}</h4></td> 
               
               <td style="margin:">
-              <input type="checkbox" name="fine[]" class="subject-list{{$value->id}}" value="{{ \App\asset::find($value->asset_id)->id }}"
+              <input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list{{$value->id}}" value="{{ \App\asset::find($value->asset_id)->id }}"
                 @if(\App\asset::find($value->asset_id)->status == 1)
                 checked 
                 @endif id="box-1{{\App\asset::find($value->asset_id)->id}}" >
             <label class="form-control-label"></label>   
                 </td>
               <td style="margin: ">
-                <input type="checkbox" name="repair[]" class="subject-list{{$value->id}}" value="{{ \App\asset::find($value->asset_id)->id }}"
+                <input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list{{$value->id}}" value="{{ \App\asset::find($value->asset_id)->id }}"
                 @if(\App\asset::find($value->asset_id)->status == 2)
                 checked 
                 @endif id="" >
             <label class="form-control-label"></label>   
                 </td>
                 <td >
-                <input type="checkbox" name="lost[]" class="subject-list{{$value->id}}" value="{{ \App\asset::find($value->asset_id)->id }}"
+                <input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list{{$value->id}}" value="{{ \App\asset::find($value->asset_id)->id }}"
                     @if(\App\asset::find($value->asset_id)->status == 3)
                     checked 
                     @endif id="" class="">

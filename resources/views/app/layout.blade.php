@@ -111,6 +111,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('scan') }}">
+                    <i class="fa fa-qrcode text-primary"></i>
+                <span class="nav-link-text text-red">Scan !!</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
                     <i class="fa fa-user-edit text-blue"></i>
                     <span class="nav-link-text text-red">Users</span>

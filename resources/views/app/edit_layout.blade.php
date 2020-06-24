@@ -107,7 +107,13 @@
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('home') }}">
-                    <i class="ni ni-tv-2 text-primary"></i> Dashboard
+                    <i class="ni ni-tv-2 text-red"></i> Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('scan') }}">
+                    <i class="fa fa-qrcode text-primary"></i>
+                <span class="nav-link-text text-red">Scan !!</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -316,8 +322,7 @@
   </div>
   </nav>    
   <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
-        <a href=" {{URL::previous()}}" class="btn btn-sm btn-primary"> Back</a>
-
+        <a href=" {{URL::previous()}}" class="btn btn-sm btn-info"> Back</a>
   </div>
   <div class="container-fluid mt--7">     
      

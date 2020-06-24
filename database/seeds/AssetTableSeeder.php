@@ -57,9 +57,10 @@ class AssetTableSeeder extends Seeder
             'dateService' => null,
             'duree_vie' => '5ans',
             'status' => 0,
-            'occupied' => 0,
+            'occupied' => 1,
             'bureau_id' => $bureau1->id,
-            'fournisseur_id'=>$fournisseur->id,
+            'fournisseur_id'=>$fournisseur->id,  
+            'qrcode'=>Str::random(15),                    
         
         ]);
         \App\asset::create([
@@ -70,9 +71,10 @@ class AssetTableSeeder extends Seeder
             'dateService' => null,
             'duree_vie' => '5ans',
             'status' => 0,
-            'occupied' => 0,
+            'occupied' => 1,
             'bureau_id' => $bureau1->id,
-            'fournisseur_id'=>$fournisseur->id,
+            'fournisseur_id'=>$fournisseur->id, 
+            'qrcode'=>Str::random(15),                    
 
         ]);
         \App\asset::create([
@@ -83,9 +85,10 @@ class AssetTableSeeder extends Seeder
             'dateService' => null,
             'duree_vie' => '5ans',
             'status' => 0,
-            'occupied' => 0,
+            'occupied' => 1,
             'bureau_id' => $bureau1->id,
-            'fournisseur_id'=>$fournisseur2->id,
+            'fournisseur_id'=>$fournisseur2->id,  
+            'qrcode'=>Str::random(15),                    
         ]);
         \App\asset::create([
             'name' =>'sofa',
@@ -95,9 +98,10 @@ class AssetTableSeeder extends Seeder
             'dateService' => null,
             'duree_vie' => '5ans',
             'status' => 0,
-            'occupied' => 0,
+            'occupied' => 1,
             'bureau_id' => $bureau1->id,
-            'fournisseur_id'=>$fournisseur2->id,
+            'fournisseur_id'=>$fournisseur2->id,  
+            'qrcode'=>Str::random(15),                    
         ]);
         \App\asset::create([
             'name' =>'miror',
@@ -107,9 +111,10 @@ class AssetTableSeeder extends Seeder
             'dateService' => null,
             'duree_vie' => '5ans',
             'status' => 0,
-            'occupied' => 0,
+            'occupied' => 1,
             'bureau_id' => $bureau1->id,
-            'fournisseur_id'=>$fournisseur2->id,
+            'fournisseur_id'=>$fournisseur2->id,  
+            'qrcode'=>Str::random(15),                    
         ]);
         \App\asset::create([
             'name' =>'avast antivirus',
@@ -119,9 +124,10 @@ class AssetTableSeeder extends Seeder
             'dateService' => null,
             'duree_vie' => '5ans',
             'status' => 0,
-            'occupied' => 0,
+            'occupied' => 1,
             'bureau_id' => $bureau1->id,
-            'fournisseur_id'=>$fournisseur->id,
+            'fournisseur_id'=>$fournisseur->id,  
+            'qrcode'=>Str::random(15),                    
         ]);
         \App\asset::create([
             'name' =>'Laptop',
@@ -131,9 +137,10 @@ class AssetTableSeeder extends Seeder
             'dateService' => null,
             'duree_vie' => '5ans',
             'status' => 0,
-            'occupied' => 0,
+            'occupied' => 1,
             'bureau_id' => $bureau1->id,
-            'fournisseur_id'=>$fournisseur->id,
+            'fournisseur_id'=>$fournisseur->id,  
+            'qrcode'=>Str::random(15),                    
         ]);
         \App\asset::create([
             'name' =>'scanner',
@@ -143,9 +150,10 @@ class AssetTableSeeder extends Seeder
             'dateService' => null,
             'duree_vie' => '5ans',
             'status' => 0,
-            'occupied' => 0,
+            'occupied' => 1,
             'bureau_id' => $bureau1->id,
-            'fournisseur_id'=>$fournisseur->id,
+            'fournisseur_id'=>$fournisseur->id,  
+            'qrcode'=>Str::random(15),                    
         ]);
         \App\asset::create([
             'name' =>'desktop',
@@ -155,9 +163,10 @@ class AssetTableSeeder extends Seeder
             'dateService' => null,
             'duree_vie' => '5ans',
             'status' => 0,
-            'occupied' => 0,
+            'occupied' => 1,
             'bureau_id' => $bureau1->id,
-            'fournisseur_id'=>$fournisseur2->id,
+            'fournisseur_id'=>$fournisseur2->id,  
+            'qrcode'=>Str::random(15),                    
         
         ]);
             \App\asset::create([
@@ -168,9 +177,10 @@ class AssetTableSeeder extends Seeder
             'dateService' => null,
             'duree_vie' => '10ans',
             'status' => 0,
-            'occupied' => 0,
+            'occupied' => 1,
             'bureau_id' => $bureau2->id,
-            'fournisseur_id'=>$fournisseur2->id,
+            'fournisseur_id'=>$fournisseur2->id,  
+            'qrcode'=>Str::random(15),                    
         ]);
 
         \App\asset::create([
@@ -181,9 +191,10 @@ class AssetTableSeeder extends Seeder
             'dateService' => null,
             'duree_vie' => '10ans',
             'status' => 0,
-            'occupied' => 0,
+            'occupied' => 1,
             'bureau_id' => $bureau2->id,
-            'fournisseur_id'=>$fournisseur2->id,
+            'fournisseur_id'=>$fournisseur2->id,  
+            'qrcode'=>Str::random(15),                    
         ]);
             \App\asset::create([
             'name' =>'new office publicity ',
@@ -193,9 +204,10 @@ class AssetTableSeeder extends Seeder
             'dateService' => null,
             'duree_vie' => '1ans',
             'status' => 0,
-            'occupied' => 0,
+            'occupied' => 1,
             'bureau_id' => $bureau2->id,
-            'fournisseur_id'=>$fournisseur2->id,
+            'fournisseur_id'=>$fournisseur2->id,  
+            'qrcode'=>Str::random(15),                    
         ]);
         \App\asset::create([
             'name' =>'the new office',
@@ -205,9 +217,10 @@ class AssetTableSeeder extends Seeder
             'dateService' => null,
             'duree_vie' => '10ans',
             'status' => 0,
-            'occupied' => 0,
+            'occupied' => 1,
             'bureau_id' => $bureau2->id,
-            'fournisseur_id'=>$fournisseur->id,
+            'fournisseur_id'=>$fournisseur->id,  
+            'qrcode'=>Str::random(15),                    
         ]);
                 \App\asset::create([
             'name' =>'emplyee management',
@@ -217,9 +230,10 @@ class AssetTableSeeder extends Seeder
             'dateService' => null,
             'duree_vie' => '5ans',
             'status' => 0,
-            'occupied' => 0,
+            'occupied' => 1,
             'bureau_id' => $bureau2->id,
-            'fournisseur_id'=>$fournisseur->id,
+            'fournisseur_id'=>$fournisseur->id,  
+            'qrcode'=>Str::random(15),                    
         ]);
                 \App\asset::create([
             'name' =>'sofa 2',
@@ -229,9 +243,10 @@ class AssetTableSeeder extends Seeder
             'dateService' => null,
             'duree_vie' => '5ans',
             'status' => 0,
-            'occupied' => 0,
+            'occupied' => 1,
             'bureau_id' => $bureau2->id,
-            'fournisseur_id'=>$fournisseur2->id,
+            'fournisseur_id'=>$fournisseur2->id,  
+            'qrcode'=>Str::random(15),                    
         ]);
     }
 }

@@ -1,6 +1,6 @@
 @extends('app.layout')
-
 @section('content')
+
     <div class="row">
         <div class="col">
             <div class="card shadow" style="margin-left: 16% ;width: 60%" >

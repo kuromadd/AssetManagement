@@ -84,7 +84,13 @@
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" href="{{ route('home') }}">
-                <i class="ni ni-tv-2 text-primary"></i> Dashboard
+                <i class="ni ni-tv-2 text-red"></i> Dashboard
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('scan') }}">
+                <i class="fa fa-qrcode text-primary"></i>
+                <span class="nav-link-text text-red">Scan !!</span>
             </a>
         </li>
         <li class="nav-item">

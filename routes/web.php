@@ -52,12 +52,14 @@ Route::post('/admin/role/updateAll','rolesController@updateAll')->name('updateAl
 Route::post('/admin/role/updateAllper','UserController@updateAll')->name('updateAllper');
 
 Route::get('/asset/index','AssetController@index')->name('indexAsset');
-Route::get('/asset/create','AssetController@create')->name('createAsset');
+Route::get('/asset/create/{qr}','AssetController@create')->name('createAsset');
 Route::post('/asset/store','AssetController@store')->name('storeAsset');
 Route::get('/asset/show/{id}','AssetController@show')->name('showAsset');
 Route::get('/asset/edit/{id}','AssetController@edit')->name('editAsset');
 Route::post('/asset/update/{id}','AssetController@update')->name('updateAsset');
 Route::get('/asset/delete/{id}','AssetController@destroy')->name('deleteAsset');
+Route::get('/asset/replace/{id}','AssetController@replace')->name('replaceAsset');
+Route::get('/asset/found/{id}','AssetController@found')->name('foudAsset');
 
 Route::get('/Inventaire/index','InventaireController@index')->name('indexInventaire');
 Route::get('/Inventaire/create','InventaireController@create')->name('createInventaire');
@@ -88,7 +90,6 @@ Route::get('/bureau/show/{id}','bureauController@show')->name('showBureau');
 Route::get('/bureau/edit/{id}','bureauController@edit')->name('editBureau');
 Route::post('/bureau/update/{id}','bureauController@update')->name('updateBureau');
 Route::post('/bureau/save/{id}','bureauController@saveAsset')->name('saveAssets');
-
 Route::get('/bureau/delete/{id}','bureauController@destroy')->name('deleteBureau');
 
 Route::get('/mission/index','missionController@index')->name('indexMission');
@@ -139,6 +140,12 @@ Route::group(['middleware' => ['auth']], function() {
 });
 });
 
-Route::get('/qr', function () {
+Route::get('/q', function () {
     return view('test.index');
 });
+
+Route::get('/qr', function () {
+    return view('qr.qrh');
+});
+Route::get('/scan','assetController@scan')->name('scan');
+Route::get('/exist/{qrcode}','assetController@exist')->name('exist');

@@ -24,13 +24,13 @@
                 </div>
             </div>
             <!-- Navbar items -->
-            <ul class="navbar-nav align-items-center mr-3 d-none d-md-flex ml-lg-auto">
-                <li class="nav-item">
+            <ul class="navbar-nav align-items-center mr-1 d-none d-md-flex ml-lg-auto">
+                
                     <a class="nav-link nav-link-icon" href="{{ route('login') }}">
                         <i class="ni ni-key-25"></i>
                         <span class="nav-link-inner--text">{{ __('Login') }}</span>
                     </a>
-                </li>
+                
                
             </ul>
         </div>

@@ -19,10 +19,11 @@
         <table class="table align-items-center table-flush">
             <thead>
             <tr>
-                <th  scope="col">Block</th>
-                <th scope="col">Etage</th>
-                <th scope="col">Bureau</th>
-                <th scope="col">Asset</th>
+                <th  scope="col">block</th>
+                <th scope="col">etage</th>
+                <th scope="col">bureau</th>
+                <th scope="col">asset</th>
+                <th scope="col"></th>
                 <th scope="col"></th>
             </tr>    
             </thead>    
@@ -30,11 +31,21 @@
             @foreach($assets as $asset)
             @if ($asset->status==3)
             <tr> 
-              <td style="margin: 5px"><h4 class="mb-0"> B1</h4></td>
-              <td style="width: 16%"><h4 class="mb-0"> E1</h4></td>
-              <td style="width: 16%"><h4 class="mb-0">BR1</h4></td>
+              <td style="margin: 5px"><h4 class="mb-0"> {{ $asset->bureau->block->name }}</h4></td>
+              <td style="width: 16%"><h4 class="mb-0"> {{$asset->bureau->etage}}</h4></td>
+              <td style="width: 16%"><h4 class="mb-0">{{$asset->bureau->name}}</h4></td>
               <td style="width: 16%"><h4 class="mb-0">{{$asset->name }}</h4></td> 
-            <td ><a href="#" class="btn btn-sm btn-info">replace</a></td>
+            <td >
+                <select name="" id="">
+                    <option value="" disabled selected>replace</option>
+                @foreach (\App\asset::all() as $item)
+                    @if ($item->occupied == 0 && $item->status = [0,1,2] && $item->category === $asset->category)
+                        <option value="{{$item->id}}">{{$item->name}}</option> 
+                    @endif
+                @endforeach
+            </select>
+            </td>
+            <td ><a href="{{route('replaceAsset',$asset->id)}}" class="btn btn-sm btn-success">found !!</a></td>
             </tr>
             @endif
             @endforeach    

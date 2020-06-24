@@ -13,30 +13,7 @@ crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 <style>
 
-.box {
-  width: 40%;
-  margin: 0 auto;
-  background: rgba(255,255,255,0.2);
-  padding: 35px;
-  border: 2px solid #fff;
-  border-radius: 20px/50px;
-  background-clip: padding-box;
-  text-align: center;
-}
 
-.button {
-  font-size: 1em;
-  padding: 10px;
-  color: #fff;
-  border: 2px solid #06D85F;
-  border-radius: 20px/50px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease-out;
-}
-.button:hover {
-  background: #06D85F;
-}
 
 .overlay {
   position: fixed;
@@ -57,7 +34,8 @@ crossorigin="anonymous"></script>
 .popup {
   margin: 30px auto;
   padding: 20px;
-  background: #fff;
+  background: rgb(175, 168, 168);
+  background-image: url({{asset('images/22222.jpg')}});
   border-radius: 5px;
   width: 20%;
   position: relative;
@@ -95,44 +73,247 @@ crossorigin="anonymous"></script>
     width: 70%;
   }
 }
+
+
+
+
+
+
+
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+@media (min-width:100%) {
+    .container {
+        width: 100%
+    }
+}
+
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+@media (min-width:1200px) {
+    .col-lg-1,
+    .col-lg-2,
+    .col-lg-3,
+    .col-lg-4,
+    .col-lg-5,
+    .col-lg-6,
+    .col-lg-7,
+    .col-lg-8,
+    .col-lg-9,
+    .col-lg-10,
+    .col-lg-11,
+    .col-lg-12 {
+        float: left
+    }
+    .col-lg-12 {
+        width: 100%
+    }
+    .col-lg-11 {
+        width: 91.66666667%
+    }
+    .col-lg-10 {
+        width: 83.33333333%
+    }
+    .col-lg-9 {
+        width: 75%
+    }
+    .col-lg-8 {
+        width: 66.66666667%
+    }
+    .col-lg-7 {
+        width: 58.33333333%
+    }
+    .col-lg-6 {
+        width: 50%
+    }
+    .col-lg-5 {
+        width: 41.66666667%
+    }
+    .col-lg-4 {
+        width: 33.33333333%
+    }
+    .col-lg-3 {
+        width: 25%
+    }
+    .col-lg-2 {
+        width: 16.66666667%
+    }
+    .col-lg-1 {
+        width: 8.33333333%
+    }
+    .col-lg-pull-12 {
+        right: 100%
+    }
+    .col-lg-pull-11 {
+        right: 91.66666667%
+    }
+    .col-lg-pull-10 {
+        right: 83.33333333%
+    }
+    .col-lg-pull-9 {
+        right: 75%
+    }
+    .col-lg-pull-8 {
+        right: 66.66666667%
+    }
+    .col-lg-pull-7 {
+        right: 58.33333333%
+    }
+    .col-lg-pull-6 {
+        right: 50%
+    }
+    .col-lg-pull-5 {
+        right: 41.66666667%
+    }
+    .col-lg-pull-4 {
+        right: 33.33333333%
+    }
+    .col-lg-pull-3 {
+        right: 25%
+    }
+    .col-lg-pull-2 {
+        right: 16.66666667%
+    }
+    .col-lg-pull-1 {
+        right: 8.33333333%
+    }
+    .col-lg-pull-0 {
+        right: auto
+    }
+    .col-lg-push-12 {
+        left: 100%
+    }
+    .col-lg-push-11 {
+        left: 91.66666667%
+    }
+    .col-lg-push-10 {
+        left: 83.33333333%
+    }
+    .col-lg-push-9 {
+        left: 75%
+    }
+    .col-lg-push-8 {
+        left: 66.66666667%
+    }
+    .col-lg-push-7 {
+        left: 58.33333333%
+    }
+    .col-lg-push-6 {
+        left: 50%
+    }
+    .col-lg-push-5 {
+        left: 41.66666667%
+    }
+    .col-lg-push-4 {
+        left: 33.33333333%
+    }
+    .col-lg-push-3 {
+        left: 25%
+    }
+    .col-lg-push-2 {
+        left: 16.66666667%
+    }
+    .col-lg-push-1 {
+        left: 8.33333333%
+    }
+    .col-lg-push-0 {
+        left: auto
+    }
+    .col-lg-offset-12 {
+        margin-left: 100%
+    }
+    .col-lg-offset-11 {
+        margin-left: 91.66666667%
+    }
+    .col-lg-offset-10 {
+        margin-left: 83.33333333%
+    }
+    .col-lg-offset-9 {
+        margin-left: 75%
+    }
+    .col-lg-offset-8 {
+        margin-left: 66.66666667%
+    }
+    .col-lg-offset-7 {
+        margin-left: 58.33333333%
+    }
+    .col-lg-offset-6 {
+        margin-left: 50%
+    }
+    .col-lg-offset-5 {
+        margin-left: 41.66666667%
+    }
+    .col-lg-offset-4 {
+        margin-left: 33.33333333%
+    }
+    .col-lg-offset-3 {
+        margin-left: 25%
+    }
+    .col-lg-offset-2 {
+        margin-left: 16.66666667%
+    }
+    .col-lg-offset-1 {
+        margin-left: 8.33333333%
+    }
+    .col-lg-offset-0 {
+        margin-left: 0
+    }
+}
+
 </style>
 
 
+<link rel="stylesheet" href="{{asset('css/style.css')}}">
+
 <div id="popupAsset" class="overlay" style="overflow: scroll;">
     <div class="popup" style="width: 60% ">
-        <div class="table-responsive">
-            <form action="{{ route('saveAssets',$bureau->id) }}" method="post" enctype="multipart/form-data">
-        
-                {{ csrf_field() }}
-            <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                    <tr style="width: ">
-                        <th scope="col">Assets</th>
-                        <th  scope="col"></th>
-                        <a class="close" href="#">&times;</a>
-                    </tr>
-                </thead>
-                <tbody>
-                  
-                @foreach(\App\asset::all() as $item)
-                @if($item->bureau_id == 0)
-                <tr style="width: 100%">
-                  <td style="margin: 10% ; width: 15%;">{{$item->name}}</td>   
-              <td style=" width: 15%;" class="">&#160&#160<input type="checkbox" name="assets[]" 
-                  @foreach($bureau->assets as $value)
-                  @if($item->name == $value->name) checked @endif 
-                  @endforeach value="{{$item->id}}">   
-                  </td>
-              </tr>
-                @endif
-                @endforeach    
-                </tbody>
-            </table>
-            <div class="text-right">
-                <button class="btn btn-info" type="submit">save</button>    
-                </div> 
-            </form>
-        </div>
-        </div>
+
+      <section class="box-content box-2" id="services">
+            <div class="container">
+
+              <div class="row">
+                  <div class="portfolio-items">
+                    
+                    @foreach($bureau->assets as $asset)
+                      <div class=" col-lg-3 ">
+                        <div class="post">
+                              <div class="item-container wow fadeInUp" data-wow-delay="200ms">
+                                  <div class="item-caption">
+                                      <div class="item-caption-inner">
+                                          <div class="item-caption-inner1">
+                                              <a class="example-image-link" href="{{route('showAsset',$asset->id)}}" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+                                                  <i class="fa fa-info"></i>
+                                              </a>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div>
+                                    {{$asset->name}} <hr>
+                                    {{$asset->name}} <hr>
+                                    {{$asset->name}} 
+                                  </div>
+                                  
+                              </div>
+                             
+                          </div>
+                      </div>
+                            @endforeach
+                  </div>
+              </div>
+          </div>
+    </section>
+
     </div>
 </div>
+  
