@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -120,7 +119,9 @@ Route::get('/Etage','TransfertController@Etage');
 Route::get('/Bureau','TransfertController@Bureau');
 Route::get('/getAsset','TransfertController@getAsset');
 
-
+Route::get('/EtageInv','InventaireController@EtageInv');
+Route::get('/BureauInv','InventaireController@BureauInv');
+Route::get('/AssetInv','InventaireController@AssetInv');
 
 Route::post('/admin/user/update/{id}','UserController@update')->name('updateUser');
 
@@ -140,6 +141,7 @@ Route::group(['middleware' => ['auth']], function() {
 });
 });
 
+
 Route::get('/q', function () {
     return view('test.index');
 });
@@ -149,3 +151,8 @@ Route::get('/qr', function () {
 });
 Route::get('/scan','assetController@scan')->name('scan');
 Route::get('/exist/{qrcode}','assetController@exist')->name('exist');
+
+Route::get('/checkqr/{qrcode}','auth\LoginController@checkQR')->name('qrcheck');
+
+
+

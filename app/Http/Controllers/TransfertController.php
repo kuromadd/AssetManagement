@@ -29,7 +29,8 @@ class TransfertController extends Controller
      */
 
     public function Etage(Request $request){
-        $data=\App\block::select('nbre_Etage')->where('id',$request->id)->first();
+
+        $data=\App\block::select('nbre_Etage','sous')->where('id',$request->id)->first();
         $request->session()->put('blockID', $request->id);
         return response()->json($data);
     }
@@ -104,6 +105,11 @@ class TransfertController extends Controller
 
         $transfert->save();
         DB::table('assets')->where('id',$request->asset_id)->update(['bureau_id' => $request->bureau_d]);
+        if (\App\bureau::find($request->bureau_d)->type == 'stock') {
+            \App\asset::whereIn('id', $request->asset_id)->update(["occupied" => 0]);
+        }else {
+            \App\asset::whereIn('id', $request->asset_id)->update(["occupied" => 1]);
+        }
         if ('s' == 's') {
             return redirect()->route('indexTransfert')
             ->with('success', 'transfert created successfully.');

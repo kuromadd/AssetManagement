@@ -55,7 +55,7 @@
                                     <video style="width: 100%;height: auto;" muted playsinline id="qr-video"></video>
                                 </div>
 
-                            <input type="text" id="cam-qr-result" name="qrcode" class="QRcode"value="{{null}}">
+                                <input type="text" id="cam-qr-result" name="qrcode" class="QRcode">
                                 
                     
                         </div>
@@ -74,9 +74,6 @@
                            
                             function setResult(input, result) {
                                 input.value = result;
-                                let url = "{{ route('qrcheck', ':qrcode') }}";
-                                url = url.replace(':qrcode', result);
-                                document.location.href=url;
                             }
                         
                             // ####### Web Cam Scanning #######
@@ -84,6 +81,8 @@
                         
                             const scanner = new QrScanner(video, result => setResult(camQrResult, result));
                             scanner.start();
+
+                        
                         
                         </script>
 

@@ -168,15 +168,14 @@
                                             console.log(data);
                                              $("#etage_d").empty();
                                              $("#etage_d").append('<option selected disabled >Select etage</option>');
-                                             $.each(data,function(t,data){
-                                                 for(var i=-2 ; i<=data ; i++){
-                                                     $("#etage_d").append('<option value="'+i+'">'+i+'</option>')
+                                             
+                                                 for(var i=data['sous'] ; i<=data['nbre_Etage'] ; i++){  
+                                                  $("#etage_d").append('<option value="'+i+'">'+i+'</option>')
                                                     }
-                                             });       
+                                                 
                                 
                                          }
-                                       
-           
+
                                      },
                                      error:function(){ 
                                      }

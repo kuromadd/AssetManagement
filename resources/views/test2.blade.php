@@ -15,15 +15,15 @@
 <div id="checkbox-container">
   <div>
     <label for="option">Option 1</label>
-    <input type="checkbox" id="option1">
+    <input type="checkbox" id="option">
   </div>
   <div>
     <label for="option">Option 2</label>
-    <input type="checkbox" id="option2">
+    <input type="checkbox" id="option">
   </div>
   <div>
     <label for="option">Option 3</label>
-    <input type="checkbox" id="option3">
+    <input type="checkbox" id="option">
   </div>
 </div>
 </body>

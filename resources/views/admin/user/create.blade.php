@@ -116,7 +116,7 @@
                         </ul>
                         @endif
                     {{ csrf_field() }}
-                    
+                    <input type="text" hidden name="qr" value="{{Str::random(20)}}">
                     <label class="form-control-label" for="name">{{ __('Name') }}</label>
                     <input type="text" name="name" id="name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('name') }}" required>
                     

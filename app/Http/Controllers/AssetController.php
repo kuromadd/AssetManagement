@@ -69,6 +69,7 @@ class AssetController extends Controller
         $asset->dateService = $request->dateservice;
         $asset->duree_vie = $request->duree;
         $asset->qrcode = $request->qr;
+        $asset->occupied = 0;
 
         $asset->save();
         return redirect()->route('indexAsset')->with('success','you added asset successfuly');
@@ -82,6 +83,7 @@ class AssetController extends Controller
      */ 
     public function show($id)
     {
+        
         $user=Auth()->user();
         $asset = \App\asset::find($id);
         return view('asset.show')->with('asset',$asset)->with('user',$user);

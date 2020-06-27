@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -95,7 +96,8 @@ class UserController extends Controller
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>bcrypt('00000000'),
-            'role_id'=>$request->role ,            
+            'role_id'=>$request->role , 
+            'qrcode'=>Str::random(15),           
         ]);
 
         \App\profile::create([

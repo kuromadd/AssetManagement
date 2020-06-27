@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class bureau extends Model
 {
     protected $fillable =[
-        'name','description','prix','category','duree_vie','selected','occupied'
+        'name','type','block_id','etage'
     ]; 
 
     public function block()

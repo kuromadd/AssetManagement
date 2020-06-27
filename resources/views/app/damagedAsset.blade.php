@@ -17,10 +17,10 @@
         <table class="table align-items-center table-flush">
             <thead>
             <tr>
-                <th  scope="col">{{ $asset->bureau->block->name }}</th>
-                <th scope="col">{{$asset->bureau->etage}}</th>
-                <th scope="col">{{$asset->bureau->name}}</th>
-                <th scope="col">{{$asset->name}}</th>
+                <th  scope="col">block</th>
+                <th scope="col">etage</th>
+                <th scope="col">bureau</th>
+                <th scope="col">asset</th>
                 <th scope="col"></th>
             </tr>    
             </thead>    
@@ -28,9 +28,9 @@
             @foreach($assets as $asset)
             @if ($asset->status==2)
             <tr> 
-              <td style="margin: 5px"><h4 class="mb-0"> B1</h4></td>
-              <td style="width: 16%"><h4 class="mb-0"> E1</h4></td>
-              <td style="width: 16%"><h4 class="mb-0">BR1</h4></td>
+              <td style="margin: 5px"><h4 class="mb-0">{{ $asset->bureau->block->name }}</h4></td>
+              <td style="width: 16%"><h4 class="mb-0">{{$asset->bureau->etage}}</h4></td>
+              <td style="width: 16%"><h4 class="mb-0">{{$asset->bureau->name}}</h4></td>
               <td style="width: 16%"><h4 class="mb-0">{{$asset->name }}</h4></td> 
             <td ><a href="{{route('createReparation',['id'=>$asset->id])}}" class="btn btn-sm btn-info">repair</a></td>
             </tr>

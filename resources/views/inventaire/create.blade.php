@@ -1,62 +1,7 @@
 @extends('app.edit_layout')  
 @section('content')
 
-    <style>
-      /*
-        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-          
-        .boxes {
-          margin: auto;
-          padding: 50px;
-          background: #484848;
-        }
-        
-        /*Checkboxes styles
-        input[type="checkbox"] { display: none; }
-        
-        input[type="checkbox"] + label {
-          display: block;
-          position: relative;
-          padding-left: 35px;
-          margin-bottom: 20px;
-          font: 14px/20px 'Open Sans', Arial, sans-serif;
-          color: #ddd;
-          cursor: pointer;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-        }
-        
-        input[type="checkbox"] + label:last-child { margin-bottom: 5%; }
-        
-        input[type="checkbox"] + label:before {
-          content: '';
-          display: block;
-          width: 20px;
-          height: 20px;
-          border: 1px solid #020708;
-          position: absolute;
-          left: 0;
-          top: 0;
-          opacity: .6;
-          -webkit-transition: all .12s, border-color .08s;
-          transition: all .12s, border-color .08s;
-        }
-        
-        input[type="checkbox"]:checked + label:before {
-          width: 10px;
-          top: -5px;
-          left: 5px;
-          border-radius: 0;
-          opacity: 1;
-          border-top-color: transparent;
-          border-left-color: transparent;
-          -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-        }
-        */
-
-        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <form action="{{ route('storeInventaire') }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
@@ -74,10 +19,28 @@
                           </div>
                       </div>
                   </div>
-
+                    <ul style="display: inline-block">
+                      <li>
+                    <label for="block_d">next block</label>
+                    <select class="form-control blockID" name="block_d">
+                        <option value="0" disabled selected>--Select--</option>
+                        @foreach(\App\block::all() as $block)
+                    <option value="{{$block->id}}">{{ $block->name }}</option>
+                        @endforeach
+                    </select>
+                  </li><li>
+                    <label for="etage_d" >next etage</label>
+                       <select class="form-control NbEtage" name="etage_d" id="etage_d">                           
+                       </select>
+                      </li><li>
+                    <label for="bureau_d">next bureau</label>
+                    <select class="form-control NBureau " name="bureau_d" id="bureau_d">                           
+                    </select>
+                  </li>
+                  </ul>
       <div class="table-responsive">
         
-        <table class="table align-items-center table-flush minha-table">
+        <table class="table align-items-center table-flush " id="tableInv">
             <thead>
             <tr>
                 <th scope="col">Block</th>
@@ -88,32 +51,50 @@
                 <th scope="col">repair</th>
                 <th scope="col">lost</th>
             </tr>    
-            </thead>    
-            <tbody>
+            </thead>
+             
+            <tbody >
               <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js">//for selecting one checkAT TIME</script>
             @foreach($assets as $asset)
             @if ($asset->bureau_id && $asset->status = [0,1,2])
-            
-            <tr>
+            <tr id="checkbox-container">
             <td style="margin: "><h4 class="mb-0">{{ $asset->bureau->block->name }}</h4></td>
               <td style="width: "><h4 class="mb-0"> {{$asset->bureau->etage}} </h4></td>
             <td style="width: "><h4 class="mb-0">{{$asset->bureau->name}}</h4></td>
               <td style="width: "><h4 class="mb-0">{{$asset->name }}</h4></td> 
               
               <td >
-                <input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}">
+                <input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }} " id="option1{{$asset->id}}">
              
                 </td>
               <td >
-                <input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}">
+                <input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}" id="option2{{$asset->id}}">
                
                 </td>
                 <td >
-                <input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}">
-                  
+                <input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}" id="option3{{$asset->id}}">
                 </td>
             </tr>
+
+            <script>
+  
+              var checkboxValues = JSON.parse(localStorage.getItem('checkboxValues')) || {},
+                  $checkboxes = $("#checkbox-container :checkbox");
+              
+              $checkboxes.on("change", function(){
+                $checkboxes.each(function(){
+                  checkboxValues[this.id] = this.checked;
+                });
                 
+                localStorage.setItem("checkboxValues", JSON.stringify(checkboxValues));
+              });
+              
+              // On page load
+              $.each(checkboxValues, function(key, value) {
+                $("#" + key).prop('checked', value);
+                console.log("#" + key);
+              });
+            </script>         
             @endif
             <script type="text/javascript">
       
@@ -122,8 +103,131 @@
             });
           
             </script>
-            @endforeach    
+            @endforeach
+            
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+            <script type="text/javascript"> 
+                                 $(document).ready(function(){
+                                 $(document).on('change','.blockID',function(){
+                                   var block_id=$(this).val();
+                                   var div=$(this).parent();
+                                 
+                                   $.ajax({
+                                     type:'get',
+                                     url:'{!!URL::to('EtageInv')!!}',
+                                     data:{'id':block_id},
+                                     dataType:'json',
+                                     success:function(data){
+
+                                      var list=[];
+
+                                      list[0]=data[2][1];list[1]=data[2][2];list[2]=data[2][3];list[3]=data[2][4];list[4]=data[2][5];
+
+                                     if (data) {
+                                      console.log(list);
+                                             $("#etage_d").empty();
+                                             $("#etage_d").append('<option selected disabled >Select etage</option>');
+                                             
+                                             
+                                                 for(var i=data[0]['sous'] ; i<=data[0]['nbre_Etage'] ; i++){  
+                                                  $("#etage_d").append('<option value="'+i+'">'+i+'</option>')
+                                                    }
+                                                    
+                                                    $("#tableInv").empty(); 
+                                                 for(var i=0 ; i<list[1].length ; i++){
+                                                  $("#tableInv").append('<tr><td style="margin: "><h4 class="mb-0"> '+ list[0][i]+'</h4></td><td style="width: "><h4 class="mb-0">  '+ list[1][i]+'</h4></td><td style="width: "><h4 class="mb-0"> '+ list[2][i]+'</h4></td><td style="width: "><h4 class="mb-0">'+list[3][i]+'</h4></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'" id="option'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list'+list[4][i]+' " value="'+list[4][i]+'" id="option'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'" id="option'+list[4][i]+'"></td></tr><script type="text/javascript">$(\'.subject-list\'.concat('+list[4][i]+')).on(\'change\', function() {$(\'.subject-list\'.concat('+list[4][i]+')).not(this).prop(\'checked\', false);});<'+'/script>');
+                                                  }
+                                            
+                                          }      
+                                                
+                                     },
+                                     error:function(){ 
+                                      console.log('dsdsd');
+                                     }
+                                   })
+                                 });
+                                 });
+                                 $(document).ready(function(){
+                                 $(document).on('change','.NbEtage',function(){
+                                   
+                                   var etage=$(this).val();
+                                   var div=$(this).parent();
+                                   var op="";
+                                   $.ajax({
+                                     type:'get',
+                                     url:'{!!URL::to('BureauInv')!!}',
+                                     data:{'id':etage},
+                                     dataType:'json',
+                                     success:function(data){
+
+                                      var list=[];
+                                      var bureaus=[];
+                                      list[0]=data[2][1];list[1]=data[2][2];list[2]=data[2][3];list[3]=data[2][4];list[4]=data[2][5];
+                                      bureaus=data[1];
+                                      if (data) {
+                                        console.log(bureaus);
+                                        $("#bureau_d").empty();
+                                             $("#bureau_d").append('<option selected disabled >choose bureau</option>');
+                                             
+                                            
+                                             bureaus.forEach(mFunction);
+                                             function mFunction(item) {
+                                                $("#bureau_d").append('<option value="'+item.id+'">'+item.name+'</option>')
+                                            }
+                                      
+                                         
+                                      $("#tableInv").empty(); 
+                                            for(var i=0 ; i<list[1].length ; i++){
+                                            $("#tableInv").append('<tr><td style="margin: "><h4 class="mb-0"> '+ list[0][i]+'</h4></td><td style="width: "><h4 class="mb-0">  '+ list[1][i]+'</h4></td><td style="width: "><h4 class="mb-0"> '+ list[2][i]+'</h4></td><td style="width: "><h4 class="mb-0">'+list[3][i]+'</h4></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'"id="option'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list'+list[4][i]+' " value="'+list[4][i]+'" id="option'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'" id="option'+list[4][i]+'"></td></tr><script type="text/javascript">$(\'.subject-list\'.concat('+list[4][i]+')).on(\'change\', function() {$(\'.subject-list\'.concat('+list[4][i]+')).not(this).prop(\'checked\', false);});<'+'/script>');
+                                          }
+                                            
+                                          }      
+                                                
+                                      },                                     
+                                      error:function(){ 
+                                     }
+                                   })
+                                 });
+                                 });
+                                 $(document).ready(function(){
+                                 $(document).on('change','.NBureau',function(){
+                                   
+                                   var bureau_id=$(this).val();
+                                   var div=$(this).parent();
+                                   var op="";
+                                   $.ajax({
+                                     type:'get',
+                                     url:'{!!URL::to('AssetInv')!!}',
+                                     data:{'id':bureau_id},
+                                     dataType:'json',
+                                     success:function(data){
+                                      var list=[];
+                                      list[0]=data[1];list[1]=data[2];list[2]=data[3];list[3]=data[4];list[4]=data[5];
+                                     
+                                      if (data) {
+                                      console.log(list);
+                                         
+                                      $("#tableInv").empty(); 
+                                            for(var i=0 ; i<list[1].length ; i++){
+                                            $("#tableInv").append('<tr><td style="margin: "><h4 class="mb-0"> '+ list[0][i]+'</h4></td><td style="width: "><h4 class="mb-0">  '+ list[1][i]+'</h4></td><td style="width: "><h4 class="mb-0"> '+ list[2][i]+'</h4></td><td style="width: "><h4 class="mb-0">'+list[3][i]+'</h4></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'" id="option'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list'+list[4][i]+' " value="'+list[4][i]+'" id="option'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'" id="option'+list[4][i]+'"></td></tr><script type="text/javascript">$(\'.subject-list\'.concat('+list[4][i]+')).on(\'change\', function() {$(\'.subject-list\'.concat('+list[4][i]+')).not(this).prop(\'checked\', false);});<'+'/script>');
+                                          }
+                                            
+                                          }      
+                                                
+                                      },                                     
+                                      error:function(){ 
+                                        console.log('ewewewe');
+                                     }
+                                   })
+                                 });
+                                 });                                  
+                            </script>  
+                                     
             </tbody>
+        
+     
+          </div>
+          
         </table>
          
     </div>
