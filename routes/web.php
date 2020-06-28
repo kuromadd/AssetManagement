@@ -120,7 +120,9 @@ Route::get('/Etage','TransfertController@Etage');
 Route::get('/Bureau','TransfertController@Bureau');
 Route::get('/getAsset','TransfertController@getAsset');
 
-
+Route::get('/EtageInv','InventaireController@EtageInv');
+Route::get('/BureauInv','InventaireController@BureauInv');
+Route::get('/AssetInv','InventaireController@AssetInv');
 
 Route::post('/admin/user/update/{id}','UserController@update')->name('updateUser');
 

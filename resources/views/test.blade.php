@@ -1,56 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
 <style>
-  .row {
-display: flex;
-flex-wrap: wrap;
-padding: 0 4px;
+#checkbox-container{
+  margin: 10px 5px;
 }
 
+#checkbox-container div{
+  margin-bottom: 5px;
+}
 
-@media screen and (max-width:300px) {
-.column {
-flex: 100%;
-max-width: 100%;
+#checkbox-container button{
+  margin-top: 5px;
 }
-}
-.img{
-height:auto; width:10%;
+
+input[type=text] {
+  padding: .5em .6em;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 3px #ddd;
+  border-radius: 4px;
 }
 </style>
-@if ($posts->count()>0)
-<div class="row" style="float: left;">
+<body>
+  <input type="text" placeholder="Type something here" />
 
-@foreach($posts as $post)
-
-<div class="column" style="height: auto;width: 300px;border-style:double;border-color: grey ">
- 
-  <div class="form-group">
-  <img class="rounded-circle img-thumbnail" height="150 px" width="150 px" style="margin-left: 25%" src="{{ $post->featured }}" alt="doesn't exist" >
+<div id="checkbox-container">
+  <div>
+    <label for="option1">Option 1</label>
+    <input type="checkbox" id="option1">
   </div>
-
-  <div class="form-group">
-      <label>&#160&#160 title :</label><label class="form-control">{{$post->title}}</label>
+  <div>
+    <label for="option2">Option 2</label>
+    <input type="checkbox" id="option2">
   </div>
-  
-  <div class="form-group">
-      <label>&#160&#160 category :</label><label class="form-control">{{\App\category::find($post->category_id)->name}}</label>
+  <div>
+    <label for="option3">Option 3</label>
+    <input type="checkbox" id="option3">
   </div>
-
-  <div class="form-group">
-      <label >&#160&#160 tags</label><br>
-      @foreach ()      
-      &#160<label class="checkbox-inline"><input type="checkbox" value="{{$item->id}}" checked disabled>{{ $item->tag }}&#160&#160&#160</label>
-          @endforeach
-  </div>
-  
-
-  <div class="form-group">
-  <label for="">&#160&#160 content :</label><textarea name="content" id="content" cols="5" rows="auto" class="form-control">{{ $post->content }}</textarea>
-  </div><br>
-  <div class="text-center">">trash&#160&#160</a><a class="text text-info" href="">&#160&#160edit</a>
-  </div><br> 
-
 </div>
-@endforeach
-@else
-<label style="margin: 20%;color: grey;font-family: cursive;font-size: 20px">No posts</label>
-@endif
+</body>
+<script>
+$(function(){
+    var test = localStorage.input === 'true'? true: false;
+    $('input').prop('checked', test || false);
+});
+
+$('input').on('change', function() {
+    localStorage.input = $(this).is(':checked');
+    console.log($(this).is(':checked'));
+});
+</script>
+</html>

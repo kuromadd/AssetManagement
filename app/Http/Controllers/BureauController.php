@@ -121,10 +121,7 @@ class BureauController extends Controller
         $bureau->block_id =$request->block_id;
         
         $bureau->save();
-        if ($request->has('assets')) {
-            \App\asset::whereIn('id', $bureau->assets)->update(["occupied" => 0,"bureau_id" => 0]);
-            \App\asset::whereIn('id', $request->assets)->update(["occupied" => 1,"bureau_id" => $id]);
-        }
+  
         return redirect()->route('indexBureau')->with('success','you updated a bureau');
     }
     public function saveAsset(Request $request,$id){
