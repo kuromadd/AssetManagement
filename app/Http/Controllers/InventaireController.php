@@ -39,6 +39,11 @@ class InventaireController extends Controller
         
         $assets = (\App\asset::whereIn('status',['0','1','2'])->get());
         return view('inventaire.create')->with('assets',$assets);
+    }public function complete()
+    {
+        
+        $assets = (\App\asset::whereIn('status',['0','1','2','3'])->get());
+        return view('inventaire.create')->with('assets',$assets);
     }
 
     /**
@@ -55,21 +60,16 @@ class InventaireController extends Controller
         $inventaire = new \App\inventaire;
         $inventaire->name = $request->name;
         $inventaire->save();
-
-        foreach(\App\asset::all() as $asset){
-            $asset->occupied = 0;
-            $asset->save();
-        }
         
-        if($request->has('fine')){ \App\asset::whereIn('id',$request->fine)->update(["status" => 1,"occupied" => 1]);}
-        if($request->has('repair')) \App\asset::whereIn('id',$request->repair)->update(["status" => 2,"occupied" => 1]);
-        if($request->has('lost')) \App\asset::whereIn('id',$request->lost)->update(["status" => 3,"occupied" => 1]);
-        $inventaire->assets()->attach((\App\asset::where('occupied','=',1)->get()));
-       
-        if($request->has('fine')) DB::table('asset_inventaire')->whereIn('asset_id',$request->fine)->update(["status" => 1]);
-        if($request->has('repair')) DB::table('asset_inventaire')->whereIn('asset_id',$request->repair)->update(["status" => 2]);
-        if($request->has('lost')) DB::table('asset_inventaire')->whereIn('asset_id',$request->lost)->update(["status" => 3]);
-
+        $inventaire->assets()->attach((\App\asset::where('selectInv','=',1)->get()));
+        foreach(\App\asset::all() as $asset){
+            
+            if ($asset->selectInv) {
+                DB::table('asset_inventaire')->where('asset_id',$asset->id)->update(["status" => $asset->status]);
+                $asset->selectInv=0;
+                $asset->save();
+            }
+        }
         
         return redirect()->route('indexInventaire');
     }
@@ -149,19 +149,9 @@ class InventaireController extends Controller
     }
 
 
+   
     public function EtageInv(Request $request){
-        $data=[];
-        $data[0]=\App\block::select('sous','nbre_Etage')->where('id',$request->id)->first();
-        $data[2]=[];
-        foreach (\App\asset::all() as $asset) {
-            if ($asset->bureau_id && $asset->status = [0,1,2] && \App\bureau::find($asset->bureau_id)->block_id == $request->id) {
-                $data[2][1][]=$asset->bureau->block->name;
-                $data[2][2][]=$asset->bureau->etage;
-                $data[2][3][]=$asset->bureau->name;
-                $data[2][4][]=$asset->name;
-                $data[2][5][]=$asset->id;
-            }
-        }    
+        $data=\App\block::select('sous','nbre_Etage')->where('id',$request->id)->first();    
         $request->session()->put('blockID', $request->id);
         return response()->json($data);
     }
@@ -172,19 +162,7 @@ class InventaireController extends Controller
 
         foreach ($bureaus as $bureau) {
                 if ($bureau->etage==$request->id) {
-                    $data[1][]=$bureau;
-                    $assets=$bureau->assets;
-                  foreach ($assets as $asset) {
-                    if ($asset->status = [0,1,2]) {
-                        
-                    $data[2][1][]=$asset->bureau->block->name;
-                    $data[2][2][]=$asset->bureau->etage;
-                    $data[2][3][]=$asset->bureau->name;
-                    $data[2][4][]=$asset->name;
-                    $data[2][5][]=$asset->id;
-                    
-                }  
-                }
+                    $data[]=$bureau;
             }
         }
             $request->session()->put('etage', $request->id);
@@ -196,23 +174,42 @@ class InventaireController extends Controller
         $id=$request->session()->get('blockID');
         $etage=$request->session()->get('etage');
         $bureaus=\App\block::find($id)->bureaus;
-        
+
         foreach ($bureaus as $bureau) {
                 if ($bureau->id==$request->id && $bureau->etage == $etage) {
                     $assets=$bureau->assets;
                   foreach ($assets as $asset) {
                     if ($asset->status = [0,1,2]) {
-                        
+
                     $data[1][]=$asset->bureau->block->name;
                     $data[2][]=$asset->bureau->etage;
                     $data[3][]=$asset->bureau->name;
                     $data[4][]=$asset->name;
                     $data[5][]=$asset->id;
-                    
+                    $data[6][]=$asset->selectInv;
+                    $data[7][]=\App\asset::select('status')->where('id',$asset->id)->first();
+
                 }  
                 }
             }
         }
         return response()->json($data);
+    }
+    public function checkfine(Request $request){
+        \App\asset::where('id',$request->id)->update(['selectInv' => 1,'status' => 1]);
+        return redirect()->back();
+    }
+    public function checkdamaged(Request $request){
+        \App\asset::where('id',$request->id)->update(['selectInv' => 1,'status' => 2]);
+        return redirect()->back();
+    }
+    public function checklost(Request $request){
+        \App\asset::where('id',$request->id)->update(['selectInv' => 1,'status' => 3]);
+        return redirect()->back();
+    }
+
+    public function uncheckAsset(Request $request){
+        \App\asset::where('id',$request->id)->update(['selectInv' => 0,'status' => 0]);
+        return redirect()->back();
     }
 }

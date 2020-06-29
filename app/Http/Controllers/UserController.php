@@ -32,7 +32,10 @@ class UserController extends Controller
 
         return view('test')->with('user',Auth()->user());
     }
+    public function test2(){
 
+        return view('test2')->with('user',Auth()->user());
+    }
     public function list(){
         $assets = \App\asset::all();
         return view('app.assetList')->with('assets',$assets);

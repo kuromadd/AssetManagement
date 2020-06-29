@@ -26,7 +26,8 @@ class CreateAssetsTable extends Migration
             $table->boolean('occupied')->default(0); 
             $table->boolean('etat')->default(0); 
             $table->integer('fournisseur_id')->nullable();  
-            $table->string('qrcode')->nullable();         
+            $table->string('qrcode')->nullable();      
+            $table->boolean('selectInv')->nullable();   
             $table->timestamps();
         });
     }
