@@ -1,155 +1,170 @@
 @extends('app.edit_layout')
 @section('content')
 <style>
-:root{
-  --background-dark: #2d3548;
-  --text-light: rgba(255,255,255,0.6);
-  --text-lighter: rgba(255,255,255,0.9);
-  --spacing-s: 8px;
-  --spacing-m: 16px;
-  --spacing-l: 24px;
-  --spacing-xl: 32px;
-  --spacing-xxl: 64px;
-  --width-container: 1200px;
+@blue: #4cc9c8;
+@pink: #fa001a;
+
+.dots(@color) {
+  background:
+    radial-gradient(@color 20%, transparent 19%),
+    radial-gradient(@color 20%, transparent 19%),
+    transparent;
+  background-size: 6px 6px;
+  background-position: 0 0, 3px 3px;
 }
 
-*{
-  border: 0;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html{
-  height: 100%;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-}
-
-
-.hero-section{
-  align-items: flex-start;
-  background-image: linear-gradient(15deg, #0f4667 0%, #2a6973 150%);
-  display: flex;
-  min-height: 100%;
-  justify-content: center;
-  padding: var(--spacing-xxl) var(--spacing-l);
-}
-
-.card-grid{
+.card {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-column-gap: var(--spacing-l);
-  grid-row-gap: var(--spacing-l);
-  max-width: var(--width-container);
-  width: 100%;
+  font-family: 'Trebuchet MS', sans-serif;
+  height: 200px;
+  margin: 20px auto;
+  width: 350px;
 }
 
-@media(min-width: 540px){
-  .card-grid{
-    grid-template-columns: repeat(2, 1fr); 
+// Front of card
+
+.front {
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  
+  .blue {
+    background-color: @blue;
+    grid-column: 8 / span 5;
+    grid-row: 1 / span 4;
+  }
+
+  .yellow {
+    background-color: #f1ef1c;
+    grid-column: 1 / span 7;
+    grid-row: 1 / span 4;
+  }
+
+  .pink {
+    background-color: @pink;
+    clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+    grid-row: 1 / span 3;
+    grid-column: 1 / span 11;
+    position: relative;
+    z-index: 2;
+  }
+
+  .dots {
+    .dots(@pink);
+    grid-column: 1 / span 12;
+    grid-row: 3 / span 2;
+    margin: 0 0 15px 20px;
+    z-index: 1;
+  }
+
+  .personal-intro {
+    background: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    grid-column: 4 / span 6;
+    grid-row: 2 / span 2;
+    justify-content: center;
+    text-align: center;
+    z-index: 3;
+    p {
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      &:first-of-type {
+        font-size: 18px;
+      }
+      &:last-of-type {
+        font-size: 8px;
+        margin-top: 5px;
+      }
+    }
   }
 }
 
-@media(min-width: 960px){
-  .card-grid{
-    grid-template-columns: repeat(4, 1fr); 
+
+// Back of card
+
+.back {
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  
+  .yellow {
+    background-color: #f1ef1c;
+    grid-column: 1 / span 9;
+    grid-row: 1 / span 3;
+  }
+  
+  .top.dots {
+    .dots(@blue);
+    grid-column: 8 / span 6;
+    grid-row: 2 / span 3;
+  }
+  
+  .personal-info {
+    grid-column: 2 / span 6;
+    grid-row: 5 / span 6;
+    p {
+      font-size: 10px;
+      &:first-of-type {
+        font-size: 18px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      &:nth-of-type(2){
+        font-size: 12px;
+        margin-bottom: 15px;
+      }
+    }
+  }
+  
+  .bottom.dots {
+    .dots(@blue);
+    grid-column: 1 / span 8;
+    grid-row: 11 / span 2;
+    z-index: 2;
+  }
+  
+  .pink {
+    background-color: @pink;
+    grid-column: 8 / span 5;
+    grid-row: 10 / span 3;
   }
 }
 
-.card{
-  list-style: none;
-  position: relative;
-  background: none;
-}
 
-.card:before{
-  content: '';
-  display: block;
-  padding-bottom: 150%;
-  width: 100%;
-}
 
-.card__background{
-  background-size: cover;
-  background-position: center;
-  border-radius: var(--spacing-l);
-  bottom: 0;
-  filter: brightness(0.75) saturate(1.2) contrast(0.85);
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transform-origin: center;
-  trsnsform: scale(1) translateZ(0);
-  transition: 
-    filter 200ms linear,
-    transform 200ms linear;
-}
 
-.card:hover .card__background{
-  transform: scale(1.05) translateZ(0);
-}
-
-.card-grid:hover > .card:not(:hover) .card__background{
-  filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
-}
-
-.card__content{
-  left: 0;
-  padding: var(--spacing-l);
-  position: absolute;
-  top: 0;
-}
-
-.card__category{
-  color: var(--text-light);
-  font-size: 0.9rem;
-  margin-bottom: var(--spacing-s);
-  text-transform: uppercase;
-}
-
-.card__heading{
-  color: var(--text-lighter);
-  font-size: 1.9rem;
-  text-shadow: 2px 2px 20px rgba(0,0,0,0.2);
-  line-height: 1.4;
-  word-spacing: 100vw;
-}
 </style>
-<body>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
-<section class="hero-section">
-  <div class="card-grid">
-    <a class="card" href="#">
-      <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557177324-56c542165309?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)"></div>
-      <div class="card__content">
-        <p class="card__category">Category</p>
-        <h3 class="card__heading">Example Card Heading</h3>
-      </div>
-    </a>
-    <a class="card" href="#">
-      <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557187666-4fd70cf76254?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
-      <div class="card__content">
-        <p class="card__category">Category</p>
-        <h3 class="card__heading">Example Card Heading</h3>
-      </div>
-    </a>
-    <a class="card" href="#">
-      <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1556680262-9990363a3e6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
-      <div class="card__content">
-        <p class="card__category">Category</p>
-        <h3 class="card__heading">Example Card Heading</h3>
-      </div>
-    </li>
-    <a class="card" href="#">
-      <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
-      <div class="card__content">
-        <p class="card__category">Category</p>
-        <h3 class="card__heading">Example Card Heading</h3>
-      </div>
-    </a>
-  <div>
-</section>
+<div class="card front">
+  <div class="blue"></div>
+  <div class="yellow"></div>
+  <div class="pink"></div>
+  <div class="dots"></div>
+  <div class="personal-intro">
+    <p>Krista Stone</p>
+    <p>Photographer Maker Doer</p>
+  </div>
+</div>
+<div class="card back">
+  <div class="yellow"></div>
+  <div class="top dots"></div>
+  <div class="personal-info">
+    <p>Krista Stone</p>
+    <p>Photographer. Maker. Doer.</p>
+    <p>123 Address St</p>
+    <p>Sacramento, CA 14234</p>
+    <p>567.890.1234</p>
+    <p>www.kristastone.com</p>
+    <p>@kristastone</p>
+  </div>
+  <div class="bottom dots"></div>
+  <div class="pink"></div>
+</div><script src="">
+// Playing around with css grid, flexbox, clip-path, and radial-gradient
+
+// Recreating the business card template as found here: https://novadonna.me/product/business-card-template-designs-pop-geometric/ 
+</script>
+
 @endsection

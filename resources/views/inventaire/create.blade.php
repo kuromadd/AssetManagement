@@ -170,10 +170,13 @@
                                  });  
                            
                             </script>  
+                            <script src="/bower_components/persistencejs/lib/persistence.js"></script>
+                            <script src="/bower_components/persistencejs/lib/persistence.store.sql.js"></script>
+                            <script src="/bower_components/persistencejs/lib/persistence.store.websql.js"></script>
                             <script type="text/javascript">
                               function checkfine(id) {
                                 
-                                db.assets.update().set("name", "Beijing").where("id = "+id+"");
+                              connection.query('UPDATE assets SET name = ? WHERE id = ?', ['khh', id]);
 
                              }
                              function checkdamaged(id) {
