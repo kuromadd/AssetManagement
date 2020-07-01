@@ -27,7 +27,7 @@
                     <select class="form-control" disabled name="block_id" id="block_id">
                         @foreach(\App\block::all() as $block)
                     <option value="{{ $block->id }}"
-                        @if ($block_id ?? ''== $bureau->block_id)
+                        @if ($block->id ?? ''== $bureau->block_id)
                         selected
                     @endif
                         >{{$block->name}}</option>

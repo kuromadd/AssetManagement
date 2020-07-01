@@ -47,6 +47,7 @@ Route::post('/admin/User/store','UserController@store')->name('storeUser');
 Route::get('/admin/User/edit/{id}','UserController@edit')->name('editUser');
 Route::post('/admin/User/update/{id}','UserController@update')->name('updateUser');
 Route::get('/admin/User/delete/{id}','UserController@destroy')->name('deleteUser');
+Route::get('/admin/user/show/{id}','UserController@show')->name('showUser');
 
 Route::post('/admin/role/updateAll','rolesController@updateAll')->name('updateAll');
 Route::post('/admin/role/updateAllper','UserController@updateAll')->name('updateAllper');
@@ -71,6 +72,7 @@ Route::get('/Inventaire/delete/{id}','InventaireController@destroy')->name('dele
 
 Route::get('/reparation/index','ReparationController@index')->name('indexReparation');
 Route::get('/reparation/create','ReparationController@create')->name('createReparation');
+Route::get('/reparation/show/{id}','reparationController@show')->name('showReparation');
 Route::post('/reparation/store','ReparationController@store')->name('storeReparation');
 Route::get('/reparation/edit/{id}','ReparationController@edit')->name('editReparation');
 Route::post('/reparation/update/{id}','ReparationController@update')->name('updateReparation');

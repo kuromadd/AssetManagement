@@ -13,7 +13,7 @@
                        
                     
                     <label class="form-control-label" for="name">{{ __('Name') }}</label>
-                    <input type="text" name="name" id="name" value="{{$user->name}}" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('name') }}" required>
+                    <input type="text" name="name" id="name" value="{{$user->name}}" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('name') }}" disabled>
                     
                     @if ($errors->has('name'))
                     <span class="invalid-feedback" role="alert">
@@ -23,7 +23,7 @@
 
                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                     <label class="form-control-label" for="email">{{ __('Email') }}</label>
-                    <input type="email" name="email" id="email" value="{{$user->email}}" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('example@gmail.com') }}" required>
+                    <input type="email" name="email" id="email" value="{{$user->email}}" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('example@gmail.com') }}" disabled>
 
                     @if ($errors->has('email'))
                         <span class="invalid-feedback" role="alert">
