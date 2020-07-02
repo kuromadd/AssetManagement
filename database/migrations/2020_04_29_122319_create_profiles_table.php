@@ -19,8 +19,10 @@ class CreateProfilesTable extends Migration
             $table->string('back_image')->nullable();
             $table->text('about')->nullable();
             $table->integer('user_id');
-            $table->string('facebook')->nullable();
-            $table->string('youtube')->nullable();
+            $table->date('birthdate')->nullable();
+            $table->string('birthplace')->nullable();
+            $table->string('job')->nullable();
+            $table->string('university')->nullable();
             $table->timestamps();
         });
     }

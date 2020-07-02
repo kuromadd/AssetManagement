@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
- 
 
     <title>{{ config('app.name', 'Argon Dashboard') }}</title>
     <!-- Favicon -->
@@ -32,8 +31,6 @@
         <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
     </a>
     <!-- User -->
-
-
     <ul class="nav align-items-center d-md-none">
         <li class="nav-item dropdown">
             <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -113,7 +110,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('scan') }}">
                     <i class="fa fa-qrcode text-primary"></i>
-                <span class="nav-link-text text-red">Scan !!</span>
+                    <span class="nav-link-text text-red">Scan !!</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -225,7 +222,7 @@
                     </ul>
                 </div>
             </li>
-           
+            
             <li class="nav-item">
                 <a class="nav-link" href="{{route('indexReparation')}}">
                     <i class="ni ni-settings-gear-65 text-blue"></i> 
@@ -234,10 +231,10 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{route('indexMission')}}">
-                    <i class="fa fa-tasks text-blue"></i>
+                   <i class="fa fa-tasks text-blue"></i>
                     <span class="text text-red"> Missions </span>
                 </a>
-            </li> 
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{route('indexFournisseur')}}">
                     <i class="fab fa-ravelry text-blue"></i> 
@@ -253,7 +250,11 @@
         </ul>
         <!-- Divider -->
         <hr class="my-3">
-       
+
+        <!-- Heading -->
+        <h6 class="navbar-heading text-muted">Documentation</h6>
+        <!-- Navigation -->
+        
     </div>
 </div>
 </nav>                
@@ -283,7 +284,7 @@
                         <img alt="Image placeholder" src="{{ asset($user->profile->image) }}">
                     </span>
                     <div class="media-body ml-2 d-none d-lg-block">
-                        <span class="mb-0 text-sm  font-weight-bold">{{$user->name}}</span>
+                    <span class="mb-0 text-sm  font-weight-bold">{{ $user->name }}</span>
                     </div>
                 </div>
             </a>
@@ -320,18 +321,174 @@
 </nav>    
 <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
 <div class="container-fluid">
+    <br><br><br>
+    <div class="header-body">
+        <!-- Card stats -->
+        <div class="row">
+            <div class="col-xl-3 col-lg-6">
+                <div class="card card-stats mb-4 mb-xl-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
+                                <span class="h2 font-weight-bold mb-0">350,897</span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-3 mb-0 text-muted text-sm">
+                            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                            <span class="text-nowrap">Since last month</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+                <div class="card card-stats mb-4 mb-xl-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+                                <span class="h2 font-weight-bold mb-0">2,356</span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                                    <i class="fas fa-chart-pie"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-3 mb-0 text-muted text-sm">
+                            <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                            <span class="text-nowrap">Since last week</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+                <div class="card card-stats mb-4 mb-xl-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
+                                <span class="h2 font-weight-bold mb-0">924</span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-3 mb-0 text-muted text-sm">
+                            <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                            <span class="text-nowrap">Since yesterday</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+                <div class="card card-stats mb-4 mb-xl-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
+                                <span class="h2 font-weight-bold mb-0">49,65%</span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                                    <i class="fas fa-percent"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-3 mb-0 text-muted text-sm">
+                            <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                            <span class="text-nowrap">Since last month</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">Users</h3>
+                        </div>
+                        <div class="col-4 text-right">
+                            @can('User-create')<a href="#popupuc" class="btn btn-sm btn-primary">Add user</a>@endcan
+                        </div>
+                    </div>
+                </div>
+                
 
-  
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">&#160&#160Name</th>
+                                <th scope="col">&#160&#160Email</th>
+                                <th scope="col">&#160&#160Creation Date</th>
+                                <th scope="col">&#160Role</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($users as $user)
+                        <tr>
+                            <td>{{$user->name}}</td>
+                            <td>
+                                <a href="mailto:{{$user->email}}">{{$user->email}}</a>
+                            </td>
+                            <td>{{$user->created_at}}</td>
+                            <td>
+                            @if(!empty($user->getRoleNames()))
+                            @foreach($user->getRoleNames() as $v)
+                               <label class="badge badge-success">{{ $v }}</label>
+                            @endforeach
+                            </td>                      
+                            @else
+                            <td>none</td>
+                            @endif
+                            <td class="text-right">
+                                <div class="dropdown">
+                                    <a class="btn btn-sm btn-icon-only " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                                                                
+                                        @can('User-edit')<a class="dropdown-item" href="{{ route('editUser',$user->id) }}"><i class="fa fa-edit fa-fw"></i></i> edit</a>@endcan
+                                        @can('User-delete')<a class="dropdown-item" href="{{ route('deleteUser',$user->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>@endcan
+                                    </div>
+                                                                                                
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        @endforeach    
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer py-4">
+                    <nav class="d-flex justify-content-end" aria-label="...">
+                        {!! $users->render() !!}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    @include('admin.user.create')    
+     
 </div>
 </div>
-<div class="container-fluid mt--7">     
-    
-    @yield('content')
-    
-</div>
-</div>
-
-
 
     
     <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
@@ -340,20 +497,4 @@
             
     <!-- Argon JS -->
     <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
-
- 
-
-
-
-    <!--css-->
-    <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
-    <!--js-->
-    <script src="{{ asset('js/toastr.min.js') }}"></script>    
-
-@if (Session::has('success'))
-<script>
-    toastr.success('{{ Session::get('success') }}');
-</script>            
-@endif
-</body>
-</html>
+</body></html>

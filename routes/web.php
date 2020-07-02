@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/test','UserController@test');
+Route::get('/test2','UserController@test2');
 Route::get('/list','UserController@list')->name('assetList');
 Route::get('/deselect/{id}','AssetController@reset')->name('reset');
 Route::post('/save','AssetController@saveall')->name('save');
@@ -46,6 +47,7 @@ Route::post('/admin/User/store','UserController@store')->name('storeUser');
 Route::get('/admin/User/edit/{id}','UserController@edit')->name('editUser');
 Route::post('/admin/User/update/{id}','UserController@update')->name('updateUser');
 Route::get('/admin/User/delete/{id}','UserController@destroy')->name('deleteUser');
+Route::get('/admin/user/show/{id}','UserController@show')->name('showUser');
 
 Route::post('/admin/role/updateAll','rolesController@updateAll')->name('updateAll');
 Route::post('/admin/role/updateAllper','UserController@updateAll')->name('updateAllper');
@@ -62,6 +64,7 @@ Route::get('/asset/found/{id}','AssetController@found')->name('foudAsset');
 
 Route::get('/Inventaire/index','InventaireController@index')->name('indexInventaire');
 Route::get('/Inventaire/create','InventaireController@create')->name('createInventaire');
+Route::get('/Inventaire/complete','InventaireController@complete')->name('completeInventaire');
 Route::post('/Inventaire/store','InventaireController@store')->name('storeInventaire');
 Route::get('/Inventaire/edit/{id}','InventaireController@edit')->name('editInventaire');
 Route::post('/Inventaire/update/{id}','InventaireController@update')->name('updateInventaire');
@@ -69,6 +72,7 @@ Route::get('/Inventaire/delete/{id}','InventaireController@destroy')->name('dele
 
 Route::get('/reparation/index','ReparationController@index')->name('indexReparation');
 Route::get('/reparation/create','ReparationController@create')->name('createReparation');
+Route::get('/reparation/show/{id}','reparationController@show')->name('showReparation');
 Route::post('/reparation/store','ReparationController@store')->name('storeReparation');
 Route::get('/reparation/edit/{id}','ReparationController@edit')->name('editReparation');
 Route::post('/reparation/update/{id}','ReparationController@update')->name('updateReparation');
@@ -154,5 +158,11 @@ Route::get('/exist/{qrcode}','assetController@exist')->name('exist');
 
 Route::get('/checkqr/{qrcode}','auth\LoginController@checkQR')->name('qrcheck');
 
+Route::get('/checkfine','inventaireController@checkfine')->name('checkfine');
+Route::get('/checkdamaged','inventaireController@checkdamaged')->name('checkdamaged');
+Route::get('/checklost','inventaireController@checklost')->name('checklost');
+Route::get('/uncheckAsset','inventaireController@uncheckAsset')->name('uncheckAsset');
 
+Route::get('/getbureau/{id}/{etage}','inventaireController@BureauInv')->name('getbureau');
+Route::get('/getasset/{id}','inventaireController@assetInv')->name('getA');
 

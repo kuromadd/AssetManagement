@@ -32,7 +32,10 @@ class UserController extends Controller
 
         return view('test')->with('user',Auth()->user());
     }
+    public function test2(){
 
+        return view('test2')->with('user',Auth()->user());
+    }
     public function list(){
         $assets = \App\asset::all();
         return view('app.assetList')->with('assets',$assets);
@@ -121,6 +124,9 @@ class UserController extends Controller
     public function show($id)
     {
         //
+        $user =User::find($id);
+        return view('admin.user.show', compact('user'));
+
     }
 
     /**
@@ -148,15 +154,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'name' => 'required',
-            'email' => 'required|email',
             'role' =>'required'
         ]);
 
         $user = \App\User::find($id);
 
-        $user->name = $request->name;
-        $user->email = $request->email;
         $user->save();
         DB::table('model_has_roles')->where('Model_id',$id)->delete();
         $user->assignRole($request->input('role'));
