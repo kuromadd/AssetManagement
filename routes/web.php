@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -142,6 +141,7 @@ Route::group(['middleware' => ['auth']], function() {
 });
 });
 
+
 Route::get('/q', function () {
     return view('test.index');
 });
@@ -151,3 +151,8 @@ Route::get('/qr', function () {
 });
 Route::get('/scan','assetController@scan')->name('scan');
 Route::get('/exist/{qrcode}','assetController@exist')->name('exist');
+
+Route::get('/checkqr/{qrcode}','auth\LoginController@checkQR')->name('qrcheck');
+
+
+

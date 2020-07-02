@@ -1,7 +1,11 @@
 @extends('app.edit_layout')  
 @section('content')
 
+<<<<<<< HEAD
 
+=======
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+>>>>>>> 643516987fbeadb6b5b99bf5ab890447026af245
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <form action="{{ route('storeInventaire') }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
@@ -19,7 +23,12 @@
                           </div>
                       </div>
                   </div>
+<<<<<<< HEAD
 
+=======
+                    <ul style="display: inline-block">
+                      <li>
+>>>>>>> 643516987fbeadb6b5b99bf5ab890447026af245
                     <label for="block_d">next block</label>
                     <select class="form-control blockID" name="block_d">
                         <option value="0" disabled selected>--Select--</option>
@@ -27,6 +36,7 @@
                     <option value="{{$block->id}}">{{ $block->name }}</option>
                         @endforeach
                     </select>
+<<<<<<< HEAD
 
                     <label for="etage_d" >next etage</label>
                        <select class="form-control NbEtage" name="etage_d" id="etage_d">                           
@@ -37,6 +47,18 @@
                     <select class="form-control NBureau " name="bureau_d" id="bureau_d">                           
                         
                     </select>
+=======
+                  </li><li>
+                    <label for="etage_d" >next etage</label>
+                       <select class="form-control NbEtage" name="etage_d" id="etage_d">                           
+                       </select>
+                      </li><li>
+                    <label for="bureau_d">next bureau</label>
+                    <select class="form-control NBureau " name="bureau_d" id="bureau_d">                           
+                    </select>
+                  </li>
+                  </ul>
+>>>>>>> 643516987fbeadb6b5b99bf5ab890447026af245
       <div class="table-responsive">
         
         <table class="table align-items-center table-flush " id="tableInv">
@@ -50,31 +72,54 @@
                 <th scope="col">repair</th>
                 <th scope="col">lost</th>
             </tr>    
-            </thead>    
-            <tbody>
+            </thead>
+             
+            <tbody >
               <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js">//for selecting one checkAT TIME</script>
             @foreach($assets as $asset)
             @if ($asset->bureau_id && $asset->status = [0,1,2])
+<<<<<<< HEAD
             <tr>
+=======
+            <tr id="checkbox-container">
+>>>>>>> 643516987fbeadb6b5b99bf5ab890447026af245
             <td style="margin: "><h4 class="mb-0">{{ $asset->bureau->block->name }}</h4></td>
               <td style="width: "><h4 class="mb-0"> {{$asset->bureau->etage}} </h4></td>
             <td style="width: "><h4 class="mb-0">{{$asset->bureau->name}}</h4></td>
               <td style="width: "><h4 class="mb-0">{{$asset->name }}</h4></td> 
               
               <td >
-                <input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}">
+                <input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }} " id="option1{{$asset->id}}">
              
                 </td>
               <td >
-                <input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}">
+                <input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}" id="option2{{$asset->id}}">
                
                 </td>
                 <td >
-                <input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}">
-                  
+                <input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list{{$asset->id}} " value="{{ $asset->id }}" id="option3{{$asset->id}}">
                 </td>
             </tr>
+
+            <script>
+  
+              var checkboxValues = JSON.parse(localStorage.getItem('checkboxValues')) || {},
+                  $checkboxes = $("#checkbox-container :checkbox");
+              
+              $checkboxes.on("change", function(){
+                $checkboxes.each(function(){
+                  checkboxValues[this.id] = this.checked;
+                });
                 
+                localStorage.setItem("checkboxValues", JSON.stringify(checkboxValues));
+              });
+              
+              // On page load
+              $.each(checkboxValues, function(key, value) {
+                $("#" + key).prop('checked', value);
+                console.log("#" + key);
+              });
+            </script>         
             @endif
             <script type="text/javascript">
       
@@ -84,6 +129,10 @@
           
             </script>
             @endforeach
+<<<<<<< HEAD
+=======
+            
+>>>>>>> 643516987fbeadb6b5b99bf5ab890447026af245
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
             <script type="text/javascript"> 
                                  $(document).ready(function(){
@@ -114,7 +163,11 @@
                                                     
                                                     $("#tableInv").empty(); 
                                                  for(var i=0 ; i<list[1].length ; i++){
+<<<<<<< HEAD
                                                   $("#tableInv").append('<tr><td style="margin: "><h4 class="mb-0"> '+ list[0][i]+'</h4></td><td style="width: "><h4 class="mb-0">  '+ list[1][i]+'</h4></td><td style="width: "><h4 class="mb-0"> '+ list[2][i]+'</h4></td><td style="width: "><h4 class="mb-0">'+list[3][i]+'</h4></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list'+list[4][i]+' " value="'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'"></td></tr>');
+=======
+                                                  $("#tableInv").append('<tr><td style="margin: "><h4 class="mb-0"> '+ list[0][i]+'</h4></td><td style="width: "><h4 class="mb-0">  '+ list[1][i]+'</h4></td><td style="width: "><h4 class="mb-0"> '+ list[2][i]+'</h4></td><td style="width: "><h4 class="mb-0">'+list[3][i]+'</h4></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'" id="option'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list'+list[4][i]+' " value="'+list[4][i]+'" id="option'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'" id="option'+list[4][i]+'"></td></tr><script type="text/javascript">$(\'.subject-list\'.concat('+list[4][i]+')).on(\'change\', function() {$(\'.subject-list\'.concat('+list[4][i]+')).not(this).prop(\'checked\', false);});<'+'/script>');
+>>>>>>> 643516987fbeadb6b5b99bf5ab890447026af245
                                                   }
                                             
                                           }      
@@ -157,7 +210,11 @@
                                          
                                       $("#tableInv").empty(); 
                                             for(var i=0 ; i<list[1].length ; i++){
+<<<<<<< HEAD
                                             $("#tableInv").append('<tr><td style="margin: "><h4 class="mb-0"> '+ list[0][i]+'</h4></td><td style="width: "><h4 class="mb-0">  '+ list[1][i]+'</h4></td><td style="width: "><h4 class="mb-0"> '+ list[2][i]+'</h4></td><td style="width: "><h4 class="mb-0">'+list[3][i]+'</h4></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list'+list[4][i]+' " value="'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'"></td></tr>');
+=======
+                                            $("#tableInv").append('<tr><td style="margin: "><h4 class="mb-0"> '+ list[0][i]+'</h4></td><td style="width: "><h4 class="mb-0">  '+ list[1][i]+'</h4></td><td style="width: "><h4 class="mb-0"> '+ list[2][i]+'</h4></td><td style="width: "><h4 class="mb-0">'+list[3][i]+'</h4></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'"id="option'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list'+list[4][i]+' " value="'+list[4][i]+'" id="option'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'" id="option'+list[4][i]+'"></td></tr><script type="text/javascript">$(\'.subject-list\'.concat('+list[4][i]+')).on(\'change\', function() {$(\'.subject-list\'.concat('+list[4][i]+')).not(this).prop(\'checked\', false);});<'+'/script>');
+>>>>>>> 643516987fbeadb6b5b99bf5ab890447026af245
                                           }
                                             
                                           }      
@@ -188,7 +245,11 @@
                                          
                                       $("#tableInv").empty(); 
                                             for(var i=0 ; i<list[1].length ; i++){
+<<<<<<< HEAD
                                             $("#tableInv").append('<tr><td style="margin: "><h4 class="mb-0"> '+ list[0][i]+'</h4></td><td style="width: "><h4 class="mb-0">  '+ list[1][i]+'</h4></td><td style="width: "><h4 class="mb-0"> '+ list[2][i]+'</h4></td><td style="width: "><h4 class="mb-0">'+list[3][i]+'</h4></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list'+list[4][i]+' " value="'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'"></td></tr>');
+=======
+                                            $("#tableInv").append('<tr><td style="margin: "><h4 class="mb-0"> '+ list[0][i]+'</h4></td><td style="width: "><h4 class="mb-0">  '+ list[1][i]+'</h4></td><td style="width: "><h4 class="mb-0"> '+ list[2][i]+'</h4></td><td style="width: "><h4 class="mb-0">'+list[3][i]+'</h4></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'" id="option'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list'+list[4][i]+' " value="'+list[4][i]+'" id="option'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'" id="option'+list[4][i]+'"></td></tr><script type="text/javascript">$(\'.subject-list\'.concat('+list[4][i]+')).on(\'change\', function() {$(\'.subject-list\'.concat('+list[4][i]+')).not(this).prop(\'checked\', false);});<'+'/script>');
+>>>>>>> 643516987fbeadb6b5b99bf5ab890447026af245
                                           }
                                             
                                           }      
@@ -201,8 +262,16 @@
                                  });
                                  });                                  
                             </script>  
+<<<<<<< HEAD
                                                               
+=======
+                                     
+>>>>>>> 643516987fbeadb6b5b99bf5ab890447026af245
             </tbody>
+        
+     
+          </div>
+          
         </table>
          
     </div>

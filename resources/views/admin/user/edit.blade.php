@@ -41,6 +41,27 @@
                         </select>
                     </div>
     
+                    <script type="text/javascript" src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.js"></script>
+
+
+<div style="margin: 2%;margin-left:33%" id="qrcode"></div>
+
+<script>
+
+    var userInput = <?php echo json_encode($user->qrcode); ?>
+
+    var qrcode = new QRCode("qrcode", {
+        text: userInput,
+        width: 200,
+        height: 200,
+        colorDark: "black",//#5e72e4
+        colorLight: "white",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+    
+   
+</script>
+
                     
                     <div class="text-center">
                         <button type="submit" class="btn btn-success">update</button>

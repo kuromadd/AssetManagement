@@ -65,12 +65,16 @@ class InventaireController extends Controller
         if($request->has('repair')) \App\asset::whereIn('id',$request->repair)->update(["status" => 2,"occupied" => 1]);
         if($request->has('lost')) \App\asset::whereIn('id',$request->lost)->update(["status" => 3,"occupied" => 1]);
         $inventaire->assets()->attach((\App\asset::where('occupied','=',1)->get()));
+<<<<<<< HEAD
         foreach (\App\asset::all() as $value) {
             if ($value->bureau_id && (\App\bureau::find($value->bureau_d))->type == 'stock') {
                 \App\asset::whereIn('id', $value->id)->update(["occupied" => 0]);
             }
         }
         if($request->has('lost')) \App\asset::whereIn('id',$request->fine)->update(["occupied" => 1]);
+=======
+       
+>>>>>>> 643516987fbeadb6b5b99bf5ab890447026af245
         if($request->has('fine')) DB::table('asset_inventaire')->whereIn('asset_id',$request->fine)->update(["status" => 1]);
         if($request->has('repair')) DB::table('asset_inventaire')->whereIn('asset_id',$request->repair)->update(["status" => 2]);
         if($request->has('lost')) DB::table('asset_inventaire')->whereIn('asset_id',$request->lost)->update(["status" => 3]);
@@ -124,12 +128,21 @@ class InventaireController extends Controller
         if($request->has('repair')) \App\asset::whereIn('id',$request->repair)->update(["status" => 2,"occupied" => 1]);
         if($request->has('lost')) \App\asset::whereIn('id',$request->lost)->update(["status" => 3,"occupied" => 1]);
         $inventaire->assets()->sync((\App\asset::where('occupied','=',1)->get()));
+<<<<<<< HEAD
         foreach (\App\asset::all() as $value) {
             if (\App\bureau::find($value->bureau_d)->type == 'stock') {
                 \App\asset::whereIn('id', $value->id)->update(["occupied" => 0]);
             }
         }
         if($request->has('lost')) \App\asset::whereIn('id',$request->fine)->update(["occupied" => 1]);
+=======
+        /*foreach (\App\asset::all() as $value) {
+            if (\App\bureau::find($value->bureau_id)->type == 'stock') {
+                \App\asset::whereIn('id', $value->id)->update(["occupied" => 0]);
+            }
+        }*/
+        //if($request->has('lost')) \App\asset::whereIn('id',$request->fine)->update(["occupied" => 1]);
+>>>>>>> 643516987fbeadb6b5b99bf5ab890447026af245
         if($request->has('fine')) DB::table('asset_inventaire')->whereIn('asset_id',$request->fine)->update(["status" => 1]);
         if($request->has('repair')) DB::table('asset_inventaire')->whereIn('asset_id',$request->repair)->update(["status" => 2]);
         if($request->has('lost')) DB::table('asset_inventaire')->whereIn('asset_id',$request->lost)->update(["status" => 3]);
