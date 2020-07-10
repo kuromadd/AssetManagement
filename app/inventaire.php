@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class inventaire extends Model
 {
-    public function assets(){
-        return $this->belongsToMany('\App\asset');
+    protected $fillable = [
+        'name',
+        'description',
+    ];
+    public function bureaus(){
+        return $this->belongsToMany('\App\bureau');
     }
 }

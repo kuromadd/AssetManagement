@@ -16,7 +16,9 @@ class asset extends Model
    public function inventaires(){
        return $this->belongsToMany('\App\inventaire')->withPivot('id');
    }
-   
+   public function users(){
+    return $this->belongsToMany('\App\User')->withPivot('id');
+}
    public function missions(){
        return $this->hasMany('\App\Mission');
    }

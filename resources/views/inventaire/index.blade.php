@@ -9,11 +9,7 @@
                             <h3 class="mb-0">Inventaires</h3>
                         </div>
                         <div class="col-4 text-right">
-                            @if(DB::table('assets')->where('selectInv',1)->get()->count())
-                            @can('inventaire-create')<a href="{{route('completeInventaire')}}" class="btn btn-sm btn-danger">complete Inv</a>@endcan    
-                            @else
                             @can('inventaire-create')<a href="{{route('createInventaire')}}" class="btn btn-sm btn-primary">Add inventaire</a>@endcan
-                            @endif
                         </div>
                     </div>
                 </div>

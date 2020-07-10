@@ -1,6 +1,11 @@
 @extends('app.edit_layout') 
 @section('content')
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.js"></script>
+
 <style>
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
@@ -214,78 +219,89 @@ a:active {
   text-decoration: underline;
 }
 
+
+canvas {
+                display: none;
+            }
+            hr {
+                margin-top: 32px;
+            }
+            input[type="file"] {
+                display: block;
+                margin-bottom: 16px;
+            }
+            div {
+                margin-bottom: 16px;
+            }
 </style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+<style type="text/css">
+    #results { padding:20px; border:1px solid; background:#ccc; }
+.Camera {
+    width: 320px;
+    height: 240px;
+    border: 1px solid black;
+}
+
+</style>
+
 <div class="row">
   <div class="col">
-      <div class="card shadow" style="height: auto; width: 50%;margin-left:22% ">
-          <div class="card-header border-0">
-              <div class="row align-items-center">
-                  <div class="col-8">
-                  <h3 class="mb-0">{{$asset->name}}</h3>
-                  </div>
-              </div>
-          </div>
+      <div class="card shadow" style="height: auto; width: 67%;margin-left:14% ">
           
-    <div class="card-body">
-      <a style="display: inline-block;margin: 9%" onclick="checkfine({{$asset->id}})">
-        <div class="basicBox">
-           fine
-          <svg width="130" height="65" viewBox="0 0 130 65" xmlns="http://www.w3.org/2000/svg">
-            <rect x='0' y='0' fill='none' width='130' height='65'/>
-          </svg>
+        <div>
+            <video style="width: 100%;height: auto;" muted playsinline id="qr-video"></video>
         </div>
-      </a>
-      <a style="display: inline-block;margin: 9%" onclick="checkdamaged({{$asset->id}})">
-        <div class="basicBox">
-        damaged
-       <svg width="130" height="65" viewBox="0 0 130 65" xmlns="http://www.w3.org/2000/svg">
-         <rect x='0' y='0' fill='none' width='130' height='65'/>
-       </svg>
-     </div>
-       </a>
- <hr>
-    <div class="text-center">
-        @if($asset->bureau_id)
-        <a href="{{route('createTransfert',$asset->id)}}"><i class="fa fa-paper-plane fa-fw text-blue"></i></i> transfer &#160&#160&#160</a>
-        @endif
-        @if ($asset->category == 'vehicle')
-            <a href="{{route('createMission',$asset->id)}}"><i class="fa fa-play fa-fw text-blue"></i></i> &#160&start mission</a> 
-        @endif                                                                
-      
-      </div>
+        
+        
+
+        
+        <b>Detected QR code: </b>
+        <span id="cam-qr-result">None</span>
+        <br>
+        <b>Last detected at: </b>
+        <span id="cam-qr-result-timestamp"></span>
 
     
 </div>
-<script type="text/javascript">
-  function checkfine(id) {
-    $.ajax({
-         type:'get',
-         url:'{!!URL::to('checkfine')!!}',
-         data:{'id':id},
-         dataType:'json',
-         success:function(data){
-        console.log(data);
-        },                                     
-          error:function(){ 
-            console.log('awda');
-         }
-       })
- }
- function checkdamaged(id) {
-  $.ajax({
-         type:'get',
-         url:'{!!URL::to('checkdamaged')!!}',
-         data:{'id':id},
-         dataType:'json',
-         success:function(data){
-        console.log(data);
-        },                                     
-          error:function(){ 
-         }
-       })
- }
+
+
+
+<script type="module">
+    import QrScanner from "/qr-scanner.min.js";
+    QrScanner.WORKER_PATH = '/qr-scanner-worker.min.js';
+
+    const video = document.getElementById('qr-video');
+    const camHasCamera = document.getElementById('cam-has-camera');
+    const camQrResult = document.getElementById('cam-qr-result');
+    const camQrResultTimestamp = document.getElementById('cam-qr-result-timestamp');
+    
+   
+    function setResult(label, result) {
+        label.textContent = result;
+        camQrResultTimestamp.textContent = new Date().toString();
+        label.style.color = 'teal';
+        clearTimeout(label.highlightTimeout);
+        label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
+        let url = "{{ route('existInv', ':qrcode') }}";
+        url = url.replace(':qrcode', result);
+        document.location.href=url;
+    }
+
+    // ####### Web Cam Scanning #######
+
+    QrScanner.hasCamera().then(hasCamera => camHasCamera.textContent = hasCamera);
+
+    const scanner = new QrScanner(video, result => setResult(camQrResult, result));
+    scanner.start();
+
+    document.getElementById('inversion-mode-select').addEventListener('change', event => {
+        scanner.setInversionMode(event.target.value);
+    });
+
+
 </script>
 
+
 @endsection
-
-

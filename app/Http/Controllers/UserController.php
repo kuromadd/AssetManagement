@@ -36,6 +36,10 @@ class UserController extends Controller
 
         return view('test2')->with('user',Auth()->user());
     }
+    public function test3(){
+
+        return view('test3')->with('user',Auth()->user());
+    }
     public function list(){
         $assets = \App\asset::all();
         return view('app.assetList')->with('assets',$assets);
@@ -71,9 +75,8 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        $users = \App\User::orderBy('id','DESC')->paginate(5);
+        $users = \App\User::all();
         return view('users.index',compact('users'))
-            ->with('i', ($request->input('page', 1) - 1) * 5)
             ->with('user',$user);
     }
 
