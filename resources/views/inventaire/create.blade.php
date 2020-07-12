@@ -143,8 +143,8 @@
 	</ul>
 	<!-- fieldsets -->
 	<fieldset>
-        <input type="text" name="name" id="name" placeholder="name" />
-        <input type="text" name="description" id="description" placeholder="description" />
+        <input type="text" name="name" id="name" placeholder="name" required />
+        <input type="text" name="description" id="description" placeholder="description" required />
 		<input type="button" name="next" class="next action-button" onclick="saveInventaire($('#name').val(),$('#description').val())" value="Next" />
 	</fieldset>
 	<fieldset>
@@ -264,7 +264,6 @@
 	</fieldset>
 	<fieldset style="width: 104%">
         <form action="{{ route('storeInventaire') }}" method="POST" enctype="multipart/form-data">
-            {{ csrf_field() }}
                          
         <table class="table align-items-center table-flush minha-table" id="tableInv">
             <thead>
@@ -284,8 +283,6 @@
             </tbody>
         </table>
         
-
-		<input type="button" name="previous" class="previous action-button" value="Previous" />
 		<button type="submit" class="action-button">finish</button>
         </form>
     </fieldset>
