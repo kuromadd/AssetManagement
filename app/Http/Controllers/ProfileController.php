@@ -48,8 +48,10 @@ class ProfileController extends Controller
             $user->email = $request->email;
             $profile = $user->profile;
             $profile->about = $request->about;
-            $profile->facebook = $request->facebook;
-            $profile->youtube = $request->youtube;
+            $profile->birthdate = $request->birthdate;
+            $profile->birthplace = $request->birthplace;
+            $profile->job = $request->job;
+            $profile->university = $request->university;
             
             $user->save();
             $profile->save();

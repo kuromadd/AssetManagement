@@ -1,6 +1,20 @@
 @extends('app.edit_layout')  
 @section('content')
-
+    @if (\App\asset::all()->where('status',3)->isEmpty())
+    <div  style="margin-left: 10%;margin-right: 10%" class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">No record of Lost assets have been found . </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        @else
         <div  style="margin-left: 10%;margin-right: 10%" class="row">
           <div class="col">
               <div class="card shadow">
@@ -14,7 +28,12 @@
                           </div>
                       </div>
                   </div>
-
+                  
+    
+        <div>
+            <p align="center">No Record of Lost assets have been found .</p>
+        </div>
+    
       <div class="table-responsive">
         <table class="table align-items-center table-flush">
             <thead>
@@ -57,6 +76,6 @@
   </div>
  </div>  
 </div>
-
+@endif
 
 @endsection

@@ -40,6 +40,7 @@
 
     
 <style>
+<<<<<<< HEAD
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 body {
@@ -53,6 +54,24 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+#checkbox-container{
+  margin: 10px 5px;
+}
+=======
+@blue: #4cc9c8;
+@pink: #fa001a;
+
+.dots(@color) {
+  background:
+    radial-gradient(@color 20%, transparent 19%),
+    radial-gradient(@color 20%, transparent 19%),
+    transparent;
+  background-size: 6px 6px;
+  background-position: 0 0, 3px 3px;
+>>>>>>> b5ae5e6c8f48e1ff71e0a6939232efba95a82fd6
 }
 
 #svg_form_time {
@@ -303,6 +322,7 @@ var circle = makeSVG("circle", {
 });
 document.getElementById("svg_form_time").appendChild(circle);
 
+<<<<<<< HEAD
 $("circle:nth-of-type(1)").css("fill", active_color);
 
 $(".button").click(function () {
@@ -375,3 +395,123 @@ console.log('ewewewe');
 })
 }
 </script>
+=======
+>>>>>>> bdc7b7d41342e12a5b90cd2c55ec534fb829cd0d
+
+#checkbox-container div{
+  margin-bottom: 5px;
+}
+
+#checkbox-container button{
+  margin-top: 5px;
+}
+
+input[type=text] {
+  padding: .5em .6em;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 3px #ddd;
+  border-radius: 4px;
+}
+=======
+
+>>>>>>> 643516987fbeadb6b5b99bf5ab890447026af245
+</style>
+
+<<<<<<< HEAD
+<div id="checkbox-container">
+  <div>
+<<<<<<< HEAD
+    <label for="option1">Option 1</label>
+    <input type="checkbox" id="option1">
+  </div>
+  <div>
+    <label for="option2">Option 2</label>
+    <input type="checkbox" id="option2">
+  </div>
+  <div>
+    <label for="option3">Option 3</label>
+=======
+    <label for="option">Option 1</label>
+    <input type="checkbox" id="option1">
+  </div>
+  <div>
+    <label for="option">Option 2</label>
+    <input type="checkbox" id="option2">
+  </div>
+  <div>
+    <label for="option">Option 3</label>
+>>>>>>> 643516987fbeadb6b5b99bf5ab890447026af245
+    <input type="checkbox" id="option3">
+  </div>
+</div>
+</body>
+<<<<<<< HEAD
+<script>
+$(function(){
+    var test = localStorage.input === 'true'? true: false;
+    $('input').prop('checked', test || false);
+});
+
+$('input').on('change', function() {
+    localStorage.input = $(this).is(':checked');
+    console.log($(this).is(':checked'));
+});
+</script>
+=======
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+<script>
+              var checkboxValues = JSON.parse(localStorage.getItem('checkboxValues')) || {},
+                  $checkboxes = $("#checkbox-container :checkbox");
+              
+              $checkboxes.on("change", function(){
+                $checkboxes.each(function(){
+                  checkboxValues[this.id] = this.checked;
+                });
+                
+                localStorage.setItem("checkboxValues", JSON.stringify(checkboxValues));
+              });
+              
+              // On page load
+              $.each(checkboxValues, function(key, value) {
+                $("#" + key).prop('checked', value);
+                console.log("#" + key);
+              });
+              </script>
+
+>>>>>>> 643516987fbeadb6b5b99bf5ab890447026af245
+</html>
+=======
+<div class="card front">
+  <div class="blue"></div>
+  <div class="yellow"></div>
+  <div class="pink"></div>
+  <div class="dots"></div>
+  <div class="personal-intro">
+    <p>Krista Stone</p>
+    <p>Photographer Maker Doer</p>
+  </div>
+</div>
+<div class="card back">
+  <div class="yellow"></div>
+  <div class="top dots"></div>
+  <div class="personal-info">
+    <p>Krista Stone</p>
+    <p>Photographer. Maker. Doer.</p>
+    <p>123 Address St</p>
+    <p>Sacramento, CA 14234</p>
+    <p>567.890.1234</p>
+    <p>www.kristastone.com</p>
+    <p>@kristastone</p>
+  </div>
+  <div class="bottom dots"></div>
+  <div class="pink"></div>
+</div><script src="">
+// Playing around with css grid, flexbox, clip-path, and radial-gradient
+
+// Recreating the business card template as found here: https://novadonna.me/product/business-card-template-designs-pop-geometric/ 
+</script>
+
+@endsection
+>>>>>>> bdc7b7d41342e12a5b90cd2c55ec534fb829cd0d
+>>>>>>> b5ae5e6c8f48e1ff71e0a6939232efba95a82fd6

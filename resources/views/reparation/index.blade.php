@@ -41,6 +41,7 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                        @can('reparation-delete')<a class="dropdown-item" href="{{ route('showReparation',$reparation->id) }}"><i class="fa fa-info fa-fw"></i> show</a>@endcan
                                         @can('reparation-edit')<a class="dropdown-item" href="{{ route('editReparation',$reparation->id) }}"><i class="fa fa-edit fa-fw"></i></i> edit</a>@endcan
                                         @can('reparation-delete')<a class="dropdown-item" href="{{ route('deleteReparation',$reparation->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>@endcan
 

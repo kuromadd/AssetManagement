@@ -264,6 +264,7 @@
 	</fieldset>
 	<fieldset style="width: 104%">
         <form action="{{ route('storeInventaire') }}" method="POST" enctype="multipart/form-data">
+            
                          
         <table class="table align-items-center table-flush minha-table" id="tableInv">
             <thead>
