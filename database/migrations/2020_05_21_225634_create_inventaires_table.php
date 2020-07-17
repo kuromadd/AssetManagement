@@ -16,8 +16,8 @@ class CreateInventairesTable extends Migration
         Schema::create('inventaires', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
-            //$table->string('etat');
-            //$table->integer('user_id');
+            $table->string('description');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

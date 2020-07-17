@@ -36,19 +36,13 @@ class InventaireController extends Controller
      */
     public function create()
     {
-     //dd(\App\asset::select()->where('bureau_id',1)->whereIn('id',DB::table('asset_user')->select('asset_id')->where('user_id',auth()->user()->id))->get());
-     
+        // dd(\App\bureau::select()->whereIn('id', DB::table('asset_bureau_inventaire')->select('bureau_id')->where('inventaire_id', 1))->get());
         $assets = (\App\asset::whereIn('status',['0','1','2'])->get());
         return view('inventaire.create')->with('assets',$assets);
         
 
 
 
-    }public function complete()
-    {
-        
-        $assets = (\App\asset::whereIn('status',['0','1','2','3'])->get());
-        return view('inventaire.create')->with('assets',$assets);
     }
 
     /**
@@ -59,14 +53,26 @@ class InventaireController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        dd($request);
+            request()->validate([
+                
+            ]);
+
+            foreach(\App\asset::all() as $asset){
+               
+                $asset->occupied = 0;
+                $asset->save();
+            }
             
-        ]);
-        $inventaire = new \App\inventaire;
-        $inventaire->name = $request->name;
-        $inventaire->save();
-        
-        $inventaire->assets()->attach(\App\asset::find(DB::table('asset_user')->select('asset_id')->where('user_id',auth()->user()->id)->get()));
+            $inventaire = \App\inventaire::all()->last();
+            if($request->has('fine')){ \App\asset::whereIn('id',$request->fine)->update(["status" => 1]);}
+            if($request->has('repair')){ \App\asset::whereIn('id',$request->repair)->update(["status" => 2]);}
+            if($request->has('lost')){ \App\asset::whereIn('id',$request->lost)->update(["status" => 3]);}
+
+            if($request->has('lost')) {\App\asset::whereIn('id',$request->lost)->update(["occupied" => 1]);}
+            if($request->has('fine')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 1]);}
+            if($request->has('damaged')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 2]);}
+            if($request->has('lost')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 3]);}
 
         return redirect()->route('indexInventaire');
     }
@@ -111,11 +117,7 @@ class InventaireController extends Controller
         if($request->has('repair')) \App\asset::whereIn('id',$request->repair)->update(["status" => 2,"occupied" => 1]);
         if($request->has('lost')) \App\asset::whereIn('id',$request->lost)->update(["status" => 3,"occupied" => 1]);
         $inventaire->assets()->sync((\App\asset::where('occupied','=',1)->get()));
-        if($request->has('fine')) DB::table('asset_inventaire_user')->where('user_id',auth()->user()->id)->whereIn('asset_id',$request->fine)->update(["status" => 1]);
-        if($request->has('repair')) DB::table('asset_inventaire_user')->where('user_id',auth()->user()->id)->whereIn('asset_id',$request->repair)->update(["status" => 2]);
-        if($request->has('lost')) DB::table('asset_inventaire_user')->where('user_id',auth()->user()->id)->whereIn('asset_id',$request->lost)->update(["status" => 3]);
 
-       
         return redirect()->route('indexInventaire');
     }
 
@@ -135,73 +137,54 @@ class InventaireController extends Controller
     }
 
 
-   
-    public function EtageInv(Request $request){
-        $data=\App\block::select('sous','nbre_Etage')->where('id',$request->id)->first();    
-        $request->session()->put('blockID', $request->id);
-        return response()->json($data);
-    }
-    public function BureauInv(Request $request){
-        $data=[];
-        $id=$request->session()->get('blockID');
-        $bureaus=\App\block::find($id)->bureaus;
-
-        foreach ($bureaus as $bureau) {
-                if ($bureau->etage==$request->id) {
-                    $data[]=$bureau;
-            }
+    public function BureauInvCheck(Request $request){
+        $inventaire = \App\inventaire::all()->last();
+        $bureau=\App\bureau::find($request->id);
+        foreach ($bureau->assets as $asset) {
+            DB::insert('insert into asset_bureau_inventaire (asset_id, bureau_id,inventaire_id) values (?, ?,?)', [$asset->id, $bureau->id,$inventaire->id]);
         }
-            $request->session()->put('etage', $request->id);
-            return response()->json($data);
+    
+        return response()->json('bureauchecked');
     }
 
-    public function AssetInv(Request $request){
-       $data=[];
-     
-        foreach (\App\asset::select()->where('bureau_id',$request->id)->get() as $asset) 
-        {
-        
-                    $data[1][]=$asset->bureau->block->name;
-                    $data[2][]=$asset->bureau->etage;
-                    $data[3][]=$asset->bureau->name;
-                    $data[4][]=$asset->name;
-                    $data[5][]=$asset->id;
-                    if (DB::table('asset_user')->where('user_id', auth()->user()->id)->get()) {
-                        $data[6][]=DB::table('asset_user')->select('status')->where('asset_id', $asset->id)->first();
-                    }else {
-                        $data[6][]=null;
-                    }
+    public function BureauInvUnCheck(Request $request){
+        $inventaire = \App\inventaire::all()->last();
+        $bureau=\App\bureau::find($request->id);
+            DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->where('bureau_id',$bureau->id)->delete();    
+        return response()->json('bureauUnchecked');
+    }
 
-            }
+    public function AssetInv(){
+       $data=[];
+     foreach (\App\bureau::select()->whereIn('id', DB::table('asset_bureau_inventaire')->select('bureau_id')->where('inventaire_id', \App\inventaire::all()->last()->id))->get() as $bureau) {
+         foreach ($bureau->assets as $asset) {
+             $data[1][]=$asset->bureau->block->name;
+             $data[2][]=$asset->bureau->etage;
+             $data[3][]=$asset->bureau->name;
+             $data[4][]=$asset->name;
+             $data[5][]=$asset->id;
+         }
+     }
        
         return response()->json($data);
     }
-    public function checkfine(Request $request){
-       
-        $user=\App\User::find(auth()->user()->id);
-        $asset = \App\asset::find($request->id);
-        $user->assets()->attach($asset);
-        DB::table('asset_user')->where('user_id',$user->id)->where('asset_id',$request->id)->update(['status' => 1]);
-        return response()->json('fine');
-    }
-    public function checkdamaged(Request $request){
-        $user=\App\User::find(auth()->user()->id);
-        $asset = \App\asset::find($request->id);
-        $user->assets()->attach($asset);
-        DB::table('asset_user')->where('user_id',$user->id)->where('asset_id',$request->id)->update(['status' => 2]);
-        return response()->json('damaged');
-    }
-    public function checklost(Request $request){
-        $user=\App\User::find(auth()->user()->id);
-        $asset = \App\asset::find($request->id);
-        $user->assets()->attach($asset);
-        DB::table('asset_user')->where('user_id',$user->id)->where('asset_id',$request->id)->update(['status' => 3]);
-        return response()->json('lost');
-    }
-
+   
     public function uncheckAsset(Request $request){
         $user=\App\User::find();
         DB::table('asset_user')->where('user_id',$user->id)->where('id',$request->id)->delete();
         return response()->json('uncheck');
+    }
+
+
+    public function saveInv(Request $request)
+    {
+       
+        $inventaire = new \App\inventaire;
+        $inventaire->name = $request->name;
+        $inventaire->description = $request->description;
+        $inventaire->user_id = auth()->user()->id;
+        $inventaire->save();
+        
+        return response()->json('invSaved');
     }
 }

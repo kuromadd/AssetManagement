@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Route::get('/test','UserController@test');
 Route::get('/test2','UserController@test2');
+Route::get('/test3','UserController@test3');
 Route::get('/list','UserController@list')->name('assetList');
 Route::get('/deselect/{id}','AssetController@reset')->name('reset');
 Route::post('/save','AssetController@saveall')->name('save');
@@ -64,7 +65,6 @@ Route::get('/asset/found/{id}','AssetController@found')->name('foudAsset');
 
 Route::get('/Inventaire/index','InventaireController@index')->name('indexInventaire');
 Route::get('/Inventaire/create','InventaireController@create')->name('createInventaire');
-Route::get('/Inventaire/complete','InventaireController@complete')->name('completeInventaire');
 Route::post('/Inventaire/store','InventaireController@store')->name('storeInventaire');
 Route::get('/Inventaire/edit/{id}','InventaireController@edit')->name('editInventaire');
 Route::post('/Inventaire/update/{id}','InventaireController@update')->name('updateInventaire');
@@ -125,8 +125,10 @@ Route::get('/Bureau','TransfertController@Bureau');
 Route::get('/getAsset','TransfertController@getAsset');
 
 Route::get('/EtageInv','InventaireController@EtageInv');
-Route::get('/BureauInv','InventaireController@BureauInv');
+Route::get('/BureauInvCheck','InventaireController@BureauInvCheck');
+Route::get('/BureauInvUnCheck','InventaireController@BureauInvUnCheck');
 Route::get('/AssetInv','InventaireController@AssetInv');
+Route::get('/saveInv','inventaireController@saveInv');
 
 Route::post('/admin/user/update/{id}','UserController@update')->name('updateUser');
 
@@ -162,6 +164,7 @@ Route::get('/qr', function () {
 });
 Route::get('/scan','assetController@scan')->name('scan');
 Route::get('/exist/{qrcode}','assetController@exist')->name('exist');
+Route::get('/existInv/{qrcode}','assetController@existInv')->name('existInv');
 
 Route::get('/checkqr/{qrcode}','auth\LoginController@checkQR')->name('qrcheck');
 
@@ -172,4 +175,5 @@ Route::get('/uncheckAsset','inventaireController@uncheckAsset')->name('uncheckAs
 
 Route::get('/getbureau/{id}/{etage}','inventaireController@BureauInv')->name('getbureau');
 Route::get('/getasset/{id}','inventaireController@assetInv')->name('getA');
+
 

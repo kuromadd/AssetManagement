@@ -184,10 +184,21 @@ class AssetController extends Controller
     }
 
     function scan() {
-        return view('qr.qrh');
+        return view('qr.qrhInv');
     }
 
     public function exist($qrcode){
+        if (\App\asset::where('qrcode',$qrcode)->first()) {
+            
+            $asset = \App\asset::where('qrcode',$qrcode)->first();
+       
+            return view('asset.show')->with('asset',$asset);
+        }else {
+         
+            return view('asset.create')->with('qr',$qrcode);
+        }
+    }
+    public function existInv($qrcode){
         if (\App\asset::where('qrcode',$qrcode)->first()) {
             
             $asset = \App\asset::where('qrcode',$qrcode)->first();

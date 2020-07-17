@@ -55,9 +55,9 @@
                                     <video style="width: 100%;height: auto;" muted playsinline id="qr-video"></video>
                                 </div>
 
-                            <input type="text" id="cam-qr-result" name="qrcode" class="QRcode"value="{{null}}">
-                                
-                    
+                            <input type="text" id="cam-qr-result" name="qrcode" class="QRcode" value="{{null}}" hidden>
+
+                                <label hidden id="load" for="">loading .. please wait</label>
                         </div>
                         
                         
@@ -73,7 +73,7 @@
                             
                            
                             function setResult(input, result) {
-                                input.value = result;
+                                $("#load").hide().find('label').prop('disabled', true);
                                 let url = "{{ route('qrcheck', ':qrcode') }}";
                                 url = url.replace(':qrcode', result);
                                 document.location.href=url;
