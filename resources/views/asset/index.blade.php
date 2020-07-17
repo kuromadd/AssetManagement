@@ -1,5 +1,29 @@
 @extends('app.layout')
 @section('content')
+@if (\App\asset::all()->isEmpty())
+<div class="card card-default">
+    <div class="card-header">  
+        <div class="text-center">
+            <div class="h1 mt-4">
+                <div class="text-center">
+                    Assets :
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <div class="card-body">     
+        <div class="text-center">
+            <h2>
+                <br><br><br>
+                No assets have been registered !<br><br>
+                @can('asset-create')<a href="{{route('createAsset',['id'=>0])}}" class="btn btn-sm btn-primary">Add Asset</a>@endcan
+                <br><br><br>
+            </h2>
+        </div>
+    </div>
+</div>
+    @else
 
     <div class="row">
         <div class="col">
@@ -7,7 +31,7 @@
                 <div class="card-header border-0" style="background-image:{{ asset('argon') }}/img/brand/vector.png">
                     <div class="row align-items-center" >
                         <div class="col-8">
-                            <h3 class="mb-0">Assets</h3>
+                            <h3 class="mb-0">Assets :</h3>
                         </div>
                         <div class="col-4 text-right">
                             @can('asset-create')
@@ -19,12 +43,12 @@
                 
 
                 <div class="table-responsive">
-                    <table class="table align-items-center table-flush minha-table">
+                    <table class="table align-items-center table-flush minha-table table-striped">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col" style="width: 22%">Name</th>
-                                <th scope="col" style="width: 22%">Mise en service a</th>
                                 <th scope="col" style="width: 22%">Category</th>
+                                <th scope="col" style="width: 22%">Acquisition Date</th>
                                 <th scope="col" style="width: 22%"></th>
                                 <th scope="col" style="width: 12%"></th>
                                 
@@ -34,17 +58,29 @@
                         @foreach($assets as $asset)
                         <tr>
                             <td>{{$asset->name}}</td>
-                            <td>{{$asset->dateservice}}</td>
                             <td>{{$asset->category}}</td>
+                            <td>{{$asset->dateService}}</td>
                             <td>
-                                @if($asset->status == 0 && $asset->bureau_id == 0)
-                                <label class="badge badge-info">unoccupied</label>
-                                @elseif($asset->status == 1)
-                                <label class="badge badge-success">fine</label>
-                                @elseif($asset->status == 2)
-                                <label class="badge badge-secondary">damaged</label>
-                                @elseif($asset->status == 3)
-                                <label class="badge badge-danger">lost</label>
+                                @if ($asset->occupied==0)
+                                    <label class="badge badge-info">unoccupied</label>
+                                    @else
+                                    @if ($asset->occupied==1)
+                                        @if ($asset->status == 1)
+                                            <label class="badge badge-success">Occupied / Fine</label>
+                                        @elseif($asset->status == 2) 
+                                            <label class="badge badge-warning">Damaged</label>
+                                        @elseif($asset->status == 3)
+                                            <label class="badge badge-danger">Lost</label>
+                                        @endif
+                                    @else
+                                    @if ($asset->status == 1)
+                                            <label class="badge badge-info">In Stock</label>
+                                        @elseif($asset->status == 2) 
+                                            <label class="badge badge-warning">Damaged</label>
+                                        @elseif($asset->status == 3)
+                                            <label class="badge badge-danger">Lost</label>
+                                        @endif
+                                    @endif   
                                 @endif
                             </td>
                             <td class="text-right">
@@ -77,6 +113,7 @@
             </div>
         </div>
     </div>
+    @endif
     
    <script>
         var $table = document.querySelector('.minha-table');

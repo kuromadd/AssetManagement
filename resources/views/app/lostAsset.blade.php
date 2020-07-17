@@ -1,16 +1,24 @@
 @extends('app.edit_layout')  
 @section('content')
     @if (\App\asset::all()->where('status',3)->isEmpty())
-    <div  style="margin-left: 10%;margin-right: 10%" class="row">
-        <div class="col">
-            <div class="card shadow">
-                <div class="card-header border-0">
-                    <div class="row align-items-center">
-                        <div class="col-8">
-                            <h3 class="mb-0">No record of Lost assets have been found . </h3>
-                        </div>
+    <div class="card card-default">
+        <div class="card-header" style="background-color: #ecf4fd">  
+            <div class="text-center">
+                <div class="h1 mt-4">
+                    <div class="text-center">
+                        Lost assets :
                     </div>
                 </div>
+            </div>
+        </div>
+            
+        <div class="card-body">     
+            <div class="text-center">
+                <h2>
+                    <br><br><br>
+                    No Lost assets have been found !
+                    <br><br><br><br>
+                </h2>
             </div>
         </div>
     </div>
@@ -21,27 +29,22 @@
                   <div class="card-header border-0">
                       <div class="row align-items-center">
                           <div class="col-8">
-                              <h3 class="mb-0">lost Assets</h3>
+                              <h3 class="mb-0">Lost Assets :</h3>
                           </div>
                           <div class="col-4 text-right">
                           <a href="#" class="btn btn-sm btn-primary">replaceAll</a>
                           </div>
                       </div>
                   </div>
-                  
-    
-        <div>
-            <p align="center">No Record of Lost assets have been found .</p>
-        </div>
     
       <div class="table-responsive">
         <table class="table align-items-center table-flush">
             <thead>
             <tr>
+                <th scope="col">asset</th>
                 <th  scope="col">block</th>
                 <th scope="col">etage</th>
                 <th scope="col">bureau</th>
-                <th scope="col">asset</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
             </tr>    
@@ -49,11 +52,11 @@
             <tbody>
             @foreach($assets as $asset)
             @if ($asset->status==3)
-            <tr> 
+            <tr>
+              <td style="width: 16%"><h4 class="mb-0">{{$asset->name }}</h4></td>  
               <td style="margin: 5px"><h4 class="mb-0"> {{ $asset->bureau->block->name }}</h4></td>
               <td style="width: 16%"><h4 class="mb-0"> {{$asset->bureau->etage}}</h4></td>
               <td style="width: 16%"><h4 class="mb-0">{{$asset->bureau->name}}</h4></td>
-              <td style="width: 16%"><h4 class="mb-0">{{$asset->name }}</h4></td> 
             <td >
                 <select name="" id="">
                     <option value="" disabled selected>replace</option>

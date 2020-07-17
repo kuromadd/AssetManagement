@@ -36,9 +36,14 @@ class InventaireController extends Controller
      */
     public function create()
     {
-        
+     //dd(\App\asset::select()->where('bureau_id',1)->whereIn('id',DB::table('asset_user')->select('asset_id')->where('user_id',auth()->user()->id))->get());
+     
         $assets = (\App\asset::whereIn('status',['0','1','2'])->get());
         return view('inventaire.create')->with('assets',$assets);
+        
+
+
+
     }public function complete()
     {
         
@@ -61,38 +66,8 @@ class InventaireController extends Controller
         $inventaire->name = $request->name;
         $inventaire->save();
         
-        $inventaire->assets()->attach((\App\asset::where('selectInv','=',1)->get()));
-        foreach(\App\asset::all() as $asset){
-            
-            if ($asset->selectInv) {
-                DB::table('asset_inventaire')->where('asset_id',$asset->id)->update(["status" => $asset->status]);
-                $asset->selectInv=0;
-                $asset->save();
-            }
-        }
-        
-<<<<<<< HEAD
-        if($request->has('fine')){ \App\asset::whereIn('id',$request->fine)->update(["status" => 1,"occupied" => 1]);}
-        if($request->has('repair')) \App\asset::whereIn('id',$request->repair)->update(["status" => 2,"occupied" => 1]);
-        if($request->has('lost')) \App\asset::whereIn('id',$request->lost)->update(["status" => 3,"occupied" => 1]);
-        $inventaire->assets()->attach((\App\asset::where('occupied','=',1)->get()));
-<<<<<<< HEAD
-        foreach (\App\asset::all() as $value) {
-            if ($value->bureau_id && (\App\bureau::find($value->bureau_d))->type == 'stock') {
-                \App\asset::whereIn('id', $value->id)->update(["occupied" => 0]);
-            }
-        }
-        if($request->has('lost')) \App\asset::whereIn('id',$request->fine)->update(["occupied" => 1]);
-=======
-       
->>>>>>> 643516987fbeadb6b5b99bf5ab890447026af245
-        if($request->has('fine')) DB::table('asset_inventaire')->whereIn('asset_id',$request->fine)->update(["status" => 1]);
-        if($request->has('repair')) DB::table('asset_inventaire')->whereIn('asset_id',$request->repair)->update(["status" => 2]);
-        if($request->has('lost')) DB::table('asset_inventaire')->whereIn('asset_id',$request->lost)->update(["status" => 3]);
+        $inventaire->assets()->attach(\App\asset::find(DB::table('asset_user')->select('asset_id')->where('user_id',auth()->user()->id)->get()));
 
-        
-=======
->>>>>>> bdc7b7d41342e12a5b90cd2c55ec534fb829cd0d
         return redirect()->route('indexInventaire');
     }
 
@@ -132,33 +107,13 @@ class InventaireController extends Controller
         $inventaire->name = $request->name;
         $inventaire->save();
 
-        foreach(\App\asset::all() as $asset){
-            $asset->occupied = 0;
-            $asset->save();
-        }
-
         if($request->has('fine')){ \App\asset::whereIn('id',$request->fine)->update(["status" => 1,"occupied" => 1]);}
         if($request->has('repair')) \App\asset::whereIn('id',$request->repair)->update(["status" => 2,"occupied" => 1]);
         if($request->has('lost')) \App\asset::whereIn('id',$request->lost)->update(["status" => 3,"occupied" => 1]);
         $inventaire->assets()->sync((\App\asset::where('occupied','=',1)->get()));
-<<<<<<< HEAD
-        foreach (\App\asset::all() as $value) {
-            if (\App\bureau::find($value->bureau_d)->type == 'stock') {
-                \App\asset::whereIn('id', $value->id)->update(["occupied" => 0]);
-            }
-        }
-        if($request->has('lost')) \App\asset::whereIn('id',$request->fine)->update(["occupied" => 1]);
-=======
-        /*foreach (\App\asset::all() as $value) {
-            if (\App\bureau::find($value->bureau_id)->type == 'stock') {
-                \App\asset::whereIn('id', $value->id)->update(["occupied" => 0]);
-            }
-        }*/
-        //if($request->has('lost')) \App\asset::whereIn('id',$request->fine)->update(["occupied" => 1]);
->>>>>>> 643516987fbeadb6b5b99bf5ab890447026af245
-        if($request->has('fine')) DB::table('asset_inventaire')->whereIn('asset_id',$request->fine)->update(["status" => 1]);
-        if($request->has('repair')) DB::table('asset_inventaire')->whereIn('asset_id',$request->repair)->update(["status" => 2]);
-        if($request->has('lost')) DB::table('asset_inventaire')->whereIn('asset_id',$request->lost)->update(["status" => 3]);
+        if($request->has('fine')) DB::table('asset_inventaire_user')->where('user_id',auth()->user()->id)->whereIn('asset_id',$request->fine)->update(["status" => 1]);
+        if($request->has('repair')) DB::table('asset_inventaire_user')->where('user_id',auth()->user()->id)->whereIn('asset_id',$request->repair)->update(["status" => 2]);
+        if($request->has('lost')) DB::table('asset_inventaire_user')->where('user_id',auth()->user()->id)->whereIn('asset_id',$request->lost)->update(["status" => 3]);
 
        
         return redirect()->route('indexInventaire');
@@ -202,45 +157,51 @@ class InventaireController extends Controller
 
     public function AssetInv(Request $request){
        $data=[];
-        $id=$request->session()->get('blockID');
-        $etage=$request->session()->get('etage');
-        $bureaus=\App\block::find($id)->bureaus;
-
-        foreach ($bureaus as $bureau) {
-                if ($bureau->id==$request->id && $bureau->etage == $etage) {
-                    $assets=$bureau->assets;
-                  foreach ($assets as $asset) {
-                    if ($asset->status = [0,1,2]) {
-
+     
+        foreach (\App\asset::select()->where('bureau_id',$request->id)->get() as $asset) 
+        {
+        
                     $data[1][]=$asset->bureau->block->name;
                     $data[2][]=$asset->bureau->etage;
                     $data[3][]=$asset->bureau->name;
                     $data[4][]=$asset->name;
                     $data[5][]=$asset->id;
-                    $data[6][]=$asset->selectInv;
-                    $data[7][]=\App\asset::select('status')->where('id',$asset->id)->first();
+                    if (DB::table('asset_user')->where('user_id', auth()->user()->id)->get()) {
+                        $data[6][]=DB::table('asset_user')->select('status')->where('asset_id', $asset->id)->first();
+                    }else {
+                        $data[6][]=null;
+                    }
 
-                }  
-                }
             }
-        }
+       
         return response()->json($data);
     }
     public function checkfine(Request $request){
-        \App\asset::where('id',$request->id)->update(['selectInv' => 1,'status' => 1]);
-        return redirect()->back();
+       
+        $user=\App\User::find(auth()->user()->id);
+        $asset = \App\asset::find($request->id);
+        $user->assets()->attach($asset);
+        DB::table('asset_user')->where('user_id',$user->id)->where('asset_id',$request->id)->update(['status' => 1]);
+        return response()->json('fine');
     }
     public function checkdamaged(Request $request){
-        \App\asset::where('id',$request->id)->update(['selectInv' => 1,'status' => 2]);
-        return redirect()->back();
+        $user=\App\User::find(auth()->user()->id);
+        $asset = \App\asset::find($request->id);
+        $user->assets()->attach($asset);
+        DB::table('asset_user')->where('user_id',$user->id)->where('asset_id',$request->id)->update(['status' => 2]);
+        return response()->json('damaged');
     }
     public function checklost(Request $request){
-        \App\asset::where('id',$request->id)->update(['selectInv' => 1,'status' => 3]);
-        return redirect()->back();
+        $user=\App\User::find(auth()->user()->id);
+        $asset = \App\asset::find($request->id);
+        $user->assets()->attach($asset);
+        DB::table('asset_user')->where('user_id',$user->id)->where('asset_id',$request->id)->update(['status' => 3]);
+        return response()->json('lost');
     }
 
     public function uncheckAsset(Request $request){
-        \App\asset::where('id',$request->id)->update(['selectInv' => 0,'status' => 0]);
-        return redirect()->back();
+        $user=\App\User::find();
+        DB::table('asset_user')->where('user_id',$user->id)->where('id',$request->id)->delete();
+        return response()->json('uncheck');
     }
 }

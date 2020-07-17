@@ -40,10 +40,12 @@ a + input {
                     <div class="row justify-content-center">
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image" style="">
+                                <div class="text-center">
                                 <span><a href='#'>
-                                <img src="{{ asset($user->profile->image) }}" id="output" class="rounded-circle">
+                                <img src="{{ asset($user->profile->image) }}" id="output" class="rounded-circle" width="100">
                                 </a><input type='file' name="image" accept="image/*" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" /></span><span>
                             </div>
+                        </div>
                         </div>
                     </div>
                    <br><br>

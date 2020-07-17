@@ -70,6 +70,8 @@ class AssetController extends Controller
         $asset->duree_vie = $request->duree;
         $asset->qrcode = $request->qr;
         $asset->occupied = 0;
+        $asset->status = 1;
+        $asset->fournisseur_id= $request->fournisseur_id;
 
         $asset->save();
         return redirect()->route('indexAsset')->with('success','you added asset successfuly');

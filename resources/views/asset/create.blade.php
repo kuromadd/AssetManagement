@@ -20,7 +20,7 @@ crossorigin="anonymous"></script>
           <div class="card-header border-0">
               <div class="row align-items-center">
                   <div class="col-8">
-                      <h3 class="mb-0">create a new asset</h3>
+                      <h3 class="mb-0">Create a new asset :</h3>
                   </div>
               </div>
           </div>
@@ -31,47 +31,47 @@ crossorigin="anonymous"></script>
       {{ csrf_field() }}
     <input type="text" hidden name="qr" value="{{$qr}}">
       <div class="form-group">
-          <label class="form-control-label" for="name">&#160&#160Name</label>
+          <label class="form-control-label" for="name">&#160&#160Name :</label>
           <input type="text" name="name" class="form-control form-control-alternative">
       </div>
 
       <div class="form-group">
-          <label for="description" class="form-control-label"> &#160&#160Description </label>
+          <label for="description" class="form-control-label"> &#160&#160Description :</label>
           <textarea class="form-control" name="description" id="description" cols="4" rows="4"></textarea>
       </div>
   
       <div class="form-group">
-          <label class="form-control-label" for="prix">&#160&#160price</label>
+          <label class="form-control-label" for="prix">&#160&#160Price :</label>
           <input type="text" name="prix" class="form-control form-control-alternative">
       </div>
       <div class="form-group">
-        <label for="category" class="form-control-label">&#160&#160category</label>
+        <label for="category" class="form-control-label">&#160&#160Category :</label>
         <select name="category" id="category" class="form-control form-control-alternative">
-          <option value=0 disabled selected>chose asset category</option>
-          <option value="furniture">Furniture and fixtures</option>
-          <option value="intangible">Intangible assets</option> {{-- trademarks, customer lists, literary works, broadcast rights, and patented technology. --}}
-          <option value="office">office equipement</option>
-          <option value="vehicle">vehicle</option>
-          <option value="software">Software</option>
-          <option value="building">building</option>
+          <option value=0 disabled selected>Choose a category :</option>
+          <option value="Furniture and fixtures">Furniture and fixtures</option>
+          <option value="Intangible assets">Intangible assets</option> {{-- trademarks, customer lists, literary works, broadcast rights, and patented technology. --}}
+          <option value="Office equipement">office equipement</option>
+          <option value="Vehicle">vehicle</option>
+          <option value="Software">Software</option>
+          <option value="Building">building</option>
         </select>
       </div>
     
       <div class="form-group">
-        <label for="date" class="form-control-label">&#160&#160mis en service a :</label>
-        <input type="date" name="dateservice" id="dateservice" value="{{date('Y-m-d')}}" class="form-control datetimepicker">
+        <label for="date" class="form-control-label">&#160&#160Acquisition date :</label>
+        <input type="date" name="dateservice" id="dateservice" class="form-control datetimepicker">
       </div>
 
       <div class="form-group">
-        <label for="duree" class="form-control-label">&#160&#160duree de vie</label>
+        <label for="duree" class="form-control-label">&#160&#160Lifetime :</label>
         <input  type="text" name="duree" id="duree" class="form-control form-control-alternative">
       </div>
 
       <div class="form-group">
-        <label for="fournisseur_id">Fournisseur</label>
+        <label for="fournisseur_id">Provider :</label>
             <select class="form-control fournisseurID" name="fournisseur_id" id="fournisseur_id">
-              <option value=0 disabled selected>chose fournisseur</option>
-                @foreach(\App\fournisseur::all() as $fournisseur)
+              <option value=0 disabled selected>choose a supplier :</option>
+                @foreach(\App\Fournisseur::all() as $fournisseur)
             <option value="{{ $fournisseur->id }}">{{$fournisseur->libel}}</option>
                 @endforeach
             </select>               
@@ -79,7 +79,7 @@ crossorigin="anonymous"></script>
         </div>
       
       <div class="text-center">
-      <button class="btn btn-success" type="submit">store</button>    
+      <button class="btn btn-success" type="submit">Store</button>    
       </div> 
     </form>    
   </div>

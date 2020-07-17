@@ -44,15 +44,15 @@ class TransfertController extends Controller
             }
         }
             return response()->json($data);
-    }
+    } 
 
     public function getAsset(Request $request){
        
         $asset=\App\asset::find($request->id);
         if ($asset->bureau->block->name) {
-            $data[1]=$asset->bureau->block->name;
+            $data[1]=$asset->bureau->block;
             $data[2]=$asset->bureau->etage;
-            $data[3]=$asset->bureau->name;
+            $data[3]=$asset->bureau;
         }
         
         return response()->json($data);
@@ -104,19 +104,23 @@ class TransfertController extends Controller
         $transfert->transfered_at=$request->transfered_at;
 
         $transfert->save();
-        DB::table('assets')->where('id',$request->asset_id)->update(['bureau_id' => $request->bureau_d]);
-        if (\App\bureau::find($request->bureau_d)->type == 'stock') {
-            \App\asset::whereIn('id', $request->asset_id)->update(["occupied" => 0]);
+        \App\asset::where('id',$request->asset_id)->first()->update(["bureau_id"=> $request->bureau_d]);
+        if (\App\bureau::where('id',$request->bureau_d)->first()->type == 'Stock') {
+            \App\asset::where('id', $request->asset_id)->update(["occupied" => 2]);
         }else {
-            \App\asset::whereIn('id', $request->asset_id)->update(["occupied" => 1]);
+            \App\asset::where('id', $request->asset_id)->update(["occupied" => 1]);
         }
-        if ('s' == 's') {
+        /* if ('s' == 's') {
             return redirect()->route('indexTransfert')
             ->with('success', 'transfert created successfully.');
         } else{
             return redirect()->route('showAsset')
             ->with('success', 'transfert created successfully.');
-        }
+        } */
+
+
+        return redirect()->route('indexTransfert')
+                        ->with('success','transfert updated successfully');
        
          
     } 
@@ -164,7 +168,15 @@ class TransfertController extends Controller
         ]);
         $transfert =Transfert::find($id);    
         $transfert->update($request->all());
+        
+        \App\asset::where('id',$request->asset_id)->first()->update(["bureau_id"=> $request->bureau_d]);
+        if (\App\bureau::where('id',$request->bureau_d)->first()->type == 'Stock') {
+            \App\asset::where('id', $request->asset_id)->update(["occupied" => 2]);
+        }else {
+            \App\asset::where('id', $request->asset_id)->update(["occupied" => 1]);
+        }
 
+ 
         return redirect()->route('indexTransfert')
                         ->with('success','transfert updated successfully');
     }

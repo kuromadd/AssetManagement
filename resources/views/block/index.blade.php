@@ -17,7 +17,7 @@
                 
 
                 <div class="table-responsive">
-                    <table class="table align-items-center table-flush">
+                    <table class="table align-items-center table-flush table-striped">
                         <thead class="thead-light">
                             <tr style="width: 100%">
                                 <th scope="col" style="width: 40%">Name</th>

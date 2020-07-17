@@ -62,9 +62,10 @@ class MissionController extends Controller
         'but_mission'=> $request->but_mission,
         'destination'=> $request->destination,
         'mission_at'=> $request->mission_at,
+        'etat'=>0,
     ]);
     $asset=\App\asset::find($mission->asset_id);
-    $asset->etat =1;
+    $asset->etat =0;
     $asset->save();
         return redirect()->route('indexMission')
             ->with('success', 'mission created successfully.');
@@ -110,11 +111,8 @@ class MissionController extends Controller
             'mission_at'=>'required',
         ]);
 
-        $mission = Mission::find($id);
-        $mission->asset_id = $request->asset_id ;
-        $mission->but_mission= $request->but_mission;
-        $mission->destination= $request->destination;
-        $mission->mission_at = $request->mission_at;
+        $mission = \App\Mission::find($id);
+        $mission->update($request->all());
 
         return redirect()->route('indexMission')
                         ->with('success', 'mission updated successfully');
@@ -142,8 +140,10 @@ class MissionController extends Controller
     public function complete($id){
         $mission = \App\mission::find($id);
         $asset= \App\asset::find($mission->asset_id);
-        $asset->etat = 0;
+        $mission->etat = 1;
+        $asset->etat = 1;
         $asset->save();
+        $mission->save();
         return redirect()->route('indexMission')->with('success','L\'asset '.\App\asset::find($mission->asset_id)->name.' just returned');
     }
     

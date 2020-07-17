@@ -85,7 +85,7 @@
         <div  style="margin-left: 10%;margin-right: 10%" class="row">
           <div class="col">
               <div class="card shadow">
-                  <div class="card-header border-0">
+                  <div class="card-header border-0" >
                       <div class="row align-items-center">
                           <div class="col-8">
                               <h3 class="mb-0">Assets</h3>
