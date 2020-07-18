@@ -16,6 +16,12 @@
                 </div>
                 <hr class="my-4" width="75%"/>
                 <div class="h3 mt-4">
+                    Wilaya : {{ $block->wilaya }} . <br>
+                    Daira : {{ $block->daira }} . <br>
+                    Zip : {{ $block->zip }} .
+                </div>
+                <hr class="my-4" width="75%"/>
+                <div class="h3 mt-4">
                     Number of underground floors : {{ $block->sous }} .
                 </div>
                 <hr class="my-4" width="75%"/>

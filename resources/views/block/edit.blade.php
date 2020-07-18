@@ -3,7 +3,6 @@
             <div class="card card-default">
                   <div class="card-header">  
                    Block edit :
-                   <a class="close" href="#">&times;</a>
                 </div>
             
                 <div class="card-body">
@@ -18,6 +17,22 @@
                         <label for="adress">Adress :</label>
                         <input type="text" name="adress" value="{{$block->adress}}" class="form-control">
                     </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="wilaya">--Wilaya--</label>
+                          <input type="text" class="form-control" value="{{$block->wilaya}}" name="wilaya">
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="daira">--Daira--</label>
+                          <input type="text" class="form-control" value="{{$block->daira}}" name="daira">
+                        </div>
+                        <div class="form-group col-md-2">
+                          <label for="zip">--Zip--</label>
+                          <input type="text" class="form-control" value="{{$block->zip}}" name="zip">
+                        </div>
+                      </div>
+
                     <div class="form-group">
                         <label for="sous">Number of underground floors :</label>
                         <input type="number" name="sous" value="{{$block->sous}}" class="form-control">

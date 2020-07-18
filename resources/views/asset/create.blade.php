@@ -35,6 +35,11 @@ crossorigin="anonymous"></script>
           <input type="text" name="name" class="form-control form-control-alternative">
       </div>
 
+    <div class="form-group">
+        <label for="brand" class="form-control-label"> &#160&#160Brand :</label>
+        <input type="text" name="brand" class="form-control form-control-alternative">
+    </div>
+
       <div class="form-group">
           <label for="description" class="form-control-label"> &#160&#160Description :</label>
           <textarea class="form-control" name="description" id="description" cols="4" rows="4"></textarea>
@@ -42,7 +47,7 @@ crossorigin="anonymous"></script>
   
       <div class="form-group">
           <label class="form-control-label" for="prix">&#160&#160Price :</label>
-          <input type="text" name="prix" class="form-control form-control-alternative">
+          <input type="number" name="prix" class="form-control form-control-alternative">
       </div>
       <div class="form-group">
         <label for="category" class="form-control-label">&#160&#160Category :</label>
@@ -64,7 +69,7 @@ crossorigin="anonymous"></script>
 
       <div class="form-group">
         <label for="duree" class="form-control-label">&#160&#160Lifetime :</label>
-        <input  type="text" name="duree" id="duree" class="form-control form-control-alternative">
+        <input  type="number" name="duree" id="duree" class="form-control form-control-alternative">
       </div>
 
       <div class="form-group">

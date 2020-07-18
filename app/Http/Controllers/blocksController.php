@@ -52,11 +52,17 @@ class blocksController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'adress' => 'required',
+            'wilaya' => 'required',
+            'daira' => 'required',
+            'zip' => 'required',
             'nbreEt' => 'required',
         ]);
         $block = new \App\block ; 
         $block->name = $request->name;
         $block->adress = $request->adress;
+        $block->wilaya = $request->wilaya;
+        $block->daira = $request->daira;
+        $block->zip = $request->zip;
         $block->sous = $request->sous;
         $block->nbre_etage =$request->nbreEt;
         
@@ -103,6 +109,9 @@ class blocksController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'adress' => 'required',
+            'wilaya' => 'required',
+            'daira' => 'required',
+            'zip' => 'required',
             'nbreEt' => 'required',
         ]);
 
@@ -110,6 +119,9 @@ class blocksController extends Controller
   
         $block->name = $request->name;
         $block->adress = $request->adress;
+        $block->wilaya = $request->wilaya;
+        $block->daira = $request->daira;
+        $block->zip = $request->zip;
         $block->sous =$request->sous;
         $block->nbre_etage =$request->nbreEt;
         

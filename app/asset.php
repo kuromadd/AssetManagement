@@ -14,7 +14,8 @@ class asset extends Model
         'dateService',
         'duree_vie',
         'fournisseur_id',
-        'bureau_id'
+        'bureau_id',
+        'brand'
     ];
 
    public function bureau()

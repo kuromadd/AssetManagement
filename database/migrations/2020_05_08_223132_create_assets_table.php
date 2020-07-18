@@ -16,18 +16,19 @@ class CreateAssetsTable extends Migration
         Schema::create('assets', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->text('description');
-            $table->string('prix');
+            $table->text('description')->nullable();
+            $table->integer('prix'); 
+            $table->string('brand'); 
             $table->string('category');
             $table->integer('bureau_id')->nullable();
             $table->date('dateService')->nullable();
-            $table->string('duree_vie');
+            $table->integer('duree_vie');
             $table->integer('status')->default(0);
             $table->boolean('occupied')->default(0); 
             $table->boolean('etat')->default(1); 
             $table->integer('fournisseur_id')->nullable();  
             $table->string('qrcode')->nullable();      
-            $table->boolean('selectInv')->nullable();   
+            $table->boolean('selectInv')->nullable();
             $table->timestamps();
         });
     }

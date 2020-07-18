@@ -119,6 +119,22 @@ crossorigin="anonymous"></script>
                         <label for="adress">Adress :</label>
                         <input type="text" name="adress" class="form-control">
                     </div>
+
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="City">--Wilaya--</label>
+                        <input type="text" class="form-control" id="City">
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="State">--Daira--</label>
+                        <input type="text" class="form-control" id="State">
+                      </div>
+                      <div class="form-group col-md-2">
+                        <label for="Zip">--Zip--</label>
+                        <input type="text" class="form-control" id="Zip">
+                      </div>
+                    </div>
+
                     <div class="form-group">
                       <label for="sous">Number of underground floors</label>
                       <input type="number" name="sous" class="form-control">
