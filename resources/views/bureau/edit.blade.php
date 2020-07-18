@@ -5,7 +5,7 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                        <h3 class="mb-0">edit {{$bureau->name}}</h3>
+                        <h3 class="mb-0">Bureau edit :</h3>
                         </div>
                         
                         
@@ -18,18 +18,20 @@
                 {{ csrf_field() }}
                 <div class="form-group">
                     <div class="form-group">
-                        <label for="name">name</label>
-                    <input type="text" class="form-control" name="type" value="{{$bureau->name}}">
+                        <label for="name">Name :</label>
+                    <input type="text" class="form-control" name="name" value="{{$bureau->name}}">
                     </div>
-                    <label for="type">type</label>
+                    <label for="type">Type :</label>
                         <select class="form-control" name="type" id="type">
-                        <option value="bureau" @if ($bureau->block->type == 'bureau') selected @endif>bureau</option>
-                        <option value="stock" @if ($bureau->block->type == 'stock') selected @endif>stock</option>
-                        <option value="restroom" @if ($bureau->block->type == 'restroom') selected @endif>restroom</option>
+                        <option value="Office" @if ($bureau->type == 'Office') selected @endif>Office</option>
+                        <option value="Stock" @if ($bureau->type == 'Stock') selected @endif>Stock</option>
+                        <option value="Garage" @if ($bureau->type == 'Garage') selected @endif>Garage</option>
+                        <option value="Other" @if ($bureau->type == 'Other') selected @endif>Other</option>
+
                         </select>
                     </div>
                 <div class="form-group">
-                <label for="block_id">block</label>
+                <label for="block_id">Block :</label>
                     <select class="form-control" name="block_id" id="block_id">
                         @foreach(\App\block::all() as $block)
                     <option value="{{ $block->id }}"
@@ -41,9 +43,13 @@
                     </select>
                 </div>
                 <div class="form-group">
-                 <label for="nbreEt">numero d'etage</label>
+                 <label for="nbreEt">Floor number :</label>
                     <select class="form-control" name="etage" id="etage">
-                        @for($i = -2; $i < 6; $i++)
+                        
+
+
+
+                        @for($i = -(\App\block::all()->where('id',$bureau->block_id)->first()->sous); $i <= \App\block::all()->where('id',$bureau->block_id)->first()->nbre_etage; $i++)
                            <option value="{{$i}}"
                            @if ($i == $bureau->etage)
                                selected
@@ -52,6 +58,7 @@
                         @endfor
                     </select>
                 </div>
+                
                 <div class="text-center">
                 <button class="btn btn-info" type="submit">update</button>    
                 </div> 

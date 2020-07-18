@@ -321,7 +321,7 @@
     </ul>
   </div>
   </nav>    
-  <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+  <div class="header bg-gradient-primary pb-6 pt-5 pt-md-8">
         <a href=" {{URL::previous()}}" class="btn btn-sm btn-info"> Back</a>
   </div>
   <div class="container-fluid mt--7">     

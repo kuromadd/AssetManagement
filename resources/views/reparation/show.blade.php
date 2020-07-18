@@ -1,31 +1,29 @@
 @extends('app.edit_layout')
 @section('content')
             <div class="card card-default">
-                  <div class="card-header">
-                      <div class="text-center h1"> 
-                        Reparation information
+                  <div class="card-header" style="background-color: #ecf4fd">
+                      <div class="text-center h1" > 
+                        Reparation information :
                         </div>  
                     </div>
-            
+             
                 <div class="card-body">
                     <div class="text-center">
                         <div class="h3 mt-4">
-                            <span class="font-weight-light">Repaired asset : </span><select disabled name="asset_id" id="asset_id">
-                                @foreach(\App\Asset::all() as $asset)
-                            <option value="{{ $asset->id }}"
-                                @if ($asset->id ?? ''== $reparation->asset_id)
-                                selected
-                            @endif
-                                >{{$asset->name}}</option>
-                                @endforeach
-                            </select>
+                            Repaired asset : 
+                            @foreach (\App\asset::all() as $asset)
+                                @if($asset->id == $reparation->asset_id)
+                                    {{$asset->name}}
+                                @endif
+                            @endforeach
                         </div>
-                        <hr class="my-4" />
+                        <hr class="my-4" width="75%"/>
                         <div class="h3 mt-4">
-                            <span class="font-weight-light">price : </span>{{ $reparation->prix }}
+                           price : {{ $reparation->prix }}.00 DZD
                         </div>
+                        <hr class="my-4" width="75%"/>
                         <div class="h3 mt-4">
-                            <span class="font-weight-light">reparation date : </span>{{ $reparation->repaired_at }}
+                            reparation date : {{ $reparation->repaired_at }}
                         </div>
                         
                     </div>

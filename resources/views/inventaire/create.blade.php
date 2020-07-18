@@ -169,11 +169,11 @@
                 @foreach(\App\block::all() as $block)      
 			  <li><a href="#">{{$block->name}}<span class="caret"></span></a>
 				<ul class="dropdown-menu">
-                    @for($i = $block->sous; $i < $block->nbre_etage; $i++)   
+                    @for($i = -$block->sous; $i <= $block->nbre_etage; $i++)   
 				  <li><a href="#">{{$i}}<span class="caret"></span></a>
 					<ul class="dropdown-menu">
                         @foreach(\App\bureau::all() as $bureau)
-                        @if($bureau->etage == $i) 
+                        @if($bureau->etage == $i && ) 
                       <li ><label> <input style="width: 15px;" class="select" type="checkbox" onclick="selectBureau({{$bureau->id}})">&#160 {{$bureau->name}}</label>
                       @endif
 					  @endforeach

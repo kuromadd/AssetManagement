@@ -50,32 +50,38 @@
                             @if($id)
                             <div class="form-group" id="current_b">
                               <label for="block_c">current block</label>
-                          <input type="text" name="block_c" value="{{\App\asset::find($id)->bureau->block->name }}" class="form-control">
+                          <input type="text" name="block_c" value="{{\App\bureau::find(\App\asset::find($id)->bureau_id)->block_id}}"  class="form-control">
                           </div>
       
                           <div class="form-group" id="current_et">
                               <label for="etage_c">current etage</label>
-                              <input type="text" name="etage_c" value="{{\App\asset::find($id)->bureau->etage }}" class="form-control">
+                              <input type="text" name="etage_c" value="{{\App\bureau::find(\App\asset::find($id)->bureau_id)->etage }}"  class="form-control">
                          </div>
       
                           <div class="form-group" id="current_br">
                               <label for="bureau_c">current bureau</label>
-                              <input type="text" name="bureau_c" value="{{\App\asset::find($id)->bureau->name}}" class="form-control">
+                              <input type="text" name="bureau_c" value="{{\App\bureau::find(\App\asset::find($id)->bureau_id)->id}}"  class="form-control">
                           </div>
                             @else
                             <div class="form-group" id="current_b">
                               <label for="block_c">current block</label>
-                          <input type="text" name="block_c" class="form-control">
+                          <select class="form-control block_c" name="block_c">                           
+                                    
+                          </select>
                           </div>
       
                           <div class="form-group" id="current_et">
                               <label for="etage_c">current etage</label>
-                              <input type="text" name="etage_c" class="form-control">
+                              <select class="form-control etage_c" name="etage_c">                           
+                                    
+                              </select>
                          </div>
       
                           <div class="form-group" id="current_br">
                               <label for="bureau_c">current bureau</label>
-                              <input type="text" name="bureau_c" class="form-control">
+                              <select class="form-control bureau_c" name="bureau_c">                           
+                                    
+                              </select>
                           </div>
                             @endif
     
@@ -98,12 +104,20 @@
                               console.log(data);
                             if(data[1])
                               {
-                                  $("#current_b").empty();
-                                  $("#current_b").append('<div class="form-group"><label for="block_c">current block</label><input type="text" name="block_c" id="current_b" value="'+data[1]+'" class="form-control"></div> ');
+                                $("#current_b").empty();
+                                  $("#current_b").append('<div class="form-group"><label for="block_c">current block</label><select class="form-control block_c" name="block_c"><option selected value="'+data[1].id+'">'+data[1].name+'</option></select></div>');
+                                  $("#current_et").empty();
+                                  $("#current_et").append('<div class="form-group"><label for="etage_c">current etage</label><select class="form-control etage_c" name="etage_c"><option selected value="'+data[2]+'">'+data[2]+'</option></select></div>');
+                                  $("#current_br").empty();
+                                  $("#current_br").append('<div class="form-group" id="current_br"><label for="bureau_c">current bureau</label><select class="form-control bureau_c" name="bureau_c"><option selected value="'+data[3].id+'">'+data[3].name+'</option></select></div>');
+
+
+                                  /* $("#current_b").empty();
+                                  $("#current_b").append('<div class="form-group"><label for="block_c">current block</label><input type="text" name="block_c" id="current_b" value="'+data[1].id+'" placeholder="'+data[1].name+'"  class="form-control"></div> ');
                                   $("#current_et").empty();
                                   $("#current_et").append('<div class="form-group"><label for="etage_c">current etage</label><input type="text" name="etage_c" id="current_et" value="'+data[2]+'" class="form-control"></div> ');
                                   $("#current_br").empty();
-                                  $("#current_br").append('<div class="form-group"><label for="bureau_c">current bureau</label><input type="text" name="bureau_c" id="current_br" value="'+data[3]+'" class="form-control"></div> ');
+                                  $("#current_br").append('<div class="form-group"><label for="bureau_c">current bureau</label><input type="text" name="bureau_c" id="current_br" value="'+data[3].id+'" placeholder="'+data[3].name+'" class="form-control"></div> '); */
                               }
                         },
                           error:function(){ 
@@ -167,9 +181,9 @@
                                          {
                                             console.log(data);
                                              $("#etage_d").empty();
-                                             $("#etage_d").append('<option selected disabled >Select etage</option>');
+                                             $("#etage_d").append('<option selected disabled >Pick the floor</option>');
                                              
-                                                 for(var i=data['sous'] ; i<=data['nbre_Etage'] ; i++){  
+                                                 for(var i=-data['sous'] ; i<=data['nbre_Etage'] ; i++){  
                                                   $("#etage_d").append('<option value="'+i+'">'+i+'</option>')
                                                     }
                                                  

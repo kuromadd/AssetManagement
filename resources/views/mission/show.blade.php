@@ -1,44 +1,42 @@
 @extends('app.edit_layout')
 @section('content')
-            <div class="card card-default">
-                  <div class="card-header" >  
-                    Mission 
-                </div>
-            
-                <div class="card-body">
-                   
-        
-                    {{ csrf_field() }}
-                    <div class="form-group">
-                        <label for="but_mission">But de la mission</label>
-                        <input type="text" name="but_mission" disabled value="{{$mission->but_mission}}" class="form-control">
-                    </div>
 
-                    <div class="form-group">
-                        <label for="destination">Destination</label>
-                        <input type="text" name="destination" disabled value="{{$mission->destination}}" class="form-control">
-                    </div>
+<div class="card card-default">
+    <div class="card-header">
+        <div class="text-center h1"> 
+          Mission information :
+        </div>  
+    </div>
 
-                    <div class="form-group">
-                        <label for="mission_at">date de la Mission</label>
-                    <input type="date" name="mission_at" disabled class="form-control" value="{{ $mission->mission_at }}" id="mission_at">
-                    </div>
+    <div class="card-body">
+        <div class="text-center">
+            <div class="h3 mt-4">
+                Asset : 
+              @foreach (\App\asset::all() as $asset)
+                  @if($asset->id == $mission->asset_id)
+                      {{$asset->name}} .
+                  @endif
+              @endforeach
+          </div>
+          <hr class="my-4" width="75%"/>
+          <div class="h3 mt-4">
+             But de la mission : {{$mission->but_mission}} .
+          </div>
+          <hr class="my-4" width="75%"/>
+          <div class="h3 mt-4">
+              Destination : {{ $mission->destination }}
+          </div>
+          <hr class="my-4" width="75%"/>
+          <div class="h3 mt-4">
+              Mission date : {{ $mission->mission_at }}
+          </div>
+          
+      </div>
 
-                    <div class="form-group">
-                    <label for="Asset_id">Asset</label>
-                        <select class="form-control" name="asset_id" disabled id="asset_id">
-                            @foreach(\App\Asset::all() as $asset)
-                        <option value="{{ $asset->id }}"
-                           @if($asset->id == $mission->asset_id)
-                            selected
-                        @endif>{{$asset->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                   
-                
-            </div>
-        </div>
+  
+</div>
+</div>
+
 @endsection
 
 

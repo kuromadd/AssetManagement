@@ -37,11 +37,11 @@
                         @foreach($transferts as $transfert)
                         <tr>
                             <td>{{\App\Asset::find($transfert->asset_id)->name}}</td>
-                            <td>{{$transfert->block_c}}</td>
+                            <td>{{\App\block::find($transfert->block_c)->name}}</td>
                             <td>{{$transfert->etage_c}}</td>
-                            <td>{{$transfert->bureau_c}}</td>
+                            <td>{{\App\bureau::find($transfert->bureau_c)->name}}</td>
                             <td>{{$transfert->transfered_at}}</td>
-                            <td>{{$transfert->block_d}}</td>
+                            <td>{{\App\block::find($transfert->block_d)->name}}</td>
                             <td>{{$transfert->etage_d}}</td>
                             <td>{{\App\bureau::find($transfert->bureau_d)->name}}</td>
                             

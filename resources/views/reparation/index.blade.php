@@ -1,6 +1,29 @@
 @extends('app.layout')
 @section('content')
-
+@if (\App\Reparation::all()->isEmpty())
+<div class="card card-default">
+    <div class="card-header">  
+        <div class="text-center">
+            <div class="h1 mt-4">
+                <div class="text-center">
+                    Reparations :
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <div class="card-body">     
+        <div class="text-center">
+            <h2>
+                <br><br>
+                No Reparation have been recorded !<br><br>
+                @can('reparation-create')<a href="{{route('createReparation',['id'=>0])}}" class="btn btn-sm btn-primary">Add Reparation</a>@endcan
+                <br><br><br>
+            </h2>
+        </div>
+    </div>
+</div>
+    @else
     <div class="row">
         <div class="col">
             <div class="card shadow" style="width: 80%;margin-left: 9%">
@@ -20,9 +43,9 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
+                                <th scope="col"style="width: 25%">Asset</th>
                                 <th scope="col"style="width: 28%">&#160Prix</th>
                                 <th scope="col"style="width: 33%">date de la reparation</th>
-                                <th scope="col"style="width: 25%">Asset</th>
                                 
                                 <th scope="col"style="width: 14%"></th>
                             </tr>
@@ -30,9 +53,9 @@
                         <tbody>
                         @foreach($reparations as $reparation)
                         <tr>
-                            <td>{{$reparation->prix}}</td>
-                            <td>{{$reparation->repaired_at}}</td>
                             <td>{{\App\Asset::find($reparation->asset_id)->name}}</td>
+                            <td>{{$reparation->prix}}.00</td>
+                            <td>{{$reparation->repaired_at}}</td>
                             
                             <td class="text-right">
                                 <div class="dropdown">
@@ -64,5 +87,5 @@
             </div>
         </div>
     </div>
-
+@endif
 @endsection    

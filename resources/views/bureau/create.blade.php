@@ -93,7 +93,7 @@
               <div class="card-header border-0">
                   <div class="row align-items-center">
                       <div class="col-8">
-                          <h3 class="mb-0">create a new bureau</h3>
+                          <h3 class="mb-0">Create a new bureau :</h3>
                       </div>
                       <a class="close" href="#">&times;</a>
                     </div>
@@ -105,21 +105,22 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                       <div class="form-group">
-                        <label for="name">name</label>
+                        <label for="name">Name :</label>
                     <input type="text" class="form-control" name="name">
                     </div>
-                        <label for="type">type</label>
+                        <label for="type">type :</label>
                             <select class="form-control" name="type" id="type">
-                            <option value="bureau">bureau</option>
-                            <option value="stock">stock</option>
-                            <option value="restroom">restroom</option>
+                            <option value="Office">Office</option>
+                            <option value="Stock">Stock</option>
+                            <option value="Garage">Garage</option>
+                            <option value="Other">Other</option>
                             </select>
                         </div>
                     
                     <div class="form-group">
-                    <label for="block_id">block</label>
+                    <label for="block_id">Block :</label>
                         <select class="form-control blockID" name="block_id" id="block_id">
-                          <option value=0 disabled selected>chose block</option>
+                          <option value=0 disabled selected>pick a block</option>
                             @foreach(\App\block::all() as $block)
                         <option value="{{ $block->id }}">{{$block->name}}</option>
                             @endforeach
@@ -128,7 +129,7 @@
                     </div>
                   
                     <div class="form-group">
-                     <label for="nbreEt" >numero d'etage</label>
+                     <label for="nbreEt" >Floor number</label>
                         <select class="form-control" class="nbEtage" name="etage" id="etage">                           
                             
                         </select>
@@ -136,39 +137,40 @@
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
                     <script type="text/javascript"> 
                       $(document).ready(function(){
-                      $(document).on('change','.blockID',function(){
-                        
-                        var block_id=$(this).val();
-                        var div=$(this).parent();
-                        var op="";
-                        $.ajax({
-                          type:'get',
-                          url:'{!!URL::to('findEtage')!!}',
-                          data:{'id':block_id},
-                          dataType:'json',
-                          success:function(data){
-                            if(data)
-                              {
-                                console.log(data);
-                                  $("#etage").empty();
-                                  $("#etage").append('<option selected disabled >Select etage</option>');
-                                  $.each(data,function(data,data){
-                                      for(var i=-2 ; i<=data ; i++){$("#etage").append('<option value="'+i+'">'+i+'</option>');}
-                                  });
-                              }
-                            
+                                 $(document).on('change','.blockID',function(){
+                                   
+                                   var block_id=$(this).val();
+                                   var div=$(this).parent();
+                                   var op="";
+                                   $.ajax({
+                                     type:'get',
+                                     url:'{!!URL::to('findEtage')!!}',
+                                     data:{'id':block_id},
+                                     dataType:'json',
+                                     success:function(data){
+                                       if(data)
+                                         {
+                                            console.log(data);
+                                             $("#etage").empty();
+                                             $("#etage").append('<option selected disabled >Pick the floor</option>');
+                                             
+                                                 for(var i=-data['sous'] ; i<=data['nbre_Etage'] ; i++){  
+                                                  $("#etage").append('<option value="'+i+'">'+i+'</option>')
+                                                    }
+                                                 
+                                
+                                         }
 
-                          },
-                          error:function(){ 
-  
-                          }
-                        })
-                      });
-                      });
+                                     },
+                                     error:function(){ 
+                                     }
+                                   })
+                                 });
+                                 });
                     </script>
                    
                     <div class="text-center">
-                    <button class="btn btn-info" type="submit">store</button>    
+                    <button class="btn btn-info" type="submit">Store</button>    
                     </div> 
                 </form>
             

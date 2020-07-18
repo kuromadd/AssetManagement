@@ -36,7 +36,7 @@ class InventaireController extends Controller
      */
     public function create()
     {
-    // dd(\App\bureau::select()->whereIn('id', DB::table('asset_bureau_inventaire')->select('bureau_id')->where('inventaire_id', 1))->get());
+        // dd(\App\bureau::select()->whereIn('id', DB::table('asset_bureau_inventaire')->select('bureau_id')->where('inventaire_id', 1))->get());
         $assets = (\App\asset::whereIn('status',['0','1','2'])->get());
         return view('inventaire.create')->with('assets',$assets)->with('user',auth()->user());
         

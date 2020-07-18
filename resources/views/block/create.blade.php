@@ -103,7 +103,7 @@ crossorigin="anonymous"></script>
     <div class="popup" style="width: 60%">
             <div class="card card-default">
                   <div class="card-header">  
-                   create a new Block
+                   Create a new Block :
                    <a class="close" href="#">&times;</a>
                 </div>
             
@@ -112,19 +112,19 @@ crossorigin="anonymous"></script>
         
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="name">Name :</label>
                         <input type="text" name="name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="adress">Adress</label>
+                        <label for="adress">Adress :</label>
                         <input type="text" name="adress" class="form-control">
                     </div>
                     <div class="form-group">
-                      <label for="sous">sous</label>
+                      <label for="sous">Number of underground floors</label>
                       <input type="number" name="sous" class="form-control">
                   </div>
                     <div class="form-group">
-                        <label for="nbreEt">nombre d'etage</label>
+                        <label for="nbreEt">Number of floors</label>
                         <input type="number" name="nbreEt" class="form-control">
                     </div>
                     <div class="text-center">

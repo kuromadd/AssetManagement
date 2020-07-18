@@ -94,10 +94,10 @@
     <div class="popup" style="width: 60%"> 
            
               <div class="card card-default">
-                <div class="card-header border-0">
+                <div class="card-header border-0" >
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">create a new user</h3>
+                            <h3 class="mb-0">Create a new user :</h3>
                         </div>
                         <a class="close" href="#">&times;</a>
                       </div>
@@ -117,7 +117,7 @@
                         @endif
                     {{ csrf_field() }}
                     <input type="text" hidden name="qr" value="{{Str::random(20)}}">
-                    <label class="form-control-label" for="name">{{ __('Name') }}</label>
+                    <label class="form-control-label" for="name">{{ __('Name :') }}</label>
                     <input type="text" name="name" id="name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('name') }}" required>
                     
                     @if ($errors->has('name'))
@@ -127,7 +127,7 @@
                 @endif
 
                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                    <label class="form-control-label" for="email">{{ __('Email') }}</label>
+                    <label class="form-control-label" for="email">{{ __('Email :') }}</label>
                     <input type="email" name="email" id="email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('example@gmail.com') }}" required>
 
                     @if ($errors->has('email'))
@@ -138,7 +138,7 @@
                 </div>
                 
                     <div class="form-group">
-                        <label for="role_id" class="form-control-label">select role</label>
+                        <label for="role_id" class="form-control-label">Role :</label>
                         <select class="form-control" name="role" id="role" class="form-control form-control-alternative{{ $errors->has('role') ? ' is-invalid' : '' }}">
                             @foreach (Spatie\Permission\Models\Role::all() as $item)
                         <option id="role" value="{{$item->id}}">{{ $item->name }}</option>
@@ -147,7 +147,7 @@
                     </div>
     
                     <div class="text-center">
-                        <button type="submit" class="btn btn-success">store</button>
+                        <button type="submit" class="btn btn-success">Store</button>
                     </div>
                 
                 </form>

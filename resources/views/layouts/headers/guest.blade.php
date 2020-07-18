@@ -3,7 +3,7 @@
         <div class="header-body text-center mb-7">
             <div class="row justify-content-center">
                 <div class="col-lg-5 col-md-6">
-                    <h1 class="text-white">{{ __('Welcome to our first app in laravel.') }}</h1>
+                    <h1 class="text-white">{{ __('Welcome to G-IMMO the easiest asset management web application.') }}</h1>
                 </div>
             </div>
         </div>

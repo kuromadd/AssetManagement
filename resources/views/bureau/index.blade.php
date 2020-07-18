@@ -18,13 +18,13 @@
                 
 
                 <div class="table-responsive">
-                    <table class="table align-items-center table-flush">
+                    <table class="table align-items-center table-flush table-striped">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col" style="width: 30%">Name</th>
-                                <th scope="col" style="width: 30%">type</th>
+                                <th scope="col" style="width: 30%">Type</th>
+                                <th scope="col" style="width: 30%">Block</th>
                                 <th scope="col" style="width: 30%">Etage</th>
-                                <th scope="col" style="width: 30%">block</th>
                                 
                                 <th scope="col" style="width: 10%"></th>
                             </tr>
@@ -34,9 +34,8 @@
                         <tr>
                             <td>{{$bureau->name}}</td>
                             <td>{{$bureau->type}}</td>
-                            <td>{{$bureau->etage}}</td>
                             <td>{{\App\block::find($bureau->block_id)->name}}</td>
-                            
+                            <td>{{$bureau->etage}}</td>
                             <td class="text-right">
                                 <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only text" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -9,6 +9,21 @@
                     <form action="{{ route('storeMission') }}" method="post" enctype="multipart/form-data">
         
                     {{ csrf_field() }}
+
+                    <div class="form-group">
+                    <label for="Asset_id">Asset</label>
+                        <select class="form-control" name="asset_id" id="asset_id">
+                            <option value="0" disabled @if( $id == 0)selected @endif>select asset</option>
+                            @foreach(\App\Asset::all()->where('category','Vehicle') as $asset)
+                                  @if($asset->etat==1 && $asset->status = [0,1]) 
+                                    <option value="{{ $asset->id }}"
+                                    @if( $id && $asset->id == $id)
+                                    selected
+                                    @endif>{{$asset->name}}</option>
+                                  @endif
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="but_mission">But de la mission</label>
                         <input type="text" name="but_mission" class="form-control">
@@ -24,20 +39,6 @@
                     <input type="date" name="mission_at" class="form-control" value="{{date('Y-m-d')}}" id="mission_at">
                     </div>
 
-                    <div class="form-group">
-                    <label for="Asset_id">Asset</label>
-                        <select class="form-control" name="asset_id" id="asset_id">
-                            <option value="0" disabled @if( $id == 0)selected @endif>select asset</option>
-                            @foreach(\App\Asset::all() as $asset)
-                                  @if($asset->etat==0 && $asset->status = [0,1]) 
-                                    <option value="{{ $asset->id }}"
-                                    @if( $id && $asset->id == $id)
-                                    selected
-                                    @endif>{{$asset->name}}</option>
-                                  @endif
-                            @endforeach
-                        </select>
-                    </div>
                     <div class="text-center">
                     <button class="btn btn-info" type="submit">store</button>    
                     </div> 

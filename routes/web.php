@@ -89,6 +89,7 @@ Route::get('/block/delete/{id}','blocksController@destroy')->name('deleteBlock')
 Route::get('/bureau/index','bureauController@index')->name('indexBureau');
 Route::get('/bureau/create','bureauController@create')->name('createBureau');
 Route::post('/bureau/store','bureauController@store')->name('storeBureau');
+Route::post('/bureau/storeAddedAssets/{id}','bureauController@storeAddedAssets')->name('storeAddedAssets'); //
 Route::get('/bureau/show/{id}','bureauController@show')->name('showBureau');
 Route::get('/bureau/edit/{id}','bureauController@edit')->name('editBureau');
 Route::post('/bureau/update/{id}','bureauController@update')->name('updateBureau');
@@ -147,6 +148,12 @@ Route::group(['middleware' => ['auth']], function() {
 });
 });
 
+Route::get('/tinv', function () {
+    return view('inventaire.test');
+});
+Route::get('/tinv2', function () {
+    return view('inventaire.test2');
+});
 
 Route::get('/q', function () {
     return view('test.index');

@@ -38,10 +38,16 @@ class BureauController extends Controller
     {
         return view('bureau.create');
     }
+/**
+     * to give info of sous and nbreetage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
 
     public function findEtage(Request $request){
-        
-        $data=\App\block::select('nbre_Etage')->where('id',$request->id)->first();
+        $data=\App\block::select('nbre_Etage','sous')->where('id',$request->id)->first();
+        $request->session()->put('blockID', $request->id);
         return response()->json($data);
     }
     /**
@@ -53,7 +59,7 @@ class BureauController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name' =>'required',
+            'name' =>'required|min:2|max:30',
             'type' =>'required',
             'block_id' =>'required',
             'etage' => 'required',
@@ -63,12 +69,20 @@ class BureauController extends Controller
         $bureau->type = $request->type;
         $bureau->block_id = $request->block_id;
         $bureau->etage =$request->etage;
-        $bureau->save();
+        /* try{ */
+            $bureau->save();
+            return redirect()->back()->with('success','You stored a new bureau..!');
+        /* }
+        catch(Exception $e){
+            return redirect()->back()->with('error', "Could not save the bureau!");
+        }
+        return redirect()->back()->with('error', "Error Occured, please try again!");
+        $bureau->save(); */
 
       //  \App\asset::whereIn('id',$request->assets)->update(["bureau_id" => $bureau->id]);
       //  \App\asset::whereIn('id',$request->assets)->update(["occupied" => 1]);
         
-        return redirect()->back()->with('success','you stored a new bureau');
+        
     } 
 
     /**
@@ -115,6 +129,17 @@ class BureauController extends Controller
         ]);
 
         $bureau = \App\bureau::find($id) ; 
+
+         if ($bureau->type=='Stock' && $request->type !='Stock') {
+            foreach (\App\asset::where('bureau_id',$bureau->id)->get() as $asse) {
+                $asse->update(["occupied"=>1]);
+            }
+        } elseif ($bureau->type!='Stock' && $request->type =='Stock') {
+            foreach (\App\asset::where('bureau_id',$bureau->id)->get() as $asse) {
+                $asse->update(["occupied"=>2]);
+            }
+        } 
+
         $bureau->name = $request->name;
         $bureau->type = $request->type;
         $bureau->etage = $request->etage;
@@ -124,14 +149,52 @@ class BureauController extends Controller
   
         return redirect()->route('indexBureau')->with('success','you updated a bureau');
     }
-    public function saveAsset(Request $request,$id){
-        $bureau = \App\bureau::find($id) ; 
 
-        \App\asset::whereIn('id',$bureau->assets)->update(["occupied" => 0,"bureau_id" => 0]);
-        \App\asset::whereIn('id',$request->assets)->update(["occupied" => 1,"bureau_id" => $id]);
+    public function storeAddedAssets(Request $request,$id){
+        $bureau = \App\bureau::find($id);
 
-        return redirect()->back();
+        foreach (\App\asset::whereIn('id',$request->assetsun)->get() as $asset) {
+            if ($asset->occupied == 0) {
+                if ($bureau->type=='Stock') {
+                    \App\asset::where('id',$asset->id)->update(["bureau_id" => $id,"occupied" => 2]);
+                }else {
+                    \App\asset::where('id',$asset->id)->update(["bureau_id" => $id,"occupied" => 1]);
+                } 
+            } else {
+                $transfert = new \App\Transfert;
+                $transfert->asset_id=$asset->id;
+                $transfert->block_d=$bureau->block_id;
+                $transfert->bureau_d=$bureau->id;
+                $transfert->etage_d=$bureau->etage;
+                $transfert->block_c=\app\bureau::find($asset->bureau_id)->block_id;
+                $transfert->bureau_c=$asset->bureau_id;
+                $transfert->etage_c=\app\bureau::find($asset->bureau_id)->etage;
+                $transfert->transfered_at= now();
+
+                $transfert->save();
+                $asset->update(["bureau_id"=> $bureau->id]);
+                if ($bureau->type == 'Stock') {
+                    \App\asset::where('id',$asset->id)->update(["occupied" => 2]);
+                }else {
+                    \App\asset::where('id',$asset->id)->update(["occupied" => 1]);
+                }
+            }
+            
+        }
+
+
+
+
+
+
+        /* if ($bureau->type=='Stock') {
+            \App\asset::whereIn('id',$request->assetsun)->update(["occupied"=>2,"bureau_id"=>$id]);
+        } else {
+            \App\asset::whereIn('id',$request->assetsun)->update(["occupied"=>1,"bureau_id"=>$id]);
+        } */
+        return view('bureau.show')->with('bureau',$bureau);
     }
+
 
     /**
      * Remove the specified resource from storage.
