@@ -1,174 +1,142 @@
-@extends('app.edit_layout')
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
 <style>
-*
-{
-	background: #f1f2f6;
-	margin: 0;
-	padding: 0;
+@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,700);
+form {
+  max-width: 450px;
+  margin: 0 auto;
+}
+form > div {
+  position: relative;
+  background: white;
+  border-bottom: 1px solid #ccc;
+}
+form > div > label {
+  opacity: 0.3;
+  font-weight: bold;
+  position: absolute;
+  top: 22px;
+  left: 20px;
+}
+form > div > input[type="text"],
+form > div > input[type="email"],
+form > div > input[type="password"] {
+  width: 100%;
+  border: 0;
+  padding: 20px 20px 20px 50px;
+  background: #eee;
+}
+form > div > input[type="text"]:focus,
+form > div > input[type="email"]:focus,
+form > div > input[type="password"]:focus {
+  outline: 0;
+  background: white;
+}
+form > div > input[type="text"]:focus + label,
+form > div > input[type="email"]:focus + label,
+form > div > input[type="password"]:focus + label {
+  opacity: 0;
+}
+form > div > input[type="text"]:valid,
+form > div > input[type="email"]:valid,
+form > div > input[type="password"]:valid {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/check.svg);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: 20px 20px;
+}
+form > div > input[type="text"]:valid + label,
+form > div > input[type="email"]:valid + label,
+form > div > input[type="password"]:valid + label {
+  opacity: 0;
+}
+form > div > input[type="text"]:invalid:not(:focus):not(:placeholder-shown),
+form > div > input[type="email"]:invalid:not(:focus):not(:placeholder-shown),
+form > div > input[type="password"]:invalid:not(:focus):not(:placeholder-shown) {
+  background: pink;
+}
+form > div > input[type="text"]:invalid:not(:focus):not(:placeholder-shown) + label,
+form > div > input[type="email"]:invalid:not(:focus):not(:placeholder-shown) + label,
+form > div > input[type="password"]:invalid:not(:focus):not(:placeholder-shown) + label {
+  opacity: 0;
+}
+form > div > input[type="text"]:invalid:focus:not(:placeholder-shown) ~ .requirements,
+form > div > input[type="email"]:invalid:focus:not(:placeholder-shown) ~ .requirements,
+form > div > input[type="password"]:invalid:focus:not(:placeholder-shown) ~ .requirements {
+  max-height: 200px;
+  padding: 0 30px 20px 50px;
+}
+form > div .requirements {
+  padding: 0 30px 0 50px;
+  color: #999;
+  max-height: 0;
+  -webkit-transition: 0.28s;
+  transition: 0.28s;
+  overflow: hidden;
+  color: red;
+  font-style: italic;
+}
+form input[type="submit"] {
+  display: block;
+  width: 100%;
+  margin: 20px 0;
+  background: #41D873;
+  color: white;
+  border: 0;
+  padding: 20px;
+  font-size: 1.2rem;
 }
 
-.image-area
-{
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	position: absolute;
+body {
+  background: #333;
+  font-family: 'PT Sans', sans-serif;
+  padding: 20px;
 }
 
-.img-wrapper
-{
-	width: 300px;
-	height: 400px;
-	position: relative;
-	overflow: hidden;
-}
-
-.img-wrapper:before
-{
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 180%;
-	height: 100%;
-	width: 100%;
-	background: rgba(255,255,255,.3);
-	z-index: 1;
-	transform: skew(45deg);
-	transition: .5s;
-}
-
-.img-wrapper:hover:before
-{
-	left: -180%;
-}
-
-.img-wrapper img
-{
-	height: 400px;
-	width: 300px;
-	filter: grayscale(100%);
-	transition: 2s;
-}
-.img-wrapper:hover img
-{
-	filter: grayscale(0%);
-	transform: scale(1.1);
-}
-
-.img-wrapper h2
-{
-	background: tomato;
-	font-family: Poppins;
-	color: #fff;
-	text-align: center;
-	text-transform: uppercase;
-	margin: 0;
-	padding: 10px 0;
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	transform: perspective(400px) rotateY(90deg);
-	transform-origin: right;
-	transition: 1s;
-}
-
-.img-wrapper:hover h2
-{
-	transform: perspective(400px) rotateY(0deg);
-}
-
-.img-wrapper ul
-{
-	position: absolute;
-	top: 0;
-	left: 0;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	background: rgba(255,255,255,0);
-}
-
-.img-wrapper ul li
-{
-	background: #333;
-	height: 40px;
-	width: 40px;
-	text-align: center;
-	line-height: 40px;
-	transform: perspective(800px) rotateY(90deg);
-	transition: .5s;
-	transform-origin: left;
-}
-
-.img-wrapper:hover ul li
-{
-	transform: perspective(800px) rotateY(0deg);
-}
-
-.img-wrapper:hover ul li:nth-child(1)
-{
-	transition-delay: .2s;
-}
-
-.img-wrapper:hover ul li:nth-child(2)
-{
-	transition-delay: .6s;
-}
-
-.img-wrapper:hover ul li:nth-child(3)
-{
-	transition-delay: .8s;
-}
-
-.img-wrapper:hover ul li:nth-child(4)
-{
-	transition-delay: 1s;
-}
-
-.img-wrapper ul li a
-{
-	color: tomato;
-	background: rgba(255,255,255,0);
-}
-
-.img-wrapper ul li i
-{
-	color: tomato;
-	background: rgba(255,255,255,0);
-}
-
-.img-wrapper ul li i:hover
-{
-	color: #fff;
-	background: rgba(255,255,255,0);
-}
+* {
+  box-sizing: border-box;
+}		
 </style>
 <body>
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Profile Image hover effect</title>
-    <link rel="stylesheet" href="style.css">
-  
-    <!-- ------------ Font awesome CDN link ------------------ -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-  </head>
-  <body>
-    <div class="image-area">
-      <div class="img-wrapper">
-        <img src="https://images.pexels.com/photos/1220757/pexels-photo-1220757.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Atul Prajapati">
-        <h2>David james</h2>
-        <ul>
-          <li><a href="https://github.com/atuljustano"><i class="fab fa-github"></i></a></li>
-          <li><a href="https://www.instagram.com/atulkprajapati2000/"><i class="fab fa-instagram"></i></a></li>
-          <li><a href="https://twitter.com/atuljustano"><i class="fab fa-twitter"></i></a></li>
-          <li><a href="https://www.youtube.com/channel/UCf-KfxuY8PZBSD_8RW2nYsw"><i class="fab fa-youtube"></i></a></li>
-        </ul>
-      </div>
-    </div>
-  </body>
-  </html>
+	<form action="#0">
+
+		<div>
+		  <input type="text" id="first_name" name="first_name" required placeholder=" " />
+		  <label for="first_name">First Name</label>
+		</div>
+		
+		<div>
+		  <input type="text" id="last_name" name="last_name" required placeholder=" " />
+		  <label for="last_name">Last Name</label>
+		</div>
+		
+		<div>
+		  <input type="email" id="email" name="email" required placeholder=" " />
+		  <label for="email">Email Address</label>
+		  <div class="requirements">
+			Must be a valid email address.
+		  </div>
+		</div>
+		
+		<div>
+		  <input type="password" id="password" name="password" required placeholder=" " pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" />
+		  <label for="password">Password</label>
+		  <div class="requirements">
+			Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.
+		  </div>
+		</div>
+		
+		<input type="submit" value="Sign Up" />
+	  
+	  </form>
 </body>
-@endsection
+<script>
+
+</script>
+</html>

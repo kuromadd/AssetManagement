@@ -43,6 +43,60 @@
     
                     <script type="text/javascript" src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.js"></script>
 
+                    <script language="javascript">
+                        function printdiv(printpage)
+                        {
+                        var headstr = "<html><head><title></title></head><body>";
+                        var footstr = "</body>";
+                        var newstr = document.all.item(printpage).innerHTML;
+                        var oldstr = document.body.innerHTML;
+                        document.body.innerHTML = headstr+newstr+footstr;
+                        window.print();
+                        document.body.innerHTML = oldstr;
+                        return false;
+                        }
+                        </script>
+                        <style>
+                    
+                    
+                    .column {
+                      float: left;
+                      width: 33.33%;
+                      padding: 5px;
+                    }
+                    
+                    /* Clearfix (clear floats) */
+                    .row::after {
+                      content: "";
+                      clear: both;
+                      display: table;
+                    }
+                        </style>
+                    <div class="row">
+                    <div class="column" id="div_print">
+                    <div style="margin-left:33%" id="qrcode"></div>
+                    </div>
+                    <div class="column">
+                    <input style="margin-top:32%" name="b_print" type="button" class="ipt" style="margin-left: 35%" onClick="printdiv('div_print');" value=" Print ">    
+                    </div>
+                    </div>
+
+
+<script>
+
+    var userInput = <?php echo json_encode($user->qrcode); ?>
+
+    var qrcode = new QRCode("qrcode", {
+        text: userInput,
+        width: 200,
+        height: 200,
+        colorDark: "black",//#5e72e4
+        colorLight: "white",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+    
+   
+</script>
 
                     
                     <div class="text-center">

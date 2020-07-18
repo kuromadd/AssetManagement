@@ -38,7 +38,7 @@ class InventaireController extends Controller
     {
         // dd(\App\bureau::select()->whereIn('id', DB::table('asset_bureau_inventaire')->select('bureau_id')->where('inventaire_id', 1))->get());
         $assets = (\App\asset::whereIn('status',['0','1','2'])->get());
-        return view('inventaire.create')->with('assets',$assets);
+        return view('inventaire.create')->with('assets',$assets)->with('user',auth()->user());
         
 
 
@@ -53,23 +53,23 @@ class InventaireController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
             request()->validate([
-                
+                'name' =>'required',
+                'description' =>'required',
             ]);
 
-            foreach(\App\asset::all() as $asset){
-               
-                $asset->occupied = 0;
-                $asset->save();
+            foreach (\App\asset::all() as $asset) {
+                if ($asset->status == [0,1,2]) {
+                    $asset->occupied = 0;
+                    $asset->save();
+                }
             }
             
             $inventaire = \App\inventaire::all()->last();
             if($request->has('fine')){ \App\asset::whereIn('id',$request->fine)->update(["status" => 1]);}
             if($request->has('repair')){ \App\asset::whereIn('id',$request->repair)->update(["status" => 2]);}
-            if($request->has('lost')){ \App\asset::whereIn('id',$request->lost)->update(["status" => 3]);}
+            if($request->has('lost')){ \App\asset::whereIn('id',$request->lost)->update(["status" => 3,"occupied" => 1]);}
 
-            if($request->has('lost')) {\App\asset::whereIn('id',$request->lost)->update(["occupied" => 1]);}
             if($request->has('fine')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 1]);}
             if($request->has('damaged')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 2]);}
             if($request->has('lost')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 3]);}
@@ -113,10 +113,13 @@ class InventaireController extends Controller
         $inventaire->name = $request->name;
         $inventaire->save();
 
-        if($request->has('fine')){ \App\asset::whereIn('id',$request->fine)->update(["status" => 1,"occupied" => 1]);}
-        if($request->has('repair')) \App\asset::whereIn('id',$request->repair)->update(["status" => 2,"occupied" => 1]);
-        if($request->has('lost')) \App\asset::whereIn('id',$request->lost)->update(["status" => 3,"occupied" => 1]);
-        $inventaire->assets()->sync((\App\asset::where('occupied','=',1)->get()));
+        if($request->has('fine')){ \App\asset::whereIn('id',$request->fine)->update(["status" => 1]);}
+        if($request->has('repair')){ \App\asset::whereIn('id',$request->repair)->update(["status" => 2]);}
+        if($request->has('lost')){ \App\asset::whereIn('id',$request->lost)->update(["status" => 3,"occupied" => 1]);}
+
+        if($request->has('fine')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 1]);}
+        if($request->has('damaged')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 2]);}
+        if($request->has('lost')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 3]);}
 
         return redirect()->route('indexInventaire');
     }

@@ -57,7 +57,10 @@
         <script>
             toastr.success('{{ Session::get('success') }}');
         </script>            
+        @elseif(Session::has('info'))
+        <script>
+            toastr.info('{{ Session::get('info') }}');
+        </script>   
         @endif
-
     </body>
 </html>

@@ -19,7 +19,7 @@
                 <div class="form-group">
                     <div class="form-group">
                         <label for="name">Name :</label>
-                    <input type="text" class="form-control" name="type" value="{{$bureau->name}}">
+                    <input type="text" class="form-control" name="name" value="{{$bureau->name}}">
                     </div>
                     <label for="type">Type :</label>
                         <select class="form-control" name="type" id="type">

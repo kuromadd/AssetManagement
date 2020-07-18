@@ -29,7 +29,7 @@
     </button>
     <!-- Brand -->
     <a class="navbar-brand pt-0" href="{{ route('home') }}">
-        <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
+        <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" style="height: 19rem;width: 19rem;" alt="...">
     </a>
     <!-- User -->
   
@@ -350,5 +350,7 @@
 toastr.success('{{ Session::get('success') }}');
 </script>            
 @endif
+
+
 </body>
 </html> 

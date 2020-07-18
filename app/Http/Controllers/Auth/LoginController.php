@@ -45,9 +45,9 @@ class LoginController extends Controller
         $user=\App\User::where('qrcode',$request->qrcode)->first(); 
         if ($user) {
             Auth::login($user);
-            return redirect()->intended('home');
+            return redirect()->intended('home')->with('success','hello '.$user->name);
         }
-        return redirect()->intended('login');
+        return redirect()->intended('login')->with('info','try again or enter password please.');
     }
 
 }

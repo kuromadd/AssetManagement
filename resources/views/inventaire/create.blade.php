@@ -1,5 +1,16 @@
-
-
+	
+	
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"  type="text/css">
+	
+	<!-- SmartMenus jQuery Bootstrap Addon CSS -->
+    <link href="{{asset('css/jquery.smartmenus.bootstrap.css')}}" rel="stylesheet">
+	
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+	
+	<!-- Custom Fonts -->
+    <link rel="stylesheet" href="{{asset('font-awesome-4.4.0/css/font-awesome.min.css')}}"  type="text/css">
 
 <style>
 /*custom font*/
@@ -25,7 +36,7 @@
 	padding: 20px 30px;
 	
 	box-sizing: border-box;
-	width: 80%;
+    width: 80%;
 	margin: 0 10%;
 	
 	/*stacking fieldsets above each other*/
@@ -134,7 +145,7 @@
 </style>
 <br><br>
 <!-- multistep form -->
-<form id="msform">
+<section id="msform">
 	<!-- progressbar -->
 	<ul id="progressbar">
 		<li class="active"></li>
@@ -147,126 +158,61 @@
         <input type="text" name="description" id="description" placeholder="description" required />
 		<input type="button" name="next" class="next action-button" onclick="saveInventaire($('#name').val(),$('#description').val())" value="Next" />
 	</fieldset>
-	<fieldset>
-        <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="{{asset('hummingbird-treeview.css')}}" rel="stylesheet" type="text/css">
-    <style>
-        
-        .stylish-input-group .input-group-addon {
-            background: white !important;
-        }
-        
-        .stylish-input-group .form-control {
-            border-right: 0;
-            box-shadow: 0 0 0;
-            border-color: #ccc;
-        }
-        
-        .stylish-input-group button {
-            border: 0;
-            background: transparent;
-        }
-        
-        .h-scroll {
-            background-color: #fcfdfd;
-            height: 260px;
-            overflow-y: scroll;
-        }
-    </style>
+	<fieldset >
 
-<div id="treeview_container" class="hummingbird-treeview">
-       
-    <ul id="treeview" class="hummingbird-base">
-      @foreach(\App\block::all() as $block)
-        
+
+
+ 		<ul class="nav navbar-nav">
+		  
+		  <li><a style="" href="#" class="dropleft"><i class="fa fa-list"></i> blocks</a>
+			<ul class="dropdown-menu">
+                @foreach(\App\block::all() as $block)      
+			  <li><a href="#">{{$block->name}}<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+                    @for($i = -$block->sous; $i <= $block->nbre_etage; $i++)   
+				  <li><a href="#">{{$i}}<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+                        @foreach(\App\bureau::all() as $bureau)
+                        @if($bureau->etage == $i && ) 
+                      <li ><label> <input style="width: 15px;" class="select" type="checkbox" onclick="selectBureau({{$bureau->id}})">&#160 {{$bureau->name}}</label>
+                      @endif
+					  @endforeach
+					</ul>
+				  </li>
+				  @endfor
+				</ul>
+              </li>
+              @endforeach  
+			</ul>
+		  </li>
+		 
+		</ul>
+		
+	  </div><!--/.nav-collapse -->
+
+	
+    	
+    <!-- Once the page is loaded, initialized the plugin. -->
+    <script type="text/javascript" src="{{asset('js/jquery-2.1.1.js')}}" ></script>
+	<script src="{{asset('js/bootstrap.min.js')}}"></script>
+	
+
+	<!-- SmartMenus jQuery plugin -->
+    <script type="text/javascript" src="{{asset('js/jquery.smartmenus.js')}}"></script>
+
+    <!-- SmartMenus jQuery Bootstrap Addon -->
+    <script type="text/javascript" src="{{asset('js/jquery.smartmenus.bootstrap.js')}}"></script>
+
       
-    <li><i class="fa fa-minus"></i> <label> <input id="node-0" data-id="custom-0" type="checkbox" > {{$block->name}}</label>
-          <ul style="display: block;">
-          @for($i = $block->sous; $i < $block->nbre_etage; $i++) 
-            
-                <li><i class="fa fa-plus"></i> <label> <input id="node-0-1" data-id="custom-1" type="checkbox">  {{$i}}</label>
-                  <ul>
-                  @foreach(\App\bureau::all() as $bureau)
-                  @if($bureau->etage == $i)
-                        <li><label> <input class="select" id="node-0-1-1" data-id="custom-1-1" type="checkbox" onclick="selectBureau({{$bureau->id}})"> {{$bureau->name}}</label>
-                           
-                        </li>
-                        
-                        @endif
-                        @endforeach
-                    </ul>
-                </li>
-            @endfor    
-            </ul>
-        </li>
-      @endforeach
-    </ul>
-</div>
+  <br><br>
 
-    <script>
-        try {
-            fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", {
-                method: 'HEAD',
-                mode: 'no-cors'
-            })).then(function(response) {
-                return true;
-            }).catch(function(e) {
-                var carbonScript = document.createElement("script");
-                carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CE7DC2JW&placement=wwwcssscriptcom";
-                carbonScript.id = "_carbonads_js";
-                document.getElementById("carbon-block").appendChild(carbonScript);
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    </script>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="{{asset('hummingbird-treeview.js')}}"></script>
-    <script>
-        $("#treeview").hummingbird();
-        $("#checkAll").click(function() {
-            $("#treeview").hummingbird("checkAll");
-        });
-        $("#uncheckAll").click(function() {
-            $("#treeview").hummingbird("uncheckAll");
-        });
-        $("#collapseAll").click(function() {
-            $("#treeview").hummingbird("collapseAll");
-        });
-        $("#checkNode").click(function() {
-            $("#treeview").hummingbird("checkNode", {
-                attr: "id",
-                name: "node-0-2-2",
-                expandParents: false
-            });
-        });
-    </script>
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-36251023-1']);
-        _gaq.push(['_setDomainName', 'jqueryscript.net']);
-        _gaq.push(['_trackPageview']);
-
-        (function() {
-            var ga = document.createElement('script');
-            ga.type = 'text/javascript';
-            ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
-    
-		<input type="button" name="previous" class="previous action-button" value="Previous" />
 		<input type="button" name="next" class="next action-button" value="Next" onclick="setAssets()" />
 	</fieldset>
-	<fieldset style="width: 104%">
-        <form action="{{ route('storeInventaire') }}" method="POST" enctype="multipart/form-data">
-            
+	<fieldset style="width: 100%">
+        <form action="{{ route('storeInventaire') }}" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
                          
-        <table class="table align-items-center table-flush minha-table" id="tableInv">
+        <table style="font-size: small;" class="table align-items-center table-flush minha-table" id="tableInv">
             <thead>
             <tr>
                 <th scope="col">Block</th>
@@ -288,7 +234,7 @@
         </form>
     </fieldset>
 	
-</form>
+</section>
 
 <!-- jQuery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
@@ -336,44 +282,6 @@ $(".next").click(function(){
 	});
 });
 
-$(".previous").click(function(){
-	if(animating) return false;
-	animating = true;
-	
-	current_fs = $(this).parent();
-	previous_fs = $(this).parent().prev();
-	
-	//de-activate current step on progressbar
-	$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-	
-	//show the previous fieldset
-	previous_fs.show(); 
-	//hide the current fieldset with style
-	current_fs.animate({opacity: 0}, {
-		step: function(now, mx) {
-			//as the opacity of current_fs reduces to 0 - stored in "now"
-			//1. scale previous_fs from 80% to 100%
-			scale = 0.8 + (1 - now) * 0.2;
-			//2. take current_fs to the right(50%) - from 0%
-			left = ((1-now) * 50)+"%";
-			//3. increase opacity of previous_fs to 1 as it moves in
-			opacity = 1 - now;
-			current_fs.css({'left': left});
-			previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
-		}, 
-		duration: 500, 
-		complete: function(){
-			current_fs.hide();
-			animating = false;
-		}, 
-		//this comes from the custom easing plugin
-		easing: 'easeOutQuint'
-	});
-});
-
-$(".submit").click(function(){
-	return false;
-})
 </script>
 
 
