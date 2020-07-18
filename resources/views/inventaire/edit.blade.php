@@ -113,7 +113,7 @@
             <tbody>
                 
 
-        @foreach(DB::table("asset_inventaire")->get() as $value)
+        @foreach(DB::table("asset_bureau_inventaire")->get() as $value)
     
             @if ($value->inventaire_id == $inventaire->id)
             

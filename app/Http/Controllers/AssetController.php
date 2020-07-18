@@ -190,10 +190,10 @@ class AssetController extends Controller
             
             $asset = \App\asset::where('qrcode',$qrcode)->first();
        
-            return view('asset.show')->with('asset',$asset);
+            return view('asset.show')->with('asset',$asset)->with('success',$asset->name.' full information');
         }else {
          
-            return view('asset.create')->with('qr',$qrcode);
+            return view('asset.create')->with('qr',$qrcode)->with('info','fill all the blancks');
         }
     }
     public function existInv($qrcode){

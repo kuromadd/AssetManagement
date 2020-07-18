@@ -30,7 +30,6 @@
     
     </style>
 
-
     @include('layouts.headers.guest')
 
     <div class="container mt--8 pb-5">
@@ -56,11 +55,8 @@
                                 </div>
 
                             <input type="text" id="cam-qr-result" name="qrcode" class="QRcode" value="{{null}}" hidden>
-
-                                <label hidden id="load" for="">loading .. please wait</label>
+    
                         </div>
-                        
-                        
                         
                         <script type="module">
                             import QrScanner from "/qr-scanner.min.js";
@@ -73,7 +69,7 @@
                             
                            
                             function setResult(input, result) {
-                                $("#load").hide().find('label').prop('disabled', true);
+                                toastr.info('loading ... please wait');
                                 let url = "{{ route('qrcheck', ':qrcode') }}";
                                 url = url.replace(':qrcode', result);
                                 document.location.href=url;
@@ -156,4 +152,7 @@
             </div>
         </div>
     </div>
+
+
+
 @endsection

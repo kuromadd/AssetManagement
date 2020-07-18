@@ -135,7 +135,6 @@
                                   <h3 class="name">{{$user->name}}</h3>
                                   @foreach($user->getRoleNames() as $v)
                                   <label class=" badge badge-success">{{ $v }}</label>
-                                  <h4 class="email"><a href="mailto:{{$user->email}}">{{$user->email}}</a></h4>
                             @endforeach
                                   
                                 </div>
