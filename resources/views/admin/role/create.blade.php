@@ -132,7 +132,7 @@ crossorigin="anonymous"></script>
     {{ csrf_field() }}
     <div class="form-group">
         <label for="name">role</label>
-        <input type="text" name="name" class="form-control">
+        <input type="text" name="name" class="form-control" required placeholder=" ">
     </div>
     
 

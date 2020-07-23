@@ -56,7 +56,7 @@ class AssetController extends Controller
             'description' => 'required',
             'prix' => 'required',
             'category' => 'required',
-            'dateservice' => 'required',
+            'dateservice' => 'required|date',
             'duree' => 'required',
             'qr' => 'required'
         ]);
@@ -148,27 +148,36 @@ class AssetController extends Controller
         return redirect()->back()->with('success','you deleted asset');
     }
 
-   public function replace($id){
-    $asset = \App\asset::find($id);
-    foreach (\App\asset::all() as $item) {
-        if ($item->occupied && $item->category === $asset->category) {
-            $assets[] =$item;
-        }
-    }
-    dd($assets);
-        return ;
-   }
+   public function replace(Request $request){
 
-    public function reset($id){
-        foreach(\App\asset::whereIn('status',['0','1','2'])->get() as $asset)
-        {
-        $asset->status = 0;
+    $asset = \App\asset::find($request->id);
+    $bureau1 = \App\bureau::find(\App\asset::find($request->val)->bureau_id);
+    $bureau2 = \App\bureau::find(\App\asset::find($request->id)->bureau_id);
+    
+    if ($asset->occupied == 2) {
+
+        $transfert = new \App\Transfert;
+        $transfert->asset_id=$asset->id;
+        $transfert->block_d=$bureau1->block_id;
+        $transfert->bureau_d=$bureau1->id;
+        $transfert->etage_d=$bureau1->etage;
+        $transfert->block_c=$bureau2->block_id;
+        $transfert->bureau_c=$bureau2->id;
+        $transfert->etage_c=$bureau2->etage;
+        $transfert->transfered_at= now();
+
+        $transfert->save();
+        
+            $asset->bureau_id = $bureau2->id;
+    } else {
+        $asset->bureau_id = $bureau2->id;        
+    }   
+        $asset->occupied = 1;
+        \App\asset::where('id',$request->val)->update('replaced',1);
         $asset->save();
-    }
-    if($id != 0){
-    DB::table('asset_inventaire')->where('inventaire_id',$id)->update(["status" => 0]);}
-    return redirect()->route('assetList');
-    }
+
+        return response()->json('1');
+   }
 
     public function saveall(Request $request){
         foreach(\App\asset::all() as $asset){
@@ -184,7 +193,7 @@ class AssetController extends Controller
     }
 
     function scan() {
-        return view('qr.qrhInv');
+        return view('qr.qrh');
     }
 
     public function exist($qrcode){
@@ -192,18 +201,7 @@ class AssetController extends Controller
             
             $asset = \App\asset::where('qrcode',$qrcode)->first();
        
-            return view('asset.show')->with('asset',$asset)->with('success',$asset->name.' full information');
-        }else {
-         
-            return view('asset.create')->with('qr',$qrcode)->with('info','fill all the blancks');
-        }
-    }
-    public function existInv($qrcode){
-        if (\App\asset::where('qrcode',$qrcode)->first()) {
-            
-            $asset = \App\asset::where('qrcode',$qrcode)->first();
-       
-            return view('qr.exist')->with('asset',$asset);
+            return view('asset.show')->with('asset',$asset);
         }else {
          
             return view('asset.create')->with('qr',$qrcode);

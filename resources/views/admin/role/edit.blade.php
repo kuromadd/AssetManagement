@@ -14,7 +14,7 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="role">role</label>
-                        <input type="text" name="role" value="{{$role->name}}" class="form-control">
+                        <input type="text" name="role" value="{{$role->name}}" class="form-control" required placeholder=" ">
                     </div>
                     <div class="form-group">
                         <label >select permissions</label><br>

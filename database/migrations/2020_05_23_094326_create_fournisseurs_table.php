@@ -18,8 +18,8 @@ class CreateFournisseursTable extends Migration
             $table->string('libel');
             $table->string('address');
             $table->string('tel');
-            $table->string('email');
-            $table->string('website');
+            $table->string('email')->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }

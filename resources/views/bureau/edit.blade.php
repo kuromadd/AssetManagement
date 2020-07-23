@@ -19,7 +19,7 @@
                 <div class="form-group">
                     <div class="form-group">
                         <label for="name">Name :</label>
-                    <input type="text" class="form-control" name="name" value="{{$bureau->name}}">
+                    <input type="text" class="form-control" name="name" value="{{$bureau->name}}" required placeholder=" ">
                     </div>
                     <label for="type">Type :</label>
                         <select class="form-control" name="type" id="type">
@@ -46,9 +46,6 @@
                  <label for="nbreEt">Floor number :</label>
                     <select class="form-control" name="etage" id="etage">
                         
-
-
-
                         @for($i = -(\App\block::all()->where('id',$bureau->block_id)->first()->sous); $i <= \App\block::all()->where('id',$bureau->block_id)->first()->nbre_etage; $i++)
                            <option value="{{$i}}"
                            @if ($i == $bureau->etage)
@@ -58,7 +55,7 @@
                         @endfor
                     </select>
                 </div>
-                
+
                 <div class="text-center">
                 <button class="btn btn-info" type="submit">update</button>    
                 </div> 

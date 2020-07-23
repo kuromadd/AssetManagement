@@ -60,7 +60,7 @@ Route::get('/asset/show/{id}','AssetController@show')->name('showAsset');
 Route::get('/asset/edit/{id}','AssetController@edit')->name('editAsset');
 Route::post('/asset/update/{id}','AssetController@update')->name('updateAsset');
 Route::get('/asset/delete/{id}','AssetController@destroy')->name('deleteAsset');
-Route::get('/asset/replace/{id}','AssetController@replace')->name('replaceAsset');
+Route::get('/replaceAsset','AssetController@replace');
 Route::get('/asset/found/{id}','AssetController@found')->name('foudAsset');
 
 Route::get('/Inventaire/index','InventaireController@index')->name('indexInventaire');

@@ -32,7 +32,7 @@
                               <h3 class="mb-0">Lost Assets :</h3>
                           </div>
                           <div class="col-4 text-right">
-                          <a href="#" class="btn btn-sm btn-primary">replaceAll</a>
+                          
                           </div>
                       </div>
                   </div>
@@ -57,17 +57,23 @@
               <td style="margin: 5px"><h4 class="mb-0"> {{ $asset->bureau->block->name }}</h4></td>
               <td style="width: 16%"><h4 class="mb-0"> {{$asset->bureau->etage}}</h4></td>
               <td style="width: 16%"><h4 class="mb-0">{{$asset->bureau->name}}</h4></td>
-            <td >
-                <select name="" id="">
-                    <option value="" disabled selected>replace</option>
+            <td class="rep">
+            @if($asset->replaced == 0)
+               
+                <select class="form-control" name="" id="" onchange="replaceAsset(this.value,{{$asset->id}})">
+                    <option value=0 disabled selected>replace</option>
                 @foreach (\App\asset::all() as $item)
-                    @if ($item->occupied == 0 && $item->status = [0,1,2] && $item->category === $asset->category)
+                    @if ($item->occupied == [0,2] && $item->status = [0,1] && $item->category === $asset->category)
                         <option value="{{$item->id}}">{{$item->name}}</option> 
                     @endif
                 @endforeach
-            </select>
+                </select>
+  
+                @else
+                <label class="text-info">replaced.</label>
+                @endif
             </td>
-            <td ><a href="{{route('replaceAsset',$asset->id)}}" class="btn btn-sm btn-success">found !!</a></td>
+            <td ><a href="" class="btn btn-sm btn-success">found !!</a></td>
             </tr>
             @endif
             @endforeach    
@@ -80,5 +86,25 @@
  </div>  
 </div>
 @endif
+
+<script>
+    function replaceAsset(id,val){
+    $.ajax({
+     type:'get',
+     url:'{!!URL::to('replaceAsset')!!}',
+     data:{'id':id,'val':val},
+     dataType:'json',
+     success:function(data){
+
+     console.log(data);
+     
+                                                
+     },
+     error:function(){ 
+     console.log('dsdsd');
+     }
+    })
+    }
+</script>
 
 @endsection

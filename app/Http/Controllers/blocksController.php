@@ -52,6 +52,7 @@ class blocksController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'adress' => 'required',
+            'sous' => 'required',
             'nbreEt' => 'required',
         ]);
         $block = new \App\block ; 
@@ -103,6 +104,7 @@ class blocksController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'adress' => 'required',
+            'sous' => 'required',
             'nbreEt' => 'required',
         ]);
 

@@ -54,8 +54,8 @@ class FournisseurController extends Controller
         request()->validate([
             'libel' => 'required',
             'tel' => 'required',
-            'email' => 'required',
-            'address' => 'required'
+            'address' => 'required',
+            'email' =>'email',
         ]);
         (Fournisseur::create([
         'libel' => $request->libel,
@@ -107,7 +107,6 @@ class FournisseurController extends Controller
         request()->validate([
             'libel' => 'required',
             'tel' => 'required',
-            'email' => 'required',
             'address' => 'required'
         ]);
         $fournisseur = \App\Fournisseur::find($id);

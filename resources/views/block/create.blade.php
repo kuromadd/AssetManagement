@@ -113,19 +113,19 @@ crossorigin="anonymous"></script>
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="name">Name :</label>
-                        <input type="text" name="name" class="form-control">
+                        <input type="text" name="name" class="form-control" required placeholder=" ">
                     </div>
                     <div class="form-group">
                         <label for="adress">Adress :</label>
-                        <input type="text" name="adress" class="form-control">
+                        <input type="text" name="adress" class="form-control" required placeholder=" ">
                     </div>
                     <div class="form-group">
                       <label for="sous">Number of underground floors</label>
-                      <input type="number" name="sous" class="form-control">
+                      <input type="number" name="sous" class="form-control" required placeholder=" ">
                   </div>
                     <div class="form-group">
                         <label for="nbreEt">Number of floors</label>
-                        <input type="number" name="nbreEt" class="form-control">
+                        <input type="number" name="nbreEt" class="form-control" required placeholder=" ">
                     </div>
                     <div class="text-center">
                     <button class="btn btn-info" type="submit">store</button>    

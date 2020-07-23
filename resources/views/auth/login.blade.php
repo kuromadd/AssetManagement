@@ -2,33 +2,31 @@
 
 @section('content')
 
-<style>
-                        
-    canvas {
-                    display: none;
-                }
-                hr {
-                    margin-top: 32px;
-                }
-                input[type="file"] {
-                    display: block;
-                    margin-bottom: 16px;
-                }
-                div {
-                    margin-bottom: 16px;
-                }
-    </style>
-    
- 
-    <style type="text/css">
-        #results { padding:20px; border:1px solid; background:#ccc; }
-    .Camera {
-        width: 300px;
-        height: 230px;
-        border: 1px solid black;
+<style type="text/css">
+    #results { padding:20px; border:1px solid; background:#ccc; }
+
+
+.tv {
+      position: relative;
+      margin: 20px 0;
+      background: rgb(97, 6, 243);
+      border-radius: 50% / 10%;
+      color: white;
+      text-align: center;
+      text-indent: .1em;
     }
-    
-    </style>
+    .tv:before {
+      content: '';
+      position: absolute;
+      top: 10%;
+      bottom: 10%;
+      right: -5%;
+      left: -5%;
+      background: inherit;
+      border-radius: 5% / 50%;
+    }
+  
+</style>
 
     @include('layouts.headers.guest')
 
@@ -46,12 +44,9 @@
                         <form role="form" method="POST" action="{{ route('login') }}">
                             @csrf
                 
-                        <div class="row">
-                          <div class="col">
-                              <div class="card shadow" style="height: auto; width: 67%;margin-left:14% ">
-                                  
+
                                 <div>
-                                    <video style="width: 100%;height: auto;" muted playsinline id="qr-video"></video>
+                                    <video class="tv" style="width: 90%;height: auto;" muted playsinline id="qr-video"></video>
                                 </div>
 
                             <input type="text" id="cam-qr-result" name="qrcode" class="QRcode" value="{{null}}" hidden>
@@ -83,8 +78,6 @@
                         
                         </script>
 
-                        </div>
-                    </div>
                     <div class="card-body px-lg-5 py-lg-5">
                         <div class="text-center text-muted mb-4">
                             <small>

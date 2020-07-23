@@ -54,8 +54,7 @@ class InventaireController extends Controller
     public function store(Request $request)
     {
             request()->validate([
-                'name' =>'required',
-                'description' =>'required',
+                
             ]);
 
             foreach (\App\asset::all() as $asset) {
@@ -64,12 +63,12 @@ class InventaireController extends Controller
                     $asset->save();
                 }
             }
-            
+             
             $inventaire = \App\inventaire::all()->last();
             if($request->has('fine')){ \App\asset::whereIn('id',$request->fine)->update(["status" => 1]);}
             if($request->has('repair')){ \App\asset::whereIn('id',$request->repair)->update(["status" => 2]);}
             if($request->has('lost')){ \App\asset::whereIn('id',$request->lost)->update(["status" => 3,"occupied" => 1]);}
-
+           
             if($request->has('fine')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 1]);}
             if($request->has('damaged')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 2]);}
             if($request->has('lost')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 3]);}

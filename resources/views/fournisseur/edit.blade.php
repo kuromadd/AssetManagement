@@ -12,15 +12,15 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="libel">Libel</label>
-                    <input type="text" name="libel" value="{{ $fournisseur->libel }}" class="form-control">
+                    <input type="text" name="libel" value="{{ $fournisseur->libel }}" class="form-control" required placeholder=" ">
                     </div>
                     <div class="form-group">
                         <label for="adress">Adress</label>
-                        <input type="text" name="address" value="{{$fournisseur->address}}" class="form-control">
+                        <input type="text" name="address" value="{{$fournisseur->address}}" class="form-control" required placeholder=" "> 
                     </div>
                     <div class="form-group">
                         <label for="tel">Tel</label>
-                        <input type="text" name="tel" value="{{$fournisseur->tel}}" class="form-control">
+                        <input type="text" name="tel" value="{{$fournisseur->tel}}" class="form-control" required placeholder=" ">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>

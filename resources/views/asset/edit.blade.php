@@ -14,17 +14,17 @@
       {{ csrf_field() }}
       <div class="form-group">
           <label class="form-control-label" for="name">&#160&#160Name :</label>
-          <input type="text" name="name" value="{{$asset->name}}" class="form-control form-control">
+          <input type="text" name="name" value="{{$asset->name}}" class="form-control form-control" required placeholder=" ">
       </div>
 
       <div class="form-group">
           <label for="description" class="form-control-label"> &#160&#160Description :</label>
-          <textarea class="form-control" name="description" id="description" cols="4" rows="4">{{$asset->description}}</textarea>
+          <textarea class="form-control" name="description" id="description" cols="4" rows="4" required placeholder=" ">{{$asset->description}}</textarea>
       </div>
   
       <div class="form-group">
           <label class="form-control-label" for="prix">&#160&#160Price :</label>
-          <input type="text" name="prix" value="{{$asset->prix}}" class="form-control form-control">
+          <input type="text" name="prix" value="{{$asset->prix}}" class="form-control form-control" required placeholder=" ">
       </div>
       <div class="form-group">
         <label for="category" class="form-control-label">&#160&#160Category :</label>
@@ -40,12 +40,12 @@
      
       <div class="form-group">
         <label for="date" class="form-control-label">&#160&#160Acquisition date :</label>
-        <input type="date" name="dateservice" id="dateservice" value="{{ $asset->dateService }}" class="form-control">
+        <input type="date" name="dateservice" id="dateservice" value="{{ $asset->dateService }}" class="form-control" required placeholder=" ">
       </div>
 
       <div class="form-group">
         <label for="duree" class="form-control-label">&#160&#160Lifetime :</label>
-      <input  type="text" name="duree" value="{{ $asset->duree_vie }}" class="form-control form-control">
+      <input  type="text" name="duree" value="{{ $asset->duree_vie }}" class="form-control form-control" required placeholder=" ">
       </div>
 
       <div class="form-group">
