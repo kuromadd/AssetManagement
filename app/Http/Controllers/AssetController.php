@@ -53,7 +53,7 @@ class AssetController extends Controller
     {
         request()->validate([
             'name' => 'required',
-            'description' => 'required',
+            'brand'=>'required',
             'prix' => 'required',
             'category' => 'required',
             'dateservice' => 'required|date',
@@ -64,6 +64,7 @@ class AssetController extends Controller
         $asset = new \App\asset;
         $asset->name = $request->name;
         $asset->description=$request->description;
+        $asset->brand=$request->brand;
         $asset->prix = $request->prix;
         $asset->category = $request->category;
         $asset->dateService = $request->dateservice;
@@ -115,7 +116,7 @@ class AssetController extends Controller
     {
         request()->validate([
             'name' => 'required',
-            'description' => 'required',
+            'brand' => 'required',
             'prix' => 'required',
             'category' => 'required',
             'dateservice' => 'required',
@@ -124,6 +125,7 @@ class AssetController extends Controller
         $asset = \App\asset::find($id);
         $asset->name = $request->name;
         $asset->description=$request->description;
+        $asset->brand=$request->brand;
         $asset->prix = $request->prix;
         $asset->category = $request->category;
         $asset->dateService = $request->dateservice;

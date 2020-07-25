@@ -47,7 +47,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col" style="width: 22%">Name</th>
-                                <th scope="col" style="width: 22%">Category</th>
+                                <th scope="col" style="width: 22%">Brand</th>
                                 <th scope="col" style="width: 22%">Acquisition Date</th>
                                 <th scope="col" style="width: 22%"></th>
                                 <th scope="col" style="width: 12%"></th>
@@ -58,7 +58,7 @@
                         @foreach($assets as $asset)
                         <tr>
                             <td>{{$asset->name}}</td>
-                            <td>{{$asset->category}}</td>
+                            <td>{{$asset->brand}}</td>
                             <td>{{$asset->dateService}}</td>
                             <td>
                                 @if ($asset->occupied==0)

@@ -10,7 +10,7 @@
                             <h3 class="mb-0">Blocks</h3>
                         </div>
                         <div class="col-4 text-right">
-                        <a href="#popupbc" class="btn btn-sm btn-primary">Add block</a>
+                        <a {{-- href="#popupbc" --}} data-toggle="modal" data-target="#addblock" class="btn btn-sm btn-primary">Add block</a>
                         </div>
                     </div>
                 </div>
@@ -20,8 +20,9 @@
                     <table class="table align-items-center table-flush table-striped">
                         <thead class="thead-light">
                             <tr style="width: 100%">
-                                <th scope="col" style="width: 40%">Name</th>
-                                <th scope="col" style="width: 40%">Adress</th>
+                                <th scope="col" >Name</th>
+                                <th scope="col" >Adress</th>
+                                <th scope="col">Wilaya</th>
                                 
                                 <th scope="col" style="width: 20%"></th>
                             </tr>
@@ -31,6 +32,7 @@
                         <tr>
                             <td>{{$block->name}}</td>
                             <td>{{$block->adress}}</td>
+                            <td>{{$block->wilaya}}</td>
                             
                             <td class="text-right">
                                 <div class="dropdown">
@@ -53,6 +55,64 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="modal fade" id="addblock">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content " >
+                            <form action="{{ route('storeBlock') }}" method="post" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <div class="modal-header" style="margin-right: 5%;margin-left: 5%">
+                                    <h2>Add Block :</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                </div>
+                                <div class="model-body" style="margin-right: 5%;margin-left: 5%">
+                                    <div class="form-group">
+                                        <label for="name">Name :</label>
+                                        <input type="text" name="name" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="adress">Adress :</label>
+                                        <input type="text" name="adress" class="form-control">
+                                    </div>
+                
+                                    <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label for="wilaya">--Wilaya--</label>
+                                        <input type="text" class="form-control" name="wilaya">
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <label for="daira">--Daira--</label>
+                                        <input type="text" class="form-control" name="daira">
+                                      </div>
+                                      <div class="form-group col-md-2">
+                                        <label for="zip">--Zip--</label>
+                                        <input type="text" class="form-control" name="zip">
+                                      </div>
+                                    </div>
+                
+                                    <div class="form-group">
+                                      <label for="sous">Number of underground floors</label>
+                                      <input type="number" name="sous" class="form-control">
+                                  </div>
+                                    <div class="form-group">
+                                        <label for="nbreEt">Number of floors</label>
+                                        <input type="number" name="nbreEt" class="form-control">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="model-footer text-center">
+                                    <button class="btn btn-info" type="submit" >Save</button>
+                                    <button class="btn btn-primary" data-dismiss="modal">cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
                 <div class="card-footer py-4">
                     <nav class="d-flex justify-content-end" aria-label="...">
                        {!! $blocks->render() !!}
@@ -61,5 +121,5 @@
             </div>
         </div>
     </div>
-    @include('block.create')   
+    {{-- @include('block.create')   --}} 
 @endsection

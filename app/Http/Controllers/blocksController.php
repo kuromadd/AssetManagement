@@ -58,6 +58,9 @@ class blocksController extends Controller
         $block = new \App\block ; 
         $block->name = $request->name;
         $block->adress = $request->adress;
+        $block->wilaya = $request->wilaya;
+        $block->daira = $request->daira;
+        $block->zip = $request->zip;
         $block->sous = $request->sous;
         $block->nbre_etage =$request->nbreEt;
         
@@ -112,6 +115,9 @@ class blocksController extends Controller
   
         $block->name = $request->name;
         $block->adress = $request->adress;
+        $block->wilaya = $request->wilaya;
+        $block->daira = $request->daira;
+        $block->zip = $request->zip;
         $block->sous =$request->sous;
         $block->nbre_etage =$request->nbreEt;
         

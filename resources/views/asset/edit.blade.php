@@ -18,6 +18,11 @@
       </div>
 
       <div class="form-group">
+        <label class="form-control-label" for="brand">&#160&#160Brand :</label>
+        <input type="text" name="brand" value="{{$asset->brand}}" class="form-control form-control">
+    </div>
+
+      <div class="form-group">
           <label for="description" class="form-control-label"> &#160&#160Description :</label>
           <textarea class="form-control" name="description" id="description" cols="4" rows="4" required placeholder=" ">{{$asset->description}}</textarea>
       </div>

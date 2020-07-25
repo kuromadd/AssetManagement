@@ -36,6 +36,10 @@
                 </div>
                 <hr class="my-4"/>
                 <div class="h3 mt-4">
+                    Brand : {{$asset->brand}} .
+                </div>
+                <hr class="my-4"/>
+                <div class="h3 mt-4">
                     Description : {{ $asset->description }} .
                 </div>
                 <hr class="my-4"/>
