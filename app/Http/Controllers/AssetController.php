@@ -154,7 +154,7 @@ class AssetController extends Controller
     $bureau1 = \App\bureau::find(\App\asset::find($request->val)->bureau_id);
     $bureau2 = \App\bureau::find(\App\asset::find($request->id)->bureau_id);
     
-    if ($asset->occupied == 2) {
+    if ($bureau2 <> null) {
 
         $transfert = new \App\Transfert;
         $transfert->asset_id=$asset->id;
@@ -166,18 +166,55 @@ class AssetController extends Controller
         $transfert->etage_c=$bureau2->etage;
         $transfert->transfered_at= now();
 
-        $transfert->save();
-        
+        $transfert->save();      
             $asset->bureau_id = $bureau2->id;
-    } else {
+    } else{
         $asset->bureau_id = $bureau2->id;        
     }   
         $asset->occupied = 1;
-        \App\asset::where('id',$request->val)->update('replaced',1);
+        $asset->save();
+        DB::update('update assets set replaced = 1 where id = ?', [$request->val]);
+        
+        $data=[];
+    foreach (\App\bureau::all() as $item){
+        if ($item->type == "Stock" && \App\bureau::find($asset->bureau_id)->id == $item->id){
+            $data[]=$item;
+        }
+    }
+    
+        return response()->json('replace');
+   }
+
+   public function choose(Request $request){
+
+    $asset = \App\asset::find($request->id);
+    $bureau2 = \App\bureau::find(\App\asset::find($request->val)->bureau_id);
+    $bureau1 = \App\bureau::find($request->id);
+
+        $transfert = new \App\Transfert;
+        $transfert->asset_id=$asset->id;
+        $transfert->block_d=$bureau1->block_id;
+        $transfert->bureau_d=$bureau1->id;
+        $transfert->etage_d=$bureau1->etage;
+        $transfert->block_c=$bureau2->block_id;
+        $transfert->bureau_c=$bureau2->id;
+        $transfert->etage_c=$bureau2->etage;
+        $transfert->transfered_at= now();
+
+        $transfert->save();      
+            $asset->bureau_id = $bureau1->id;
+
+        $asset->occupied = 2;
         $asset->save();
 
-        return response()->json('1');
+        return response()->json('choose');
    }
+
+    public function found(Request $request){
+
+        DB::update('update assets set status = 0 where id = ?', [$request->id]);
+        return response()->json('found');
+    }
 
     public function saveall(Request $request){
         foreach(\App\asset::all() as $asset){

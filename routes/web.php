@@ -61,7 +61,8 @@ Route::get('/asset/edit/{id}','AssetController@edit')->name('editAsset');
 Route::post('/asset/update/{id}','AssetController@update')->name('updateAsset');
 Route::get('/asset/delete/{id}','AssetController@destroy')->name('deleteAsset');
 Route::get('/replaceAsset','AssetController@replace');
-Route::get('/asset/found/{id}','AssetController@found')->name('foudAsset');
+Route::get('/Found','AssetController@found');
+Route::get('/chooseBureau','AssetController@choose');
 
 Route::get('/Inventaire/index','InventaireController@index')->name('indexInventaire');
 Route::get('/Inventaire/create','InventaireController@create')->name('createInventaire');
@@ -177,3 +178,6 @@ Route::get('/getbureau/{id}/{etage}','inventaireController@BureauInv')->name('ge
 Route::get('/getasset/{id}','inventaireController@assetInv')->name('getA');
 
 
+Route::get('/Assets', function () {
+        return view('tableAss');    
+});

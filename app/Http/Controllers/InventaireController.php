@@ -70,8 +70,8 @@ class InventaireController extends Controller
             if($request->has('lost')){ \App\asset::whereIn('id',$request->lost)->update(["status" => 3,"occupied" => 1]);}
            
             if($request->has('fine')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 1]);}
-            if($request->has('damaged')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 2]);}
-            if($request->has('lost')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 3]);}
+            if($request->has('repair')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->repair)->update(["status" => 2]);}
+            if($request->has('lost')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->lost)->update(["status" => 3]);}
 
         return redirect()->route('indexInventaire');
     }
@@ -109,7 +109,7 @@ class InventaireController extends Controller
     public function update(Request $request,$id)
         {
         $inventaire = \App\inventaire::find($id);    
-        $inventaire->name = $request->name;
+        //$inventaire->name = $request->name;
         $inventaire->save();
 
         if($request->has('fine')){ \App\asset::whereIn('id',$request->fine)->update(["status" => 1]);}
@@ -117,8 +117,8 @@ class InventaireController extends Controller
         if($request->has('lost')){ \App\asset::whereIn('id',$request->lost)->update(["status" => 3,"occupied" => 1]);}
 
         if($request->has('fine')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 1]);}
-        if($request->has('damaged')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 2]);}
-        if($request->has('lost')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 3]);}
+        if($request->has('repair')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->repair)->update(["status" => 2]);}
+        if($request->has('lost')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->lost)->update(["status" => 3]);}
 
         return redirect()->route('indexInventaire');
     }
