@@ -169,10 +169,9 @@ Route::get('/existInv/{qrcode}','assetController@existInv')->name('existInv');
 
 Route::get('/checkqr/{qrcode}','auth\LoginController@checkQR')->name('qrcheck');
 
-Route::get('/checkfine','inventaireController@checkfine')->name('checkfine');
-Route::get('/checkdamaged','inventaireController@checkdamaged')->name('checkdamaged');
-Route::get('/checklost','inventaireController@checklost')->name('checklost');
-Route::get('/uncheckAsset','inventaireController@uncheckAsset')->name('uncheckAsset');
+Route::get('/showBtn','inventaireController@showBtn');
+Route::get('/checkfine','inventaireController@checkfine');
+Route::get('/checkdamaged','inventaireController@checkdamaged');
 
 Route::get('/getbureau/{id}/{etage}','inventaireController@BureauInv')->name('getbureau');
 Route::get('/getasset/{id}','inventaireController@assetInv')->name('getA');

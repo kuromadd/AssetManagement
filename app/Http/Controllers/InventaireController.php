@@ -189,4 +189,44 @@ class InventaireController extends Controller
         
         return response()->json('invSaved');
     }
+
+    public function showBtn(Request $request){
+        $data = [];
+        $data[2] = 0;
+        $data[1] = \App\asset::select()->where('qrcode',$request->qrcode)->first();
+        if ($data[1]) {
+        foreach (\App\bureau::select()->whereIn('id', DB::table('asset_bureau_inventaire')->select('bureau_id')->where('inventaire_id', \App\inventaire::all()->last()->id))->get() as $bureau) {
+            if ($data[1]->bureau_id == $bureau->id) {
+                $data[2] = 1;
+            }   
+        }   
+        }else {
+            $data[2] = 2;
+        }
+        
+        return response()->json($data);
+    }
+
+    public function checkfine(Request $request){
+
+        $asset = \App\asset::select()->where('id',$request->qrcode)->first();
+             $data[0]=$asset->bureau->block->name;
+             $data[1]=$asset->bureau->etage;
+             $data[2]=$asset->bureau->name;
+             $data[3]=$asset->name;
+             $data[4]=$asset->id;
+
+        return response()->json($data);
+    }
+    public function checkdamaged(Request $request){
+
+        $asset = \App\asset::select()->where('id',$request->qrcode)->first();
+             $data[0]=$asset->bureau->block->name;
+             $data[1]=$asset->bureau->etage;
+             $data[2]=$asset->bureau->name;
+             $data[3]=$asset->name;
+             $data[4]=$asset->id;
+
+        return response()->json($data);
+    }
 }

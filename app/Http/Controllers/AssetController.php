@@ -246,4 +246,14 @@ class AssetController extends Controller
             return view('asset.create')->with('qr',$qrcode);
         }
     }
+    public function existInv($qrcode){
+        if (\App\asset::where('qrcode',$qrcode)->first()) {
+            
+            $asset = \App\asset::where('qrcode',$qrcode)->first();
+       
+            return view('qr.exist')->with('asset',$asset);
+        }else {
+            return redirect()->back()->with('info','this asset doesn\'t exist');
+        }
+    }
 }

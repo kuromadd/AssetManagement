@@ -6,7 +6,7 @@
 
 <script type="text/javascript" src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.js"></script>
 
-
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
 <style type="text/css">
@@ -62,14 +62,9 @@
 
     // ####### Web Cam Scanning #######
 
-    QrScanner.hasCamera().then(hasCamera => camHasCamera.textContent = hasCamera);
-
     const scanner = new QrScanner(video, result => setResult(camQrResult, result));
     scanner.start();
 
-    document.getElementById('inversion-mode-select').addEventListener('change', event => {
-        scanner.setInversionMode(event.target.value);
-    });
 
 
 </script>
