@@ -50,17 +50,24 @@
                             @if($id)
                             <div class="form-group" id="current_b">
                               <label for="block_c">current block</label>
-                          <input type="text" name="block_c" value="{{\App\bureau::find(\App\asset::find($id)->bureau_id)->block_id}}"  class="form-control">
+                              <select class="form-control block_c" name="block_c">
+                                <option selected value="{{\App\bureau::find(\App\asset::find($id)->bureau_id)->block_id}}">{{\App\block::find(\App\bureau::find(\App\asset::find($id)->bureau_id)->block_id)->name}}</option>
+                              </select> 
+                          {{-- <input type="text" name="block_c" value="{{\App\bureau::find(\App\asset::find($id)->bureau_id)->block_id}}"  class="form-control"> --}}
                           </div>
       
                           <div class="form-group" id="current_et">
                               <label for="etage_c">current etage</label>
-                              <input type="text" name="etage_c" value="{{\App\bureau::find(\App\asset::find($id)->bureau_id)->etage }}"  class="form-control">
+                              <select class="form-control etage_c" name="etage_c">
+                                <option selected value="{{\App\bureau::find(\App\asset::find($id)->bureau_id)->etage }}">{{\App\bureau::find(\App\asset::find($id)->bureau_id)->etage }}</option>
+                              </select>
                          </div>
       
                           <div class="form-group" id="current_br">
                               <label for="bureau_c">current bureau</label>
-                              <input type="text" name="bureau_c" value="{{\App\bureau::find(\App\asset::find($id)->bureau_id)->id}}"  class="form-control">
+                              <select class="form-control bureau_c" name="bureau_c">
+                                <option selected value="{{\App\bureau::find(\App\asset::find($id)->bureau_id)->id}}">{{\App\bureau::find(\App\asset::find($id)->bureau_id)->name}}</option>
+                              </select>
                           </div>
                             @else
                             <div class="form-group" id="current_b">
@@ -183,7 +190,7 @@
                                              $("#etage_d").empty();
                                              $("#etage_d").append('<option selected disabled >Pick the floor</option>');
                                              
-                                                 for(var i=-data['sous'] ; i<=data['nbre_Etage'] ; i++){  
+                                                 for(var i=-data['sous'] ; i<= data['nbre_Etage'] ; i++){  
                                                   $("#etage_d").append('<option value="'+i+'">'+i+'</option>')
                                                     }
                                                  

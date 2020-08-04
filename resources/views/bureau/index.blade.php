@@ -43,21 +43,71 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="{{ route('showBureau',$bureau->id) }}"><i class="fa fa-info fa-fw"></i></i> Show</a>
-                                    @can('bureau-edit')<a class="dropdown-item" href="{{ route('editBureau',$bureau->id) }}"><i class="fa fa-edit fa-fw"></i></i> Edit</a>@endcan
-                                    @can('bureau-delete')<a class="dropdown-item" href="{{ route('deleteBureau',$bureau->id) }}"><i class="fa fa-trash fa-fw"></i> Delete</a>@endcan
-
+                                        <a class="dropdown-item" href="{{ route('showBureau',$bureau->id) }}"><i class="fa fa-info fa-fw"></i></i> Show</a>
+                                        @can('bureau-edit')<a class="dropdown-item" href="{{ route('editBureau',$bureau->id) }}"><i class="fa fa-edit fa-fw"></i></i> Edit</a>@endcan
+                                        @can('bureau-delete')<a class="dropdown-item" @if (\App\asset::where('bureau_id',$bureau->id)->get()->isEmpty())
+                                            href="{{ route('deleteBureau',$bureau->id) }}"
+                                        @else
+                                            href="#" data-toggle="modal" data-target="#mal"
+                                        @endif ><i class="fa fa-trash fa-fw"></i> Delete</a>@endcan
                                     </div>
-                                    
-                                  
                                 </div>
-                            </td>
+                               
+
+                            </td> 
                         </tr>
+
+
                         
+                        <div class="modal fade" id="mal">
+                                    <div class="modal-dialog ">
+                                        <div class="modal-content" >
+                                            <form action="{{ route('changeDelete',$bureau->id) }}" method="post" enctype="multipart/form-data">
+                                                {{ csrf_field() }}
+                                                <div class="modal-header"style="margin-left: 5%;margin-right: 5%">
+                                                    <h2 >Change office/bureau :</h2>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                      </button>
+                                                </div>
+                                                <div class="model-body" style="margin-left: 5%;margin-right: 5%">
+                                                    @if (\App\asset::all()->WhereNotIn('bureau_id',[$bureau->id])->isEmpty())
+                                                        <p style="margin-left: 5%;margin-right: 5%">You cant delete this Office/Bureau, no offices to transfert the Assets inside..! </p>
+                                                    @else
+                                                        <p style="margin-left: 5%;margin-right: 5%">This Office/Bureau contain some assets, in order to delete it you have to pick where to store those assets..! </p>
+                                                        @foreach (\app\bureau::whereNotIn('id',[$bureau->id])->get() as $bur)
+                                                            <div class="input-group mb-3" >
+                                                                <div class="input-group-prepend"style="margin-left: 5%">
+                                                                  <div class="input-group-text">
+                                                                    <input type="radio" aria-label="Checkbox for following label" name="bur" value={{$bur->id}}>
+                                                                  </div>
+                                                                </div>
+                                                                <label for="bur" class="form-control">{{$bur->name}}</label>
+                                                                <label for="bur" class="form-control" >{{$bur->type}}</label>
+                                                                <label for="bur" class="form-control" style="margin-right: 5%">{{$bur->block->name}}</label>
+            
+                                                              </div>
+                                                        @endforeach
+                                                    @endif
+                                                </div>
+                                                <br>
+                                                <div class="model-footer text-center">
+                                                     @if (!(\App\asset::WhereNotIn('bureau_id',[$bureau->id])->get()->isEmpty()))<button class="btn btn-info" type="submit" >Save</button>@endif
+                                                    <button class="btn btn-primary" data-dismiss="modal">cancel</button>
+                                                    <br> <br>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
                         @endforeach    
                         </tbody>
                     </table>
                 </div>
+
+                
+
                 <div class="card-footer py-4">
                     <nav class="d-flex justify-content-end" aria-label="...">
                         {!! $bureaus->render() !!}

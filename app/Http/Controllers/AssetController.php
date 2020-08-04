@@ -142,8 +142,11 @@ class AssetController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    { 
         $asset = \App\asset::find($id);
+        foreach (\App\transfert::all()->where('asset_id',$id) as $trans) {
+            \App\transfert::find($trans->id)->delete();
+        }
         DB::table("asset_inventaire")->where('asset_id',$id)->delete();
        
         $asset->delete();

@@ -23,6 +23,7 @@
                 @if ($asset->category=='Vehicle')
                     <div class="float-child">
                 @endif
+                <div id="div_print" >
                 <p>
                     <button class="btn btn-secondary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapsedeta" aria-expanded="flase" aria-controls="collapsedeta">
                         Asset detail
@@ -66,8 +67,13 @@
                                     @endif
                                 @endforeach
                 </div>
-                    </div>
-                </div> 
+                <hr class="my-4"/>
+                <div style="display: flex; justify-content: center; text-align: center;" id="qrcode"></div>
+            </div>
+                <input  name="b_print" type="button" class="ipt" onClick="printdiv('div_print');" value=" Print ">    
+
+            </div>
+        </div> 
                 @if ($asset->category=='Vehicle')
                     </div>
                 @endif
@@ -147,7 +153,7 @@
     return false;
     }
     </script>
-    <style>
+<style>
 
 
 .column {
@@ -163,21 +169,21 @@
   display: table;
 }
     </style>
-<div class="row">
+{{-- <div class="row">
 <div class="column" id="div_print">
 <div style="margin-left:33%" id="qrcode"></div>
 </div>
 <div class="column">
 <input style="margin-top:32%" name="b_print" type="button" class="ipt" style="margin-left: 35%" onClick="printdiv('div_print');" value=" Print ">    
 </div>
-</div>
+</div> --}}
                 <p>
                     <button class="btn btn-secondary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseTransfert" aria-expanded="flase" aria-controls="collapseTransfert">
                         Transfert history
                     </button>
                 </p>
                 <div class="collapse" id="collapseTransfert">
-                    <div class="card card-body">    
+                    <div class="card card-body text-center">    
                         @if (\App\Transfert::all()->where('asset_id', $asset->id)->isEmpty())
                             No transfert history has been recorded .
                         @else
@@ -200,13 +206,13 @@
                                     <tbody>
                                         @foreach($transferts as $transfert)
                                             <tr>
-                                                <td>{{$transfert->block_c}}</td>
+                                                <td @if (\App\block::onlyTrashed()->find($transfert->block_c)) data-toggle="tooltip" data-placement="top" title="Block deleted" style="color:red"@endif>{{\App\block::withTrashed()->find($transfert->block_c)->name}}</td>
                                                 <td>{{$transfert->etage_c}}</td>
-                                                <td>{{$transfert->bureau_c}}</td>
+                                                <td @if (\App\bureau::onlyTrashed()->find($transfert->bureau_c)) data-toggle="tooltip" data-placement="top" title="Bureau deleted" style="color:red"@endif >{{\App\bureau::withTrashed()->find($transfert->bureau_c)->name}}</td>
                                                 <td>{{$transfert->transfered_at}}</td>
-                                                <td>{{$transfert->block_d}}</td>
+                                                <td @if (\App\block::onlyTrashed()->find($transfert->block_d)) data-toggle="tooltip" data-placement="top" title="Block deleted" style="color:red"@endif>{{\App\block::withTrashed()->find($transfert->block_d)->name}}</td>
                                                 <td>{{$transfert->etage_d}}</td>
-                                                <td>{{\App\bureau::find($transfert->bureau_d)->name}}</td>
+                                                <td @if (\App\bureau::onlyTrashed()->find($transfert->bureau_d)) data-toggle="tooltip" data-placement="top" title="Bureau deleted" style="color:red"@endif>{{\App\bureau::withTrashed()->find($transfert->bureau_d)->name}}</td>
                                             </tr>
                                         @endforeach    
                                     </tbody>
@@ -219,7 +225,7 @@
                         @endif
                             
                         <div class="h3 mt-4">
-                            @if ($asset->status != 3 && $asset->occupied == 1)
+                            @if ($asset->status != 3 && $asset->occupied == 1||2)
                                 <a href="{{route('createTransfert',$asset->id)}}"><i class="fa fa-paper-plane fa-fw text-blue"></i></i> transfer &#160&#160&#160</a>
                             @endif
                         </div>

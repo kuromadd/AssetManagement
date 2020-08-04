@@ -138,10 +138,18 @@ class blocksController extends Controller
      */
     public function destroy($id)
     {
-        $block = \App\block::find($id);
+        /* $block = \App\block::find($id);
 
         DB::table("bureaus")->where('block_id',$id)->delete();
-        $block->delete();
-        return redirect()->back()->with('success','you deleted a block');
+        $block->delete(); */
+        if (\App\bureau::where('block_id',$id)->get()->isEmpty()) {
+            \App\block::find($id)->delete();
+            return redirect()->back()->with('success','you deleted a block');
+        }
+        
+
+
+
+        
     }
 }

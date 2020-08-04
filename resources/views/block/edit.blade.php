@@ -35,11 +35,11 @@
 
                     <div class="form-group">
                         <label for="sous">Number of underground floors :</label>
-                        <input type="number" name="sous" value="{{$block->sous}}" class="form-control">
+                        <input type="number" name="sous" value="{{$block->sous}}" class="form-control" min="0">
                     </div>
                     <div class="form-group">
                         <label for="nbreEt">Number of floors :</label>
-                        <input type="number" name="nbreEt" value="{{$block->nbre_etage}}" class="form-control">
+                        <input type="number" name="nbreEt" value="{{$block->nbre_etage}}" class="form-control" min="1">
                     </div>
                     <div class="text-center">
                     <button class="btn btn-info" type="submit">update</button>    

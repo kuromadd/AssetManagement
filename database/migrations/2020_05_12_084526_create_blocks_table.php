@@ -22,6 +22,7 @@ class CreateBlocksTable extends Migration
             $table->string('zip');
             $table->integer('sous');
             $table->integer('nbre_etage');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

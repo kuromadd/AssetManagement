@@ -47,7 +47,7 @@ crossorigin="anonymous"></script>
   
       <div class="form-group">
           <label class="form-control-label" for="prix">&#160&#160Price :</label>
-          <input type="number" name="prix" class="form-control form-control-alternative">
+          <input type="number" name="prix" class="form-control form-control-alternative" min="0">
       </div>
       <div class="form-group">
         <label for="category" class="form-control-label">&#160&#160Category :</label>
@@ -69,7 +69,7 @@ crossorigin="anonymous"></script>
 
       <div class="form-group">
         <label for="duree" class="form-control-label">&#160&#160Lifetime :</label>
-        <input  type="number" name="duree" id="duree" class="form-control form-control-alternative">
+        <input  type="number" name="duree" id="duree" class="form-control form-control-alternative" min="0">
       </div>
 
       <div class="form-group">

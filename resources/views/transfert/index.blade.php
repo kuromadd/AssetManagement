@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 
-
+ 
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
@@ -34,16 +34,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($transferts as $transfert)
+                        @foreach($transferts as $transfert) 
                         <tr>
                             <td>{{\App\Asset::find($transfert->asset_id)->name}}</td>
-                            <td>{{\App\block::find($transfert->block_c)->name}}</td>
+                            <td @if (\App\block::onlyTrashed()->find($transfert->block_c)) data-toggle="tooltip" data-placement="top" title="Block deleted" style="color:red"@endif>{{\App\block::withTrashed()->find($transfert->block_c)->name}}</td>
                             <td>{{$transfert->etage_c}}</td>
-                            <td>{{\App\bureau::find($transfert->bureau_c)->name}}</td>
+                            <td @if (\App\bureau::onlyTrashed()->find($transfert->bureau_c)) data-toggle="tooltip" data-placement="top" title="Bureau deleted" style="color:red"@endif >{{\App\bureau::withTrashed()->find($transfert->bureau_c)->name}}</td>
                             <td>{{$transfert->transfered_at}}</td>
-                            <td>{{\App\block::find($transfert->block_d)->name}}</td>
+                            <td @if (\App\block::onlyTrashed()->find($transfert->block_d)) data-toggle="tooltip" data-placement="top" title="Block deleted" style="color:red"@endif>{{\App\block::withTrashed()->find($transfert->block_d)->name}}</td>
                             <td>{{$transfert->etage_d}}</td>
-                            <td>{{\App\bureau::find($transfert->bureau_d)->name}}</td>
+                            <td @if (\App\bureau::onlyTrashed()->find($transfert->bureau_d)) data-toggle="tooltip" data-placement="top" title="Bureau deleted" style="color:red"@endif>{{\App\bureau::withTrashed()->find($transfert->bureau_d)->name}}</td>
                             
                             <td class="text-right">
                                 <div class="dropdown">

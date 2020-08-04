@@ -29,7 +29,7 @@
   
       <div class="form-group">
           <label class="form-control-label" for="prix">&#160&#160Price :</label>
-          <input type="number" name="prix" value="{{$asset->prix}}" class="form-control form-control">
+          <input type="number" name="prix" value="{{$asset->prix}}" class="form-control form-control" min="0">
       </div>
       <div class="form-group">
         <label for="category" class="form-control-label">&#160&#160Category :</label>
@@ -50,7 +50,7 @@
 
       <div class="form-group">
         <label for="duree" class="form-control-label">&#160&#160Lifetime :</label>
-      <input  type="number" name="duree" value="{{ $asset->duree_vie }}" class="form-control form-control">
+      <input  type="number" name="duree" value="{{ $asset->duree_vie }}" class="form-control form-control" min="0">
       </div>
 
       <div class="form-group">

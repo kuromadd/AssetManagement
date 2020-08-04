@@ -43,7 +43,11 @@
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                     <a class="dropdown-item" href="{{route('showBlock',$block->id)}}"><i class="fa fa-info fa-fw"></i></i> Show</a>
                                     <a class="dropdown-item" href="{{route('editBlock',$block->id)}}"><i class="fa fa-edit fa-fw"></i></i> Edit</a>
-                                    <a class="dropdown-item" href="{{ route('deleteBlock',$block->id) }}"><i class="fa fa-trash fa-fw"></i> Delete</a>
+                                    <a class="dropdown-item" @if (\App\bureau::where('block_id',$block->id)->get()->isEmpty())
+                                         href="{{ route('deleteBlock',$block->id) }}"
+                                    @else
+                                    data-toggle="modal" data-target="#mal"
+                                    @endif><i class="fa fa-trash fa-fw"></i> Delete</a>
 
                                     </div>
                                     
@@ -54,6 +58,19 @@
                         @endforeach    
                         </tbody>
                     </table>
+                </div>
+
+                <div class="modal fade " id="mal" role="alert">
+                    <div class="modal-dialog ">
+                        <div class="modal-content">
+                            <div class="modal-body alert-warning text-center h5">
+                                You cant delete this block, you have to delete its offices first..!
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="modal fade" id="addblock">
@@ -94,11 +111,11 @@
                 
                                     <div class="form-group">
                                       <label for="sous">Number of underground floors</label>
-                                      <input type="number" name="sous" class="form-control">
+                                      <input type="number" name="sous" class="form-control" min="0">
                                   </div>
                                     <div class="form-group">
                                         <label for="nbreEt">Number of floors</label>
-                                        <input type="number" name="nbreEt" class="form-control">
+                                        <input type="number" name="nbreEt" class="form-control"min="1">
                                     </div>
                                 </div>
                                 <br>

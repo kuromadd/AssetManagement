@@ -195,6 +195,37 @@ class BureauController extends Controller
         return view('bureau.show')->with('bureau',$bureau);
     }
 
+    public function changeDelete(Request $request,$id){
+        $bureau1 = \App\bureau::find($id);
+        $bureau2 = \App\bureau::find($request->bur);
+
+        foreach (\App\asset::where('bureau_id',$id) as $asset) {
+            
+            $transfert = new \App\Transfert;
+            $transfert->asset_id=$asset->id;
+            $transfert->block_d=$bureau2->block_id;
+            $transfert->bureau_d=$bureau2->id;
+            $transfert->etage_d=$bureau2->etage;
+            $transfert->block_c=\app\bureau::find($asset->bureau_id)->block_id;
+            $transfert->bureau_c=$asset->bureau_id;
+            $transfert->etage_c=\app\bureau::find($asset->bureau_id)->etage;
+            $transfert->transfered_at= now();
+
+            $transfert->save();
+            $asset->update(["bureau_id"=> $bureau2->id]);
+            if ($bureau->type == 'Stock') {
+                \App\asset::where('id',$asset->id)->update(["occupied" => 2]);
+            }else {
+                \App\asset::where('id',$asset->id)->update(["occupied" => 1]);
+            }
+
+        }
+
+        \App\bureau::find($id)->delete();
+        return redirect()->route('indexBureau')->with('success','you deleted a bureau');
+
+    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -204,7 +235,20 @@ class BureauController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('assets')->where('bureau_id',$id)->update(['occupied'=>0,'bureau_id'=>0]);
+        if (\App\asset::where('bureau_id',$id)->get()->isEmpty()) {
+            \App\bureau::find($id)->delete();
+            /* foreach (\App\transfert::all()->where('bureau_c',$id) as $trans) {
+                \App\transfert::find($trans->id)->delete();
+            }
+            foreach (\App\transfert::all()->where('bureau_d',$id) as $trans2) {
+                \App\transfert::find($trans2->id)->delete();
+            } */
+            return redirect()->back()->with('success','you deleted a bureau');
+        }
+
+
+
+       /*  DB::table('assets')->where('bureau_id',$id)->update(['occupied'=>0,'bureau_id'=>0]);
 
         $bureau = \App\bureau::find($id);
         foreach($bureau->assets as $asset){
@@ -214,6 +258,6 @@ class BureauController extends Controller
             $asset->bureau_id = null;
         }
         $bureau->delete();
-        return redirect()->back()->with('success','you deleted a bureau');
+        return redirect()->back()->with('success','you deleted a bureau'); */
     }
 }
