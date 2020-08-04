@@ -47,7 +47,7 @@ class UserController extends Controller
 
     public function replaceList(){
         $assets = \App\asset::all();
-        return view('app.lostAsset')->with('assets',$assets);
+        return view('app.lostAsset')->with('assets',$assets)->with('user',auth()->user());
     }
 
     public function repairList(){

@@ -54,8 +54,7 @@ class InventaireController extends Controller
     public function store(Request $request)
     {
             request()->validate([
-                'name' =>'required',
-                'description' =>'required',
+                
             ]);
 
             foreach (\App\asset::all() as $asset) {
@@ -64,15 +63,15 @@ class InventaireController extends Controller
                     $asset->save();
                 }
             }
-            
+             
             $inventaire = \App\inventaire::all()->last();
             if($request->has('fine')){ \App\asset::whereIn('id',$request->fine)->update(["status" => 1]);}
             if($request->has('repair')){ \App\asset::whereIn('id',$request->repair)->update(["status" => 2]);}
             if($request->has('lost')){ \App\asset::whereIn('id',$request->lost)->update(["status" => 3,"occupied" => 1]);}
-
+           
             if($request->has('fine')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 1]);}
-            if($request->has('damaged')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 2]);}
-            if($request->has('lost')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 3]);}
+            if($request->has('repair')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->repair)->update(["status" => 2]);}
+            if($request->has('lost')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->lost)->update(["status" => 3]);}
 
         return redirect()->route('indexInventaire');
     }
@@ -110,7 +109,7 @@ class InventaireController extends Controller
     public function update(Request $request,$id)
         {
         $inventaire = \App\inventaire::find($id);    
-        $inventaire->name = $request->name;
+        //$inventaire->name = $request->name;
         $inventaire->save();
 
         if($request->has('fine')){ \App\asset::whereIn('id',$request->fine)->update(["status" => 1]);}
@@ -118,8 +117,8 @@ class InventaireController extends Controller
         if($request->has('lost')){ \App\asset::whereIn('id',$request->lost)->update(["status" => 3,"occupied" => 1]);}
 
         if($request->has('fine')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 1]);}
-        if($request->has('damaged')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 2]);}
-        if($request->has('lost')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->fine)->update(["status" => 3]);}
+        if($request->has('repair')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->repair)->update(["status" => 2]);}
+        if($request->has('lost')) {DB::table('asset_bureau_inventaire')->where('inventaire_id',$inventaire->id)->whereIn('asset_id',$request->lost)->update(["status" => 3]);}
 
         return redirect()->route('indexInventaire');
     }
@@ -189,5 +188,45 @@ class InventaireController extends Controller
         $inventaire->save();
         
         return response()->json('invSaved');
+    }
+
+    public function showBtn(Request $request){
+        $data = [];
+        $data[2] = 0;
+        $data[1] = \App\asset::select()->where('qrcode',$request->qrcode)->first();
+        if ($data[1]) {
+        foreach (\App\bureau::select()->whereIn('id', DB::table('asset_bureau_inventaire')->select('bureau_id')->where('inventaire_id', \App\inventaire::all()->last()->id))->get() as $bureau) {
+            if ($data[1]->bureau_id == $bureau->id) {
+                $data[2] = 1;
+            }   
+        }   
+        }else {
+            $data[2] = 2;
+        }
+        
+        return response()->json($data);
+    }
+
+    public function checkfine(Request $request){
+
+        $asset = \App\asset::select()->where('id',$request->qrcode)->first();
+             $data[0]=$asset->bureau->block->name;
+             $data[1]=$asset->bureau->etage;
+             $data[2]=$asset->bureau->name;
+             $data[3]=$asset->name;
+             $data[4]=$asset->id;
+
+        return response()->json($data);
+    }
+    public function checkdamaged(Request $request){
+
+        $asset = \App\asset::select()->where('id',$request->qrcode)->first();
+             $data[0]=$asset->bureau->block->name;
+             $data[1]=$asset->bureau->etage;
+             $data[2]=$asset->bureau->name;
+             $data[3]=$asset->name;
+             $data[4]=$asset->id;
+
+        return response()->json($data);
     }
 }

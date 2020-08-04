@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class asset extends Model
 {
     protected $fillable =[
+        'qrcode',
         'name',
         'description',
         'category',

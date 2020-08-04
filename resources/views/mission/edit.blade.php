@@ -23,12 +23,12 @@
                     </div>
                     <div class="form-group">
                         <label for="but_mission">But de la mission</label>
-                        <input type="text" name="but_mission" value="{{$mission->but_mission}}" class="form-control">
+                        <input type="text" name="but_mission" value="{{$mission->but_mission}}" class="form-control" required placeholder=" ">
                     </div>
 
                     <div class="form-group">
                         <label for="destination">Destination</label>
-                        <input type="text" name="destination" value="{{$mission->destination}}" class="form-control">
+                        <input type="text" name="destination" value="{{$mission->destination}}" class="form-control" required placeholder=" ">
                     </div>
 
                     <div class="form-group">

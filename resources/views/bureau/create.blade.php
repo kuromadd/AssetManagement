@@ -106,10 +106,11 @@
                     <div class="form-group">
                       <div class="form-group">
                         <label for="name">Name :</label>
-                    <input type="text" class="form-control" name="name">
+                    <input type="text" class="form-control" name="name" required placeholder=" ">
                     </div>
                         <label for="type">type :</label>
                             <select class="form-control" name="type" id="type">
+                              <option value=0 selected disabled>select bureau</option>  
                             <option value="Office">Office</option>
                             <option value="Stock">Stock</option>
                             <option value="Garage">Garage</option>

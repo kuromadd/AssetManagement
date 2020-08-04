@@ -243,16 +243,6 @@ a:active {
        </svg>
      </div>
        </a>
- <hr>
-    <div class="text-center">
-        @if($asset->bureau_id)
-        <a href="{{route('createTransfert',$asset->id)}}"><i class="fa fa-paper-plane fa-fw text-blue"></i></i> transfer &#160&#160&#160</a>
-        @endif
-        @if ($asset->category == 'vehicle')
-            <a href="{{route('createMission',$asset->id)}}"><i class="fa fa-play fa-fw text-blue"></i></i> &#160&start mission</a> 
-        @endif                                                                
-      
-      </div>
 
     
 </div>
@@ -264,7 +254,9 @@ a:active {
          data:{'id':id},
          dataType:'json',
          success:function(data){
-        console.log(data);
+          console.log(data);
+          $("#tableInv").append('<tr><td style="margin: "><h4 class="mb-0"> '+ data[0]+'</h4></td><td style="width: "><h4 class="mb-0">  '+ data[1]+'</h4></td><td style="width: "><h4 class="mb-0"> '+ data[2]+'</h4></td><td style="width: "><h4 class="mb-0">'+data[3]+'</h4></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list'+data[4]+'" value="'+data[4]+'"id="option'+data[4]+' checked"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list'+data[4]+' " value="'+data[4]+'" id="option'+data[4]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list'+data[4]+'" value="'+data[4]+'" id="option'+data[4]+'"></td></tr><script type="text/javascript">$(\'.subject-list\'.concat('+data[4]+')).on(\'change\', function() {$(\'.subject-list\'.concat('+data[4]+')).not(this).prop(\'checked\', false);});<'+'/script>');
+          
         },                                     
           error:function(){ 
             console.log('awda');
@@ -279,6 +271,7 @@ a:active {
          dataType:'json',
          success:function(data){
         console.log(data);
+        $("#tableInv").append('<tr><td style="margin: "><h4 class="mb-0"> '+ data[0]+'</h4></td><td style="width: "><h4 class="mb-0">  '+ data[1]+'</h4></td><td style="width: "><h4 class="mb-0"> '+ data[2]+'</h4></td><td style="width: "><h4 class="mb-0">'+data[3]+'</h4></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list'+data[4]+'" value="'+data[4]+'"id="option'+data[4]+' checked"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list'+data[4]+' " value="'+data[4]+'" id="option'+data[4]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list'+data[4]+'" value="'+data[4]+'" id="option'+data[4]+'"></td></tr><script type="text/javascript">$(\'.subject-list\'.concat('+data[4]+')).on(\'change\', function() {$(\'.subject-list\'.concat('+data[4]+')).not(this).prop(\'checked\', false);});<'+'/script>');     
         },                                     
           error:function(){ 
          }

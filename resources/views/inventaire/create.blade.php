@@ -154,12 +154,11 @@
 	</ul>
 	<!-- fieldsets -->
 	<fieldset>
-        <input type="text" name="name" id="name" placeholder="name" required />
-        <input type="text" name="description" id="description" placeholder="description" required />
+        <input type="text" name="name" id="name" placeholder="name"required placeholder=" " />
+        <input type="text" name="description" id="description" placeholder="description" required placeholder=" " />
 		<input type="button" name="next" class="next action-button" onclick="saveInventaire($('#name').val(),$('#description').val())" value="Next" />
 	</fieldset>
 	<fieldset >
-
 
 
  		<ul class="nav navbar-nav">
@@ -173,7 +172,7 @@
 				  <li><a href="#">{{$i}}<span class="caret"></span></a>
 					<ul class="dropdown-menu">
                         @foreach(\App\bureau::all() as $bureau)
-                        @if($bureau->etage == $i && ) 
+                        @if($bureau->etage == $i && $bureau->assets->count()>0) 
                       <li ><label> <input style="width: 15px;" class="select" type="checkbox" onclick="selectBureau({{$bureau->id}})">&#160 {{$bureau->name}}</label>
                       @endif
 					  @endforeach
@@ -209,6 +208,98 @@
 		<input type="button" name="next" class="next action-button" value="Next" onclick="setAssets()" />
 	</fieldset>
 	<fieldset style="width: 100%">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+
+		<script type="text/javascript" src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.js"></script>
+
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+		<style type="text/css">
+			#results { padding:20px; border:1px solid; background:#ccc; }
+
+
+		.tv {
+			position: relative;
+			margin: 20px 0;
+			background: rgb(97, 6, 243);
+			border-radius: 50% / 10%;
+			color: white;
+			text-align: center;
+			text-indent: .1em;
+			}
+			.tv:before {
+			content: '';
+			position: absolute;
+			top: 10%;
+			bottom: 10%;
+			right: -5%;
+			left: -5%;
+			background: inherit;
+			border-radius: 5% / 50%;
+			}
+		
+		</style>
+
+
+				<div>
+					<video class="tv" style="width: 50%;height: auto;margin:10%;margin-bottom: none" muted playsinline id="qr-video"></video>
+				</div> 
+			
+		<!--css-->
+		<link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
+		<!--js-->
+		<script src="{{ asset('js/toastr.min.js') }}"></script>   
+		<script type="module">
+			import QrScanner from "/qr-scanner.min.js";
+			QrScanner.WORKER_PATH = '/qr-scanner-worker.min.js';
+
+			const video = document.getElementById('qr-video');
+			const camHasCamera = document.getElementById('cam-has-camera');
+			const camQrResult = document.getElementById('cam-qr-result');
+			const camQrResultTimestamp = document.getElementById('cam-qr-result-timestamp');
+			
+		
+			function setResult(label, result) {
+				toastr.info('loading ... please wait');
+				$.ajax({
+				type:'get',
+				url:'{!!URL::to('showBtn')!!}',
+				data:{'qrcode':result},
+				dataType:'json',
+				success:function(data){
+					console.log((data[2] == 0));
+				if (data[2] == 1) {
+				console.log('1'); 
+				$(".finedamagedd").empty();
+				$(".finedamagedd").append('<button class="btn btn-info" onClick="checkfine('+data[1].id+')">fine</button>&#160&#160<button class="btn btn-danger" onclick="checkdamaged('+data[1].id+')">damaged</button>');
+				}else if(data[2] == 2){
+					console.log('2');
+					$(".finedamagedd").empty();
+				$(".finedamagedd").append('<label class="text-info">this asset doesn\'t exist</label>');	
+				}else{
+					console.log('0');
+					$(".finedamagedd").empty();
+				$(".finedamagedd").append('<label class="text-info">this asset doesn\'t exist  in the selected offices</label>');	
+				}											
+				},      
+													
+				error:function(){ 
+				console.log('aa');
+				},
+				})
+				
+			}
+
+			// ####### Web Cam Scanning #######
+
+			const scanner = new QrScanner(video, result => setResult(camQrResult, result));
+			scanner.start();
+
+		</script>
+		<div class="text-center finedamagedd"></div>
+		<br>
+
         <form action="{{ route('storeInventaire') }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
                          
@@ -358,7 +449,7 @@ $(".next").click(function(){
   console.log();
   for(var i=0 ; i<list[4].length; i++){
  
-   $("#tableInv").append('<tr><td style="margin: "><h4 class="mb-0"> '+ list[0][i]+'</h4></td><td style="width: "><h4 class="mb-0">  '+ list[1][i]+'</h4></td><td style="width: "><h4 class="mb-0"> '+ list[2][i]+'</h4></td><td style="width: "><h4 class="mb-0">'+list[3][i]+'</h4></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'"id="option'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list'+list[4][i]+' " value="'+list[4][i]+'" id="option'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'" id="option'+list[4][i]+'"></td></tr><script type="text/javascript">$(\'.subject-list\'.concat('+list[4][i]+')).on(\'change\', function() {$(\'.subject-list\'.concat('+list[4][i]+')).not(this).prop(\'checked\', false);});<'+'/script>');
+   $("#tableInv").append('<tr class="finedamaged'+list[4][i]+'"><td style="margin: "><h4 class="mb-0"> '+ list[0][i]+'</h4></td><td style="width: "><h4 class="mb-0">  '+ list[1][i]+'</h4></td><td style="width: "><h4 class="mb-0"> '+ list[2][i]+'</h4></td><td style="width: "><h4 class="mb-0">'+list[3][i]+'</h4></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'"id="option'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list'+list[4][i]+' " value="'+list[4][i]+'" id="option'+list[4][i]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list'+list[4][i]+'" value="'+list[4][i]+'" id="option'+list[4][i]+'"></td></tr><script type="text/javascript">$(\'.subject-list\'.concat('+list[4][i]+')).on(\'change\', function() {$(\'.subject-list\'.concat('+list[4][i]+')).not(this).prop(\'checked\', false);});<'+'/script>');
   } 
   }else{
     $("#tableInv").empty(); 
@@ -372,4 +463,38 @@ $(".next").click(function(){
   })
   }
 
+
+  function checkfine(qrcode) {
+    $.ajax({
+         type:'get',
+         url:'{!!URL::to('checkfine')!!}',
+         data:{'qrcode':qrcode},
+         dataType:'json',
+         success:function(data){
+          console.log(data);
+		  $(".finedamaged".concat(data[4])).empty();
+          $(".finedamaged".concat(data[4])).append('<td style="margin: "><h4 class="mb-0"> '+ data[0]+'</h4></td><td style="width: "><h4 class="mb-0">  '+ data[1]+'</h4></td><td style="width: "><h4 class="mb-0"> '+ data[2]+'</h4></td><td style="width: "><h4 class="mb-0">'+data[3]+'</h4></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list'+data[4]+'" value="'+data[4]+'"id="option'+data[4]+'" checked></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list'+data[4]+' " value="'+data[4]+'" id="option'+data[4]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list'+data[4]+'" value="'+data[4]+'" id="option'+data[4]+'"></td>');
+          
+        },                                     
+          error:function(){ 
+            console.log('awda');
+         }
+       })
+ }
+ function checkdamaged(qrcode) {
+  $.ajax({
+         type:'get',
+         url:'{!!URL::to('checkdamaged')!!}',
+         data:{'qrcode':qrcode},
+         dataType:'json',
+         success:function(data){
+        console.log(data);
+		$(".finedamaged".concat(data[4])).empty();
+        $(".finedamaged".concat(data[4])).append('<td style="margin: "><h4 class="mb-0"> '+ data[0]+'</h4></td><td style="width: "><h4 class="mb-0">  '+ data[1]+'</h4></td><td style="width: "><h4 class="mb-0"> '+ data[2]+'</h4></td><td style="width: "><h4 class="mb-0">'+data[3]+'</h4></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list'+data[4]+'" value="'+data[4]+'"id="option'+data[4]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" checked class="subject-list'+data[4]+' " value="'+data[4]+'" id="option'+data[4]+'"></td><td ><input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list'+data[4]+'" value="'+data[4]+'" id="option'+data[4]+'"></td>');     
+        },                                     
+          error:function(){ 
+         }
+       })
+ }
   </script>
+

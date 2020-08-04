@@ -56,7 +56,7 @@ class AssetController extends Controller
             'brand'=>'required',
             'prix' => 'required',
             'category' => 'required',
-            'dateservice' => 'required',
+            'dateservice' => 'required|date',
             'duree' => 'required',
             'qr' => 'required'
         ]);
@@ -153,26 +153,72 @@ class AssetController extends Controller
         return redirect()->back()->with('success','you deleted asset');
     }
 
-   public function replace($id){
-    $asset = \App\asset::find($id);
-    foreach (\App\asset::all() as $item) {
-        if ($item->occupied && $item->category === $asset->category) {
-            $assets[] =$item;
+   public function replace(Request $request){
+
+    $asset = \App\asset::find($request->id);
+    $bureau1 = \App\bureau::find(\App\asset::find($request->val)->bureau_id);
+    $bureau2 = \App\bureau::find(\App\asset::find($request->id)->bureau_id);
+    
+    if ($bureau2 <> null) {
+
+        $transfert = new \App\Transfert;
+        $transfert->asset_id=$asset->id;
+        $transfert->block_d=$bureau1->block_id;
+        $transfert->bureau_d=$bureau1->id;
+        $transfert->etage_d=$bureau1->etage;
+        $transfert->block_c=$bureau2->block_id;
+        $transfert->bureau_c=$bureau2->id;
+        $transfert->etage_c=$bureau2->etage;
+        $transfert->transfered_at= now();
+
+        $transfert->save();      
+            $asset->bureau_id = $bureau2->id;
+    } else{
+        $asset->bureau_id = $bureau2->id;        
+    }   
+        $asset->occupied = 1;
+        $asset->save();
+        DB::update('update assets set replaced = 1 where id = ?', [$request->val]);
+        
+        $data=[];
+    foreach (\App\bureau::all() as $item){
+        if ($item->type == "Stock" && \App\bureau::find($asset->bureau_id)->id == $item->id){
+            $data[]=$item;
         }
     }
-    dd($assets);
-        return ;
+    
+        return response()->json('replace');
    }
 
-    public function reset($id){
-        foreach(\App\asset::whereIn('status',['0','1','2'])->get() as $asset)
-        {
-        $asset->status = 0;
+   public function choose(Request $request){
+
+    $asset = \App\asset::find($request->id);
+    $bureau2 = \App\bureau::find(\App\asset::find($request->val)->bureau_id);
+    $bureau1 = \App\bureau::find($request->id);
+
+        $transfert = new \App\Transfert;
+        $transfert->asset_id=$asset->id;
+        $transfert->block_d=$bureau1->block_id;
+        $transfert->bureau_d=$bureau1->id;
+        $transfert->etage_d=$bureau1->etage;
+        $transfert->block_c=$bureau2->block_id;
+        $transfert->bureau_c=$bureau2->id;
+        $transfert->etage_c=$bureau2->etage;
+        $transfert->transfered_at= now();
+
+        $transfert->save();      
+            $asset->bureau_id = $bureau1->id;
+
+        $asset->occupied = 2;
         $asset->save();
-    }
-    if($id != 0){
-    DB::table('asset_inventaire')->where('inventaire_id',$id)->update(["status" => 0]);}
-    return redirect()->route('assetList');
+
+        return response()->json('choose');
+   }
+
+    public function found(Request $request){
+
+        DB::update('update assets set status = 0 where id = ?', [$request->id]);
+        return response()->json('found');
     }
 
     public function saveall(Request $request){
@@ -189,7 +235,7 @@ class AssetController extends Controller
     }
 
     function scan() {
-        return view('qr.qrhInv');
+        return view('qr.qrh');
     }
 
     public function exist($qrcode){
@@ -197,10 +243,10 @@ class AssetController extends Controller
             
             $asset = \App\asset::where('qrcode',$qrcode)->first();
        
-            return view('asset.show')->with('asset',$asset)->with('success',$asset->name.' full information');
+            return view('asset.show')->with('asset',$asset);
         }else {
          
-            return view('asset.create')->with('qr',$qrcode)->with('info','fill all the blancks');
+            return view('asset.create')->with('qr',$qrcode);
         }
     }
     public function existInv($qrcode){
@@ -210,8 +256,7 @@ class AssetController extends Controller
        
             return view('qr.exist')->with('asset',$asset);
         }else {
-         
-            return view('asset.create')->with('qr',$qrcode);
+            return redirect()->back()->with('info','this asset doesn\'t exist');
         }
     }
 }

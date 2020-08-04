@@ -60,8 +60,9 @@ Route::get('/asset/show/{id}','AssetController@show')->name('showAsset');
 Route::get('/asset/edit/{id}','AssetController@edit')->name('editAsset');
 Route::post('/asset/update/{id}','AssetController@update')->name('updateAsset');
 Route::get('/asset/delete/{id}','AssetController@destroy')->name('deleteAsset');
-Route::get('/asset/replace/{id}','AssetController@replace')->name('replaceAsset');
-Route::get('/asset/found/{id}','AssetController@found')->name('foudAsset');
+Route::get('/replaceAsset','AssetController@replace');
+Route::get('/Found','AssetController@found');
+Route::get('/chooseBureau','AssetController@choose');
 
 Route::get('/Inventaire/index','InventaireController@index')->name('indexInventaire');
 Route::get('/Inventaire/create','InventaireController@create')->name('createInventaire');
@@ -169,12 +170,14 @@ Route::get('/existInv/{qrcode}','assetController@existInv')->name('existInv');
 
 Route::get('/checkqr/{qrcode}','auth\LoginController@checkQR')->name('qrcheck');
 
-Route::get('/checkfine','inventaireController@checkfine')->name('checkfine');
-Route::get('/checkdamaged','inventaireController@checkdamaged')->name('checkdamaged');
-Route::get('/checklost','inventaireController@checklost')->name('checklost');
-Route::get('/uncheckAsset','inventaireController@uncheckAsset')->name('uncheckAsset');
+Route::get('/showBtn','inventaireController@showBtn');
+Route::get('/checkfine','inventaireController@checkfine');
+Route::get('/checkdamaged','inventaireController@checkdamaged');
 
 Route::get('/getbureau/{id}/{etage}','inventaireController@BureauInv')->name('getbureau');
 Route::get('/getasset/{id}','inventaireController@assetInv')->name('getA');
 
 
+Route::get('/Assets', function () {
+        return view('tableAss');    
+});

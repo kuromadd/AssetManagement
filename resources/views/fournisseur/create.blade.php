@@ -83,6 +83,30 @@
     width: 70%;
   }
 }
+@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,700);
+
+form > div > input[type="text"]:invalid:not(:focus):not(:placeholder-shown),
+form > div > input[type="email"]:invalid:not(:focus):not(:placeholder-shown),
+form > div > input[type="password"]:invalid:not(:focus):not(:placeholder-shown) {
+  background: pink;
+}
+
+form > div > input[type="text"]:invalid:focus:not(:placeholder-shown) ~ .requirements,
+form > div > input[type="email"]:invalid:focus:not(:placeholder-shown) ~ .requirements,
+form > div > input[type="password"]:invalid:focus:not(:placeholder-shown) ~ .requirements {
+  max-height: 200px;
+  padding: 0 30px 20px 50px;
+}
+form > div .requirements {
+  padding: 0 30px 0 50px;
+  color: #999;
+  max-height: 0;
+  -webkit-transition: 0.28s;
+  transition: 0.28s;
+  overflow: hidden;
+  color: red;
+  font-style: italic;
+}
 </style>
 
 
@@ -100,19 +124,22 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="libel">Libel</label>
-                        <input type="text" name="libel" class="form-control">
+                        <input type="text" name="libel" class="form-control" required placeholder=" ">
                     </div>
                     <div class="form-group">
                         <label for="adress">Adress</label>
-                        <input type="text" name="address" class="form-control">
+                        <input type="text" name="address" class="form-control" required placeholder=" ">
                     </div>
                     <div class="form-group">
                         <label for="tel">Tel</label>
-                        <input type="text" name="tel" class="form-control">
+                        <input type="text" name="tel" class="form-control" required placeholder=" ">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" name="email" class="form-control">
+                      <label for="email">Email</label>
+                      <input type="email" id="email" name="email" class="form-control" required placeholder=" " />
+                      <div class="requirements">
+                      Must be a valid email address.
+                      </div>
                     </div>
                     <div class="form-group">
                         <label for="website">Website</label>

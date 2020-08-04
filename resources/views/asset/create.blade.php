@@ -2,10 +2,7 @@
 @section('content')
 
 <script src="{{ asset('js/app.js') }}"></script>
-<script
-src="https://code.jquery.com/jquery-3.5.0.min.js"
-integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
-crossorigin="anonymous"></script>
+
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -13,7 +10,35 @@ crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> 
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+<style>
+div > input[type="text"],
+div > input[type="email"],
+div > input[type="password"] {
+  width: 100%;
+  border: 0;
+  padding: 20px 20px 20px 50px;
+  background: #eee;
+}
+div > input[type="text"]:focus,
+div > input[type="email"]:focus,
+div > input[type="password"]:focus {
+  outline: 0;
+  background: white;
+}
+div > input[type="text"]:focus + label,
+div > input[type="email"]:focus + label,
+div > input[type="password"]:focus + label {
+  opacity: 0;
+}
+div > input[type="text"]:valid,
+div > input[type="email"]:valid,
+div > input[type="password"]:valid {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/check.svg);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: 20px 20px;
+}
+</style>
 <div class="row">
   <div class="col">
       <div class="card shadow" style="width: 70%;margin-left:14% ">
@@ -32,7 +57,7 @@ crossorigin="anonymous"></script>
     <input type="text" hidden name="qr" value="{{$qr}}">
       <div class="form-group">
           <label class="form-control-label" for="name">&#160&#160Name :</label>
-          <input type="text" name="name" class="form-control form-control-alternative">
+          <input type="text" name="name" class="form-control" placeholder="{{ __('name') }}" required>
       </div>
 
     <div class="form-group">
@@ -42,16 +67,16 @@ crossorigin="anonymous"></script>
 
       <div class="form-group">
           <label for="description" class="form-control-label"> &#160&#160Description :</label>
-          <textarea class="form-control" name="description" id="description" cols="4" rows="4"></textarea>
+          <textarea class="form-control" name="description" id="description" cols="4" rows="4" placeholder="{{ __('description') }}" required></textarea>
       </div>
   
       <div class="form-group">
           <label class="form-control-label" for="prix">&#160&#160Price :</label>
-          <input type="number" name="prix" class="form-control form-control-alternative" min="0">
+          <input type="number" name="prix" class="form-control form-control-alternative" required min="0">
       </div>
       <div class="form-group">
         <label for="category" class="form-control-label">&#160&#160Category :</label>
-        <select name="category" id="category" class="form-control form-control-alternative">
+        <select name="category" id="category" class="form-control" >
           <option value=0 disabled selected>Choose a category :</option>
           <option value="Furniture and fixtures">Furniture and fixtures</option>
           <option value="Intangible assets">Intangible assets</option> {{-- trademarks, customer lists, literary works, broadcast rights, and patented technology. --}}
@@ -64,12 +89,12 @@ crossorigin="anonymous"></script>
     
       <div class="form-group">
         <label for="date" class="form-control-label">&#160&#160Acquisition date :</label>
-        <input type="date" name="dateservice" id="dateservice" class="form-control datetimepicker">
+        <input type="date" name="dateservice" id="dateservice" class="form-control datetimepicker" placeholder="{{ __('date') }}" required>
       </div>
 
       <div class="form-group">
         <label for="duree" class="form-control-label">&#160&#160Lifetime :</label>
-        <input  type="number" name="duree" id="duree" class="form-control form-control-alternative" min="0">
+        <input  type="number" name="duree" id="duree" class="form-control form-control-alternative" required min="0">
       </div>
 
       <div class="form-group">

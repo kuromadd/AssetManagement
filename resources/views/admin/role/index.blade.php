@@ -1,5 +1,6 @@
-@extends('app.layout')
+@extends('app.edit_layout')
 @section('content')
+<br><br>
 <form action="{{ route('updateAll') }}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="row">

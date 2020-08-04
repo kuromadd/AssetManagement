@@ -89,7 +89,6 @@ class TransfertController extends Controller
             'asset_id'=>'required',
             'block_d'=>'required',
             'etage_d'=>'required',
-            
             'transfered_at'=>'required',
             
         ]);

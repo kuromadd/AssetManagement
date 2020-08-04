@@ -52,9 +52,7 @@ class blocksController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'adress' => 'required',
-            'wilaya' => 'required',
-            'daira' => 'required',
-            'zip' => 'required',
+            'sous' => 'required',
             'nbreEt' => 'required',
         ]);
         $block = new \App\block ; 
@@ -109,9 +107,7 @@ class blocksController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'adress' => 'required',
-            'wilaya' => 'required',
-            'daira' => 'required',
-            'zip' => 'required',
+            'sous' => 'required',
             'nbreEt' => 'required',
         ]);
 
