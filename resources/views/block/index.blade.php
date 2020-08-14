@@ -10,7 +10,7 @@
                             <h3 class="mb-0">Blocks</h3>
                         </div>
                         <div class="col-4 text-right">
-                        <a {{-- href="#popupbc" --}} data-toggle="modal" data-target="#addblock" class="btn btn-sm btn-primary">Add block</a>
+                        <a data-toggle="modal" data-target="#addblock" class="btn btn-primary btn-sm" style="color: white">Add block</a>
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                 <div class="modal fade" id="addblock">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content " >
-                            <form action="{{ route('storeBlock') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('storeBlock') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                                 {{ csrf_field() }}
                                 <div class="modal-header" style="margin-right: 5%;margin-left: 5%">
                                     <h2>Add Block :</h2>
@@ -68,38 +68,61 @@
                                       </button>
                                 </div>
                                 <div class="model-body" style="margin-right: 5%;margin-left: 5%">
-                                    <div class="form-group">
-                                        <label for="name">Name :</label>
-                                        <input type="text" name="name" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="adress">Adress :</label>
-                                        <input type="text" name="adress" class="form-control">
-                                    </div>
-                
-                                    <div class="form-row">
-                                      <div class="form-group col-md-6">
-                                        <label for="wilaya">--Wilaya--</label>
-                                        <input type="text" class="form-control" name="wilaya">
+
+                                        <div class="form-group">
+                                            <label for="name">Name :</label>
+                                            <input type="text" name="name" class="form-control" required>
+                                            <div class="invalid-feedback">
+                                              Please provide a valid state.
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="adress">Adress :</label>
+                                            <input type="text" name="adress" class="form-control" required>
+                                            <div class="invalid-feedback">
+                                              Please provide a valid state.
+                                            </div>
+                                        </div>
+                    
+                                        <div class="form-row">
+                                          <div class="form-group col-md-6">
+                                            <label for="City">--Wilaya--</label>
+                                            <input type="text" class="form-control" name="City" id="City" required>
+                                            <div class="invalid-feedback">
+                                              Please provide a valid state.
+                                            </div>
+                                          </div>
+                                          <div class="form-group col-md-4">
+                                            <label for="State">--Daira--</label>
+                                            <input type="text" class="form-control" name="State" id="State" required>
+                                            <div class="invalid-feedback">
+                                              Please provide a valid state.
+                                            </div>
+                                          </div>
+                                          <div class="form-group col-md-2">
+                                            <label for="Zip">--Zip--</label>
+                                            <input type="text" class="form-control" name="Zip" id="Zip" required>
+                                            <div class="invalid-feedback">
+                                              Please provide a valid state.
+                                            </div>
+                                          </div>
+                                        </div>
+                    
+                                        <div class="form-group">
+                                          <label for="sous">Number of underground floors</label>
+                                          <input type="number" name="sous" class="form-control" required>
+                                          <div class="invalid-feedback">
+                                            Please provide a valid state.
+                                          </div>
                                       </div>
-                                      <div class="form-group col-md-4">
-                                        <label for="daira">--Daira--</label>
-                                        <input type="text" class="form-control" name="daira">
-                                      </div>
-                                      <div class="form-group col-md-2">
-                                        <label for="zip">--Zip--</label>
-                                        <input type="text" class="form-control" name="zip">
-                                      </div>
-                                    </div>
-                
-                                    <div class="form-group">
-                                      <label for="sous">Number of underground floors</label>
-                                      <input type="number" name="sous" class="form-control">
-                                  </div>
-                                    <div class="form-group">
-                                        <label for="nbreEt">Number of floors</label>
-                                        <input type="number" name="nbreEt" class="form-control">
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="nbreEt">Number of floors</label>
+                                            <input type="number" name="nbreEt" class="form-control" required>
+                                            <div class="invalid-feedback">
+                                              Please provide a valid state.
+                                            </div>
+                                        </div>
+                    
                                 </div>
                                 <br>
                                 <div class="model-footer text-center">
@@ -123,3 +146,25 @@
     </div>
     {{-- @include('block.create')   --}} 
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script>(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.getElementsByClassName('needs-validation');
+  // Loop over them and prevent submission
+  var validation = Array.prototype.filter.call(forms, function(form) {
+  form.addEventListener('submit', function(event) {
+  if (form.checkValidity() === false) {
+  event.preventDefault();
+  event.stopPropagation();
+  }
+  form.classList.add('was-validated');
+  }, false);
+  });
+  }, false);
+  })();
+  </script>

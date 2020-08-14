@@ -60,6 +60,12 @@
           background:none;
         }
         
+        tr.unchecked {
+          background: none;
+          font-family: cursive;
+          color: #ddd
+        }
+
         tr.fine {
           background: rgb(7, 230, 118);
           font-family: cursive;
@@ -117,7 +123,9 @@
     
             @if ($value->inventaire_id == $inventaire->id)
             
-            <tr @if(\App\asset::find($value->asset_id)->status == 1)    
+            <tr @if(\App\asset::find($value->asset_id)->status == 0)    
+              class="unchecked" 
+            @elseif(\App\asset::find($value->asset_id)->status == 1)    
                 class="fine" 
             @elseif (\App\asset::find($value->asset_id)->status == 2)
                 class="repair"
@@ -133,21 +141,21 @@
               <input type="checkbox" style="width: 16px;height: 16px;" name="fine[]" class="subject-list{{$value->id}}" value="{{ \App\asset::find($value->asset_id)->id }}"
                 @if(\App\asset::find($value->asset_id)->status == 1)
                 checked 
-                @endif id="box-1{{\App\asset::find($value->asset_id)->id}}" >
+                @endif>
             <label class="form-control-label"></label>   
                 </td>
               <td style="margin: ">
                 <input type="checkbox" style="width: 16px;height: 16px;" name="repair[]" class="subject-list{{$value->id}}" value="{{ \App\asset::find($value->asset_id)->id }}"
                 @if(\App\asset::find($value->asset_id)->status == 2)
                 checked 
-                @endif id="" >
+                @endif >
             <label class="form-control-label"></label>   
                 </td>
                 <td >
                 <input type="checkbox" style="width: 16px;height: 16px;" name="lost[]" class="subject-list{{$value->id}}" value="{{ \App\asset::find($value->asset_id)->id }}"
                     @if(\App\asset::find($value->asset_id)->status == 3)
                     checked 
-                    @endif id="" class="">
+                    @endif>
                 <label class="form-control-label"></label>   
                 </td>
             </tr>

@@ -1,177 +1,94 @@
+<!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-<style>
-    .our-team {
-  padding: 30px 0 40px;
-  margin-bottom: 30px;
-  background-color: #f7f5ec;
-  text-align: center;
-  overflow: hidden;
-  position: relative;
-}
-
-.our-team .picture {
-  display: inline-block;
-  height: 130px;
-  width: 130px;
-  margin-bottom: 50px;
-  z-index: 1;
-  /*position: relative;*/
-}
-
-.our-team .picture::before {
-  content: "";
-  width: 100%;
-  height: 0;
-  border-radius: 50%;
-  background-color: #1369ce;
-  position: absolute;
-  bottom: 135%;
-  right: 0;
-  left: 0;
-  opacity: 0.9;
-  transform: scale(3);
-  transition: all 0.3s linear 0s;
-}
-
-.our-team:hover .picture::before {
-  height: 100%;
-}
-
-.our-team .picture::after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: #1369ce;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-
-.our-team .picture img {
-  width: 100%;
-  height: auto;
-  border-radius: 50%;
-  transform: scale(1);
-  transition: all 0.9s ease 0s;
-}
-
-.our-team:hover .picture img {
-  box-shadow: 0 0 0 14px #f7f5ec;
-  transform: scale(0.7);
-}
-
-.our-team .title {
-  display: block;
-  font-size: 15px;
-  color: #4e5052;
-  text-transform: capitalize;
-}
-
-.our-team .social {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  background-color: #1369ce;
-  position: absolute;
-  bottom: -100px;
-  left: 0;
-  transition: all 0.5s ease 0s;
-}
-
-.our-team:hover .social {
-  bottom: 0;
-}
-
-.our-team .social li {
-  display: inline-block;
-}
-
-.our-team .social li a {
-  display: block;
-  padding: 10px;
-  font-size: 17px;
-  color: white;
-  transition: all 0.3s ease 0s;
-  text-decoration: none;
-}
-
-.our-team .social li a:hover {
-  color: #1369ce;
-  background-color: #f7f5ec;
-}
-</style>
-
-<div class="container">
-  <div class="row">
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="our-team">
-        <div class="picture">
-          <img class="img-fluid" src="https://picsum.photos/130/130?image=1027">
-        </div>
-        <div class="team-content">
-          <h3 class="name">Michele Miller</h3>
-          <h4 class="title">Web Developer</h4>
-        </div>
-        <ul class="social">
-          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-facebook" aria-hidden="true"></a></li>
-          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-twitter" aria-hidden="true"></a></li>
-          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-google-plus" aria-hidden="true"></a></li>
-          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-linkedin" aria-hidden="true"></a></li>
-        </ul>
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<form class="needs-validation" novalidate>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom01">First name</label>
+      <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark"
+        required>
+      <div class="valid-feedback">
+        Looks good!
       </div>
     </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="our-team">
-        <div class="picture">
-          <img class="img-fluid" src="https://picsum.photos/130/130?image=839">
-        </div>
-        <div class="team-content">
-          <h3 class="name">Patricia Knott</h3>
-          <h4 class="title">Web Developer</h4>
-        </div>
-        <ul class="social">
-          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-facebook" aria-hidden="true"></a></li>
-          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-twitter" aria-hidden="true"></a></li>
-          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-google-plus" aria-hidden="true"></a></li>
-          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-linkedin" aria-hidden="true"></a></li>
-        </ul>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02">Last name</label>
+      <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto"
+        required>
+      <div class="valid-feedback">
+        Looks good!
       </div>
     </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="our-team">
-        <div class="picture">
-          <img class="img-fluid" src="https://picsum.photos/130/130?image=856">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustomUsername">Username</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupPrepend">@</span>
         </div>
-        <div class="team-content">
-          <h3 class="name">Justin Ramos</h3>
-          <h4 class="title">Web Developer</h4>
+        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username"
+          aria-describedby="inputGroupPrepend" required>
+        <div class="invalid-feedback">
+          Please choose a username.
         </div>
-        <ul class="social">
-          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-facebook" aria-hidden="true"></a></li>
-          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-twitter" aria-hidden="true"></a></li>
-          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-google-plus" aria-hidden="true"></a></li>
-          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-linkedin" aria-hidden="true"></a></li>
-        </ul>
-      </div>
-    </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="our-team">
-        <div class="picture">
-          <img class="img-fluid" src="https://picsum.photos/130/130?image=836">
-        </div>
-        <div class="team-content">
-          <h3 class="name">Mary Huntley</h3>
-          <h4 class="title">Web Developer</h4>
-        </div>
-        <ul class="social">
-          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-facebook" aria-hidden="true"></a></li>
-          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-twitter" aria-hidden="true"></a></li>
-          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-google-plus" aria-hidden="true"></a></li>
-          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-linkedin" aria-hidden="true"></a></li>
-        </ul>
       </div>
     </div>
   </div>
-</div>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationCustom03">City</label>
+      <input type="text" class="form-control" id="validationCustom03" placeholder="City" required>
+      <div class="invalid-feedback">
+        Please provide a valid city.
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom04">State</label>
+      <input type="text" class="form-control" id="validationCustom04" placeholder="State" required>
+      <div class="invalid-feedback">
+        Please provide a valid state.
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom05">Zip</label>
+      <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
+      <div class="invalid-feedback">
+        Please provide a valid zip.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+      <label class="form-check-label" for="invalidCheck">
+        Agree to terms and conditions
+      </label>
+      <div class="invalid-feedback">
+        You must agree before submitting.
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary btn-sm" type="submit">Submit form</button>
+</form>
+
+<script>(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.getElementsByClassName('needs-validation');
+  // Loop over them and prevent submission
+  var validation = Array.prototype.filter.call(forms, function(form) {
+  form.addEventListener('submit', function(event) {
+  if (form.checkValidity() === false) {
+  event.preventDefault();
+  event.stopPropagation();
+  }
+  form.classList.add('was-validated');
+  }, false);
+  });
+  }, false);
+  })();
+  </script>

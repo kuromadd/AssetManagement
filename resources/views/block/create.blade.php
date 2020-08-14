@@ -108,40 +108,62 @@ crossorigin="anonymous"></script>
                 </div>
             
                 <div class="card-body">
-                    <form action="{{ route('storeBlock') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('storeBlock') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
         
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="name">Name :</label>
-                        <input type="text" name="name" class="form-control" required placeholder=" ">
+                        <input type="text" name="name" class="form-control" required>
+                        <div class="invalid-feedback">
+                          Please provide a valid state.
+                        </div>
                     </div>
+                    
                     <div class="form-group">
                         <label for="adress">Adress :</label>
-                        <input type="text" name="adress" class="form-control" required placeholder=" ">
+                        <input type="text" name="adress" class="form-control" required>
+                        <div class="invalid-feedback">
+                          Please provide a valid state.
+                        </div>
                     </div>
 
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="City">--Wilaya--</label>
-                        <input type="text" class="form-control" id="City">
+                        <input type="text" class="form-control" id="City" required>
+                        <div class="invalid-feedback">
+                          Please provide a valid state.
+                        </div>
                       </div>
                       <div class="form-group col-md-4">
                         <label for="State">--Daira--</label>
-                        <input type="text" class="form-control" id="State">
+                        <input type="text" class="form-control" id="State" required>
+                        <div class="invalid-feedback">
+                          Please provide a valid state.
+                        </div>
                       </div>
                       <div class="form-group col-md-2">
                         <label for="Zip">--Zip--</label>
-                        <input type="text" class="form-control" id="Zip">
+                        <input type="text" class="form-control" id="Zip" required>
+                        <div class="invalid-feedback">
+                          Please provide a valid state.
+                        </div>
                       </div>
                     </div>
 
                     <div class="form-group">
                       <label for="sous">Number of underground floors</label>
-                      <input type="number" name="sous" class="form-control" required placeholder=" ">
+                      <input type="number" name="sous" class="form-control" required>
+                      <div class="invalid-feedback">
+                        Please provide a valid state.
+                      </div>
                   </div>
                     <div class="form-group">
                         <label for="nbreEt">Number of floors</label>
-                        <input type="number" name="nbreEt" class="form-control" required placeholder=" ">
+                        <input type="number" name="nbreEt" class="form-control" required>
+                        <div class="invalid-feedback">
+                          Please provide a valid state.
+                        </div>
                     </div>
                     <div class="text-center">
                     <button class="btn btn-info" type="submit">store</button>    
@@ -153,3 +175,24 @@ crossorigin="anonymous"></script>
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script>(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.getElementsByClassName('needs-validation');
+  // Loop over them and prevent submission
+  var validation = Array.prototype.filter.call(forms, function(form) {
+  form.addEventListener('submit', function(event) {
+  if (form.checkValidity() === false) {
+  event.preventDefault();
+  event.stopPropagation();
+  }
+  form.classList.add('was-validated');
+  }, false);
+  });
+  }, false);
+  })();
+  </script>

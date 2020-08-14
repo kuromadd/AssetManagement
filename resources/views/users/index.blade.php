@@ -1,4 +1,4 @@
-@extends('app.edit_layout')
+@extends('app.layout')
 @section('content')
 
 <div class="container-fluid mt--7">
@@ -21,7 +21,7 @@
     .our-team {
   padding: 30px 0 40px;
   margin-bottom: 30px;
-  background-color: #f7f5ec;
+
   text-align: center;
   overflow: hidden;
   position: relative;
@@ -76,7 +76,7 @@
 }
 
 .our-team:hover .picture img {
-  box-shadow: 0 0 0 14px #f7f5ec;
+  box-shadow: 0 0 0 14px none;
   transform: scale(0.7);
 }
 
@@ -117,7 +117,7 @@
 
 .our-team .social li a:hover {
   color: #1369ce;
-  background-color: #f7f5ec;
+  background-color: none;
 }
 
 </style>

@@ -353,7 +353,12 @@ toastr.success('{{ Session::get('success') }}');
 <script>
     console.log('info');
 toastr.info('{{ Session::get('info') }}');
-</script>            
+</script>   
+@elseif (Session::has('danger'))
+<script>
+    console.log('danger');
+toastr.error('{{ Session::get('danger') }}');
+</script>           
 @endif
 
 

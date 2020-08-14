@@ -83,32 +83,12 @@
     width: 70%;
   }
 }
-@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,700);
 
-form > div > input[type="text"]:invalid:not(:focus):not(:placeholder-shown),
-form > div > input[type="email"]:invalid:not(:focus):not(:placeholder-shown),
-form > div > input[type="password"]:invalid:not(:focus):not(:placeholder-shown) {
-  background: pink;
-}
-
-form > div > input[type="text"]:invalid:focus:not(:placeholder-shown) ~ .requirements,
-form > div > input[type="email"]:invalid:focus:not(:placeholder-shown) ~ .requirements,
-form > div > input[type="password"]:invalid:focus:not(:placeholder-shown) ~ .requirements {
-  max-height: 200px;
-  padding: 0 30px 20px 50px;
-}
-form > div .requirements {
-  padding: 0 30px 0 50px;
-  color: #999;
-  max-height: 0;
-  -webkit-transition: 0.28s;
-  transition: 0.28s;
-  overflow: hidden;
-  color: red;
-  font-style: italic;
-}
 </style>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
 <div id="popupfc" class="overlay" style="overflow: scroll">
     <div class="popup" style="width: 60%">
@@ -119,25 +99,34 @@ form > div .requirements {
                 </div>
             
                 <div class="card-body">
-                    <form action="{{ route('storeFournisseur') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('storeFournisseur') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
         
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="libel">Libel</label>
-                        <input type="text" name="libel" class="form-control" required placeholder=" ">
+                        <input type="text" name="libel" class="form-control" required>
+                        <div class="invalid-feedback">
+                          Please provide a valid state.
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="adress">Adress</label>
-                        <input type="text" name="address" class="form-control" required placeholder=" ">
+                        <input type="text" name="address" class="form-control" required >
+                        <div class="invalid-feedback">
+                          Please provide a valid state.
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="tel">Tel</label>
-                        <input type="text" name="tel" class="form-control" required placeholder=" ">
+                        <input type="text" name="tel" class="form-control" required >
+                        <div class="invalid-feedback">
+                          Please provide a valid state.
+                        </div>
                     </div>
                     <div class="form-group">
                       <label for="email">Email</label>
-                      <input type="email" id="email" name="email" class="form-control" required placeholder=" " />
-                      <div class="requirements">
+                      <input type="email" name="email" class="form-control" required  />
+                      <div class="invalid-feedback">
                       Must be a valid email address.
                       </div>
                     </div>
@@ -155,3 +144,21 @@ form > div .requirements {
         </div>
     </div>
 </div>
+<script>(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.getElementsByClassName('needs-validation');
+  // Loop over them and prevent submission
+  var validation = Array.prototype.filter.call(forms, function(form) {
+  form.addEventListener('submit', function(event) {
+  if (form.checkValidity() === false) {
+  event.preventDefault();
+  event.stopPropagation();
+  }
+  form.classList.add('was-validated');
+  }, false);
+  });
+  }, false);
+  })();
+  </script>
