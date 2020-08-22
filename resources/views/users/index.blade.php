@@ -1,4 +1,4 @@
-@extends('app.layout')
+@extends('app.edit_layout')
 @section('content')
 
 <div class="container-fluid mt--7">
