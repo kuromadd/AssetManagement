@@ -1,142 +1,197 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-</head>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <style>
-@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,700);
-form {
-  max-width: 450px;
-  margin: 0 auto;
-}
-form > div {
-  position: relative;
-  background: white;
-  border-bottom: 1px solid #ccc;
-}
-form > div > label {
-  opacity: 0.3;
-  font-weight: bold;
-  position: absolute;
-  top: 22px;
-  left: 20px;
-}
-form > div > input[type="text"],
-form > div > input[type="email"],
-form > div > input[type="password"] {
-  width: 100%;
-  border: 0;
-  padding: 20px 20px 20px 50px;
-  background: #eee;
-}
-form > div > input[type="text"]:focus,
-form > div > input[type="email"]:focus,
-form > div > input[type="password"]:focus {
-  outline: 0;
-  background: white;
-}
-form > div > input[type="text"]:focus + label,
-form > div > input[type="email"]:focus + label,
-form > div > input[type="password"]:focus + label {
-  opacity: 0;
-}
-form > div > input[type="text"]:valid,
-form > div > input[type="email"]:valid,
-form > div > input[type="password"]:valid {
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/check.svg);
-  background-size: 20px;
-  background-repeat: no-repeat;
-  background-position: 20px 20px;
-}
-form > div > input[type="text"]:valid + label,
-form > div > input[type="email"]:valid + label,
-form > div > input[type="password"]:valid + label {
-  opacity: 0;
-}
-form > div > input[type="text"]:invalid:not(:focus):not(:placeholder-shown),
-form > div > input[type="email"]:invalid:not(:focus):not(:placeholder-shown),
-form > div > input[type="password"]:invalid:not(:focus):not(:placeholder-shown) {
-  background: pink;
-}
-form > div > input[type="text"]:invalid:not(:focus):not(:placeholder-shown) + label,
-form > div > input[type="email"]:invalid:not(:focus):not(:placeholder-shown) + label,
-form > div > input[type="password"]:invalid:not(:focus):not(:placeholder-shown) + label {
-  opacity: 0;
-}
-form > div > input[type="text"]:invalid:focus:not(:placeholder-shown) ~ .requirements,
-form > div > input[type="email"]:invalid:focus:not(:placeholder-shown) ~ .requirements,
-form > div > input[type="password"]:invalid:focus:not(:placeholder-shown) ~ .requirements {
-  max-height: 200px;
-  padding: 0 30px 20px 50px;
-}
-form > div .requirements {
-  padding: 0 30px 0 50px;
-  color: #999;
-  max-height: 0;
-  -webkit-transition: 0.28s;
-  transition: 0.28s;
-  overflow: hidden;
-  color: red;
-  font-style: italic;
-}
-form input[type="submit"] {
-  display: block;
-  width: 100%;
-  margin: 20px 0;
-  background: #41D873;
-  color: white;
-  border: 0;
-  padding: 20px;
-  font-size: 1.2rem;
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: #333;
-  font-family: 'PT Sans', sans-serif;
-  padding: 20px;
+  background-color: #f1f1f1;
 }
 
-* {
-  box-sizing: border-box;
-}		
+#regForm {
+  background-color: #ffffff;
+  margin: 100px auto;
+  font-family: Raleway;
+  padding: 40px;
+  width: 70%;
+  min-width: 300px;
+}
+
+h1 {
+  text-align: center;  
+}
+
+input {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+}
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+button {
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#prevBtn {
+  background-color: #bbbbbb;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;  
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4CAF50;
+}
 </style>
 <body>
-	<form action="#0">
 
-		<div>
-		  <input type="text" id="first_name" name="first_name" required placeholder=" " />
-		  <label for="first_name">First Name</label>
-		</div>
-		
-		<div>
-		  <input type="text" id="last_name" name="last_name" required placeholder=" " />
-		  <label for="last_name">Last Name</label>
-		</div>
-		
-		<div>
-		  <input type="email" id="email" name="email" required placeholder=" " />
-		  <label for="email">Email Address</label>
-		  <div class="requirements">
-			Must be a valid email address.
-		  </div>
-		</div>
-		
-		<div>
-		  <input type="password" id="password" name="password" required placeholder=" " pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" />
-		  <label for="password">Password</label>
-		  <div class="requirements">
-			Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.
-		  </div>
-		</div>
-		
-		<input type="submit" value="Sign Up" />
-	  
-	  </form>
-</body>
+<form id="regForm" action="/action_page.php">
+  <h1>Register:</h1>
+  <!-- One "tab" for each step in the form: -->
+  <div class="tab">Name:
+    <p><input placeholder="First name..." oninput="this.className = ''" name="fname"></p>
+    <p><input placeholder="Last name..." oninput="this.className = ''" name="lname"></p>
+  </div>
+  <div class="tab">Contact Info:
+    <p><input placeholder="E-mail..." oninput="this.className = ''" name="email"></p>
+    <p><input placeholder="Phone..." oninput="this.className = ''" name="phone"></p>
+  </div>
+  <div class="tab">Birthday:
+    <p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>
+    <p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
+    <p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
+  </div>
+  <div class="tab">Login Info:
+    <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
+    <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
+  </div>
+  <div style="overflow:auto;">
+    <div style="float:right;">
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    </div>
+  </div>
+  <!-- Circles which indicates the steps of the form: -->
+  <div style="text-align:center;margin-top:40px;">
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+  </div>
+</form>
+
 <script>
+var currentTab = 0; // Current tab is set to be the first tab (0)
+showTab(currentTab); // Display the current tab
 
+function showTab(n) {
+  // This function will display the specified tab of the form...
+  var x = document.getElementsByClassName("tab");
+  x[n].style.display = "block";
+  //... and fix the Previous/Next buttons:
+  if (n == 0) {
+    document.getElementById("prevBtn").style.display = "none";
+  } else {
+    document.getElementById("prevBtn").style.display = "inline";
+  }
+  if (n == (x.length - 1)) {
+    document.getElementById("nextBtn").innerHTML = "Submit";
+  } else {
+    document.getElementById("nextBtn").innerHTML = "Next";
+  }
+  //... and run a function that will display the correct step indicator:
+  fixStepIndicator(n)
+}
+
+function nextPrev(n) {
+  // This function will figure out which tab to display
+  var x = document.getElementsByClassName("tab");
+  // Exit the function if any field in the current tab is invalid:
+  if (n == 1 && !validateForm()) return false;
+  // Hide the current tab:
+  x[currentTab].style.display = "none";
+  // Increase or decrease the current tab by 1:
+  currentTab = currentTab + n;
+  // if you have reached the end of the form...
+  if (currentTab >= x.length) {
+    // ... the form gets submitted:
+    document.getElementById("regForm").submit();
+    return false;
+  }
+  // Otherwise, display the correct tab:
+  showTab(currentTab);
+}
+
+function validateForm() {
+  // This function deals with validation of the form fields
+  var x, y, i, valid = true;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("input");
+  // A loop that checks every input field in the current tab:
+  for (i = 0; i < y.length; i++) {
+    // If a field is empty...
+    if (y[i].value == "") {
+      // add an "invalid" class to the field:
+      y[i].className += " invalid";
+      // and set the current valid status to false
+      valid = false;
+    }
+  }
+  // If the valid status is true, mark the step as finished and valid:
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+  return valid; // return the valid status
+}
+
+function fixStepIndicator(n) {
+  // This function removes the "active" class of all steps...
+  var i, x = document.getElementsByClassName("step");
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+  //... and adds the "active" class on the current step:
+  x[n].className += " active";
+}
 </script>
+
+</body>
 </html>

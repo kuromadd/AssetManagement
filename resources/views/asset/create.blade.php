@@ -1,44 +1,6 @@
 @extends('app.edit_layout')
 @section('content')
 
-<script src="{{ asset('js/app.js') }}"></script>
-
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> 
-<link rel="dns-prefetch" href="//fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-<style>
-div > input[type="text"],
-div > input[type="email"],
-div > input[type="password"] {
-  width: 100%;
-  border: 0;
-  padding: 20px 20px 20px 50px;
-  background: #eee;
-}
-div > input[type="text"]:focus,
-div > input[type="email"]:focus,
-div > input[type="password"]:focus {
-  outline: 0;
-  background: white;
-}
-div > input[type="text"]:focus + label,
-div > input[type="email"]:focus + label,
-div > input[type="password"]:focus + label {
-  opacity: 0;
-}
-div > input[type="text"]:valid,
-div > input[type="email"]:valid,
-div > input[type="password"]:valid {
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/check.svg);
-  background-size: 20px;
-  background-repeat: no-repeat;
-  background-position: 20px 20px;
-}
-</style>
 <div class="row">
   <div class="col">
       <div class="card shadow" style="width: 70%;margin-left:14% ">
@@ -51,33 +13,123 @@ div > input[type="password"]:valid {
           </div>
           
 <div class="card-body">
-    <form action="{{ route('storeAsset') }}" method="post" enctype="multipart/form-data">
-
+    <form action="{{ route('storeAsset') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
       {{ csrf_field() }}
-    <input type="text" hidden name="qr" value="{{$qr}}">
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+  
+  <script type="text/javascript" src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.js"></script>
+
+  <style type="text/css">
+      #results { padding:20px; border:1px solid; background:#ccc; }
+  
+  
+  .tv {
+        position: relative;
+        margin: 20px 0;
+        background: rgb(97, 6, 243);
+        border-radius: 50% / 10%;
+        color: white;
+        text-align: center;
+        text-indent: .1em;
+      }
+      .tv:before {
+        content: '';
+        position: absolute;
+        top: 10%;
+        bottom: 10%;
+        right: -5%;
+        left: -5%;
+        background: inherit;
+        border-radius: 5% / 50%;
+      }
+      
+  </style>
+  
+  
+          <div>
+              <video class="tv" style="width: 50%;height: auto;margin:10%;margin-left:22%" muted playsinline id="qr-video"></video>
+              <label class="text-danger" id="note"><b>Note : </b> scan asset qr or it will fill automaticly</label>
+          </div>
+  
+  
+  
+  
+  <script type="module">
+      import QrScanner from "/qr-scanner.min.js";
+      QrScanner.WORKER_PATH = '/qr-scanner-worker.min.js';
+  
+      const video = document.getElementById('qr-video');
+      const camHasCamera = document.getElementById('cam-has-camera');
+      const camQrResult = document.getElementById('cam-qr-result');
+
+      
+     
+      function setResult(input, result) {
+         
+          input.value = result;
+          var userInput = input.value;
+          $("#qrcode").empty();
+          $("#note").empty();
+          var qrcode = new QRCode("qrcode", {
+              text: userInput,
+              width: 200,
+              height: 200,
+              colorDark: "black",//#5e72e4
+              colorLight: "white",
+              correctLevel: QRCode.CorrectLevel.H
+          });
+
+      }
+  
+      // ####### Web Cam Scanning #######
+  
+      const scanner = new QrScanner(video, result => setResult(camQrResult, result));
+      scanner.start();
+  
+  
+  
+  </script>
+  
+  <div style="margin: 2%;margin-left:25%" id="qrcode"></div>
+  <br>              
+    <input type="text" name="qr" hidden id="cam-qr-result">
       <div class="form-group">
           <label class="form-control-label" for="name">&#160&#160Name :</label>
-          <input type="text" name="name" class="form-control" placeholder="{{ __('name') }}" required>
+          <input type="text" name="name" class="form-control" required>
+          <div class="invalid-feedback">
+            Please provide a valid state.
+          </div>
       </div>
 
     <div class="form-group">
         <label for="brand" class="form-control-label"> &#160&#160Brand :</label>
-        <input type="text" name="brand" class="form-control form-control-alternative">
+        <input type="text" name="brand" class="form-control">
+        <div class="invalid-feedback">
+          Please provide a valid state.
+        </div>
     </div>
 
       <div class="form-group">
           <label for="description" class="form-control-label"> &#160&#160Description :</label>
-          <textarea class="form-control" name="description" id="description" cols="4" rows="4" placeholder="{{ __('description') }}" required></textarea>
+          <textarea class="form-control" name="description" id="description" cols="4" rows="4" required></textarea>
+          <div class="invalid-feedback">
+            Please provide a valid state.
+          </div>
       </div>
   
       <div class="form-group">
           <label class="form-control-label" for="prix">&#160&#160Price :</label>
           <input type="number" name="prix" class="form-control form-control-alternative" required min="0">
-      </div>
+          <div class="invalid-feedback">
+            Please provide a valid state.
+          </div>
+        </div>
       <div class="form-group">
         <label for="category" class="form-control-label">&#160&#160Category :</label>
-        <select name="category" id="category" class="form-control" >
-          <option value=0 disabled selected>Choose a category :</option>
+        <select name="category" id="category" class="custom-select browser-default" required>
+          <option value="" disabled selected>Choose a category :</option>
           <option value="Furniture and fixtures">Furniture and fixtures</option>
           <option value="Intangible assets">Intangible assets</option> {{-- trademarks, customer lists, literary works, broadcast rights, and patented technology. --}}
           <option value="Office equipement">office equipement</option>
@@ -85,27 +137,38 @@ div > input[type="password"]:valid {
           <option value="Software">Software</option>
           <option value="Building">building</option>
         </select>
+        <div class="invalid-feedback">
+          Please provide a valid state.
+        </div>
       </div>
     
       <div class="form-group">
         <label for="date" class="form-control-label">&#160&#160Acquisition date :</label>
-        <input type="date" name="dateservice" id="dateservice" class="form-control datetimepicker" placeholder="{{ __('date') }}" required>
+      <input type="date" name="dateservice" id="dateservice" class="form-control datetimepicker" value="{{date("Y-m-d")}}" required>
+      <div class="invalid-feedback">
+        Please provide a valid state.
+      </div>
       </div>
 
       <div class="form-group">
         <label for="duree" class="form-control-label">&#160&#160Lifetime :</label>
         <input  type="number" name="duree" id="duree" class="form-control form-control-alternative" required min="0">
+        <div class="invalid-feedback">
+          Please provide a valid state.
+        </div>
       </div>
 
       <div class="form-group">
         <label for="fournisseur_id">Provider :</label>
-            <select class="form-control fournisseurID" name="fournisseur_id" id="fournisseur_id">
-              <option value=0 disabled selected>choose a supplier :</option>
+            <select class="custom-select browser-default fournisseurID" name="fournisseur_id" id="fournisseur_id" required>
+              <option value="" disabled selected>choose a supplier :</option>
                 @foreach(\App\Fournisseur::all() as $fournisseur)
             <option value="{{ $fournisseur->id }}">{{$fournisseur->libel}}</option>
                 @endforeach
             </select>               
-            
+            <div class="invalid-feedback">
+              Please provide a valid state.
+            </div>
         </div>
       
       <div class="text-center">
@@ -116,3 +179,26 @@ div > input[type="password"]:valid {
 </div>
 
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+<script>(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.getElementsByClassName('needs-validation');
+  // Loop over them and prevent submission
+  var validation = Array.prototype.filter.call(forms, function(form) {
+  form.addEventListener('submit', function(event) {
+  if (form.checkValidity() === false) {
+  event.preventDefault();
+  event.stopPropagation();
+  }
+  form.classList.add('was-validated');
+  }, false);
+  });
+  }, false);
+  })();
+  </script>

@@ -246,7 +246,7 @@ class AssetController extends Controller
             return view('asset.show')->with('asset',$asset);
         }else {
          
-            return view('asset.create')->with('qr',$qrcode);
+            return redirect()->back()->with('danger','this asset doesn\'t exist');
         }
     }
     public function existInv($qrcode){

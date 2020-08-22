@@ -377,7 +377,12 @@
 @if (Session::has('success'))
 <script>
     toastr.success('{{ Session::get('success') }}');
-</script>            
+</script>
+@elseif (Session::has('danger'))
+<script>
+    console.log('danger');
+toastr.error('{{ Session::get('danger') }}');
+</script>              
 @endif
 </body>
 </html>

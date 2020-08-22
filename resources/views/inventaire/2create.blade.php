@@ -1,5 +1,4 @@
-@extends('app.layout')
-@section('content')	
+	
 	
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"  type="text/css">
@@ -13,9 +12,10 @@
 	<!-- Custom Fonts -->
     <link rel="stylesheet" href="{{asset('font-awesome-4.4.0/css/font-awesome.min.css')}}"  type="text/css">
 
+
 <style>
 	/*custom font*/
-	@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 /*basic reset*/
 * {
@@ -191,13 +191,33 @@ body {
     background: #ee0979;
     color: white;
 }
-input.invalid {
-  background-color: #ffdddd;
+
+
+/* Not relevant to this form */
+.dme_link {
+    margin-top: 30px;
+    text-align: center;
+}
+.dme_link a {
+    background: #FFF;
+    font-weight: bold;
+    color: #ee0979;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 5px 25px;
+    font-size: 12px;
+}
+
+.dme_link a:hover, .dme_link a:focus {
+    background: #C5C5F1;
+    text-decoration: none;
 }
 </style>
-<br><br>
-<!-- multistep form -->
-<section id="msform">
+<!-- MultiStep Form -->
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <section id="msform">
 	<!-- progressbar -->
 	<ul id="progressbar">
 		<li class="active"></li>
@@ -206,7 +226,6 @@ input.invalid {
 	</ul>
 	<!-- fieldsets -->
 	<fieldset>
-        <label style="margin-left: 0px;font-family: cursive;color:red ">you must fill the blancs</label>
         <input type="text" name="name" id="name" placeholder="name"required placeholder=" " />
         <input type="text" name="description" id="description" placeholder="description" required placeholder=" " />
 		<input type="button" name="next" class="next action-button" onclick="saveInventaire($('#name').val(),$('#description').val())" value="Next" />
@@ -260,12 +279,13 @@ input.invalid {
 
 		<input type="button" name="next" class="next action-button" value="Next" onclick="setAssets()" />
 	</fieldset>
-	<fieldset>
+	<fieldset style="width: 100%">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
 
 		<script type="text/javascript" src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.js"></script>
 
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
 		<style type="text/css">
 			#results { padding:20px; border:1px solid; background:#ccc; }
@@ -391,23 +411,6 @@ var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 
 $(".next").click(function(){
-    if ($('#name').val() == "" && $('#description').val() == "") {
-            // add an "invalid" class to the field:
-            document.getElementById('name').className += " invalid";
-            document.getElementById('description').className += " invalid";
-            // and set the current valid status to false
-            valid = false;
-        }else if ($('#name').val() == "") {
-            // add an "invalid" class to the field:
-            document.getElementById('name').className += " invalid";
-            // and set the current valid status to false
-            valid = false;
-         }else if ($('#description').val() == "") {
-            // add an "invalid" class to the field:
-            document.getElementById('description').className += " invalid";
-            // and set the current valid status to false
-            valid = false;
-         }else{  
 	if(animating) return false;
 	animating = true;
 	
@@ -439,7 +442,7 @@ $(".next").click(function(){
 		}, 
 		//this comes from the custom easing plugin
 		easing: 'easeOutQuint'
-	});}
+	});
 });
 
 </script>
@@ -487,7 +490,6 @@ $(".next").click(function(){
   }
 
   function saveInventaire(name,description) {
-    
   $.ajax({
   type:'get',
   url:'{!!URL::to('saveInv')!!}',
@@ -568,4 +570,3 @@ $(".next").click(function(){
  }
   </script>
 
-@endsection

@@ -84,11 +84,7 @@
   }
 }
 </style>
-<style type="text/css">
-.bgimg {
-    background-image: url('');
-}
-</style>
+
 
 <div id="popupuc" class="overlay">
     <div class="popup" style="width: 60%"> 
@@ -105,47 +101,36 @@
               </div>
             
                 <div class="card-body align-items-center">
-                    <form action="{{ route('storeUser') }}" method="post" enctype="multipart/form-data">
-                        @if(count($errors)>0)
-                        <ul class="list group">
-                            @foreach ($errors->all() as $item )
-                                <li class="list-group-item text-danger">
-                                    {{ $item }}
-                                </li>
-                            @endforeach
-                        </ul>
-                        @endif
+                    <form action="{{ route('storeUser') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                     {{ csrf_field() }}
                     <input type="text" hidden name="qr" value="{{Str::random(20)}}">
                     <label class="form-control-label" for="name">{{ __('Name :') }}</label>
-                    <input type="text" name="name" id="name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('name') }}" required>
-                    
-                    @if ($errors->has('name'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('name') }}</strong>
-                    </span>
-                @endif
+                    <input type="text" name="name" id="name" class="form-control" required>
+                    <div class="invalid-feedback">
+                      Please provide a valid state.
+                    </div>
 
                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                     <label class="form-control-label" for="email">{{ __('Email :') }}</label>
-                    <input type="email" name="email" id="email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('example@gmail.com') }}" required>
-
-                    @if ($errors->has('email'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                    @endif
+                    <input type="email" name="email" id="email" class="form-control" required>
+                    <div class="invalid-feedback">
+                      Please provide a valid state.
+                    </div>
                 </div>
                 
                     <div class="form-group">
                         <label for="role_id" class="form-control-label">Role :</label>
-                        <select class="form-control" name="role" id="role" class="form-control form-control-alternative{{ $errors->has('role') ? ' is-invalid' : '' }}">
+                        <select class="custom-select browser-default" name="role" required>
+                        <option value="" disabled selected>select role :</option>  
                             @foreach (Spatie\Permission\Models\Role::all() as $item)
-                        <option id="role" value="{{$item->id}}">{{ $item->name }}</option>
+                        <option value="{{$item->id}}">{{ $item->name }}</option>
                             @endforeach
                         </select>
+                        <div class="invalid-feedback">
+                          Please provide a valid state.
+                        </div>
                     </div>
-    
+                    
                     <div class="text-center">
                         <button type="submit" class="btn btn-success">Store</button>
                     </div>
@@ -158,6 +143,25 @@
     </div> 
 
 
-    @yield('scripts')
-    <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ea4cc65ead60000"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
+    <script>(function() {
+      'use strict';
+      window.addEventListener('load', function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+      if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+      }, false);
+      });
+      }, false);
+      })();
+      </script>

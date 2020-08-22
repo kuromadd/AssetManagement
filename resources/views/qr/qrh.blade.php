@@ -32,12 +32,13 @@
       background: inherit;
       border-radius: 5% / 50%;
     }
-  
+    
 </style>
 
 
         <div>
             <video class="tv" style="width: 50%;height: auto;margin:10%;margin-left:22%" muted playsinline id="qr-video"></video>
+            
         </div>
 
 
@@ -50,14 +51,17 @@
     const video = document.getElementById('qr-video');
     const camHasCamera = document.getElementById('cam-has-camera');
     const camQrResult = document.getElementById('cam-qr-result');
-    const camQrResultTimestamp = document.getElementById('cam-qr-result-timestamp');
+   
+   
     
    
     function setResult(label, result) {
+        
         toastr.info('loading ... please wait');
         let url = "{{ route('exist', ':qrcode') }}";
         url = url.replace(':qrcode', result);
         document.location.href=url;
+        
     }
 
     // ####### Web Cam Scanning #######
