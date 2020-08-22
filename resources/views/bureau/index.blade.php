@@ -54,15 +54,20 @@
                                 </div>
                                
 
-                            </td> 
-                        </tr>
-
-
-                        
-                        <div class="modal fade" id="mal">
+                            </td>
+                             <div class="modal fade" id="mal">
                                     <div class="modal-dialog ">
                                         <div class="modal-content" >
-                                            <form action="{{ route('changeDelete',$bureau->id) }}" method="post" enctype="multipart/form-data">
+                                            <div class="modal-header"style="margin-left: 5%;margin-right: 5%">
+                                                <h2>Warning :</h2>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                            </div>
+                                            <div class="model-body" style="margin-left: 5%;margin-right: 5%">
+                                                    <p style="margin-left: 5%;margin-right: 5%">This Office/Bureau contain some assets, in order to delete it, you have to transfert the assets to another location..! </p>
+                                            </div>
+                                            {{-- <form action="{{ route('changeDelete',$bureau->id) }}" method="post" enctype="multipart/form-data">
                                                 {{ csrf_field() }}
                                                 <div class="modal-header"style="margin-left: 5%;margin-right: 5%">
                                                     <h2 >Change office/bureau :</h2>
@@ -92,14 +97,23 @@
                                                 </div>
                                                 <br>
                                                 <div class="model-footer text-center">
-                                                     @if (!(\App\asset::WhereNotIn('bureau_id',[$bureau->id])->get()->isEmpty()))<button class="btn btn-info" type="submit" >Save</button>@endif
+                                                    @if (!(\App\asset::WhereNotIn('bureau_id',[$bureau->id])->get()->isEmpty()))<button class="btn btn-info" type="submit" >Save</button>@endif
                                                     <button class="btn btn-primary" data-dismiss="modal">cancel</button>
                                                     <br> <br>
                                                 </div>
-                                            </form>
+                                            </form> --}}
+                                            <div class="model-footer text-center">
+                                                <button class="btn btn-primary" data-dismiss="modal">cancel</button>
+                                                <br> <br>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                        </tr>
+
+
+                        
+                        
 
                         @endforeach    
                         </tbody>

@@ -116,37 +116,45 @@
                 <span class="nav-link-text text-red">Scan !!</span>
                 </a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
-                    <i class="fa fa-user-edit text-blue"></i>
-                    <span class="nav-link-text text-red">Users</span>
+                <a class="nav-link active" href="#navbar-hier" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-hier">
+                    <i class="fab fa-linode text-blue"></i>
+                    <span class="nav-link-text text-red">Hierarchy management</span>
                 </a>
   
-                <div class="collapse show" id="navbar-examples">
+                <div class="collapse " id="navbar-hier">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('profile.edit') }}">
-                                <i class="fa fa-user text-blue"></i>
-                                <span class="text text-red"> My profile </span>
+                            <a class="nav-link" href="{{ route('indexBlock') }}">
+                                <i class="fa fa-building text-blue"></i> 
+                                <span class="text text-red"> Divisions </span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('indexUser') }}">
-                                <i class="fa fa-users text-blue"></i> 
-                                <span class="text text-red"> Users Management </span>
+                            <a class="nav-link" href="{{ route('indexBureau') }}">
+                               <i class="fa fa-object-group text-blue"></i>
+                               <span class="text text-red"> Departments </span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('indexBureau') }}">
+                               <i class="fa fa-object-group text-blue"></i>
+                               <span class="text text-red"> Services </span>
+                            </a>
+                        </li>
+                        
                     </ul>
                 </div>
-            </li>
+            </li> 
   
             <li class="nav-item">
-                <a class="nav-link active" href="#navbar-examples2" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                <a class="nav-link active" href="#navbar-infra" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-infra">
                     <i class="fab fa-linode text-blue"></i>
-                    <span class="nav-link-text text-red">blocks</span>
+                    <span class="nav-link-text text-red">Infrastructure management</span>
                 </a>
   
-                <div class="collapse show" id="navbar-examples2">
+                <div class="collapse" id="navbar-infra">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('indexBlock') }}">
@@ -166,12 +174,12 @@
             </li> 
   
             <li class="nav-item">
-                <a class="nav-link active" href="#navbar-examples3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                <a class="nav-link active" href="#navbar-examples3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
                     <i class="fab fa-gg-circle text-blue"></i>
                     <span class="nav-link-text text-red">Asset Management</span>
                 </a>
   
-                <div class="collapse show" id="navbar-examples3">
+                <div class="collapse " id="navbar-examples3">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('indexAsset') }}">
@@ -193,7 +201,37 @@
                         </li>
                     </ul>
                 </div>
-            </li>            
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#navbar-moni" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-moni">
+                    <i class="fab fa-linode text-blue"></i>
+                    <span class="nav-link-text text-red">Asset Monitoring</span>
+                </a>
+  
+                <div class="collapse" id="navbar-moni">
+                    <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('indexReparation') }}">
+                                <i class="ni ni-settings-gear-65 text-blue"></i> 
+                                <span class="text text-red"> Reparation </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('indexMission') }}">
+                               <i class="fa fa-tasks text-blue"></i>
+                               <span class="text text-red"> Mission </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('indexTransfert') }}">
+                               <i class="fa fa-search-minus text-blue"></i>
+                               <span class="text text-red"> Transfert </span>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </li>             
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('indexInventaire') }}">
                     <i class="fa fa-filter text-blue"></i> 
@@ -201,18 +239,7 @@
                 </a>
             </li>
         
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('indexReparation')}}">
-                    <i class="ni ni-settings-gear-65 text-blue"></i> 
-                    <span class="text text-red"> Reparation </span>
-                </a> 
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('indexMission')}}">
-                    <i class="fa fa-tasks text-blue"></i>
-                    <span class="text text-red"> Missions </span>
-                </a>
-            </li>
+            
             <li class="nav-item">
                 <a class="nav-link" href="{{route('indexFournisseur')}}">
                     <i class="fab fa-ravelry text-blue"></i> 
@@ -220,19 +247,19 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('indexTransfert')}}">
-                    <i class="fa fa-search-minus text-blue"></i>
-                    <span class="text text-red"> Asset trace </span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#navbar-examples2" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                <a class="nav-link active" href="#navbar-user" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-user">
                     <i class="fab fa-linode text-blue"></i>
-                    <span class="nav-link-text text-red">Permissions</span>
+                    <span class="nav-link-text text-red">User management</span>
                 </a>
     
-                <div class="collapse show" id="navbar-examples2">
+                <div class="collapse " id="navbar-user">
                     <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('indexUser') }}">
+                                <i class="fa fa-users text-blue"></i> 
+                                <span class="text text-red">Users account</span>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('indexPM') }}">
                                 <i class="ni ni-planet text-blue"></i> 
@@ -250,11 +277,6 @@
                 </div>
             </li>
         </ul>
-
-        <!-- Divider -->
-        <hr class="my-3">
-        <!-- Heading -->
-        <h6 class="navbar-heading text-muted">Documentation</h6>
         
     </div>
   </div>

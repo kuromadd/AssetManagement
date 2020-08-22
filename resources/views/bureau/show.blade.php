@@ -60,7 +60,6 @@
                             @if (\App\Asset::all()->where('bureau_id', $bureau->id)->isEmpty())
                                 There are no assets in this chamber/office.
                             @else
-                            <iframe src="#">
                                 <div class="table-responsive">
                                     @php
                                         $assets = \App\Asset::where('bureau_id', $bureau->id)->paginate(5);
@@ -101,8 +100,7 @@
                                         {!! $assets->links() !!}
                                     </div>
 
-                                </div>
-                            </iframe>    
+                                </div>  
                             @endif
                                 <br>
                             <a href="#" data-toggle="modal" data-target="#addass">Add assets</a>
