@@ -126,19 +126,19 @@
                 <div class="collapse " id="navbar-hier">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('indexBlock') }}">
+                            <a class="nav-link" href="#">
                                 <i class="fa fa-building text-blue"></i> 
                                 <span class="text text-red"> Divisions </span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('indexBureau') }}">
+                            <a class="nav-link" href="#">
                                <i class="fa fa-object-group text-blue"></i>
                                <span class="text text-red"> Departments </span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('indexBureau') }}">
+                            <a class="nav-link" href="#">
                                <i class="fa fa-object-group text-blue"></i>
                                <span class="text text-red"> Services </span>
                             </a>
