@@ -12,7 +12,7 @@ class bureau extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable =[
-        'name','type','block_id','etage'
+        'name','type','block_id','etage','service_id',
     ]; 
 
     public function block()

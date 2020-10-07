@@ -108,7 +108,7 @@
                         <label for="name">Name :</label>
                     <input type="text" class="form-control" name="name" id="" required placeholder=" ">
                     <div class="invalid-feedback">
-                      Please provide a valid state.
+                      Please provide a valid name.
                     </div>
                     </div>
                     <div class="form-group"> 
@@ -121,7 +121,7 @@
                             <option value="Other">Other</option>
                             </select>
                             <div class="invalid-feedback">
-                              Please provide a valid state.
+                              Please select a type.
                             </div>
                         </div>
                     
@@ -134,7 +134,7 @@
                             @endforeach
                         </select>               
                         <div class="invalid-feedback">
-                          Please provide a valid state.
+                          Please select a block.
                         </div>
                     </div>
                   
@@ -144,7 +144,7 @@
                             
                         </select>
                         <div class="invalid-feedback">
-                          Please provide a valid state.
+                          Please select the floor number.
                         </div>
                     </div>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 

@@ -103,68 +103,41 @@ crossorigin="anonymous"></script>
     <div class="popup" style="width: 60%">
             <div class="card card-default">
                   <div class="card-header">  
-                   Create a new Block :
+                   Create a new Departement :
                    <a class="close" href="#">&times;</a>
                 </div>
             
                 <div class="card-body">
-                    <form action="{{ route('storeBlock') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                    <form action="{{ route('storeDepartement') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
         
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="name">Name :</label>
-                        <input type="text" name="name" class="form-control" required>
+                        <label for="name">Code departement :</label>
+                        <input type="text" name="code_dep" class="form-control" required>
                         <div class="invalid-feedback">
-                          Please provide a valid name.
+                          Please provide a valid code.
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="adress">Address :</label>
-                        <input type="text" name="adress" class="form-control" required>
+                        <label for="adress">Libel :</label>
+                        <input type="text" name="libel" class="form-control" required>
                         <div class="invalid-feedback">
-                          Please provide a valid address.
+                          Please provide a valid libel.
                         </div>
                     </div>
-
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
-                        <label for="City">--Wilaya--</label>
-                        <input type="text" class="form-control" id="City" required>
-                        <div class="invalid-feedback">
-                          Please provide a valid state.
-                        </div>
-                      </div>
-                      <div class="form-group col-md-4">
-                        <label for="State">--Daira--</label>
-                        <input type="text" class="form-control" id="State" required>
-                        <div class="invalid-feedback">
-                          Please provide a valid state.
-                        </div>
-                      </div>
-                      <div class="form-group col-md-2">
-                        <label for="Zip">--Zip--</label>
-                        <input type="text" class="form-control" id="Zip" required>
-                        <div class="invalid-feedback">
-                          Please provide a valid state.
-                        </div>
-                      </div>
-                    </div>
-
                     <div class="form-group">
-                      <label for="sous">Number of underground floors</label>
-                      <input type="number" name="sous" class="form-control" required>
-                      <div class="invalid-feedback">
-                        Please provide a valid number.
+                      <label for="division_id">Division :</label>
+                          <select class="custom-select browser-default divisionID" name="division_id" id="division_id" required>
+                            <option value="" disabled selected>pick a division</option>
+                              @foreach(\App\Division::all() as $division)
+                          <option value="{{ $division->id }}">{{$division->libel}}</option>
+                              @endforeach
+                          </select>               
+                          <div class="invalid-feedback">
+                            Please select a division.
+                          </div>
                       </div>
-                  </div>
-                    <div class="form-group">
-                        <label for="nbreEt">Number of floors</label>
-                        <input type="number" name="nbreEt" class="form-control" required>
-                        <div class="invalid-feedback">
-                          Please provide a valid number.
-                        </div>
-                    </div>
                     <div class="text-center">
                     <button class="btn btn-info" type="submit">store</button>    
                     </div> 

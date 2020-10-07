@@ -7,10 +7,10 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Blocks</h3>
+                            <h3 class="mb-0">Departements</h3>
                         </div>
                         <div class="col-4 text-right">
-                        <a data-toggle="modal" data-target="#addblock" class="btn btn-primary btn-sm" style="color: white">Add block</a>
+                        <a data-toggle="modal" data-target="#adddepartement" class="btn btn-primary btn-sm" style="color: white">Add departement</a>
                         </div>
                     </div>
                 </div>
@@ -20,20 +20,18 @@
                     <table class="table align-items-center table-flush table-striped">
                         <thead class="thead-light">
                             <tr style="width: 100%">
-                                <th scope="col" >Name</th>
-                                <th scope="col" >Adress</th>
-                                <th scope="col">Wilaya</th>
-                                
+                                <th scope="col" >Code_dep</th>
+                                <th scope="col" >Libel</th>
+                                <th scope="col" >Division</th>
                                 <th scope="col" style="width: 20%"></th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($blocks as $block)
+                        @foreach($departements as $departement)
                         <tr>
-                            <td>{{$block->name}}</td>
-                            <td>{{$block->adress}}</td>
-                            <td>{{$block->wilaya}}</td>
-                            
+                            <td>{{$departement->code_dep}}</td>
+                            <td>{{$departement->libel}}</td>
+                            <td>{{\App\Division::find($departement->division_id)->libel}}</td>
                             <td class="text-right">
                                 <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only text" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,10 +39,10 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="{{route('showBlock',$block->id)}}"><i class="fa fa-info fa-fw"></i></i> Show</a>
-                                    <a class="dropdown-item" href="{{route('editBlock',$block->id)}}"><i class="fa fa-edit fa-fw"></i></i> Edit</a>
-                                    <a class="dropdown-item" @if (\App\bureau::where('block_id',$block->id)->get()->isEmpty())
-                                         href="{{ route('deleteBlock',$block->id) }}"
+                                    <a class="dropdown-item" href="{{route('showDepartement',$departement->id)}}"><i class="fa fa-info fa-fw"></i></i> Show</a>
+                                    <a class="dropdown-item" href="{{route('editDepartement',$departement->id)}}"><i class="fa fa-edit fa-fw"></i></i> Edit</a>
+                                    <a class="dropdown-item" @if (\App\Service::where('departement_id',$departement->id)->get()->isEmpty())
+                                         href="{{ route('deleteDepartement',$departement->id) }}"
                                     @else
                                     data-toggle="modal" data-target="#mal"
                                     @endif><i class="fa fa-trash fa-fw"></i> Delete</a>
@@ -64,7 +62,7 @@
                     <div class="modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-body alert-warning text-center h5">
-                                You cant delete this block, you have to delete its offices first..!
+                                You cant delete this departement, you have to delete its services first..!
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
@@ -73,13 +71,13 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="addblock">
+                <div class="modal fade" id="adddepartement">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content " >
-                            <form action="{{ route('storeBlock') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                            <form action="{{ route('storeDepartement') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                                 {{ csrf_field() }}
                                 <div class="modal-header" style="margin-right: 5%;margin-left: 5%">
-                                    <h2>Add Block :</h2>
+                                    <h2>Add Departement :</h2>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                       </button>
@@ -87,58 +85,31 @@
                                 <div class="model-body" style="margin-right: 5%;margin-left: 5%">
 
                                         <div class="form-group">
-                                            <label for="name">Name :</label>
-                                            <input type="text" name="name" class="form-control" required>
+                                            <label for="name">Code departement :</label>
+                                            <input type="text" name="code_dep" class="form-control" required>
                                             <div class="invalid-feedback">
-                                              Please provide a valid name.
+                                              Please provide a valid code.
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="adress">Address :</label>
-                                            <input type="text" name="adress" class="form-control" required>
+                                            <label for="adress">Libel :</label>
+                                            <input type="text" name="libel" class="form-control" required>
                                             <div class="invalid-feedback">
-                                              Please provide a valid address.
+                                              Please provide a valid libel.
                                             </div>
                                         </div>
-                    
-                                        <div class="form-row">
-                                          <div class="form-group col-md-6">
-                                            <label for="City">--Wilaya--</label>
-                                            <input type="text" class="form-control" name="wilaya"  required>
-                                            <div class="invalid-feedback">
-                                              Please provide a valid wilaya.
-                                            </div>
-                                          </div>
-                                          <div class="form-group col-md-4">
-                                            <label for="State">--Daira--</label>
-                                            <input type="text" class="form-control" name="daira"  required>
-                                            <div class="invalid-feedback">
-                                              Please provide a valid daira.
-                                            </div>
-                                          </div>
-                                          <div class="form-group col-md-2">
-                                            <label for="Zip">--Zip--</label>
-                                            <input type="text" class="form-control" name="Zip"  required>
-                                            <div class="invalid-feedback">
-                                              Please provide a valid zip code.
-                                            </div>
-                                          </div>
-                                        </div>
-                    
                                         <div class="form-group">
-                                          <label for="sous">Number of underground floors</label>
-                                          <input type="number" name="sous" class="form-control" required  min="0">
-                                          <div class="invalid-feedback">
-                                            Please provide a valid number.
-                                          </div>
-                                      </div>
-                                        <div class="form-group">
-                                            <label for="nbreEt">Number of floors</label>
-                                            <input type="number" name="nbreEt" class="form-control" required  min="1">
-                                            <div class="invalid-feedback">
-                                              Please provide a valid number.
+                                            <label for="division_id">Division :</label>
+                                                <select class="custom-select browser-default divisionID" name="division_id" id="division_id" required>
+                                                  <option value="" disabled selected>pick a division</option>
+                                                    @foreach(\App\Division::all() as $division)
+                                                <option value="{{ $division->id }}">{{$division->libel}}</option>
+                                                    @endforeach
+                                                </select>               
+                                                <div class="invalid-feedback">
+                                                  Please select a division.
+                                                </div>
                                             </div>
-                                        </div>
                     
                                 </div>
                                 <br>
@@ -155,13 +126,13 @@
 
                 <div class="card-footer py-4">
                     <nav class="d-flex justify-content-end" aria-label="...">
-                       {!! $blocks->render() !!}
+                       {!! $departements->render() !!}
                     </nav>
                 </div>
             </div>
         </div>
     </div>
-    {{-- @include('block.create')   --}} 
+    {{-- @include('departement.create')   --}} 
 @endsection
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

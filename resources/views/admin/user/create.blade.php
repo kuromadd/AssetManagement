@@ -107,14 +107,14 @@
                     <label class="form-control-label" for="name">{{ __('Name :') }}</label>
                     <input type="text" name="name" id="name" class="form-control" required>
                     <div class="invalid-feedback">
-                      Please provide a valid state.
+                      Please provide a valid name.
                     </div>
 
                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                     <label class="form-control-label" for="email">{{ __('Email :') }}</label>
                     <input type="email" name="email" id="email" class="form-control" required>
                     <div class="invalid-feedback">
-                      Please provide a valid state.
+                      Please provide a valid email.
                     </div>
                 </div>
                 
@@ -127,7 +127,7 @@
                             @endforeach
                         </select>
                         <div class="invalid-feedback">
-                          Please provide a valid state.
+                          Please select a role.
                         </div>
                     </div>
                     
