@@ -1,4 +1,4 @@
-@extends('app.edit_layout')
+@extends('app.layout')
 @section('content')
 <style>
     .float-container {
@@ -23,7 +23,7 @@
                 @if ($asset->category=='Vehicle')
                     <div class="float-child">
                 @endif
-                <div id="div_print" >
+                
                 <p>
                     <button class="btn btn-secondary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapsedeta" aria-expanded="flase" aria-controls="collapsedeta">
                         Asset detail
@@ -68,10 +68,8 @@
                                 @endforeach
                 </div>
                 <hr class="my-4"/>
-                <div style="display: flex; justify-content: center; text-align: center;" id="qrcode"></div>
+                
             </div>
-                <input  name="b_print" type="button" class="ipt" onClick="printdiv('div_print');" value=" Print ">    
-
             </div>
         </div> 
                 @if ($asset->category=='Vehicle')
@@ -139,7 +137,7 @@
                 </div>
             
         </div>        
-<script type="text/javascript" src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.js"></script>
+
 <script language="javascript">
     function printdiv(printpage)
     {
@@ -230,15 +228,12 @@
                             @endif
                         </div>
                     </div>
-                </div>
+                </div> 
                 
-               
-            </div>
+    <div id="div_print" >
+        <div style="display: flex; justify-content: center; text-align: center;" id="qrcode"></div>     
         </div>
-    </div>
-        <div style="margin: 2%;margin-left:40%" id="qrcode"></div>
-                
-        </div>
+        <input  name="b_print" type="button" class="ipt btn" style="width: 15%;margin-left: 42%;margin-top: 1%;background-color: #6994ef;" onClick="printdiv('div_print');" value=" Print ">
     </div>
 <script type="text/javascript" src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.js"></script>
 <script>

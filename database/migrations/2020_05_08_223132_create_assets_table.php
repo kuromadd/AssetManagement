@@ -15,6 +15,7 @@ class CreateAssetsTable extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
             $table->increments('id');
+           // $table->string('code_actif')->unique();
             $table->string('name');
             $table->text('description')->nullable();
             $table->integer('prix'); 
@@ -22,6 +23,7 @@ class CreateAssetsTable extends Migration
             $table->string('category');
             $table->integer('bureau_id')->nullable();
             $table->date('dateService')->nullable();
+            //$table->date('dateAchat')->nullable();
             $table->integer('duree_vie');
             $table->integer('status')->default(0);
             $table->boolean('occupied')->default(0); 

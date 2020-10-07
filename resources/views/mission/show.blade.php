@@ -1,4 +1,4 @@
-@extends('app.edit_layout')
+@extends('app.layout')
 @section('content')
 
 <div class="card card-default">

@@ -103,22 +103,22 @@
                     
                                         <div class="form-row">
                                           <div class="form-group col-md-6">
-                                            <label for="City">--Wilaya--</label>
-                                            <input type="text" class="form-control" name="City" id="City" required>
+                                            <label for="wilaya">--Wilaya--</label>
+                                            <input type="text" class="form-control" name="wilaya" id="wilaya" required>
                                             <div class="invalid-feedback">
                                               Please provide a valid state.
                                             </div>
                                           </div>
                                           <div class="form-group col-md-4">
                                             <label for="State">--Daira--</label>
-                                            <input type="text" class="form-control" name="State" id="State" required>
+                                            <input type="text" class="form-control" name="daira" id="State" required>
                                             <div class="invalid-feedback">
                                               Please provide a valid state.
                                             </div>
                                           </div>
                                           <div class="form-group col-md-2">
                                             <label for="Zip">--Zip--</label>
-                                            <input type="text" class="form-control" name="Zip" id="Zip" required>
+                                            <input type="text" class="form-control" name="zip" id="Zip" required>
                                             <div class="invalid-feedback">
                                               Please provide a valid state.
                                             </div>
@@ -166,7 +166,7 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
 <script>(function() {
   'use strict';
   window.addEventListener('load', function() {

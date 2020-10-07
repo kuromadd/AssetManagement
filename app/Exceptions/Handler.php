@@ -53,7 +53,8 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
 {
     if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
-        return response()->json(['User have not permission for this page access.']);
+        return response('<img style="width: 100%;height: 100%;" src="/A.png" alt="...">');
+        //return response()->file('erreur.png');
     }
  
     return parent::render($request, $exception);

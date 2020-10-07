@@ -157,7 +157,7 @@ class InventaireController extends Controller
     {
         $inventaire = \App\inventaire::find($id);
 
-        DB::table("asset_inventaire")->where('inventaire_id', $id)->delete();
+        DB::table("asset_bureau_inventaire")->where('inventaire_id', $id)->delete();
         $inventaire->delete();
         return redirect()->back()->with('success', 'you deleted inventaire');
     }

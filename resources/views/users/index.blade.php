@@ -1,4 +1,4 @@
-@extends('app.edit_layout')
+@extends('app.layout')
 @section('content')
 
 <div class="container-fluid mt--7">
@@ -122,7 +122,7 @@
 
 </style>
 
-                        <div class="row">
+                        <div class="row" style="margin-left: 1px">
                         @foreach($users as $user)
                         
                         

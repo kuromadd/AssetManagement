@@ -39,7 +39,7 @@
                         <div class="btn-wrapper text-center">
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
-                        
+                            <script src="{{ asset('toastr.min.js') }}"></script>
                         <script type="text/javascript" src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.js"></script>
                         <form role="form" method="POST" action="{{ route('login') }}">
                             @csrf

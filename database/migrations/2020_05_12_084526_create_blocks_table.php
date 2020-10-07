@@ -15,6 +15,7 @@ class CreateBlocksTable extends Migration
     {
         Schema::create('blocks', function (Blueprint $table) {
             $table->increments('id');
+           // $table->string('code_block');
             $table->string('name');
             $table->string('adress');
             $table->string('wilaya');

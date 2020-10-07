@@ -1,4 +1,4 @@
-@extends('app.edit_layout')
+@extends('app.layout')
 @section('content')
 <br><br>
 <form action="{{ route('updateAll') }}" method="post" enctype="multipart/form-data">

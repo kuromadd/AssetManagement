@@ -33,10 +33,41 @@ class AssetTableSeeder extends Seeder
             'name'=>'block1',
             'adress' => 'oulhaca',
             'wilaya' => 'alger',
-            'daira' => 'bab ezouar',
+            'daira' => 'bab ezouawr',
             'zip' => '16015',
             'sous' => 2,
             'nbre_etage' => 5,
+        ]);
+
+        \App\block::create([
+            'name'=>'block2',
+            'adress' => 'oran',
+            'wilaya' => 'oran',
+            'daira' => 'oran',
+            'zip' => '31032',
+            'sous' => 2,
+            'nbre_etage' => 6,
+        ]);
+
+        \App\block::create([
+            'name'=>'block3',
+            'adress' => 'adrar',
+            'wilaya' => 'adrar',
+            'daira' => 'adrar',
+            'zip' => '1098',
+            'sous' => 2,
+            'nbre_etage' => 1,
+        ]);    
+
+
+        \App\block::create([
+            'name'=>'block4',
+            'adress' => 'jijel',
+            'wilaya' => 'jijel',
+            'daira' => 'jijel',
+            'zip' => '1800',
+            'sous' => 2,
+            'nbre_etage' => 3,
         ]);
 
         $bureau1 = \App\bureau::create([

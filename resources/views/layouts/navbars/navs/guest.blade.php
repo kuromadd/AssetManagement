@@ -1,7 +1,7 @@
 <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
-    <div class="container px-4">
-        <a class="navbar-brand" href="{{ route('home') }}">
-            <img src="{{ asset('argon') }}/img/brand/white.png" />
+    <div style="margin-left: 0%" class="container px-4">
+        <a href="#">
+            <img src="{{ asset('argon') }}/img/brand/white.png" style="width:190px ;height:190px" alt="...">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -26,7 +26,7 @@
             <!-- Navbar items -->
             <ul class="navbar-nav align-items-center mr-1 d-none d-md-flex ml-lg-auto">
                 
-                    <a class="nav-link nav-link-icon" href="{{ route('login') }}">
+                    <a  class="nav-link nav-link-icon" href="{{ route('login') }}">
                         <i class="ni ni-key-25"></i>
                         <span class="nav-link-inner--text">{{ __('Login') }}</span>
                     </a>

@@ -1,4 +1,4 @@
-@extends('app.edit_layout')
+@extends('app.layout')
 @section('content')
             <div class="card card-default">
                   <div class="card-header" >  
@@ -27,18 +27,21 @@
 
                     <div class="form-group">
                     <label for="Asset_id">Asset</label>
-                        <select class="custom-select browser-default" name="asset_id" id="asset_id">
+                        <select class="custom-select browser-default" name="asset_id" id="asset_id" required>
+                            @if( $_GET["id"] && $asset->id == $_GET["id"])
+                            <option value="{{ $asset->id }}" selected>{{$asset->name}}</option>
+                            @else
                            <option selected disabled value="">select asset :</option> 
                             @foreach(\App\Asset::all() as $asset)
                             @if($asset->status == 2)
-                            
-                        <option value="{{ $asset->id }}"
-                           @if( $_GET["id"] && $asset->id == $_GET["id"])
-                            selected
-                        @endif>{{$asset->name}}</option>
-                        @endif    
+                            <option value="{{ $asset->id }}">{{$asset->name}}</option>
+                            @endif    
                         @endforeach
+                        @endif
                         </select>
+                        <div class="invalid-feedback">
+                            Please provide a valid state.
+                          </div>
                     </div>
                     <div class="text-center">
                     <button class="btn btn-info" type="submit">store</button>    

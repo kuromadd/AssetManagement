@@ -1,5 +1,4 @@
-@extends('app.layout')
-@section('content')	
+
 	
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"  type="text/css">
@@ -301,7 +300,7 @@ input.invalid {
 		<!--css-->
 		<link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
 		<!--js-->
-		<script src="{{ asset('js/toastr.min.js') }}"></script>   
+		<script src="{{ asset('toastr.min.js') }}"></script>   
 		<script type="module">
 			import QrScanner from "/qr-scanner.min.js";
 			QrScanner.WORKER_PATH = '/qr-scanner-worker.min.js';
@@ -568,4 +567,3 @@ $(".next").click(function(){
  }
   </script>
 
-@endsection

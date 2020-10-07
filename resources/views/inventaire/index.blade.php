@@ -29,8 +29,8 @@
                         <tbody>
                         @foreach($inventaires as $inv)
                         <tr>
-                            <td>{{$inv->name}}name</td>
-                            <td>{{$inv->etat}}etat</td>
+                            <td>{{$inv->name}}</td>
+                            <td>{{$inv->etat}}</td>
                             <td>{{$inv->created_at}}</td>
                             
                             <td class="text-right">

@@ -9,8 +9,7 @@
     <title>{{ config('app.name', 'Argon Dashboard') }}</title>
     <!-- Favicon -->
     <link href="{{ asset('argon') }}/img/brand/favicon.png" rel="icon" type="image/png">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
     <!-- Icons -->
     <link href="{{ asset('argon') }}/vendor/nucleo/css/nucleo.css" rel="stylesheet">
     <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -28,8 +27,8 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <!-- Brand -->
-    <a class="navbar-brand pt-0" href="{{ route('home') }}">
-        <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
+    <a href="{{ route('home') }}">
+        <img src="{{ asset('argon') }}/img/brand/blue.png" style="width:190px ;height:190px;" alt="...">
     </a>
     <!-- User -->
 
@@ -40,7 +39,7 @@
                 
                 <div class="media align-items-center">
                     <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="{{ $user->profile->image }}">
+                    <img alt="Image placeholder" src="{{ auth()->user()->profile->image }}">
                     </span>
                 </div>                    
                
@@ -304,10 +303,10 @@
             <a  class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                     <span class="avatar avatar-sm rounded-circle">
-                        <img alt="Image placeholder" src="{{ asset($user->profile->image) }}">
+                        <img alt="Image placeholder" src="{{ asset(auth()->user()->profile->image) }}">
                     </span>
                     <div class="media-body ml-2 d-none d-lg-block">
-                        <span class="mb-0 text-sm  font-weight-bold">{{$user->name}}</span>
+                        <span class="mb-0 text-sm  font-weight-bold">{{auth()->user()->name}}</span>
                     </div>
                 </div>
             </a>
@@ -372,7 +371,7 @@
     <!--css-->
     <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
     <!--js-->
-    <script src="{{ asset('js/toastr.min.js') }}"></script>    
+    <script src="{{ asset('toastr.min.js') }}"></script>    
 
 @if (Session::has('success'))
 <script>

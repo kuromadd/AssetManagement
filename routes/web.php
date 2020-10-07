@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::get('/vue', function () {
+    return view('testVueJS');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });

@@ -129,22 +129,22 @@ crossorigin="anonymous"></script>
 
                     <div class="form-row">
                       <div class="form-group col-md-6">
-                        <label for="City">--Wilaya--</label>
-                        <input type="text" class="form-control" id="City" required>
+                        <label for="wilaya">--Wilaya--</label>
+                        <input type="text" class="form-control" name="wilaya" id="wilaya" required>
                         <div class="invalid-feedback">
                           Please provide a valid state.
                         </div>
                       </div>
                       <div class="form-group col-md-4">
                         <label for="State">--Daira--</label>
-                        <input type="text" class="form-control" id="State" required>
+                        <input type="text" class="form-control" id="State" name="daira" required>
                         <div class="invalid-feedback">
                           Please provide a valid state.
                         </div>
                       </div>
                       <div class="form-group col-md-2">
                         <label for="Zip">--Zip--</label>
-                        <input type="text" class="form-control" id="Zip" required>
+                        <input type="text" class="form-control" id="Zip" name="zip" required>
                         <div class="invalid-feedback">
                           Please provide a valid state.
                         </div>

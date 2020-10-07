@@ -1,4 +1,4 @@
-@extends('app.edit_layout')
+@extends('app.layout')
 @section('content')
 <style>
     .float-container {
@@ -21,7 +21,7 @@
                 <div class="card-body text-center">
                     <div class="float-child">
                         <p>
-                            <button class="btn btn-secondary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapsedet" aria-expanded="true" aria-controls="collapsedet">
+                            <button class="btn btn-secondary btn-lg btn-block" role="button" data-toggle="collapse" data-target="#collapsedet" aria-expanded="false" aria-controls="collapsedet">
                                 Bureau detail :
                             </button>
                         </p>
@@ -50,12 +50,7 @@
                         </div>
                 </div>
                 <div class="float-child">
-                    <p>
-                        <button class="btn btn-secondary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseAssets" aria-expanded="false" aria-controls="collapseAssets">
-                            Assets :
-                        </button>
-                    </p>
-                    <div class="collapse" id="collapseAssets">
+                    
                         <div class="card card-body">    
                             @if (\App\Asset::all()->where('bureau_id', $bureau->id)->isEmpty())
                                 There are no assets in this chamber/office.
@@ -95,16 +90,16 @@
                                             @endforeach    
                                         </tbody>
                                     </table>
-
+                
                                     <div class="d-flex justify-content-center">
-                                        {!! $assets->links() !!}
+                                        {!! $assets->render() !!} 
                                     </div>
-
+                
                                 </div>  
                             @endif
                                 <br>
                             <a href="#" data-toggle="modal" data-target="#addass">Add assets</a>
-
+                
                                 
                             {{-- <div class="h3 mt-4">
                                 <a href="{{route('createTransfert',$asset->id)}}"><i class="fa fa-paper-plane fa-fw text-blue"></i></i> transfer &#160&#160&#160</a>
@@ -168,5 +163,5 @@
 
             </div>
         </div>
-    
+<img src="erreur.png" alt="..." style="width: 100%;height: 100%;">   
 @endsection

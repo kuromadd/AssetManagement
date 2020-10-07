@@ -18,8 +18,8 @@
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                <span class="text-nowrap">Since last month</span>
+                                <span class="text-success mr-2"> {{number_format(\App\asset::where('occupied',0)->count() / \App\asset::all()->count()*100)}}%</span>
+                                
                             </p>
                         </div>
                     </div>
@@ -39,8 +39,8 @@
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                                <span class="text-nowrap">Since last week</span>
+                                <span class="text-success mr-2"> {{number_format(\App\asset::where('occupied',1)->where('status',1)->count() / \App\asset::all()->count()*100)}}%</span>
+                                
                             </p>
                         </div>
                     </div>
@@ -60,8 +60,8 @@
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                                <span class="text-nowrap">Since yesterday</span>
+                                <span class="text-success mr-2"> {{number_format(\App\asset::where('status',2)->get()->count()/\App\asset::all()->count()*100,2)}}%</span>
+                                
                             </p>
                         </div>
                     </div>
@@ -81,8 +81,8 @@
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                                <span class="text-nowrap">Since last month</span>
+                                <span class="text-success mr-2"> {{number_format(\App\asset::where('status',3)->get()->count()/\App\asset::all()->count()*100)}}%</span>
+                                
                             </p>
                         </div>
                     </div>

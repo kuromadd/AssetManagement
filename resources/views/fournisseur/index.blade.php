@@ -68,7 +68,7 @@
                                 
                                 </style>
                                 
-                                                        <div class="row">
+                                                        <div class="row" style="margin-left: 1px">
                                                             @foreach($fournisseurs as $fournisseur)
                                                         
                                                         

@@ -1,4 +1,4 @@
-@extends('app.edit_layout')  
+@extends('app.layout')  
 @section('content')
 @if (\App\asset::all()->where('status',2)->isEmpty())
 <div class="card card-default">

@@ -15,6 +15,7 @@ class CreateBureausTable extends Migration
     {
         Schema::create('bureaus', function (Blueprint $table) {
             $table->increments('id');
+            //$table->string('code_bureau');
             $table->string('name');
             $table->string('type');
             $table->integer('etage');
