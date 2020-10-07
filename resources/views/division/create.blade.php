@@ -1,4 +1,17 @@
 
+    
+<!--script src="{{ asset('js/app.js') }}"></script>
+<script
+src="https://code.jquery.com/jquery-3.5.0.min.js"
+integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> 
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"-->
 <style>
 
 .box {
@@ -43,7 +56,7 @@
 }
 
 .popup {
-  margin: 20px auto;
+  margin: 70px auto;
   padding: 20px;
   background: #fff;
   border-radius: 5px;
@@ -83,56 +96,35 @@
     width: 70%;
   }
 }
-
 </style>
 
-<!--script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script-->
 
-<div id="popupfc" class="overlay" style="overflow: scroll">
+<div id="popupbc" class="overlay">
     <div class="popup" style="width: 60%">
             <div class="card card-default">
                   <div class="card-header">  
-                   create a new Fournisseur
+                   Create a new Division :
                    <a class="close" href="#">&times;</a>
                 </div>
             
                 <div class="card-body">
-                    <form action="{{ route('storeFournisseur') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                    <form action="{{ route('storeDivision') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
         
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="libel">Libel</label>
+                        <label for="name">Code division :</label>
+                        <input type="text" name="code_div" class="form-control" required>
+                        <div class="invalid-feedback">
+                          Please provide a valid code.
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adress">Libel :</label>
                         <input type="text" name="libel" class="form-control" required>
                         <div class="invalid-feedback">
-                          Please provide a valid name.
+                          Please provide a valid libel.
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="adress">Address</label>
-                        <input type="text" name="address" class="form-control" required >
-                        <div class="invalid-feedback">
-                          Please provide a valid address.
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="tel">Tel</label>
-                        <input type="text" name="tel" class="form-control" required >
-                        <div class="invalid-feedback">
-                          Please provide a valid phone number.
-                        </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="email">Email</label>
-                      <input type="email" name="email" class="form-control" required  />
-                      <div class="invalid-feedback">
-                      Must be a valid email.
-                      </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="website">Website</label>
-                        <input type="text" name="website" class="form-control">
                     </div>
                     <div class="text-center">
                     <button class="btn btn-info" type="submit">store</button>    
@@ -144,6 +136,9 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script>(function() {
   'use strict';
   window.addEventListener('load', function() {

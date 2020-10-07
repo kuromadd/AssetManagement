@@ -102,6 +102,33 @@ Route::post('/bureau/update/{id}','bureauController@update')->name('updateBureau
 Route::post('/bureau/save/{id}','bureauController@saveAsset')->name('saveAssets');
 Route::get('/bureau/delete/{id}','bureauController@destroy')->name('deleteBureau');
 
+Route::get('/division/index','DivisionController@index')->name('indexDivision');
+Route::get('/division/create','DivisionController@create')->name('createDivision');
+Route::post('/division/store','DivisionController@store')->name('storeDivision');
+Route::get('/division/show/{id}','DivisionController@show')->name('showDivision');
+Route::get('/division/edit/{id}','DivisionController@edit')->name('editDivision');
+Route::post('/division/update/{id}','DivisionController@update')->name('updateDivision');
+Route::get('/division/delete/{id}','DivisionController@destroy')->name('deleteDivision');
+
+Route::get('/departement/index','DepartementController@index')->name('indexDepartement');
+Route::get('/departement/create','DepartementController@create')->name('createDepartement');
+Route::post('/departement/store','DepartementController@store')->name('storeDepartement');
+Route::get('/departement/show/{id}','DepartementController@show')->name('showDepartement');
+Route::get('/departement/edit/{id}','DepartementController@edit')->name('editDepartement');
+Route::post('/departement/update/{id}','DepartementController@update')->name('updateDepartement');
+Route::get('/departement/delete/{id}','DepartementController@destroy')->name('deleteDepartement');
+
+Route::get('/service/index','ServiceController@index')->name('indexService');
+Route::get('/service/create','ServiceController@create')->name('createService');
+Route::post('/service/store','ServiceController@store')->name('storeService');
+Route::get('/service/show/{id}','ServiceController@show')->name('showService');
+Route::get('/service/edit/{id}','ServiceController@edit')->name('editService');
+Route::post('/service/update/{id}','ServiceController@update')->name('updateService');
+Route::get('/service/delete/{id}','ServiceController@destroy')->name('deleteService');
+Route::post('/service/storeAddedBureaus/{id}','ServiceController@storeAddedBureaus')->name('storeAddedBureaus');
+Route::get('/service/changeSerBur/{id}','ServiceController@changeSerBur')->name('changeSerBur'); //
+
+
 Route::get('/mission/index','missionController@index')->name('indexMission');
 Route::get('/mission/create/{id}','missionController@create')->name('createMission');
 Route::post('/mission/store','missionController@store')->name('storeMission');

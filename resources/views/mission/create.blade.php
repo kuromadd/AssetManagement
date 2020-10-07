@@ -24,14 +24,14 @@
                             @endforeach
                         </select>
                         <div class="invalid-feedback">
-                            Please provide a valid state.
+                            Please select an asset.
                           </div>
                     </div>
                     <div class="form-group">
-                        <label for="but_mission">But de la mission</label>
+                        <label for="but_mission">Mission goal</label>
                         <input type="text" name="but_mission" class="form-control" required placeholder=" ">
                         <div class="invalid-feedback">
-                            Please provide a valid state.
+                            Please provide a valid description.
                           </div>
                     </div>
 
@@ -39,7 +39,7 @@
                         <label for="destination">Destination</label>
                         <input type="text" name="destination" class="form-control" required placeholder=" ">
                         <div class="invalid-feedback">
-                            Please provide a valid state.
+                            Please provide a destination.
                           </div>
                     </div>
 
@@ -47,7 +47,7 @@
                         <label for="mission_at">date de la Mission</label>
                     <input type="date" name="mission_at" class="form-control" value="{{date('Y-m-d')}}" id="mission_at">
                     <div class="invalid-feedback">
-                        Please provide a valid state.
+                        Please provide a valid date.
                       </div>
                     </div>
 

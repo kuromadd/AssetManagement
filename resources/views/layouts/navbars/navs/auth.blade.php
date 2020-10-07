@@ -4,15 +4,15 @@
         <!-- Brand -->
       
         <!-- Form -->
- 
+  
         <!-- User -->
         <ul class="navbar-nav align-items-center mr-3 d-none d-md-flex ml-lg-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                            <img alt="Image placeholder" src="{{ auth()->user()->profile->image }}">
-                        </span>
+                            <img alt="Image placeholder" src="{{ Auth()->user()->profile->image }}">
+                            </span>
                         <div class="media-body ml-2 d-none d-lg-block">
                             <span class="mb-0 text-sm  font-weight-bold">{{ auth()->user()->name }}</span>
                         </div>

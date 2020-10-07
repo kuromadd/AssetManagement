@@ -99,7 +99,7 @@
           <label class="form-control-label" for="name">&#160&#160Name :</label>
           <input type="text" name="name" class="form-control" required>
           <div class="invalid-feedback">
-            Please provide a valid state.
+            Please provide a valid name.
           </div>
       </div>
 
@@ -107,7 +107,7 @@
         <label for="brand" class="form-control-label"> &#160&#160Brand :</label>
         <input type="text" name="brand" class="form-control">
         <div class="invalid-feedback">
-          Please provide a valid state.
+          Please provide a valid brand.
         </div>
     </div>
 
@@ -115,7 +115,7 @@
           <label for="description" class="form-control-label"> &#160&#160Description :</label>
           <textarea class="form-control" name="description" id="description" cols="4" rows="4" required></textarea>
           <div class="invalid-feedback">
-            Please provide a valid state.
+            Please provide a valid description.
           </div>
       </div>
   
@@ -123,7 +123,7 @@
           <label class="form-control-label" for="prix">&#160&#160Price :</label>
           <input type="number" name="prix" class="form-control form-control-alternative" required min="0">
           <div class="invalid-feedback">
-            Please provide a valid state.
+            Please provide a valid price.
           </div>
         </div>
       <div class="form-group">
@@ -138,7 +138,7 @@
           <option value="Building">building</option>
         </select>
         <div class="invalid-feedback">
-          Please provide a valid state.
+          Please select a category.
         </div>
       </div>
     
@@ -146,7 +146,7 @@
         <label for="date" class="form-control-label">&#160&#160Acquisition date :</label>
       <input type="date" name="dateservice" id="dateservice" class="form-control datetimepicker" value="{{date("Y-m-d")}}" required>
       <div class="invalid-feedback">
-        Please provide a valid state.
+        Please provide a valid date.
       </div>
       </div>
 
@@ -154,7 +154,7 @@
         <label for="duree" class="form-control-label">&#160&#160Lifetime :</label>
         <input  type="number" name="duree" id="duree" class="form-control form-control-alternative" required min="0">
         <div class="invalid-feedback">
-          Please provide a valid state.
+          Please provide a valid number.
         </div>
       </div>
 
@@ -167,7 +167,7 @@
                 @endforeach
             </select>               
             <div class="invalid-feedback">
-              Please provide a valid state.
+              Please select a provider.
             </div>
         </div>
       

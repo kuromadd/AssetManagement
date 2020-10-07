@@ -20,6 +20,7 @@ class CreateBureausTable extends Migration
             $table->string('type');
             $table->integer('etage');
             $table->integer('block_id');
+            $table->integer('service_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
