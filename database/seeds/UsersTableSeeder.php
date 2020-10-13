@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('secret'),
             'created_at' => now(),
             'updated_at' => now(),
-            'qrcode'=>'hi i\'m khireddine',
+            'qrcode'=>'we are the best-7e23jfu923rbf983hfu3bf',
         ]);
 
         \App\profile::create([

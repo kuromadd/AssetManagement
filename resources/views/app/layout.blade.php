@@ -32,7 +32,6 @@
     </a>
     <!-- User -->
 
-
     <ul class="nav align-items-center d-md-none">
         <li class="nav-item dropdown">
             <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,18 +51,7 @@
                     <i class="ni ni-single-02"></i>
                     <span>My profile</span>
                 </a>
-                <a href="#" class="dropdown-item">
-                    <i class="ni ni-settings-gear-65"></i>
-                    <span>Settings</span>
-                </a>
-                <a href="#" class="dropdown-item">
-                    <i class="ni ni-calendar-grid-58"></i>
-                    <span>Activity</span>
-                </a>
-                <a href="#" class="dropdown-item">
-                    <i class="ni ni-support-16"></i>
-                    <span>Support</span>
-                </a>
+                
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
@@ -318,18 +306,6 @@
                     <i class="ni ni-single-02"></i>
                     <span>My profile</span>
                 </a>
-                <a href="#" class="dropdown-item">
-                    <i class="ni ni-settings-gear-65"></i>
-                    <span>Settings</span>
-                </a>
-                <a href="#" class="dropdown-item">
-                    <i class="ni ni-calendar-grid-58"></i>
-                    <span>Activity</span>
-                </a>
-                <a href="#" class="dropdown-item">
-                    <i class="ni ni-support-16"></i>
-                    <span>Support</span>
-                </a>
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
@@ -356,11 +332,8 @@
 
 
 
-    
-    <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    
-            
+
+
     <!-- Argon JS -->
     <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
 
@@ -373,6 +346,9 @@
     <!--js-->
     <script src="{{ asset('toastr.min.js') }}"></script>    
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 @if (Session::has('success'))
 <script>
     toastr.success('{{ Session::get('success') }}');
@@ -383,5 +359,7 @@
 toastr.error('{{ Session::get('danger') }}');
 </script>              
 @endif
+
+<script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
 </body>
 </html>

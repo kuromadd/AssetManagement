@@ -7,25 +7,25 @@
                     Block Information :
                 </div>
             <div class="card-body text-center">
-                <div class="h3 mt-4">
+                <div class=" mt-4">
                     Name : {{$block->name}} .
                 </div>
                 <hr class="my-4" width="75%"/>
-                <div class="h3 mt-4">
+                <div class=" mt-4">
                     Address : {{ $block->adress }} .
                 </div>
                 <hr class="my-4" width="75%"/>
-                <div class="h3 mt-4">
+                <div class=" mt-4">
                     Wilaya : {{ $block->wilaya }} . <br>
                     Daira : {{ $block->daira }} . <br>
                     Zip : {{ $block->zip }} .
                 </div>
                 <hr class="my-4" width="75%"/>
-                <div class="h3 mt-4">
+                <div class=" mt-4">
                     Number of underground floors : {{ $block->sous }} .
                 </div>
                 <hr class="my-4" width="75%"/>
-                <div class="h3 mt-4">
+                <div class=" mt-4">
                     Number of floors : {{ $block->nbre_etage }} .
                 </div>
             </div>

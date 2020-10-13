@@ -17,7 +17,7 @@
             <h2>
                 <br><br><br>
                 No assets have been registered !<br><br>
-                @can('asset-create')<a href="{{route('createAsset',['id'=>0])}}" class="btn btn-sm btn-primary">Add Asset</a>@endcan
+                @can('asset-create')<a href="{{route('createAsset')}}" class="btn btn-sm btn-primary">Add Asset</a>@endcan
                 <br><br><br>
             </h2>
         </div>
@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-4 text-right">
                             @can('asset-create')
-                            <a href="{{route('createAsset',Str::random(15))}}" class="btn btn-sm btn-primary">Add asset</a>
+                            <a href="{{route('createAsset')}}" class="btn btn-sm btn-primary">Add asset</a>
                             @endcan
                         </div>
                     </div>
@@ -47,8 +47,8 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col" style="width: 22%">Name</th>
-                                <th scope="col" style="width: 22%">Brand</th>
-                                <th scope="col" style="width: 22%">Acquisition Date</th>
+                                <th scope="col" style="width: 22%">Category</th>
+                                <th scope="col" style="width: 22%">Commissioning Date</th>
                                 <th scope="col" style="width: 22%"></th>
                                 <th scope="col" style="width: 12%"></th>
                                 
@@ -58,7 +58,7 @@
                         @foreach($assets as $asset)
                         <tr>
                             <td>{{$asset->name}}</td>
-                            <td>{{$asset->brand}}</td>
+                            <td>{{$asset->category}}</td>
                             <td>{{$asset->dateService}}</td>
                             <td>
                                 @if ($asset->occupied==0)
@@ -90,6 +90,7 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                        
                                         <a class="dropdown-item" href="{{route('showAsset',$asset->id)}}"><i class="fa fa-info fa-fw"></i></i> show</a>
                                         @can('asset-edit')<a class="dropdown-item" href="{{route('editAsset',$asset->id)}}"><i class="fa fa-edit fa-fw"></i></i> edit</a>@endcan
                                         @can('asset-delete')<a class="dropdown-item" href="{{ route('deleteAsset',$asset->id) }}"><i class="fa fa-trash fa-fw"></i> delete</a>@endcan

@@ -195,7 +195,7 @@ class BureauController extends Controller
         return view('bureau.show')->with('bureau',$bureau);
     }
 
-    public function changeDelete(Request $request,$id){
+    /*public function changeDelete(Request $request,$id){
         $bureau1 = \App\bureau::find($id);
         $bureau2 = \App\bureau::find($request->bur);
 
@@ -224,7 +224,7 @@ class BureauController extends Controller
         \App\bureau::find($id)->delete();
         return redirect()->route('indexBureau')->with('success','you deleted a bureau');
 
-    }
+    }*/
 
 
     /**

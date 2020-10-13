@@ -23,7 +23,7 @@ class CreateAssetsTable extends Migration
             $table->string('category');
             $table->integer('bureau_id')->nullable();
             $table->date('dateService')->nullable();
-            //$table->date('dateAchat')->nullable();
+            $table->date('dateAchat')->nullable();
             $table->integer('duree_vie');
             $table->integer('status')->default(0);
             $table->boolean('occupied')->default(0); 

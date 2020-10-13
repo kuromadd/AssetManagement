@@ -38,9 +38,9 @@ class AssetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($qr)
+    public function create()
     {
-        return view('asset.create')->with('qr',$qr);
+        return view('asset.create');
     }
 
     /**
@@ -51,15 +51,8 @@ class AssetController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'name' => 'required',
-            'brand'=>'required',
-            'prix' => 'required',
-            'category' => 'required',
-            'dateservice' => 'required|date',
-            'duree' => 'required',
-            'qr' => 'required'
-        ]);
+           
+        
 
         $asset = new \App\asset;
         $asset->name = $request->name;
@@ -68,8 +61,9 @@ class AssetController extends Controller
         $asset->prix = $request->prix;
         $asset->category = $request->category;
         $asset->dateService = $request->dateservice;
+        $asset->dateAchat = $request->dateAchat;
         $asset->duree_vie = $request->duree;
-        $asset->qrcode = $request->qr;
+        $asset->qrcode = $request->qrcode;
         $asset->occupied = 0;
         $asset->status = 1;
         $asset->fournisseur_id= $request->fournisseur_id;
@@ -91,7 +85,7 @@ class AssetController extends Controller
         $asset = \App\asset::find($id);
         return view('asset.show')->with('asset',$asset)->with('user',$user);
     }
- 
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -120,6 +114,7 @@ class AssetController extends Controller
             'prix' => 'required',
             'category' => 'required',
             'dateservice' => 'required',
+            'dateAchat' => 'required',
             'duree' => 'required',
         ]);
         $asset = \App\asset::find($id);
@@ -129,6 +124,7 @@ class AssetController extends Controller
         $asset->prix = $request->prix;
         $asset->category = $request->category;
         $asset->dateService = $request->dateservice;
+        $asset->dateAchat = $request->dateAchat;
         $asset->duree_vie = $request->duree;
 
         $asset->save();

@@ -12,8 +12,8 @@
                                     <span class="h2 font-weight-bold mb-0">{{\App\asset::where('occupied',0)->get()->count()}}</span>
                                 </div>
                                 <div class="col-auto">
-                                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                                        <i class="fas fa-chart-bar"></i>
+                                    <div class="icon icon-shape bg-green text-white rounded-circle shadow">
+                                        <i class="fa fa-unlock-alt"></i>
                                     </div>
                                 </div>
                             </div>
@@ -33,8 +33,8 @@
                                     <span class="h2 font-weight-bold mb-0">{{\App\asset::where('occupied',1)->where('status',1)->get()->count()}}</span>
                                 </div>
                                 <div class="col-auto">
-                                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                                        <i class="fas fa-chart-pie"></i>
+                                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                                        <i class="fa fa-lock"></i>
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                                        <i class="fas fa-percent"></i>
+                                        <i class="fa fa-archive"></i>
                                     </div>
                                 </div>
                             </div>
@@ -75,8 +75,8 @@
                                     <span class="h2 font-weight-bold mb-0">{{\App\asset::where('status',2)->get()->count()}}</span>
                                 </div>
                                 <div class="col-auto">
-                                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                                        <i class="fas fa-users"></i>
+                                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                                        <i class="fa fa-exclamation-triangle "></i>
                                     </div>
                                 </div>
                             </div>
@@ -96,8 +96,8 @@
                                     <span class="h2 font-weight-bold mb-0">{{\App\asset::where('status',3)->get()->count()}}</span>
                                 </div>
                                 <div class="col-auto">
-                                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                                        <i class="fas fa-percent"></i>
+                                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                                        <i class="fa fa-times"></i>
                                     </div>
                                 </div>
                             </div>

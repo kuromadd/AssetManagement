@@ -30,18 +30,7 @@
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
             </a>
-            <a href="#" class="dropdown-item">
-                <i class="ni ni-settings-gear-65"></i>
-                <span>Settings</span>
-            </a>
-            <a href="#" class="dropdown-item">
-                <i class="ni ni-calendar-grid-58"></i>
-                <span>Activity</span>
-            </a>
-            <a href="#" class="dropdown-item">
-                <i class="ni ni-support-16"></i>
-                <span>Support</span>
-            </a>
+            
             <div class="dropdown-divider"></div>
             <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">
@@ -103,19 +92,19 @@
             <div class="collapse " id="navbar-hier">
                 <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('indexDivision') }}">
                             <i class="fa fa-building text-blue"></i> 
                             <span class="text text-red"> Divisions </span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('indexDepartement') }}">
                            <i class="fa fa-object-group text-blue"></i>
                            <span class="text text-red"> Departments </span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('indexService') }}">
                            <i class="fa fa-object-group text-blue"></i>
                            <span class="text text-red"> Services </span>
                         </a>
@@ -124,6 +113,7 @@
                 </ul>
             </div>
         </li> 
+
 
         <li class="nav-item">
             <a class="nav-link active" href="#navbar-infra" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-infra">

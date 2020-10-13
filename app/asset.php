@@ -13,6 +13,7 @@ class asset extends Model
         'category',
         'prix',
         'dateService',
+        'dateAchat',
         'duree_vie',
         'fournisseur_id',
         'bureau_id',
@@ -44,5 +45,9 @@ class asset extends Model
 
     public function fournisseur(){
         return $this->belongsTo('\App\Fournisseur');
+    }
+
+    public function amortissement(){
+        return $this->hasOne('\App\Amortissement');
     }
 }

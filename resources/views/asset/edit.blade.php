@@ -45,6 +45,11 @@
      
       <div class="form-group">
         <label for="date" class="form-control-label">&#160&#160Acquisition date :</label>
+        <input type="date" name="dateAchat" id="dateAchat" value="{{ $asset->dateAchat }}" class="form-control" required placeholder=" ">
+      </div>
+
+      <div class="form-group">
+        <label for="date" class="form-control-label">&#160&#160Commissioning date :</label>
         <input type="date" name="dateservice" id="dateservice" value="{{ $asset->dateService }}" class="form-control" required placeholder=" ">
       </div>
 

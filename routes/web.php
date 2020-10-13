@@ -58,7 +58,7 @@ Route::post('/admin/role/updateAll','rolesController@updateAll')->name('updateAl
 Route::post('/admin/role/updateAllper','UserController@updateAll')->name('updateAllper');
 
 Route::get('/asset/index','AssetController@index')->name('indexAsset');
-Route::get('/asset/create/{qr}','AssetController@create')->name('createAsset');
+Route::get('/asset/create','AssetController@create')->name('createAsset');
 Route::post('/asset/store','AssetController@store')->name('storeAsset');
 Route::get('/asset/show/{id}','AssetController@show')->name('showAsset');
 Route::get('/asset/edit/{id}','AssetController@edit')->name('editAsset');
@@ -67,6 +67,8 @@ Route::get('/asset/delete/{id}','AssetController@destroy')->name('deleteAsset');
 Route::get('/replaceAsset','AssetController@replace');
 Route::get('/Found','AssetController@found');
 Route::get('/chooseBureau','AssetController@choose');
+
+Route::post('/Amortissement/storeAmo/{id}','AmortissementController@storeAmo')->name('storeAmo'); 
 
 Route::get('/Inventaire/index','InventaireController@index')->name('indexInventaire');
 Route::get('/Inventaire/create','InventaireController@create')->name('createInventaire');
